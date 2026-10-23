@@ -2492,6 +2492,61 @@ body.lock .cartbar{display:none}
 .dl{display:flex;justify-content:center;border-radius:12px;padding:9px;background:#2c1a10;color:#fff8ee;text-decoration:none;font:700 13.5px var(--kufi)}
 .dl.off{background:transparent;color:var(--mute);border:1px dashed var(--line);font-weight:500}
 body.owner .kinds{top:44px}
+/* ===== step 1: picker, filters, next/previous ===== */
+.kinds{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+@media(max-width:700px){.kinds{display:flex;overflow-x:auto;scrollbar-width:none;padding-inline:2px}.kinds::-webkit-scrollbar{display:none}.kinds button{flex:none;min-width:132px}}
+.kinds .wizk{background:var(--accent);color:#fff8ee;border-color:var(--accent)}
+.kinds .wizk small{color:#ffe6c9}.kinds .wizk em{color:rgba(255,248,238,.85)}
+.kinds .wizk[aria-pressed="true"]{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent)}
+.linkb{border:0;background:none;padding:0;color:var(--accent);font:700 14px var(--kufi);text-decoration:underline;cursor:pointer}
+.fbar{display:grid;gap:10px}
+.fbar:empty{display:none}
+.fq{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 14px}
+.fq span{color:var(--mute);font-size:18px}
+.fq input{flex:1;min-width:0;border:0;background:transparent;height:44px;font:15px var(--plex);color:var(--fg);outline:none}
+.fq:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,107,110,.15)}
+.frow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.flb{font:700 13px var(--kufi);color:var(--mute);margin-inline-end:4px}
+.chip.sm{padding:6px 14px;font-size:13px}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);background:linear-gradient(135deg,var(--a) 0 55%,var(--b) 55%);padding:0;cursor:pointer}
+.sw.all{width:auto;padding:0 12px;border-radius:17px;background:var(--panel);font:600 12.5px var(--kufi);color:var(--fg)}
+.sw[aria-pressed="true"]{border-color:var(--teal);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--teal)}
+.fcount{font:600 13.5px var(--kufi);color:var(--mute)}
+.wiz{position:fixed;inset:0;z-index:90;background:rgba(44,26,16,.55);display:none;align-items:flex-end;justify-content:center;padding:0}
+.wiz.on{display:flex}
+@media(min-width:700px){.wiz{align-items:center;padding:20px}}
+.wbox{width:100%;max-width:560px;max-height:92vh;overflow:auto;background:var(--panel);border-radius:24px 24px 0 0;padding:18px 18px calc(22px + env(safe-area-inset-bottom,0px));animation:wizIn .3s cubic-bezier(.2,.85,.2,1)}
+@media(min-width:700px){.wbox{border-radius:24px}}
+@keyframes wizIn{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.wtop{display:flex;justify-content:space-between;align-items:center;font:600 13px var(--kufi);color:var(--mute)}
+.wtop button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;font-size:18px;color:var(--fg)}
+.wbar{height:6px;border-radius:3px;background:var(--line);margin:10px 0 16px;overflow:hidden}
+.wbar i{display:block;height:100%;background:var(--teal);border-radius:3px;transition:width .3s}
+.wbox h3{margin:0 0 14px;font:700 24px/1.4 var(--kufi);color:var(--fg)}
+.wopts{display:grid;gap:10px}
+.wopts button{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:14px;align-items:center;text-align:start;padding:14px 16px;border-radius:16px;border:1.5px solid var(--line);background:#fffdf8;color:var(--fg);cursor:pointer;transition:border-color .15s,transform .15s}
+.wopts button:hover,.wopts button:focus-visible{border-color:var(--teal);transform:translateY(-1px)}
+.wopts .wic,.wopts .vsw{grid-row:span 2;width:46px;height:46px;border-radius:14px;background:var(--bg);display:grid;place-items:center;font-size:24px}
+.wopts .vsw{border-radius:50%;background:linear-gradient(135deg,var(--a) 0 55%,var(--b) 55%);box-shadow:inset 0 0 0 2px rgba(0,0,0,.08)}
+.wopts b{font:700 17px var(--kufi)}
+.wopts small{font:400 13px var(--plex);color:var(--mute)}
+.wopts.v{grid-template-columns:1fr 1fr}
+.wopts.v button{grid-template-columns:1fr;justify-items:center;text-align:center;row-gap:6px;padding:14px 8px}
+.wopts.v .vsw,.wopts.v .wic{grid-row:auto}
+.wback{margin-top:14px;border:0;background:none;color:var(--mute);font:600 14px var(--kufi);cursor:pointer}
+body.wizopen{overflow:hidden}
+.single .nv{position:fixed;z-index:61;top:50%;translate:0 -50%;width:52px;height:52px;border-radius:50%;border:0;background:rgba(44,26,16,.6);color:#fff8ee;font:400 34px/1 var(--plex);display:grid;place-items:center;opacity:0;transition:opacity .4s;pointer-events:none;cursor:pointer}
+.single .nprev{right:max(10px,env(safe-area-inset-right,0px))}
+.single .nnext{left:max(10px,env(safe-area-inset-left,0px))}
+.single.cursor .nv{opacity:1;pointer-events:auto}
+@media(pointer:coarse){.single .nv{opacity:.85;pointer-events:auto;width:44px;height:44px;font-size:28px}}
+.single .ncount{position:fixed;z-index:61;top:max(16px,env(safe-area-inset-top,0px));left:50%;translate:-50% 0;background:rgba(44,26,16,.6);color:#fff8ee;font:600 13px var(--kufi);padding:5px 12px;border-radius:12px;opacity:0;transition:opacity .4s}
+.single .ncount:empty{display:none}
+.single.cursor .ncount{opacity:1}
+.single.menu>.nv,.single.menu>.ncount{display:none}
+.mtop .nvm{padding:8px 10px;font-size:18px;line-height:1}
+.mtop b small{display:block;font:500 11px var(--kufi);opacity:.75}
+.single .ncount,.mtop .ncount2{direction:ltr;unicode-bidi:isolate}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -2505,7 +2560,7 @@ body.owner .kinds{top:44px}
       <p class="eyebrow">شاشات منيو ومنيو QR للمقاهي والمطاعم · صُنع في عُمان</p>
       <h1>شاشة منيو تبيع عنك… حتى وأنت مشغول<span lang="en" dir="ltr">Menu screens that sell while you serve.</span></h1>
       <p class="lede">منيو متحرك على شاشة الكاشير يلفت عين الزبون من أول ما يدخل، ويبرز الأصناف اللي تبغى تبيعها، ويخلّي الطلب أسرع. ومعه منيو QR تفاعلي على الطاولات. أكثر من ٣٠٠ تصميم جاهز، ونجهّزه بشعارك وأصنافك وأسعارك.</p>
-      <div class="ctas"><a class="cta1" href="#styles-grid" data-scroll>شوف التصاميم</a><a class="cta2" id="talkWa" target="_blank" rel="noopener" href="#">كلّمنا واتساب</a></div>
+      <div class="ctas"><a class="cta1" href="#" data-wiz-hero>✨ ساعدني أختار</a><a class="cta2" href="#styles-grid" data-scroll>شوف كل التصاميم</a><a class="cta2" id="talkWa" target="_blank" rel="noopener" href="#">كلّمنا واتساب</a></div>
       <ul class="uses"><li>شاشة فوق الكاشير</li><li>شاشة عند المدخل</li><li>منيو QR للطاولات</li><li>تصاميم المناسبات</li></ul>
     </div>
     <div class="stage" aria-hidden="true">
@@ -2553,6 +2608,7 @@ body.owner .kinds{top:44px}
   <div class="kinds" role="group" aria-label="نوع التصميم" id="kinds"></div>
   <div class="kinfo" id="kinfo"></div>
   <div class="chips" role="group" aria-label="تصفية" id="chips"></div>
+  <div class="fbar" id="fbar"></div>
   <div class="grid" id="grid"></div>
 
   <section class="sec" aria-labelledby="faqT">
@@ -2570,7 +2626,7 @@ body.owner .kinds{top:44px}
   <p class="foot">أضف التصاميم اللي تعجبك للطلب واضغط «أرسل الطلب»، ويوصلنا على الواتساب مباشرة. الشاشات توصلك فيديو MP4 يشتغل من فلاشة USB، والمنيو التفاعلي يوصلك رابط خاص وكود QR للطاولات.</p>
 </main>
 <div class="cartbar" id="cartbar" hidden><span id="cartTxt"></span><button type="button" id="cartGo">أرسل الطلب</button></div>
-<div class="single" id="single" dir="rtl" lang="ar"><button class="back" id="back" type="button">كل التصاميم →</button><button class="choose" id="chooseSingle" type="button">أضف للطلب</button></div>
+<div class="single" id="single" dir="rtl" lang="ar"><button class="back" id="back" type="button">كل التصاميم →</button><button class="choose" id="chooseSingle" type="button">أضف للطلب</button><button class="nv nprev" type="button" data-nav="-1" aria-label="السابق">›</button><button class="nv nnext" type="button" data-nav="1" aria-label="التالي">‹</button><span class="ncount" id="ncount"></span></div>
 <div class="scrim" id="scrim" hidden></div>
 <div class="sheet" id="sheet" dir="rtl" lang="ar" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden></div>
 
@@ -3407,26 +3463,82 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{const r=runners.get(e.targe
 function fitR(p,r){if(r.isMenu)r.fit();else if(r.poster&&p.clientWidth)r.poster.style.zoom=(p.clientWidth/(r.poster.classList.contains("land")?1920:r.poster.classList.contains("s34")?1200:1080)).toFixed(4)}
 function scalePhones(){runners.forEach((r,p)=>fitR(p,r))}
 try{new ResizeObserver(scalePhones).observe(grid)}catch(e){addEventListener("resize",scalePhones)}
-let kind="studio",mood="all";
-kindsEl.innerHTML=Object.entries(KINDS).map(([k,K])=>`<button type="button" data-k="${k}" aria-pressed="${k===kind}">${K.ar}<small>${K.price} ر.ع</small><em>${K.list.length} تصميم</em></button>`).join("");
-function showKind(k,scroll){kind=k;mood="all";const K=KINDS[k];
+let kind="studio",mood="all",vibe="all",colr="all",qtext="";
+/* ---- style (vibe) of every design, used by filters and the picker ---- */
+const VIBES=[["lux","فخم وأنيق","#2c1a10","#c9a45c"],["bold","عصري وجريء","#2a0f55","#ffd23f"],["heritage","تراثي عُماني","#7b2318","#b98b3e"],["clean","بسيط ونظيف","#f4f1e8","#2f5634"],["fun","مرح وملوّن","#ff4f8b","#ffd23f"]];
+const VMAP={sband:"lux",scurve:"clean",schecks:"fun",scircle:"bold",swhite:"clean",steal:"lux",reel:"bold",parch:"heritage",pgrid:"lux",pmag:"lux",pband:"lux",pcurve:"clean",pcheck:"fun",pcirc:"bold",psplit:"bold",pmint:"clean",ppola:"fun",pneon:"bold",ptag:"clean",barch:"heritage",bclassic:"lux",bmini:"lux",bsplit:"clean",bgrid:"clean",bcat:"clean",boffer:"bold",bhero:"bold",bcols:"clean",bflip:"bold",elegant:"lux",bold:"bold",playful:"fun",world:"clean",heritage:"heritage",occ:"heritage",occasion:"heritage"};
+const MVIBE={luban:"heritage",zafaran:"heritage",nakhla:"heritage",lail:"lux",qahwa:"lux",shams:"bold",halwa:"fun",ward:"fun",fidda:"clean",sidr:"clean",bahr:"clean",sur:"clean"};
+function vibeOf(d){if(d.kind==="menu")return MVIBE[d.th&&d.th.key]||"clean";const tk=d.th&&d.th.key;if(["shams","halwa","candy","ward"].includes(tk)&&d.kind!=="studio")return "fun";if(["luban","zafaran","maroon"].includes(tk)&&d.kind!=="bold")return "heritage";if(d.kind==="bold"){const k=d.th&&d.th.key;return k==="gold"?"lux":["candy","cream","matcha"].includes(k)?"fun":"bold"}return VMAP[d.eng]||VMAP[d.mood]||"clean"}
+Object.values(byId).forEach(d=>{d.vibe=vibeOf(d);d.col=d.th&&d.th.key||"other"});
+const PICKS={ar:"اخترنا لك",list:[],chips:[["all","الكل"]]};
+let ANS=null;try{ANS=JSON.parse(localStorage.getItem("mm_ans")||"null")}catch(e){}
+kindsEl.innerHTML=`<button type="button" class="wizk" data-wiz>✨ ساعدني أختار<small>٣ أسئلة</small><em>نقترح لك أنسب التصاميم</em></button>`+Object.entries(KINDS).map(([k,K])=>`<button type="button" data-k="${k}" aria-pressed="${k===kind}">${K.ar}<small>${K.price} ر.ع</small><em>${K.list.length} تصميم</em></button>`).join("");
+const fbar=document.getElementById("fbar");
+function cardHTML(d){const K=KINDS[d.kind];return `<div class="phone${d.kind==="land"?" land":d.kind==="studio"?" s34":""}" role="button" tabindex="0" aria-label="شاهد ${esc(d.ar)} بملء الشاشة">${d.kind==="menu"?`<span class="tryb">اضغط وجرّبه 👆</span>`:""}</div><div class="meta"><div class="mrow"><span class="num">${d.code}</span><h2>${d.ar}</h2></div><div class="en" lang="en" dir="ltr">${d.n}</div><div class="fit">${d.fitAr||""}</div><div class="prow"><span class="code" dir="ltr">#${d.id}</span><span class="cp">${omr(K.price)}</span></div></div><button class="pick" type="button" data-pick="${d.id}">أضف للطلب</button>`}
+function showKind(k,scroll){kind=k;mood="all";vibe="all";colr="all";qtext="";const K=k==="picks"?PICKS:KINDS[k];
   [...runners.keys()].forEach(p=>{if(grid.contains(p)){runners.get(p).stop();io.unobserve(p);runners.delete(p)}});grid.innerHTML="";grid.classList.toggle("wide",k==="land");
-  kindsEl.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===k));
-  kinfo.innerHTML=`<b>${omr(K.price)}</b><span>${K.fmt}</span>`;
-  chipsEl.innerHTML=K.chips.map(([id,l])=>`<button class="chip" type="button" data-m="${id}" aria-pressed="${id==="all"}">${l}${id==="all"?" · "+K.list.length:""}</button>`).join("");
+  kindsEl.querySelectorAll("[data-k]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===k));kindsEl.querySelector("[data-wiz]").setAttribute("aria-pressed",k==="picks");
+  if(k==="picks")kinfo.innerHTML=`<b>✨</b><span>اخترنا لك <strong>${K.list.length}</strong> تصاميم حسب إجاباتك: ${esc(ansText())}. اضغط أي تصميم تشوفه بملء الشاشة، وتنقّل بالأسهم بينهم. <button type="button" class="linkb" data-wiz>غيّر الإجابات</button></span>`;
+  else kinfo.innerHTML=`<b>${omr(K.price)}</b><span>${K.fmt}</span>`;
+  chipsEl.innerHTML=k==="picks"?"":K.chips.map(([id,l])=>`<button class="chip" type="button" data-m="${id}" aria-pressed="${id==="all"}">${l}${id==="all"?" · "+K.list.length:""}</button>`).join("");
+  const vs=new Set(K.list.map(d=>d.vibe)),cs=[...new Map(K.list.filter(d=>d.th&&d.th.bg).map(d=>[d.col,d.th])).entries()];
+  fbar.innerHTML=k==="picks"?"":`<label class="fq"><span aria-hidden="true">⌕</span><input type="search" id="fq" placeholder="ابحث برقم التصميم أو اسمه، مثلاً ${K.pre}-012" aria-label="بحث"></label>
+   <div class="frow"><span class="flb">الستايل</span><button class="chip sm" type="button" data-v="all" aria-pressed="true">الكل</button>${VIBES.filter(v=>vs.has(v[0])).map(v=>`<button class="chip sm" type="button" data-v="${v[0]}" aria-pressed="false">${v[1]}</button>`).join("")}</div>
+   ${cs.length>1?`<div class="frow"><span class="flb">اللون</span><button class="sw all" type="button" data-c="all" aria-pressed="true" title="كل الألوان">الكل</button>${cs.map(([key,th])=>`<button class="sw" type="button" data-c="${key}" aria-pressed="false" title="${esc(th.ar||key)}" aria-label="${esc(th.ar||key)}" style="--a:${th.bg};--b:${th.ac}"></button>`).join("")}</div>`:""}
+   <div class="fcount" id="fcount" aria-live="polite"></div>`;
   const frag=document.createDocumentFragment();
-  K.list.forEach(d=>{const c=document.createElement("article");c.className="card";c.dataset.mood=d.mood;
-    c.innerHTML=`<div class="phone${k==="land"?" land":k==="studio"?" s34":""}" role="button" tabindex="0" aria-label="شاهد ${esc(d.ar)} بملء الشاشة">${k==="menu"?`<span class="tryb">اضغط وجرّبه 👆</span>`:""}</div><div class="meta"><div class="mrow"><span class="num">${d.code}</span><h2>${d.ar}</h2></div><div class="en" lang="en" dir="ltr">${d.n}</div><div class="fit">${d.fitAr||""}</div><div class="prow"><span class="code" dir="ltr">#${d.id}</span><span class="cp">${omr(K.price)}</span></div></div><button class="pick" type="button" data-pick="${d.id}">أضف للطلب</button>`;
-    frag.appendChild(c)});
+  K.list.forEach(d=>{const c=document.createElement("article");c.className="card";c.dataset.mood=d.mood;c.dataset.vibe=d.vibe;c.dataset.col=d.col;c.dataset.q=(d.code+" "+d.id+" "+d.ar+" "+d.n).toLowerCase();c.innerHTML=cardHTML(d);frag.appendChild(c)});
   grid.appendChild(frag);
   grid.querySelectorAll(".card").forEach((c,i)=>{const d=K.list[i],ph=c.querySelector(".phone");const r=mkRunner(d,ph,"preview");runners.set(ph,r);io.observe(ph);
     const open=()=>{location.hash=d.id};ph.addEventListener("click",open);ph.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})});
-  scalePhones();updCart();if(typeof ownBtns==='function')try{ownBtns()}catch(e){}if(scroll)document.getElementById("styles-grid").scrollIntoView({behavior:"smooth"})}
-kindsEl.addEventListener("click",e=>{const b=e.target.closest("[data-k]");if(b&&b.dataset.k!==kind)showKind(b.dataset.k)});
+  applyFilters();scalePhones();updCart();if(typeof ownBtns==='function')try{ownBtns()}catch(e){}if(scroll)document.getElementById("styles-grid").scrollIntoView({behavior:"smooth"})}
+const norm=t=>String(t||"").toLowerCase().replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/\s+/g," ").trim();
+function applyFilters(){let n=0;const q=norm(qtext).replace(/^#/,"");
+  grid.querySelectorAll(".card").forEach(c=>{const ok=(mood==="all"||c.dataset.mood===mood)&&(vibe==="all"||c.dataset.vibe===vibe)&&(colr==="all"||c.dataset.col===colr)&&(!q||c.dataset.q.includes(q));c.hidden=!ok;if(ok)n++});
+  const fc=document.getElementById("fcount");if(fc)fc.innerHTML=n?`${n} تصميم`:`ما في تصاميم بهذي الاختيارات. <button type="button" class="linkb" data-reset>امسح الفلاتر</button>`;
+  setTimeout(scalePhones,30)}
+kindsEl.addEventListener("click",e=>{if(e.target.closest("[data-wiz]")){openWiz();return}const b=e.target.closest("[data-k]");if(b&&b.dataset.k!==kind)showKind(b.dataset.k)});
+kinfo.addEventListener("click",e=>{if(e.target.closest("[data-wiz]"))openWiz()});
 document.getElementById("plans").addEventListener("click",e=>{if(e.target.closest("[data-full]")){wantFull=true;openSheet();return}if(e.target.closest("[data-sub]")){wantSub=true;openSheet();return}const b=e.target.closest("[data-go]");if(b){if(b.dataset.go!==kind)showKind(b.dataset.go);document.getElementById("styles-grid").scrollIntoView({behavior:"smooth"})}});
-chipsEl.addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b)return;mood=b.dataset.m;
-  chipsEl.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));
-  grid.querySelectorAll(".card").forEach(c=>c.hidden=!(mood==="all"||c.dataset.mood===mood));setTimeout(scalePhones,30)});
+chipsEl.addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b)return;mood=b.dataset.m;chipsEl.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));applyFilters()});
+fbar.addEventListener("click",e=>{const v=e.target.closest("[data-v]"),c=e.target.closest("[data-c]");
+  if(v){vibe=v.dataset.v;fbar.querySelectorAll("[data-v]").forEach(x=>x.setAttribute("aria-pressed",x===v));applyFilters()}
+  if(c){colr=c.dataset.c;fbar.querySelectorAll("[data-c]").forEach(x=>x.setAttribute("aria-pressed",x===c));applyFilters()}
+  if(e.target.closest("[data-reset]"))resetFilters()});
+fbar.addEventListener("input",e=>{if(e.target.id==="fq"){qtext=e.target.value;applyFilters()}});
+document.getElementById("fcount")||0;
+function resetFilters(){mood=vibe=colr="all";qtext="";const f=document.getElementById("fq");if(f)f.value="";fbar.querySelectorAll("[data-v],[data-c]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v==="all"||x.dataset.c==="all"));chipsEl.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.m==="all"));applyFilters()}
+grid.addEventListener("click",e=>{if(e.target.closest("[data-reset]"))resetFilters()});
+
+/* ---- guided picker (R-01) ---- */
+const WQ=[
+ {k:"where",q:"وين بتعرض المنيو؟",o:[["screen","📺","شاشة داخل المحل","فوق الكاشير أو عند المدخل"],["qr","📱","منيو QR على الطاولات","الزبون يفتحه بجواله"],["both","✨","الاثنين","شاشة + منيو QR"]]},
+ {k:"orient",q:"كيف الشاشة مركّبة؟",skip:a=>a.where==="qr",o:[["port","▯","واقفة (عمودية)","مثل الجوال"],["land","▭","نايمة (عرضية)","مثل التلفزيون العادي"],["any","？","ما أعرف بعد","نقترح لك الاثنين"]]},
+ {k:"content",q:"ايش تبي الشاشة تعرض؟",skip:a=>a.where==="qr"||a.orient==="land",o:[["full","📋","المنيو كامل","كل الأصناف بالأسعار"],["items","⭐","أصناف مختارة","٤ أصناف بحركة قوية"],["mix","🔀","الاثنين","وريني الكل"]]},
+ {k:"vibe",q:"أي ستايل يشبه مقهاك؟",o:[...VIBES.map(v=>[v[0],"",v[1],"",v[2],v[3]]),["any","🎲","فاجئني","كل الستايلات"]]}
+];
+let wiz=null,wst=0,wans={};
+function ansText(){if(!ANS)return "";const L=[];WQ.forEach(q=>{const o=q.o.find(o=>o[0]===ANS[q.k]);if(o)L.push(o[2])});return L.join(" · ")}
+function openWiz(){wans={};wst=0;if(!wiz){wiz=document.createElement("div");wiz.className="wiz";wiz.dir="rtl";wiz.setAttribute("role","dialog");wiz.setAttribute("aria-modal","true");wiz.setAttribute("aria-labelledby","wizQ");document.body.appendChild(wiz);
+   wiz.addEventListener("click",e=>{const o=e.target.closest("[data-o]");if(o){wans[WQ[wst].k]=o.dataset.o;nextQ(1);return}if(e.target.closest("[data-wback]")){nextQ(-1);return}if(e.target.closest("[data-wx]")||e.target===wiz)closeWiz()});
+   addEventListener("keydown",e=>{if(e.key==="Escape"&&wiz.classList.contains("on"))closeWiz()})}
+  wiz.classList.add("on");document.body.classList.add("wizopen");drawQ()}
+function closeWiz(){if(wiz){wiz.classList.remove("on");document.body.classList.remove("wizopen")}}
+function visibleQ(){return WQ.filter(q=>!(q.skip&&q.skip(wans)))}
+function nextQ(dir){let i=wst+dir;while(i>=0&&i<WQ.length&&WQ[i].skip&&WQ[i].skip(wans))i+=dir;if(i<0)return;if(i>=WQ.length){finishWiz();return}wst=i;drawQ()}
+function drawQ(){const q=WQ[wst],vq=visibleQ(),n=vq.indexOf(q)+1;
+  wiz.innerHTML=`<div class="wbox"><div class="wtop"><span>سؤال ${n} من ${vq.length}</span><button type="button" data-wx aria-label="إغلاق">×</button></div><div class="wbar"><i style="width:${n/vq.length*100}%"></i></div><h3 id="wizQ">${q.q}</h3><div class="wopts ${q.k==="vibe"?"v":""}">${q.o.map(o=>`<button type="button" data-o="${o[0]}">${o[4]?`<span class="vsw" style="--a:${o[4]};--b:${o[5]}"></span>`:`<span class="wic">${o[1]}</span>`}<b>${o[2]}</b>${o[3]?`<small>${o[3]}</small>`:""}</button>`).join("")}</div>${n>1?`<button type="button" class="wback" data-wback>→ رجوع</button>`:""}</div>`;
+  const f=wiz.querySelector("[data-o]");if(f&&matchMedia("(pointer:fine)").matches)f.focus()}
+function pickKinds(a){let ks=[];if(a.where!=="qr"){if(a.orient==="land")ks=["land"];else if(a.orient==="any")ks=a.content==="full"?["studio","full","land"]:a.content==="items"?["bold","portrait","land"]:["studio","bold","land"];else ks=a.content==="full"?["studio","full"]:a.content==="items"?["bold","portrait"]:["studio","bold","full","portrait"]}if(a.where!=="screen")ks.push("menu");return ks}
+function recommend(a){const ks=pickKinds(a),total=a.where==="both"?9:8;const per={};ks.forEach(k=>per[k]=0);const menuQ=a.where==="both"?3:a.where==="qr"?8:0;
+  const out=[];const pool=k=>{const L=KINDS[k].list.filter(d=>d.id!=="studio-reel");const m=a.vibe&&a.vibe!=="any"?L.filter(d=>d.vibe===a.vibe):L;const rest=L.filter(d=>!m.includes(d));const seen=new Set(),first=[],later=[];m.forEach(d=>{const g=d.eng||d.L||d.mood;(seen.has(g)?later:first).push(d);seen.add(g)});return [...first,...later,...rest]};
+  const screenK=ks.filter(k=>k!=="menu"),screenQ=total-menuQ;
+  const pools={};ks.forEach(k=>pools[k]=pool(k));
+  for(let i=0;out.length<screenQ&&screenK.length&&i<200;i++){const k=screenK[i%screenK.length];const d=pools[k].shift();if(d)out.push(d)}
+  if(menuQ)for(let i=0;i<menuQ;i++){const d=pools.menu.shift();if(d)out.push(d)}
+  return out}
+function finishWiz(){ANS=Object.assign({},wans);try{localStorage.setItem("mm_ans",JSON.stringify(ANS))}catch(e){}PICKS.list=recommend(ANS);closeWiz();showKind("picks",true)}
+document.querySelectorAll("[data-wiz-hero]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();openWiz()}));
 document.querySelectorAll("[data-count]").forEach(e=>e.textContent=TOTAL);
 
 /* single full-screen view at #id */
@@ -3437,26 +3549,33 @@ function route(){
   if(sRunner){sRunner.stop();sRunner.poster.remove();sRunner=null}
   single.querySelectorAll(".mframe").forEach(x=>x.remove());single.classList.remove("menu");
   if(!d){single.classList.remove("on");document.body.classList.remove("lock");runners.forEach((r,p)=>{const b=p.getBoundingClientRect();if(b.bottom>-200&&b.top<innerHeight+200&&b.width)r.start()});return}
-  if(d.kind!==kind&&id)showKind(d.kind);
+  if(d.kind!==kind&&!(kind==="picks"&&PICKS.list.includes(d))&&id)showKind(d.kind);
   runners.forEach(r=>r.stop());
   single.classList.add("on");document.body.classList.add("lock");
   if(d.kind==="menu"){single.classList.add("menu");
-    single.insertAdjacentHTML("beforeend",`<div class="mframe"><div class="mtop"><button class="mb" type="button" data-back>→ رجوع</button><b>${d.code} · ${d.ar}</b><button class="madd" type="button" data-add>أضف للطلب · ${KINDS.menu.price} ر.ع</button></div><div class="mhost"></div></div>`);
+    single.insertAdjacentHTML("beforeend",`<div class="mframe"><div class="mtop"><button class="mb" type="button" data-back>→ رجوع</button><button class="mb nvm" type="button" data-nav="-1" aria-label="السابق">›</button><b>${d.code} · ${d.ar}<small class="ncount2">${navLabel()}</small></b><button class="mb nvm" type="button" data-nav="1" aria-label="التالي">‹</button><button class="madd" type="button" data-add>أضف للطلب · ${KINDS.menu.price} ر.ع</button></div><div class="mhost"></div></div>`);
     sRunner=MRunner(d,single.querySelector(".mhost"),"full");sRunner.start();updCart();return}
   sRunner=Runner(d,single);
   let bg=d.th&&d.th.bg;if(!bg){const probe=document.createElement("div");probe.className=`poster t-${d.id}`;document.body.appendChild(probe);bg=getComputedStyle(probe).backgroundColor;probe.remove()}
-  single.style.setProperty("--sbg",bg);fitSingle();sRunner.start();wake();updCart();
+  single.style.setProperty("--sbg",bg);fitSingle();sRunner.start();wake();updCart();document.getElementById("ncount").textContent=navLabel();
 }
 addEventListener("hashchange",route);addEventListener("resize",fitSingle);
 const goBack=()=>{history.replaceState(null,"",location.pathname+location.search);route()};
 document.getElementById("back").addEventListener("click",goBack);
 let idle;function wake(){single.classList.add("cursor");clearTimeout(idle);idle=setTimeout(()=>single.classList.remove("cursor"),2500)}
 single.addEventListener("mousemove",wake);
-single.addEventListener("click",e=>{if(single.classList.contains("menu")){if(e.target.closest("[data-back]"))goBack();else if(e.target.closest("[data-add]")){addCart(currentId());openSheet()}return}
+single.addEventListener("click",e=>{const nv=e.target.closest("[data-nav]");if(nv){e.stopPropagation();navGo(+nv.dataset.nav);return}if(single.classList.contains("menu")){if(e.target.closest("[data-back]"))goBack();else if(e.target.closest("[data-add]")){addCart(currentId());openSheet()}return}
   wake();if(e.target.id==="back"||e.target.id==="chooseSingle")return;try{const r=document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();if(r&&r.catch)r.catch(()=>{})}catch(err){}});
 async function keepAwake(){try{if(single.classList.contains("on")&&"wakeLock" in navigator)await navigator.wakeLock.request("screen")}catch(e){}}
 document.addEventListener("visibilitychange",keepAwake);
 const currentId=()=>decodeURIComponent((location.hash||"").slice(1));
+/* ---- next / previous in full view (R-03) ---- */
+function navIds(){return [...grid.querySelectorAll(".card:not([hidden]) [data-pick]")].map(b=>b.dataset.pick)}
+function navLabel(){const L=navIds(),i=L.indexOf(currentId());return i<0?"":`${i+1} / ${L.length}`}
+function navGo(dir){const L=navIds();if(!L.length)return;const i=L.indexOf(currentId());const n=L[((i<0?0:i+dir)%L.length+L.length)%L.length];if(n&&n!==currentId())location.replace("#"+n)}
+addEventListener("keydown",e=>{if(!single.classList.contains("on")||!sheet.hidden||(wiz&&wiz.classList.contains("on")))return;if(e.target.matches&&e.target.matches("input,textarea,select"))return;if(e.key==="ArrowLeft"){e.preventDefault();navGo(1)}else if(e.key==="ArrowRight"){e.preventDefault();navGo(-1)}else if(e.key==="Escape"){goBack()}});
+let tx0=null,ty0=null;single.addEventListener("touchstart",e=>{if(single.classList.contains("menu"))return;const t=e.touches[0];tx0=t.clientX;ty0=t.clientY},{passive:true});
+single.addEventListener("touchend",e=>{if(tx0===null)return;const t=e.changedTouches[0],dx=t.clientX-tx0,dy=t.clientY-ty0;tx0=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)navGo(dx>0?1:-1)},{passive:true});
 
 
 /* ===== owner mode (only with ?admin=nana in the link): download buttons ===== */
