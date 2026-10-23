@@ -2169,6 +2169,17 @@ html{overflow-x:clip}
 .phone.s34{aspect-ratio:3/4}
 .stage .vs.s34{width:clamp(130px,24vw,240px)}
 
+.stu .tlogo{width:auto;object-fit:contain;z-index:5}
+.stu .tlogo2{display:block;height:150px;width:auto;margin:0 auto 6px}
+.t-steal .tt .tlogo2{height:120px;margin:0 0 10px}
+.t-scircle .tt{top:180px}.t-scircle .lst{top:690px}.t-scircle .ord{top:1440px}
+.t-scircle .lst .r{padding:3px 0}
+.t-scurve .tt .scr{left:470px}
+.t-swhite .tt b{display:none}
+.t-swhite .p1{top:290px}.t-swhite .l1{top:330px}
+.t-steal .tt b{font-size:210px}
+.t-scurve .tt .scr{left:400px;font-size:150px;top:40px}
+
 /* ===== interactive menus (real phone UI, px at 390 wide) ===== */
 .mw{position:relative;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--fg);font-family:var(--plex);font-size:14px;line-height:1.5;text-align:start;--line2:color-mix(in srgb,var(--fg) 14%,transparent)}
 .mw *{box-sizing:border-box}
@@ -2473,6 +2484,14 @@ body.lock .cartbar{display:none}
 /* Arabic must never be letter-spaced or outlined (breaks the joined letters) */
 .t-magazine .issue,.t-swiss .lab,.t-bento .lab,.osub{letter-spacing:0!important}
 .t-neon .ar{color:#fff!important;-webkit-text-stroke:0!important;text-shadow:0 0 10px var(--c2),0 0 30px var(--c2)!important}
+
+.ownbar{position:sticky;top:0;z-index:70;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 16px;background:#2c1a10;color:#fff8ee;font:600 14px var(--kufi)}
+.ownbar span{opacity:.75}
+.ownbar a{background:#1d7543;color:#fff;text-decoration:none;border-radius:16px;padding:7px 14px}
+.ownbar button{margin-inline-start:auto;border:0;border-radius:16px;padding:7px 14px;background:rgba(255,248,238,.15);color:#fff8ee}
+.dl{display:flex;justify-content:center;border-radius:12px;padding:9px;background:#2c1a10;color:#fff8ee;text-decoration:none;font:700 13.5px var(--kufi)}
+.dl.off{background:transparent;color:var(--mute);border:1px dashed var(--line);font-weight:500}
+body.owner .kinds{top:44px}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -3244,10 +3263,11 @@ const its=(cid,n=4)=>CB(cid).items.slice(0,n);
 const Rw=(k,d,o,opt={})=>{const it=I[k];return `<div class="r${opt.th?" t":""}" style="${AN(["pmWR",.8,d],["soWipe",o,.45])}">${opt.th?`<span class="th">${IM(k)}</span>`:""}<b>${it.ar}</b><em>${it.p}</em><small>${it.en}</small>${opt.desc?`<p>${it.dar}</p>`:""}</div>`};
 const Hd=(cid,d,o)=>{const c=CB(cid);return `<div class="hdg" style="${AN(["pmUp",.7,d],["soFade",o,.4])}"><b>${c.ar}</b><small>${c.en}</small></div>`};
 const LG2=(pal,d,o)=>`<img src="${IMG[pal.dark?"logo_cream":"logo_ink"]}" alt="">`;
+const TOPLOGO=(p,st,d=.15,o=.8)=>`<img class="a tlogo" src="${IMG[p.dark?"logo_cream":"logo_ink"]}" alt="N'ana" style="${st};${AN(["pmDrop",.8,d],["soUp",o,.5])}">`;
 const SE2={
  sband:{n:"Side Band",ar:"الشريط والعنوان الكلاسيكي",fit:"شريط ملوّن بكلمة MENU وصورة ضخمة تطلع من الطرف",
   build:(p,pg)=>{const a=its(pg.s[0]),b=its(pg.s[1],3);return `
-   <div class="a band" style="${AN(["pmSD",.9,0],["soShU",.5,.9])}"></div>
+   <div class="a band" style="${AN(["pmSD",.9,0],["soShU",.5,.9])}"></div>${TOPLOGO(p,"right:70px;top:50px;height:130px")}
    ${Ea("vw","MENU",["pmWL",1,.5],["soFade",.7])}
    ${Ea("ph hero",IM(pg.h[0]),["siFlyL",1.2,.7],["soL",.1,.7])}
    <div class="a tt"><b style="${AN(["pmWL",.9,.9],["soWipe",.3,.45])}">${pg.cap}</b><span class="scr" style="${AN(["pmWL",1,1.3],["soWipe",.25,.45])};display:block">${pg.sc}</span><span class="ar" style="${AN(["pmWR",.8,1.6],["soWipe",.2,.45])}">${pg.ar}</span></div>
@@ -3256,7 +3276,7 @@ const SE2={
    ${Ea("ft",`${LG2(p)}<span dir="ltr">@nanatea.om</span>`,["pmUp",.7,3.2],["soFade",0])}`}},
  scurve:{n:"Curved Panel",ar:"اللوحة المنحنية",fit:"عنوان ضخم بخط يدوي ولوحة منحنية وصور تطير من الأطراف",
   build:(p,pg)=>{const a=its(pg.s[0],3),b=its(pg.s[1],3);return `
-   <div class="a tt"><b style="${AN(["pmWL",.9,.3],["soWipe",.5,.45])}">${pg.en}</b><span class="scr" style="${AN(["pmWL",1.1,.8],["soWipe",.45,.45])}">Menu</span><span class="ar" style="${AN(["pmWR",.8,1.1],["soWipe",.4,.45])}">${pg.ar}</span></div>
+   ${TOPLOGO(p,"right:60px;top:40px;height:120px")}<div class="a tt"><b style="${AN(["pmWL",.9,.3],["soWipe",.5,.45])}">${pg.en}</b><span class="scr" style="${AN(["pmWL",1.1,.8],["soWipe",.45,.45])}">Menu</span><span class="ar" style="${AN(["pmWR",.8,1.1],["soWipe",.4,.45])}">${pg.ar}</span></div>
    ${Ea("ph h1",IM(pg.h[0]),["siFlyL",1.2,.5],["soL",.3,.7])}
    ${[[90,300,22,-200,-80],[520,280,14,140,-60],[470,760,18,160,90],[40,780,12,-120,120],[560,560,10,200,0],[300,240,9,0,-160]].map(([l,t,s,cx,cy],i)=>`<i class="cr" style="left:${l}px;top:${t}px;width:${s}px;height:${s}px;--cx:${cx}px;--cy:${cy}px;${AN(["siCrumb",.9,1.1+i*.08],["soFade",.3,.4])}"></i>`).join("")}
    <div class="a l1">${Hd(pg.s[0],1.3,.45)}${a.map((k,i)=>Rw(k,1.5+i*.2,.4-i*.05,{desc:1})).join("")}</div>
@@ -3269,7 +3289,7 @@ const SE2={
  schecks:{n:"Diner Checks",ar:"مربعات الداينر",fit:"مربعات حمراء وبلوكات ملوّنة والصور طالعة منها",
   build:(p,pg)=>{const L=pg.s.map(c=>its(c,4));const pill=c=>`<span class="pill">${CB(c).ar}</span>`;return `
    <div class="a ck t" style="${AN(["pmSL",1,0],["soShL",.9,.5])}"></div><div class="a ck b" style="${AN(["pmSR",1,.1],["soShL",.85,.5])}"></div>
-   <div class="a tt"><b style="${AN(["pmDrop",.8,.4],["soUp",.8,.5])}">MENU</b><span class="scr" style="${AN(["pmWL",1,.9],["soWipe",.75,.45])}">N'ana Tea House</span></div>
+   ${TOPLOGO(p,"right:60px;top:110px;height:120px")}<div class="a tt"><b style="${AN(["pmDrop",.8,.4],["soUp",.8,.5])}">MENU</b><span class="scr" style="${AN(["pmWL",1,.9],["soWipe",.75,.45])}">N'ana Tea House</span></div>
    <div class="a rule" style="${AN(["pmSX",.8,1.1],["soFade",.7,.3])};transform-origin:center"></div>
    <div class="a blk a1" style="${AN(["pmSL",.8,1.2],["soShL",.5,.5])}"></div>${Ea("ph p1",IM(pg.h[0]),["siPop",.8,1.5],["soL",.55,.6])}
    <div class="a l1 lw"><span style="${AN(["siPop",.6,1.6],["soFade",.5,.3])}">${pill(pg.s[0])}</span>${L[0].map((k,i)=>Rw(k,1.8+i*.14,.5-i*.03)).join("")}</div>
@@ -3279,7 +3299,7 @@ const SE2={
    <div class="a l3 lw"><span style="${AN(["siPop",.6,3],["soFade",.1,.3])}">${pill(pg.s[2])}</span>${L[2].slice(0,3).map((k,i)=>Rw(k,3.2+i*.14,.1-i*.03)).join("")}</div>`}},
  scircle:{n:"Bold Circles",ar:"الدوائر الجريئة",fit:"عنوان ضخم وصور داخل دوائر تطلع من طرف الشاشة",
   build:(p,pg)=>{const a=its(pg.s[0]),b=its(pg.s[1],4);return `
-   <div class="a tt"><b style="${AN(["pmWL",.9,.3],["soWipe",.6,.45])}">${pg.big[0]}<br>${pg.big[1]}</b><span class="scr" style="${AN(["pmWL",1,.9],["soWipe",.55,.45])}">Menu</span><span class="ar" style="${AN(["pmWR",.8,1.2],["soWipe",.5,.45])}">${pg.ar}</span></div>
+   ${TOPLOGO(p,"left:70px;top:40px;height:120px")}<div class="a tt"><b style="${AN(["pmWL",.9,.3],["soWipe",.6,.45])}">${pg.big[0]}<br>${pg.big[1]}</b><span class="scr" style="${AN(["pmWL",1,.9],["soWipe",.55,.45])}">Menu</span><span class="ar" style="${AN(["pmWR",.8,1.2],["soWipe",.5,.45])}">${pg.ar}</span></div>
    <div class="a c c1" style="${AN(["pmSR",.9,.2],["soR",.7,.6])}"></div><div class="a c c2" style="${AN(["pmSR",.9,.4],["soR",.6,.6])}"></div><div class="a c c3" style="${AN(["pmSR",.9,.6],["soR",.5,.6])}"></div>
    <i class="ck2" style="left:700px;top:470px;${AN(["siPop",.5,1],["soFade",.5,.3])}"></i><i class="ck2" style="left:1060px;top:960px;${AN(["siPop",.5,1.2],["soFade",.45,.3])}"></i>
    ${Ea("ph q1",IM(pg.h[0]),["siPop",.8,.9],["soR",.65,.6])}${Ea("ph q2",IM(pg.h[1]),["siPop",.8,1.15],["soR",.55,.6])}${Ea("ph q3",IM(pg.h[2]),["siPop",.8,1.4],["soR",.45,.6])}
@@ -3288,7 +3308,7 @@ const SE2={
    ${Ea("ord",`<b>ORDER NOW!</b><span>📍 مسقط</span><span dir="ltr">◎ @nanatea.om</span>`,["pmUp",.7,3.3],["soFade",0])}`}},
  swhite:{n:"Sticker Pop",ar:"الملصقات الحمراء",fit:"خلفية بيضاء نظيفة وصور ضخمة على الأطراف مع ملصقات",
   build:(p,pg)=>{const L=pg.s.map(c=>its(c,4));return `
-   <div class="a tt"><b style="${AN(["pmDrop",.8,.2],["soUp",.8,.5])}">${BRAND.en}</b><small style="${AN(["pmWL",.9,.7],["soWipe",.75,.45])}">MENU · ${pg.en.toUpperCase()}</small></div>
+   <div class="a tt"><img class="tlogo2" src="${IMG[p.dark?"logo_cream":"logo_ink"]}" alt="N'ana" style="${AN(["pmDrop",.8,.2],["soUp",.8,.5])}"><small style="${AN(["pmWL",.9,.7],["soWipe",.75,.45])}">MENU · ${pg.en.toUpperCase()}</small></div>
    ${Ea("ph p1",IM(pg.h[0]),["siFlyL",1.1,.6],["soL",.6,.7])}<span class="stk" style="left:300px;top:700px;--rr:-8deg;${AN(["siPop",.5,1.4],["soFade",.55,.3])}">لذيذ!</span>
    <div class="a l1">${Hd(pg.s[0],1,.55)}${L[0].map((k,i)=>Rw(k,1.2+i*.15,.5-i*.03)).join("")}</div>
    ${Ea("ph p2",IM(pg.h[1]),["siFlyR",1.1,1.6],["soR",.35,.7])}<span class="stk" style="left:760px;top:1120px;--rr:6deg;${AN(["siPop",.5,2.3],["soFade",.3,.3])}">جرّبه!</span>
@@ -3298,7 +3318,7 @@ const SE2={
    <div class="a l3">${Hd(pg.s[2],2.8,.1)}${L[2].slice(0,3).map((k,i)=>Rw(k,3+i*.15,.08-i*.02)).join("")}</div>`}},
  steal:{n:"Plated Grid",ar:"صحون الشبكة",fit:"عنوان ME NU كبير وأصناف مرقّمة على صحون",
   build:(p,pg)=>{const L=pg.s.flatMap(c=>CB(c).items).slice(0,5);const P=[[640,70],[70,600],[640,600],[70,1100],[640,1100]];return `
-   <div class="a tt"><small style="${AN(["pmWL",.8,.2],["soWipe",.8,.4])}">${BRAND.en} TEA HOUSE</small><b style="${AN(["pmWL",1,.4],["soWipe",.75,.45])}">ME<br>NU</b><span class="ar" style="${AN(["pmWR",.8,.9],["soWipe",.7,.4])}">${pg.ar}</span></div>
+   <div class="a tt"><img class="tlogo2" src="${IMG[p.dark?"logo_cream":"logo_ink"]}" alt="N'ana" style="${AN(["pmDrop",.8,.1],["soUp",.8,.5])}"><b style="${AN(["pmWL",1,.4],["soWipe",.75,.45])}">ME<br>NU</b><span class="ar" style="${AN(["pmWR",.8,.9],["soWipe",.7,.4])}">${pg.ar}</span></div>
    <div class="a vl" style="${AN(["pmSX",1,.3],["soFade",.7,.4])};transform-origin:top"></div>
    ${L.map((k,i)=>{const it=I[k],d=.8+i*.4,o=.6-i*.1;return `<div class="a gc" style="left:${P[i][0]}px;top:${P[i][1]}px"><div class="hd" style="${AN(["pmWR",.8,d],["soWipe",o,.4])}"><span class="n">${i+1}</span><div><b>${it.ar}</b><p>${it.dar}</p></div><em>${it.p}</em></div><div class="pl" style="${AN(["siPop",.7,d+.2],["soFade",o,.4])}"></div><div class="ph" style="${AN(["siFlyU",1,d+.3],["soDn",o,.5])}">${IM(k)}</div>${BEST.has(k)?`<span class="bs" style="${AN(["siPop",.5,d+.7],["soFade",o,.3])}">الأكثر طلباً</span>`:""}</div>`}).join("")}`}}
 };
@@ -3401,7 +3421,7 @@ function showKind(k,scroll){kind=k;mood="all";const K=KINDS[k];
   grid.appendChild(frag);
   grid.querySelectorAll(".card").forEach((c,i)=>{const d=K.list[i],ph=c.querySelector(".phone");const r=mkRunner(d,ph,"preview");runners.set(ph,r);io.observe(ph);
     const open=()=>{location.hash=d.id};ph.addEventListener("click",open);ph.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})});
-  scalePhones();updCart();if(scroll)document.getElementById("styles-grid").scrollIntoView({behavior:"smooth"})}
+  scalePhones();updCart();if(typeof ownBtns==='function')try{ownBtns()}catch(e){}if(scroll)document.getElementById("styles-grid").scrollIntoView({behavior:"smooth"})}
 kindsEl.addEventListener("click",e=>{const b=e.target.closest("[data-k]");if(b&&b.dataset.k!==kind)showKind(b.dataset.k)});
 document.getElementById("plans").addEventListener("click",e=>{if(e.target.closest("[data-full]")){wantFull=true;openSheet();return}if(e.target.closest("[data-sub]")){wantSub=true;openSheet();return}const b=e.target.closest("[data-go]");if(b){if(b.dataset.go!==kind)showKind(b.dataset.go);document.getElementById("styles-grid").scrollIntoView({behavior:"smooth"})}});
 chipsEl.addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b)return;mood=b.dataset.m;
@@ -3438,6 +3458,16 @@ async function keepAwake(){try{if(single.classList.contains("on")&&"wakeLock" in
 document.addEventListener("visibilitychange",keepAwake);
 const currentId=()=>decodeURIComponent((location.hash||"").slice(1));
 
+
+/* ===== owner mode (only with ?admin=nana in the link): download buttons ===== */
+const VBASE=/github\.io$/.test(location.hostname)?"videos/":"https://raw.githubusercontent.com/ahmedalwahaibi949-jpg/menuoman/main/videos/";
+const VIDS=new Set(["sband-maroon", "sband-nana", "sband-noir", "sband-red", "sband-teal", "schecks-maroon", "schecks-nana", "schecks-noir", "schecks-red", "schecks-teal", "scircle-maroon", "scircle-nana", "scircle-noir", "scircle-red", "scircle-teal", "scurve-maroon", "scurve-nana", "scurve-noir", "scurve-red", "scurve-teal", "steal-teal", "swhite-maroon", "swhite-nana", "swhite-noir", "swhite-red", "swhite-teal"]);
+let OWNER=false;try{if(/[?&]admin=nana\b/.test(location.search)||location.hash==="#admin-nana"){if(location.hash==="#admin-nana")history.replaceState(null,"",location.pathname+location.search);localStorage.setItem("mm_owner","1")}if(0)localStorage.setItem("mm_owner","1");if(/[?&]admin=off\b/.test(location.search))localStorage.removeItem("mm_owner");OWNER=localStorage.getItem("mm_owner")==="1"}catch(e){OWNER=/[?&]admin=nana\b/.test(location.search)}
+if(OWNER){document.body.classList.add("owner");const ob=document.createElement("div");ob.className="ownbar";ob.dir="rtl";
+  ob.innerHTML=`<b>وضع المالك</b><span>${VIDS.size} فيديو جاهز للتنزيل</span>${VIDS.has("studio-reel")?`<a href="${VBASE}studio-reel.mp4" download>⬇ العرض المتواصل كامل</a>`:""}<button type="button" id="ownOff">خروج</button>`;
+  document.body.prepend(ob);ob.querySelector("#ownOff").onclick=()=>{try{localStorage.removeItem("mm_owner")}catch(e){}location.href=location.pathname}}
+function ownBtns(){if(!OWNER)return;grid.querySelectorAll(".card").forEach(c=>{const b=c.querySelector("[data-pick]");if(!b||c.querySelector(".dl"))return;const id=b.dataset.pick;
+  b.insertAdjacentHTML("afterend",VIDS.has(id)?`<a class="dl" href="${VBASE}${id}.mp4" download="${id}.mp4">⬇ تنزيل الفيديو MP4</a>`:`<span class="dl off">الفيديو يتجهّز عند الطلب</span>`)})}
 /* ===== cart → WhatsApp ===== */
 const CONTACT={whatsapp:"96895989547",name:"منيو متحرك"};   // WhatsApp number (country code, no +)
 let cart=[];try{cart=(JSON.parse(localStorage.getItem("mm_cart")||"[]")||[]).filter(id=>byId[id])}catch(e){}
@@ -3506,7 +3536,7 @@ document.querySelectorAll("[data-feature]").forEach(ph=>{const d=byId[ph.dataset
   ph.style.cursor="pointer";ph.addEventListener("click",()=>{location.hash=d.id})});
 document.getElementById("talkWa").href=`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent("السلام عليكم، أبغى أعرف أكثر عن شاشات المنيو والمنيو التفاعلي")}`;
 document.querySelector("[data-scroll]").addEventListener("click",e=>{e.preventDefault();document.getElementById("styles-grid").scrollIntoView({behavior:"smooth"})});
-showKind(kind);scalePhones();
+showKind(kind);ownBtns();scalePhones();
 route();
 </script>
 </body></html>
