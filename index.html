@@ -1868,6 +1868,167 @@ html{overflow-x:clip}
 .t-ptag .sheet .cols{grid-template-columns:1fr;gap:10px;padding:0 40px}
 .t-ppola .pl b{font-size:40px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+/* ===== bold 4-product screens (1080×1920), continuous 12s cycle, item i active for 3s ===== */
+.b4{--pbg:var(--bg);--P:12s;color:var(--fg)}
+.b4 .bgl{inset:0;background:var(--bgg,var(--bg))}
+.b4 .grain{inset:0;opacity:.08;background-image:radial-gradient(rgba(255,255,255,.9) 1px,transparent 1.2px);background-size:7px 7px;mix-blend-mode:overlay}
+.b4 .ph img,.b4 img.ph{width:100%;height:100%;object-fit:contain}
+.b4 .sh img{filter:drop-shadow(0 34px 30px rgba(0,0,0,.4))}
+@keyframes qon{0%,23%{background:var(--ac);color:var(--ink);transform:scale(1.04)}27%,96%{background:transparent;color:inherit;transform:none}100%{background:var(--ac);color:var(--ink);transform:scale(1.04)}}
+@keyframes qshow{0%,22%{opacity:1;transform:none}25%,97%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:none}}
+@keyframes qhero{0%{opacity:0;transform:scale(.4) rotate(-20deg)}5%,21%{opacity:1;transform:none}25%,100%{opacity:0;transform:scale(1.3) rotate(15deg)}}
+@keyframes qtile{0%,23%{transform:scale(1.07);filter:none;opacity:1}27%,96%{transform:scale(.94);filter:saturate(.5);opacity:.6}100%{transform:scale(1.07);filter:none;opacity:1}}
+@keyframes qbig{0%,22%{flex-grow:3.2}28%,94%{flex-grow:1}100%{flex-grow:3.2}}
+@keyframes qneon{0%,23%{opacity:1;filter:none}27%,96%{opacity:.3;filter:grayscale(.8)}100%{opacity:1;filter:none}}
+@keyframes qbounce{0%,23%{translate:0 0}5%{translate:0 -60px}10%{translate:0 0}14%{translate:0 -20px}18%{translate:0 0}100%{translate:0 0}}
+@keyframes b4spin{to{rotate:360deg}}
+@keyframes b4mq{to{transform:translateX(-50%)}}
+@keyframes b4mqr{from{transform:translateX(-50%)}to{transform:none}}
+@keyframes b4pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes b4in{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:none}}
+@keyframes b4stripe{to{background-position:240px 0}}
+.b4 .q{animation:qon var(--P) ease-in-out infinite;animation-delay:var(--qd)}
+.b4 .tt4{left:50px;right:50px;top:70px;text-align:center;animation:b4in .9s both}
+.b4 .tt4 b{display:block;font:700 150px/1.15 var(--fa);direction:rtl}
+.b4 .tt4 span{display:block;font:400 92px/1 var(--fd);letter-spacing:.08em;color:transparent;-webkit-text-stroke:3px var(--ac);margin-top:4px}
+.b4 .logo{height:90px;width:auto}
+.b4 .l4{left:60px;right:60px;display:grid;grid-template-columns:1fr 1fr;gap:14px;direction:rtl}
+.b4 .l4 div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 26px;border-radius:22px;border:3px solid color-mix(in srgb,var(--fg) 25%,transparent);font:700 40px var(--kufi)}
+.b4 .l4 div em{font:700 40px var(--didone);font-style:normal;direction:ltr}
+.b4 .nm4{left:40px;right:40px;text-align:center;animation:qshow var(--P) infinite;animation-delay:var(--qd)}
+.b4 .nm4 b{display:block;font:700 110px/1.2 var(--fa);direction:rtl}
+.b4 .nm4 span{display:inline-block;margin-top:6px;padding:8px 40px;border-radius:50px;background:var(--ac);color:var(--ink);font:700 64px var(--didone)}
+
+/* 1 turntable plate */
+.t-x1turn .stage3{left:0;right:0;top:540px;height:880px;perspective:1600px;perspective-origin:50% 20%}
+.t-x1turn .shadow{left:170px;right:170px;top:1180px;height:180px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent)}
+.t-x1turn .plate{position:absolute;left:150px;top:80px;width:780px;height:780px;border-radius:50%;transform-style:preserve-3d;background:radial-gradient(circle,#fff 0 54%,#ececec 55% 60%,#fff 61% 66%,#d9d9d9 67% 69%,#fafafa 70%);box-shadow:0 0 0 14px var(--ac);animation:x1t var(--P) cubic-bezier(.75,0,.25,1) infinite}
+@keyframes x1t{0%,19%{transform:rotateX(64deg) rotateZ(0deg)}25%,44%{transform:rotateX(64deg) rotateZ(90deg)}50%,69%{transform:rotateX(64deg) rotateZ(180deg)}75%,94%{transform:rotateX(64deg) rotateZ(270deg)}100%{transform:rotateX(64deg) rotateZ(360deg)}}
+.t-x1turn .pi{position:absolute;width:330px;height:420px;transform-origin:50% 100%;transform-style:preserve-3d;animation:x1r var(--P) cubic-bezier(.75,0,.25,1) infinite}
+@keyframes x1r{0%,19%{transform:rotateZ(0deg) rotateX(-64deg)}25%,44%{transform:rotateZ(-90deg) rotateX(-64deg)}50%,69%{transform:rotateZ(-180deg) rotateX(-64deg)}75%,94%{transform:rotateZ(-270deg) rotateX(-64deg)}100%{transform:rotateZ(-360deg) rotateX(-64deg)}}
+.t-x1turn .nm4{top:1380px}
+.t-x1turn .l4{top:1640px}
+.t-x1turn .l4 div{padding:12px 22px;font-size:34px}.t-x1turn .l4 div em{font-size:34px}
+
+/* 2 3D carousel */
+.t-x2ring .spot{left:-100px;right:-100px;top:420px;height:1100px;background:radial-gradient(closest-side,color-mix(in srgb,var(--ac2) 45%,transparent),transparent)}
+.t-x2ring .stage3{left:0;right:0;top:560px;height:800px;perspective:1800px}
+.t-x2ring .ring{position:absolute;left:540px;top:420px;width:0;height:0;transform-style:preserve-3d;animation:x2r var(--P) cubic-bezier(.7,0,.25,1) infinite}
+@keyframes x2r{0%,19%{transform:rotateX(-8deg) rotateY(0deg)}25%,44%{transform:rotateX(-8deg) rotateY(-90deg)}50%,69%{transform:rotateX(-8deg) rotateY(-180deg)}75%,94%{transform:rotateX(-8deg) rotateY(-270deg)}100%{transform:rotateX(-8deg) rotateY(-360deg)}}
+.t-x2ring .cw{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d}
+.t-x2ring .ci{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;animation:x2cc var(--P) cubic-bezier(.7,0,.25,1) infinite}
+@keyframes x2cc{0%,19%{transform:rotateY(0deg)}25%,44%{transform:rotateY(90deg)}50%,69%{transform:rotateY(180deg)}75%,94%{transform:rotateY(270deg)}100%{transform:rotateY(360deg)}}
+.t-x2ring .cd{position:absolute;left:-200px;top:-260px;width:400px;height:520px;border-radius:200px 200px 40px 40px;background:linear-gradient(180deg,color-mix(in srgb,var(--fg) 14%,transparent),color-mix(in srgb,var(--fg) 4%,transparent));border:3px solid color-mix(in srgb,var(--fg) 30%,transparent);padding:40px 20px 30px}
+.t-x2ring .cd .ph{height:100%}
+.t-x2ring .floor{left:120px;right:120px;top:1260px;height:120px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.4),transparent)}
+.t-x2ring .nm4{top:1380px}
+.t-x2ring .l4{top:1650px}
+.t-x2ring .l4 div{padding:12px 22px;font-size:34px}.t-x2ring .l4 div em{font-size:34px}
+
+/* 3 cube */
+.t-x3cube .stage3{left:0;right:0;top:500px;height:900px;perspective:2000px}
+.t-x3cube .cube{position:absolute;left:540px;top:450px;width:0;height:0;transform-style:preserve-3d;animation:x3c var(--P) cubic-bezier(.8,-.2,.2,1.2) infinite}
+@keyframes x3c{0%,19%{transform:rotateX(-14deg) rotateY(0deg)}25%,44%{transform:rotateX(-14deg) rotateY(-90deg)}50%,69%{transform:rotateX(-14deg) rotateY(-180deg)}75%,94%{transform:rotateX(-14deg) rotateY(-270deg)}100%{transform:rotateX(-14deg) rotateY(-360deg)}}
+.t-x3cube .fc{position:absolute;left:-310px;top:-310px;width:620px;height:620px;border-radius:36px;padding:40px 40px 110px;backface-visibility:hidden;box-shadow:inset 0 0 0 6px color-mix(in srgb,var(--fg) 20%,transparent)}
+.t-x3cube .fc .ph{height:100%}
+.t-x3cube .fc b{position:absolute;left:0;right:0;bottom:24px;text-align:center;font:700 54px var(--kufi);direction:rtl}
+.t-x3cube .fc:nth-child(1){background:var(--ac);color:var(--ink)}
+.t-x3cube .fc:nth-child(2){background:var(--fg);color:var(--bg)}
+.t-x3cube .fc:nth-child(3){background:var(--ac2);color:var(--ink)}
+.t-x3cube .fc:nth-child(4){background:var(--soft);color:var(--fg)}
+.t-x3cube .nm4{top:1390px}
+.t-x3cube .nm4 b{font-size:80px}
+.t-x3cube .l4{top:1620px}
+
+/* 4 spotlight grid */
+.t-x4grid .tt4{top:50px}
+.t-x4grid .g{left:50px;right:50px;top:440px;height:1180px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:30px;direction:rtl}
+.t-x4grid .tl{position:relative;border-radius:44px;background:var(--soft);overflow:hidden;animation:qtile var(--P) ease-in-out infinite;animation-delay:var(--qd)}
+.t-x4grid .tl::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,var(--ac) 0 38%,transparent 39%);opacity:.9}
+.t-x4grid .tl .ph{position:absolute;left:30px;right:30px;top:40px;height:380px;animation:qbounce var(--P) infinite;animation-delay:var(--qd)}
+.t-x4grid .tl .n{position:absolute;top:20px;left:30px;font:400 90px/1 var(--fd);color:var(--fg);opacity:.25}
+.t-x4grid .tl b{position:absolute;left:20px;right:20px;bottom:76px;text-align:center;font:700 46px/1.2 var(--kufi)}
+.t-x4grid .tl em{position:absolute;left:0;right:0;bottom:22px;text-align:center;font:700 44px var(--didone);font-style:normal;color:var(--ac)}
+.t-x4grid .ft{left:0;right:0;top:1700px;text-align:center;font:700 54px var(--fa);direction:rtl;animation:b4pulse 2s infinite}
+
+/* 5 conveyor */
+.t-x5conv .belt{left:-20px;right:-20px;height:470px;overflow:hidden}
+.t-x5conv .belt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:repeating-linear-gradient(90deg,var(--fg) 0 60px,color-mix(in srgb,var(--fg) 70%,var(--bg)) 60px 70px);animation:b4stripe 3s linear infinite}
+.t-x5conv .b1{top:470px}.t-x5conv .b2{top:1000px}
+.t-x5conv .b2::after{animation-direction:reverse}
+.t-x5conv .row{position:absolute;left:0;bottom:60px;display:flex;gap:60px;width:max-content;animation:b4mq 14s linear infinite}
+.t-x5conv .b2 .row{animation-name:b4mqr}
+.t-x5conv .it{width:360px;height:400px;position:relative}
+.t-x5conv .it .ph{position:absolute;inset:0 20px 70px}
+.t-x5conv .it b{position:absolute;left:50%;bottom:0;translate:-50% 0;white-space:nowrap;padding:8px 26px;border-radius:30px;background:var(--ac);color:var(--ink);font:700 34px var(--kufi)}
+.t-x5conv .l4{top:1560px}
+
+/* 6 accordion bands */
+.t-x6acc .stack{left:0;right:0;top:400px;height:1480px;display:flex;flex-direction:column;gap:12px;padding:0 40px}
+.t-x6acc .bd{position:relative;flex:1 1 0;min-height:0;border-radius:44px;overflow:hidden;animation:qbig var(--P) cubic-bezier(.7,0,.3,1) infinite;animation-delay:var(--qd)}
+.t-x6acc .bd:nth-child(1){background:var(--ac);color:var(--ink)}
+.t-x6acc .bd:nth-child(2){background:var(--fg);color:var(--bg)}
+.t-x6acc .bd:nth-child(3){background:var(--ac2);color:var(--ink)}
+.t-x6acc .bd:nth-child(4){background:var(--soft);color:var(--fg)}
+.t-x6acc .bd .ph{position:absolute;left:10px;top:4%;bottom:4%;width:48%}
+.t-x6acc .bd .big{position:absolute;right:-20px;top:50%;translate:0 -50%;font:400 300px/1 var(--fd);opacity:.15;white-space:nowrap}
+.t-x6acc .bd b{position:absolute;right:50px;top:50%;translate:0 -60%;font:700 76px/1.15 var(--fa);direction:rtl;text-align:right;max-width:480px}
+.t-x6acc .bd em{position:absolute;right:50px;top:50%;translate:0 70%;font:700 58px var(--didone);font-style:normal}
+.t-x6acc .tt4{top:40px}.t-x6acc .tt4 b{font-size:130px}
+
+/* 7 ferris wheel */
+.t-x7wheel .stand{left:340px;top:1040px;width:400px;height:560px;background:linear-gradient(var(--fg),var(--fg)) 50% 0/14px 100% no-repeat;clip-path:polygon(50% 0,100% 100%,0 100%);opacity:.0}
+.t-x7wheel .legs{left:300px;top:810px;width:480px;height:600px}
+.t-x7wheel .legs::before,.t-x7wheel .legs::after{content:"";position:absolute;top:0;left:50%;width:16px;height:620px;background:var(--fg);border-radius:8px;transform-origin:top;opacity:.85}
+.t-x7wheel .legs::before{rotate:22deg}.t-x7wheel .legs::after{rotate:-22deg}
+.t-x7wheel .wh{left:160px;top:430px;width:760px;height:760px;border-radius:50%;border:14px solid var(--ac);background:repeating-conic-gradient(color-mix(in srgb,var(--fg) 30%,transparent) 0 1.2deg,transparent 1.2deg 45deg);animation:x7w var(--P) cubic-bezier(.7,0,.3,1) infinite}
+@keyframes x7w{0%,19%{rotate:0deg}25%,44%{rotate:90deg}50%,69%{rotate:180deg}75%,94%{rotate:270deg}100%{rotate:360deg}}
+.t-x7wheel .hub{left:490px;top:760px;width:100px;height:100px;border-radius:50%;background:var(--ac2);box-shadow:0 0 0 12px var(--fg)}
+.t-x7wheel .arm{position:absolute;left:50%;top:50%;width:0;height:0}
+.t-x7wheel .gd{position:absolute;left:-160px;top:-20px;width:320px;height:340px;transform-origin:50% 20px;animation:x7g var(--P) cubic-bezier(.7,0,.3,1) infinite}
+@keyframes x7g{0%,19%{rotate:0deg}25%,44%{rotate:-90deg}50%,69%{rotate:-180deg}75%,94%{rotate:-270deg}100%{rotate:-360deg}}
+.t-x7wheel .gd::before{content:"";position:absolute;left:50%;top:0;width:8px;height:60px;background:var(--fg)}
+.t-x7wheel .gd .cab{position:absolute;left:20px;right:20px;top:50px;bottom:0;border-radius:30px 30px 60px 60px;background:color-mix(in srgb,var(--bg) 60%,#fff);box-shadow:0 0 0 6px var(--ac2),0 20px 30px -10px rgba(0,0,0,.4)}
+.t-x7wheel .gd .ph{position:absolute;inset:60px 30px 20px}
+.t-x7wheel .nm4{top:1440px}
+.t-x7wheel .l4{top:1640px}.t-x7wheel .l4 div{padding:20px 26px}
+.t-x7wheel .l4 div{padding:12px 22px;font-size:34px}.t-x7wheel .l4 div em{font-size:34px}
+.t-x7wheel .tt4{top:40px}.t-x7wheel .tt4 b{font-size:120px}.t-x7wheel .tt4 span{font-size:76px}
+
+/* 8 neon signs */
+.t-x8neon .tt4 b{text-shadow:0 0 30px var(--ac)}
+.t-x8neon .sg{left:50px;right:50px;height:330px;border-radius:40px;border:5px solid var(--ac);box-shadow:0 0 24px var(--ac),inset 0 0 24px color-mix(in srgb,var(--ac) 50%,transparent);animation:qneon var(--P) infinite;animation-delay:var(--qd);direction:rtl}
+.t-x8neon .sg:nth-of-type(even){border-color:var(--ac2);box-shadow:0 0 24px var(--ac2),inset 0 0 24px color-mix(in srgb,var(--ac2) 50%,transparent)}
+.t-x8neon .sg .ph{position:absolute;left:30px;top:-30px;width:330px;height:360px}
+.t-x8neon .sg .ph img{filter:drop-shadow(0 0 30px color-mix(in srgb,var(--ac) 70%,transparent))}
+.t-x8neon .sg b{position:absolute;right:50px;top:70px;font:700 70px var(--kufi);color:#fff;text-shadow:0 0 18px var(--ac)}
+.t-x8neon .sg em{position:absolute;right:50px;top:190px;font:700 60px var(--didone);font-style:normal;color:var(--ac);text-shadow:0 0 18px var(--ac)}
+.t-x8neon .sg small{position:absolute;left:400px;top:200px;font:400 40px var(--fd);letter-spacing:.1em;color:#fff;opacity:.6;direction:ltr}
+
+/* 9 starburst zigzag */
+.t-x9burst .stripes{inset:0;background:repeating-linear-gradient(-30deg,transparent 0 60px,color-mix(in srgb,var(--fg) 7%,transparent) 60px 120px);animation:b4stripe 6s linear infinite}
+.t-x9burst .zz{left:0;right:0;height:360px;direction:rtl}
+.t-x9burst .zz .ph{position:absolute;top:-20px;width:440px;height:400px}
+.t-x9burst .zz.l .ph{left:40px}.t-x9burst .zz.r .ph{right:40px}
+.t-x9burst .zz .ph{animation:qbounce var(--P) infinite;animation-delay:var(--qd)}
+.t-x9burst .zz b{position:absolute;top:90px;font:700 72px/1.15 var(--fa);max-width:480px}
+.t-x9burst .zz.l b{right:60px;text-align:right}.t-x9burst .zz.r b{left:60px;text-align:left}
+.t-x9burst .zz .st{position:absolute;top:200px;width:200px;height:200px;background:var(--ac);color:var(--ink);clip-path:polygon(50% 0,61% 18%,80% 9%,79% 30%,100% 30%,88% 48%,100% 65%,79% 69%,80% 90%,61% 82%,50% 100%,39% 82%,20% 90%,21% 69%,0 65%,12% 48%,0 30%,21% 30%,20% 9%,39% 18%);display:grid;place-items:center;font:700 48px var(--didone);animation:b4spin 10s linear infinite}
+.t-x9burst .zz.l .st{left:380px}.t-x9burst .zz.r .st{right:380px}
+.t-x9burst .zz .st span{direction:ltr;animation:b4spin 10s linear infinite reverse}
+
+/* 10 hero swap */
+.t-x10hero .rays{left:-460px;top:240px;width:2000px;height:2000px;border-radius:50%;background:repeating-conic-gradient(color-mix(in srgb,var(--ac) 22%,transparent) 0 8deg,transparent 8deg 20deg);animation:b4spin 60s linear infinite}
+.t-x10hero .hs{left:120px;right:120px;top:400px;height:860px}
+.t-x10hero .hs .ph{position:absolute;inset:0;animation:qhero var(--P) infinite;animation-delay:var(--qd)}
+.t-x10hero .pr4{left:0;right:0;top:1250px;height:260px}
+.t-x10hero .pr4 div{position:absolute;inset:0;text-align:center;animation:qshow var(--P) infinite;animation-delay:var(--qd)}
+.t-x10hero .pr4 b{display:block;font:700 100px/1.2 var(--fa);direction:rtl}
+.t-x10hero .pr4 em{display:block;font:700 110px/1 var(--didone);font-style:normal;color:var(--ac)}
+.t-x10hero .th4{left:50px;right:50px;top:1580px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;direction:rtl}
+.t-x10hero .th4 div{height:240px;border-radius:30px;background:var(--soft);padding:16px 16px 50px;position:relative;animation:qtile var(--P) infinite;animation-delay:var(--qd)}
+.t-x10hero .th4 div b{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:700 26px var(--kufi)}
+
 /* ===== interactive menus (real phone UI, px at 390 wide) ===== */
 .mw{position:relative;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--fg);font-family:var(--plex);font-size:14px;line-height:1.5;text-align:start;--line2:color-mix(in srgb,var(--fg) 14%,transparent)}
 .mw *{box-sizing:border-box}
@@ -2175,7 +2336,7 @@ body.lock .cartbar{display:none}
     </div>
     <div class="stage" aria-hidden="true">
       <div class="tv"><div class="phone land fp" data-feature="bsplit-luban"></div></div>
-      <div class="phone fp vs" data-feature="pcirc-luban"></div>
+      <div class="phone fp vs" data-feature="x1turn-neo"></div>
       <div class="phone fp mini1" data-feature="m1-luban"></div>
     </div>
   </header>
@@ -2203,7 +2364,7 @@ body.lock .cartbar{display:none}
       <h2 id="demoT">جرّبها كأنها في محلك</h2>
       <p>افتح أي ديمو على تلفزيون المحل أو الآيباد، وشوف كيف يطلع المنيو قدّام زبائنك. الديمو يشتغل بملء الشاشة ويعيد نفسه.</p>
     </div>
-    <div class="dbtns"><a href="#pcirc-luban">🖼️ ديمو المنيو الكامل</a><a href="#bsplit-luban">📺 ديمو الشاشة العرضية</a><a href="#rpattern-luban">📲 ديمو الأصناف المتحركة</a><a href="#m1-luban">📱 جرّب المنيو التفاعلي</a></div>
+    <div class="dbtns"><a href="#x1turn-neo">🔥 ديمو الصحن الدوّار</a><a href="#pcirc-luban">🖼️ ديمو المنيو الكامل</a><a href="#bsplit-luban">📺 ديمو الشاشة العرضية</a><a href="#rpattern-luban">📲 ديمو الأصناف المتحركة</a><a href="#m1-luban">📱 جرّب المنيو التفاعلي</a></div>
   </section>
 
   <ol class="how how4" aria-label="كيف نشتغل">
@@ -2851,10 +3012,62 @@ const PGL=[];Object.entries(PCOMBO).forEach(([e,ths])=>ths.forEach((tk,j)=>{cons
   PGL.push({id:`${e}-${tk}`,eng:e,th,vars:thVars(th)+";--xo:"+((PMS-1100)/1000)+"s",n:`${E.n} · ${th.en}`,ar:`${E.ar} · ${th.ar}`,mood:e,fitAr:`${E.fit} — صفحة ${pg.ar}`,ms:PMS,items:pg.hero.map(k=>I[k]?k:"nanatea"),pm:1,
     chrome:()=>``,scene:(it,k)=>`<div class="pmw">${E.scene(th,pg,k)}</div>`})}));
 
+/* ===== bold 4-product screens ===== */
+const G4=[
+ {ar:"مشروباتنا",en:"DRINKS",k:["karkade","nanatea","karak","peach"]},
+ {ar:"من الفرن",en:"BAKERY",k:["waffle6","haloumi","herbs","pepperoni"]},
+ {ar:"حلّي يومك",en:"SWEETS",k:["basbousa","trifle","lemoncake","waffle4"]},
+ {ar:"للضيافة",en:"SHARE",k:["karam","dhiyafa","keif","nuts"]},
+ {ar:"الأكثر طلباً",en:"TOP 4",k:["karkade","waffle6","basbousa","nanatea"]}
+];
+const BT={
+ neo:{ar:"نيو",en:"Neo",bg:"#2a0f55",bgg:"linear-gradient(165deg,#3b0f6e 0%,#8a1a7a 55%,#d6246e 100%)",fg:"#ffffff",ac:"#ffd23f",ac2:"#23e5c4",soft:"rgba(255,255,255,.12)",ink:"#2a0f55",dark:1,fa:KUF,fd:ANT},
+ lime:{ar:"ليموني",en:"Lime",bg:"#0e0e0e",fg:"#f5f5f5",ac:"#c6ff3d",ac2:"#ff5bd1",soft:"#1d1d1d",ink:"#0e0e0e",dark:1,fa:KUF,fd:ANT},
+ sunset:{ar:"غروب",en:"Sunset",bg:"#ff5a36",bgg:"linear-gradient(170deg,#ffb017 0%,#ff5a36 50%,#e3175d 100%)",fg:"#ffffff",ac:"#2b0a3d",ac2:"#fff3b0",soft:"rgba(255,255,255,.18)",ink:"#ffffff",dark:1,fa:KUF,fd:WID},
+ ocean:{ar:"محيط",en:"Ocean",bg:"#0a5fd8",bgg:"linear-gradient(165deg,#00c6fb 0%,#005bea 100%)",fg:"#ffffff",ac:"#ffde59",ac2:"#ff6b6b",soft:"rgba(255,255,255,.16)",ink:"#08306b",dark:1,fa:KUF,fd:ANT},
+ mono:{ar:"أحمر وأسود",en:"Red Mono",bg:"#f2f0eb",fg:"#111111",ac:"#ff3b1f",ac2:"#111111",soft:"#e3e0d8",ink:"#ffffff",fa:KUF,fd:ANT},
+ cream:{ar:"كريمي",en:"Cream Pop",bg:"#fff4e2",fg:"#3a1a0a",ac:"#e8452c",ac2:"#ffb703",soft:"#ffe6c2",ink:"#ffffff",fa:RUQ,fd:RET},
+ matcha:{ar:"ماتشا",en:"Matcha",bg:"#e7f1dc",fg:"#1e3a1e",ac:"#2f7d32",ac2:"#f2b134",soft:"#d3e6c2",ink:"#ffffff",fa:KUF,fd:WID},
+ berry:{ar:"توت",en:"Berry",bg:"#7a0d4a",bgg:"linear-gradient(165deg,#4a0830 0%,#a4135f 100%)",fg:"#ffffff",ac:"#ffb3d9",ac2:"#ffd166",soft:"rgba(255,255,255,.12)",ink:"#4a0830",dark:1,fa:RUQ,fd:DID},
+ gold:{ar:"ذهبي",en:"Black Gold",bg:"#0c0b09",fg:"#f6efe2",ac:"#d4a94f",ac2:"#8a6a2a",soft:"#1d1a14",ink:"#0c0b09",dark:1,fa:RUQ,fd:DID},
+ candy:{ar:"حلاوة",en:"Candy",bg:"#ffe0ef",fg:"#2a1458",ac:"#4d5bff",ac2:"#ff7ab6",soft:"#fff0f7",ink:"#ffffff",fa:KUF,fd:RET}
+};
+const QD=i=>`--qd:${-((4-i)%4)*3}s`;
+const IMGp=k=>`<img src="${IMG[k]}" alt="">`;
+const TT4=g=>`<div class="a tt4"><b>${g.ar}</b><span>${g.en}</span></div>`;
+const L4=(g,top)=>`<div class="a l4"${top?` style="top:${top}px"`:""}>${g.k.map((k,i)=>`<div class="q" style="${QD(i)}"><span>${I[k].ar}</span><em>${I[k].p}</em></div>`).join("")}</div>`;
+const NM4=g=>g.k.map((k,i)=>`<div class="a nm4" style="${QD(i)}"><b>${I[k].ar}</b><span>${I[k].p} ر.ع</span></div>`).join("");
+const XE={
+ x1turn:{n:"Spinning Plate",ar:"الصحن الدوّار",fit:"صحن يدور وكل مرة صنف قدّام الزبون",
+  scene:g=>{const r=250,P=[[0,1],[1,0],[0,-1],[-1,0]];return `${TT4(g)}<div class="a shadow"></div><div class="a stage3"><div class="plate">${g.k.map((k,i)=>`<div class="pi ph sh" style="left:${390+r*P[i][0]-165}px;top:${390+r*P[i][1]-420}px">${IMGp(k)}</div>`).join("")}</div></div>${NM4(g)}${L4(g)}`}},
+ x2ring:{n:"3D Carousel",ar:"الدوّامة ثلاثية الأبعاد",fit:"أصناف تلف حوالين نفسها بعمق ثلاثي الأبعاد",
+  scene:g=>`${TT4(g)}<div class="a spot"></div><div class="a floor"></div><div class="a stage3"><div class="ring">${g.k.map((k,i)=>`<div class="cw" style="transform:rotateY(${i*90}deg) translateZ(360px) rotateY(${-i*90}deg)"><div class="ci"><div class="cd"><div class="ph sh">${IMGp(k)}</div></div></div></div>`).join("")}</div></div>${NM4(g)}${L4(g)}`},
+ x3cube:{n:"Flip Cube",ar:"المكعّب",fit:"مكعب يقلب على وجوهه، كل وجه صنف",
+  scene:g=>`${TT4(g)}<div class="a stage3"><div class="cube">${g.k.map((k,i)=>`<div class="fc" style="transform:rotateY(${i*90}deg) translateZ(310px)"><div class="ph sh">${IMGp(k)}</div><b>${I[k].ar}</b></div>`).join("")}</div></div>${NM4(g)}${L4(g)}`},
+ x4grid:{n:"Spotlight Grid",ar:"شبكة الضوء",fit:"أربع أصناف والضوء يمر عليهم واحد واحد",
+  scene:g=>`${TT4(g)}<div class="a g">${g.k.map((k,i)=>`<div class="tl" style="${QD(i)}"><span class="n">0${i+1}</span><div class="ph sh">${IMGp(k)}</div><b>${I[k].ar}</b><em>${I[k].p}</em></div>`).join("")}</div><div class="a ft">✦ اطلب الحين من الكاشير ✦</div>`},
+ x5conv:{n:"Conveyor Belt",ar:"السير المتحرك",fit:"أصناف تمشي على سير مثل مطاعم السوشي",
+  scene:g=>{const row=k=>`<div class="it"><div class="ph sh">${IMGp(k)}</div><b>${I[k].ar}</b></div>`;const r=g.k.map(row).join("");return `${TT4(g)}<div class="a belt b1"><div class="row">${r}${r}${r}${r}</div></div><div class="a belt b2"><div class="row">${[...g.k].reverse().map(row).join("").repeat(4)}</div></div>${L4(g)}`}},
+ x6acc:{n:"Accordion",ar:"الأشرطة المتمددة",fit:"كل شريط يكبر بدوره ويعرض صنفه بحجم ضخم",
+  scene:g=>`${TT4(g)}<div class="a stack">${g.k.map((k,i)=>`<div class="bd" style="${QD(i)}"><span class="big">${I[k].en}</span><div class="ph sh">${IMGp(k)}</div><b>${I[k].ar}</b><em>${I[k].p} ر.ع</em></div>`).join("")}</div>`},
+ x7wheel:{n:"Ferris Wheel",ar:"العجلة الدوّارة",fit:"عجلة ملاهي تدور وكل كابينة فيها صنف",
+  scene:g=>{const R=350;return `${TT4(g)}<div class="a legs"></div><div class="a wh">${g.k.map((k,i)=>{const a=-90*i*Math.PI/180;return `<div class="arm" style="left:${Math.round(366+R*Math.sin(a))}px;top:${Math.round(366-R*Math.cos(a))}px"><div class="gd"><div class="cab"></div><div class="ph sh">${IMGp(k)}</div></div></div>`}).join("")}</div><div class="a hub"></div>${L4(g)}`}},
+ x8neon:{n:"Neon Signs",ar:"لافتات النيون",fit:"أربع لافتات نيون تضوي بالدور",
+  scene:g=>`${TT4(g)}${g.k.map((k,i)=>`<div class="a sg" style="top:${400+i*370}px;${QD(i)}"><div class="ph">${IMGp(k)}</div><b>${I[k].ar}</b><em>${I[k].p} ر.ع</em><small>${I[k].en}</small></div>`).join("")}`},
+ x9burst:{n:"Price Burst",ar:"انفجار الأسعار",fit:"أصناف متعرّجة مع نجمة سعر تدور",
+  scene:g=>`<div class="a stripes"></div>${TT4(g)}${g.k.map((k,i)=>`<div class="a zz ${i%2?"r":"l"}" style="top:${420+i*370}px;${QD(i)}"><div class="ph sh">${IMGp(k)}</div><b>${I[k].ar}</b><div class="st"><span>${I[k].p}</span></div></div>`).join("")}`},
+ x10hero:{n:"Hero Swap",ar:"البطل المتبدّل",fit:"صنف ضخم يتبدّل بحركة قوية مع شريط الأصناف",
+  scene:g=>`<div class="a rays"></div>${TT4(g)}<div class="a hs">${g.k.map((k,i)=>`<div class="ph sh" style="${QD(i)}">${IMGp(k)}</div>`).join("")}</div><div class="a pr4">${g.k.map((k,i)=>`<div style="${QD(i)}"><b>${I[k].ar}</b><em>${I[k].p}</em></div>`).join("")}</div><div class="a th4">${g.k.map((k,i)=>`<div style="${QD(i)}"><div class="ph">${IMGp(k)}</div><b>${I[k].ar}</b></div>`).join("")}</div>`}
+};
+const XCOMBO={x1turn:["neo","cream","ocean","gold","matcha","sunset","candy","berry","lime","mono"],x2ring:["gold","neo","berry","lime","ocean","sunset","mono","cream","candy","matcha"],x3cube:["mono","lime","candy","neo","cream","ocean","gold","matcha","berry","sunset"],x4grid:["cream","sunset","matcha","candy","mono","neo","ocean","berry","gold","lime"],x5conv:["lime","ocean","mono","cream","neo","candy","sunset","gold","matcha","berry"],x6acc:["sunset","berry","gold","mono","candy","lime","cream","neo","ocean","matcha"],x7wheel:["candy","matcha","neo","sunset","ocean","cream","berry","mono","lime","gold"],x8neon:["lime","neo","gold","berry","ocean","lime","neo","gold","berry","ocean"],x9burst:["mono","cream","sunset","candy","matcha","neo","ocean","lime","berry","gold"],x10hero:["neo","sunset","ocean","berry","gold","lime","candy","cream","mono","matcha"]};
+const XG=[];const _xs=new Set();Object.entries(XCOMBO).forEach(([e,ths])=>ths.forEach((tk,j)=>{const E=XE[e],th=Object.assign({key:tk},BT[tk]),g=G4[j%5];let id=`${e}-${tk}`;if(_xs.has(id))id+=`-${g.en.toLowerCase().replace(/\W/g,"")}`;_xs.add(id);
+  XG.push({id,eng:e,th,vars:thVars(th)+(th.bgg?`;--bgg:${th.bgg}`:""),n:`${E.n} · ${th.en}`,ar:`${E.ar} · ${th.ar}`,mood:e,fitAr:`${E.fit} — ${g.ar}`,ms:600000,items:[g.k[0]],b4:1,
+    chrome:()=>`<div class="a bgl"></div><div class="a grain"></div>`,scene:()=>E.scene(g)})}));
+
 /* ===== engine ===== */
 function Runner(t,host){
   const items=t.items.map(id=>I[id]);
-  const poster=document.createElement("div");poster.className=`poster t-${t.eng||t.id}${t.eng?" eng":""}${t.land?" land":""}${t.pm?" pm":""}`;if(t.vars)poster.setAttribute("style",t.vars);
+  const poster=document.createElement("div");poster.className=`poster t-${t.eng||t.id}${t.eng?" eng":""}${t.land?" land":""}${t.pm?" pm":""}${t.b4?" b4":""}`;if(t.vars)poster.setAttribute("style",t.vars);
   host.appendChild(poster);if(host.classList&&host.classList.contains("phone")&&host.clientWidth)poster.style.zoom=(host.clientWidth/(t.land?1920:1080)).toFixed(4);
   let k=0,timer=null,cleanup=null,running=false;
   function step(){
@@ -2878,6 +3091,10 @@ T.forEach(t=>{t.fitAr=FIT_AR[t.id]||"";
   else t.kind="reel"});
 const weave=a=>{const g={};a.forEach(x=>(g[x.eng]=g[x.eng]||[]).push(x));const ks=Object.keys(g),o=[];for(let i=0;o.length<a.length;i++)ks.forEach(k=>{if(g[k][i])o.push(g[k][i])});return o};
 const KINDS={
+ bold:{ar:"شاشة ٤ أصناف جريئة",en:"Bold 4-Item Screen",ic:"🔥",price:30,unit:"للشاشة",pre:"B",list:weave(XG),
+  fmt:"يوصلك فيديو MP4 عمودي 1080×1920 يعرض ٤ أصناف بحركة قوية ما توقف: صحن يدور، مكعب يقلب، عجلة، سير متحرك… واسم الصنف وسعره يضوي بالدور. يشتغل من فلاشة USB.",
+  bul:["٤ أصناف بالأسماء والأسعار","حركة مستمرة تلفت الانتباه","ألوان عصرية وجريئة"],
+  chips:[["all","الكل"],...Object.entries(XE).map(([k,e])=>[k,e.ar])]},
  full:{ar:"منيو كامل للشاشة",en:"Full Menu Screen",ic:"🖼️",price:30,unit:"للشاشة",pre:"F",list:weave(PGL),
   fmt:"يوصلك فيديو MP4 عمودي 1080×1920: المنيو كامل بالأسعار وصور أصنافك، يبني نفسه بحركة احترافية (الصور تطير والأسطر تنكتب) ويعيد طول اليوم. يشتغل من فلاشة USB على أي شاشة واقفة.",
   bul:["المنيو كامل بالأسعار والصور","حركة دخول احترافية تلفت العين","يشتغل بدون إنترنت"],
@@ -2896,7 +3113,8 @@ const KINDS={
   chips:[["all","الكل"],...ML.map(l=>[l.id,l.ar])]}
 };
 const PLANS=[
- {k:"full",ic:"🖼️",rib:"جديد",ar:"منيو كامل لشاشة عمودية",en:"Full menu screen",pr:"30",u:"ر.ع للشاشة",fmt:KINDS.full.fmt,bul:KINDS.full.bul},
+ {k:"bold",ic:"🔥",rib:"جديد",ar:"شاشة ٤ أصناف جريئة",en:"Bold 4-item screen",pr:"30",u:"ر.ع للشاشة",fmt:KINDS.bold.fmt,bul:KINDS.bold.bul},
+ {k:"full",ic:"🖼️",ar:"منيو كامل لشاشة عمودية",en:"Full menu screen",pr:"30",u:"ر.ع للشاشة",fmt:KINDS.full.fmt,bul:KINDS.full.bul},
  {k:"land",ic:"📺",ar:"تصميم شاشة عرضية",en:"Landscape board design",pr:"30",u:"ر.ع للشاشة",fmt:KINDS.land.fmt,bul:KINDS.land.bul},
  {k:"portrait",ic:"📲",ar:"شاشة الأصناف المتحركة",en:"Item motion screen",pr:"20",u:"ر.ع للشاشة",fmt:KINDS.portrait.fmt,bul:KINDS.portrait.bul},
  {k:"menu",ic:"📱",ar:"منيو تفاعلي QR",en:"Interactive QR menu",pr:"40",u:"ر.ع للمنيو",fmt:KINDS.menu.fmt,bul:KINDS.menu.bul},
@@ -2909,7 +3127,7 @@ const mkRunner=(d,host,mode)=>d.kind==="menu"?MRunner(d,host,mode):Runner(d,host
 const omr=n=>`${n}<small> ر.ع</small>`;
 
 /* plans */
-document.getElementById("plans").innerHTML=PLANS.map(p=>`<article class="plan ${p.full?"full":""} ${p.k==="full"?"hot":""}">${p.rib?`<span class="rib">${p.rib}</span>`:""}<span class="ic2">${p.ic}</span><h3>${p.ar}<span lang="en" dir="ltr">${p.en}</span></h3><div class="pr ${p.q?"q":""}">${p.q||`${p.pr}<small> ${p.u}</small>`}</div><div class="fmt">${p.fmt}</div><ul>${p.bul.map(b=>`<li>${b}</li>`).join("")}</ul><button class="go" type="button" ${p.k?`data-go="${p.k}"`:p.full?"data-full":"data-sub"}>${p.cta||`شوف ${KINDS[p.k].list.length} تصميم`}</button></article>`).join("");
+document.getElementById("plans").innerHTML=PLANS.map(p=>`<article class="plan ${p.full?"full":""} ${p.k==="bold"?"hot":""}">${p.rib?`<span class="rib">${p.rib}</span>`:""}<span class="ic2">${p.ic}</span><h3>${p.ar}<span lang="en" dir="ltr">${p.en}</span></h3><div class="pr ${p.q?"q":""}">${p.q||`${p.pr}<small> ${p.u}</small>`}</div><div class="fmt">${p.fmt}</div><ul>${p.bul.map(b=>`<li>${b}</li>`).join("")}</ul><button class="go" type="button" ${p.k?`data-go="${p.k}"`:p.full?"data-full":"data-sub"}>${p.cta||`شوف ${KINDS[p.k].list.length} تصميم`}</button></article>`).join("");
 let wantFull=false,wantSub=false;
 /* gallery */
 const grid=document.getElementById("grid"),chipsEl=document.getElementById("chips"),kindsEl=document.getElementById("kinds"),kinfo=document.getElementById("kinfo"),runners=new Map();
@@ -2918,7 +3136,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{const r=runners.get(e.targe
 function fitR(p,r){if(r.isMenu)r.fit();else if(r.poster&&p.clientWidth)r.poster.style.zoom=(p.clientWidth/(r.poster.classList.contains("land")?1920:1080)).toFixed(4)}
 function scalePhones(){runners.forEach((r,p)=>fitR(p,r))}
 try{new ResizeObserver(scalePhones).observe(grid)}catch(e){addEventListener("resize",scalePhones)}
-let kind="full",mood="all";
+let kind="bold",mood="all";
 kindsEl.innerHTML=Object.entries(KINDS).map(([k,K])=>`<button type="button" data-k="${k}" aria-pressed="${k===kind}">${K.ar}<small>${K.price} ر.ع</small><em>${K.list.length} تصميم</em></button>`).join("");
 function showKind(k,scroll){kind=k;mood="all";const K=KINDS[k];
   [...runners.keys()].forEach(p=>{if(grid.contains(p)){runners.get(p).stop();io.unobserve(p);runners.delete(p)}});grid.innerHTML="";grid.classList.toggle("wide",k==="land");
@@ -3009,7 +3227,7 @@ function openSheet(){
   const drawList=()=>{const L=sheet.querySelector("#clist");
     L.innerHTML=cart.length?`<div class="clist">${cart.map(id=>{const {d,K}=lineOf(id);return `<div class="cl"><div><b>${K.ar} · ${d.ar}</b><small dir="ltr">${d.code} · #${d.id}</small></div><span class="cp">${omr(K.price)}</span><button type="button" data-rm="${d.id}" aria-label="حذف">×</button></div>`}).join("")}</div><div class="ctot"><span>المجموع</span><b>${total()} ر.ع</b></div>`:`<div class="cempty">ما أضفت تصاميم للحين. اضغط «أضف للطلب» تحت أي تصميم.</div>`;
     const ks=new Set(cart.map(id=>byId[id].kind));
-    sheet.querySelector("#prep").innerHTML=`<b>جهّز هذه الأشياء</b><ul><li>الشعار وألوان البراند</li>${ks.has("menu")||!ks.size?"<li>قائمة الأصناف مع الأسعار وصور المنتجات</li>":""}${ks.has("land")||ks.has("portrait")||ks.has("full")?"<li>الأصناف اللي تبغى تبرزها على الشاشة</li><li>صور واضحة للمنتجات</li>":""}</ul><div style="margin-top:8px">يوصلك: ${ks.has("menu")||!ks.size?"المنيو رابط + كود QR":""}${ks.has("menu")&&(ks.has("land")||ks.has("portrait")||ks.has("full"))?" · ":""}${ks.has("land")||ks.has("portrait")||ks.has("full")?"الشاشات فيديو MP4 يشتغل من فلاشة USB":""}</div><div style="margin-top:4px">يُرسل إلى: <span dir="ltr" style="color:var(--fg);font-family:var(--mono)">+968 9598 9547</span></div>`};
+    sheet.querySelector("#prep").innerHTML=`<b>جهّز هذه الأشياء</b><ul><li>الشعار وألوان البراند</li>${ks.has("menu")||!ks.size?"<li>قائمة الأصناف مع الأسعار وصور المنتجات</li>":""}${ks.has("land")||ks.has("portrait")||ks.has("full")||ks.has("bold")?"<li>الأصناف اللي تبغى تبرزها على الشاشة</li><li>صور واضحة للمنتجات</li>":""}</ul><div style="margin-top:8px">يوصلك: ${ks.has("menu")||!ks.size?"المنيو رابط + كود QR":""}${ks.has("menu")&&(ks.has("land")||ks.has("portrait")||ks.has("full")||ks.has("bold"))?" · ":""}${ks.has("land")||ks.has("portrait")||ks.has("full")||ks.has("bold")?"الشاشات فيديو MP4 يشتغل من فلاشة USB":""}</div><div style="margin-top:4px">يُرسل إلى: <span dir="ltr" style="color:var(--fg);font-family:var(--mono)">+968 9598 9547</span></div>`};
   const msg=()=>{const v=id=>sheet.querySelector(id).value.trim();const lg=(sheet.querySelector('input[name="lang"]:checked')||{}).value||"";
     wantFull=sheet.querySelector("#o-full").checked;wantSub=sheet.querySelector("#o-sub").checked;const size=sheet.querySelector("#o-size").value;
     lastForm={cafe:v("#f-cafe"),name:v("#f-name"),phone:v("#f-phone"),lang:lg,notes:v("#f-notes"),size};try{localStorage.setItem("mm_form",JSON.stringify(lastForm))}catch(e){}
