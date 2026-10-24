@@ -2865,7 +2865,7 @@ html{overflow-x:clip}
 .P10 .isoW{left:0;top:0;width:768px;height:1024px;transition:transform 1s cubic-bezier(.6,0,.2,1),filter 1s}
 .P10.isD .isoW{filter:blur(3px) brightness(.92)}
 .P10 .hm .tcn,.P10 .hm .hd{transition:opacity .4s}.P10.isD .hm .tcn,.P10.isD .hm .hd{opacity:0;pointer-events:none}
-.P10 .base{position:absolute;left:54px;top:268px;width:660px;height:430px;filter:drop-shadow(0 30px 30px rgba(15,94,87,.35))}
+.P10 .base{position:absolute;left:44px;top:288px;width:680px;height:443px;filter:drop-shadow(0 30px 30px rgba(15,94,87,.35))}
 .P10 .base .t{fill:var(--tD)}.P10 .base .l{fill:color-mix(in srgb,var(--tD) 75%,#000)}.P10 .base .r{fill:color-mix(in srgb,var(--tD) 55%,#000)}
 .P10 .tl{position:absolute;width:150px;height:105px;overflow:visible}
 .P10 .tl .t{fill:#e2c29b}.P10 .tl .l{fill:#b88a5a}.P10 .tl .r{fill:#9a6d40}
@@ -2875,8 +2875,8 @@ html{overflow-x:clip}
 @keyframes p10Drop{from{opacity:0;transform:translateY(-260px)}to{opacity:1;transform:none}}
 .P10 .pin{position:absolute;left:50%;top:-34px;translate:-50% 0;background:#fff;border-radius:14px;padding:3px 12px;white-space:nowrap;box-shadow:0 8px 16px -8px rgba(0,0,0,.4);text-align:center}
 .P10 .pin::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:#fff;translate:-50% 0;rotate:45deg}
-.P10 .pin b{font:700 16px 'Reem Kufi';color:var(--tD);margin-left:6px}
-.P10 .pin .tpz{font-size:14px;color:var(--tA)}
+.P10 .pin b{font:700 14px 'Reem Kufi';color:var(--tD);margin-left:6px}
+.P10 .pin .tpz{font-size:12px;color:var(--tA)}
 .P10 .sht{left:24px;top:480px;width:720px;height:544px;background:#fff;border-radius:40px 40px 0 0;box-shadow:0 -20px 40px -20px rgba(0,0,0,.35)}
 @keyframes p10Up{from{opacity:0;transform:translateY(520px)}to{opacity:1;transform:none}}
 .P10 .dt .thr{left:244px;top:290px;width:280px;height:300px;z-index:5}
@@ -4009,7 +4009,7 @@ const SG2=[];Object.entries(SCOMBO2).forEach(([e,ps])=>ps.forEach((pk,j)=>{const
 SG2.unshift({id:"studio-reel",eng:"reel",th:SPAL.maroon,vars:thVars(SPAL.maroon),w:1200,h:1600,s34:1,n:"Showreel · all styles",ar:"العرض المتواصل · كل الستايلات",mood:"reel",fitAr:"يعرض كل التصاميم ورا بعض مثل شاشة حقيقية",ms:10200,items:SG2.map(d=>d.items[0]),
   chrome:()=>``,scene:(it,k)=>{const d=SG2[1+k%(SG2.length-1)];return `<div class="sw t-${d.eng}" style="${d.vars}">${SE2[d.eng].build(d.th,SPG[(k)%3])}</div>`}});
 /* ===== tablet interactive menus (kind "tab") ===== */
-const TCATS=[
+const TCATS=typeof TCATS_OVR!=="undefined"?TCATS_OVR:[
  {id:"drinks",ar:"المشروبات",en:"Drinks",items:["nanatea","karkade","talqeema","mint","karak","peach"]},
  {id:"bake",ar:"المخبوزات",en:"Bakery",items:["herbs","haloumi","pepperoni","waffle6","waffle4","combo_waffle"]},
  {id:"sweet",ar:"الحلا والصواني",en:"Sweets & Trays",items:["lemoncake","basbousa","trifle","karam","dhiyafa","keif"]}
@@ -4046,6 +4046,7 @@ function tCtl(c,k){const i=c.items.indexOf(k);return `<button type="button" clas
 const tThumbs=(c,k)=>`<div class="tth e" style="${tD(.9)}">${c.items.map(x=>`<button type="button" data-go="${x}" class="${x===k?"on":""}" aria-label="${tAr(x)}">${tImg(x,"")}</button>`).join("")}</div>`;
 const tRows=(n)=>Array.from({length:n});
 /* ===== premium tablet menus (kind "tab"): 12 unique concepts ===== */
+const BR=Object.assign({name:"N'ana",up:"N'ANA",ar:"نعنع",tag:"شاي وعلوم!",house:"TEA HOUSE",bar:"TEA BAR",lines:"TEA · BAKERY · SWEETS",cls:""},typeof BRAND_OVR!=="undefined"?BRAND_OVR:{});
 const PRNG=s=>()=>(s=(s*16807)%2147483647)/2147483647;
 function pStars(n,seed,W=768,H=1024){const r=PRNG(seed);return Array.from({length:n},()=>`${(r()*W)|0}px ${(r()*H)|0}px 0 ${r()<.15?1:0}px rgba(255,255,255,${(.3+r()*.7).toFixed(2)})`).join(",")}
 const pCatOf=k=>TCATS.findIndex(c=>c.items.includes(k));
@@ -4058,7 +4059,7 @@ const P8F=[[64,176,300,330],[420,150,280,290],[90,586,270,270],[404,516,300,320]
 const P12P=[[56,190,-6],[296,160,4],[516,200,-3],[76,540,5],[316,500,-4],[526,560,7]];
 const P7L=(()=>{const r=PRNG(11);return Array.from({length:18},(_,i)=>({x:(r()*740)|0,dur:(9+r()*8).toFixed(1),dl:(-r()*16).toFixed(1),s:(.6+r()*.8).toFixed(2),c:i%3}))})();
 function pTile(x,y,c="tl"){return `<svg class="${c}" viewBox="0 0 150 105" style="left:${x-75}px;top:${y-43}px" aria-hidden="true"><polygon class="t" points="75,0 150,43.5 75,87 0,43.5"/><polygon class="l" points="0,43.5 75,87 75,105 0,61.5"/><polygon class="r" points="150,43.5 75,87 75,105 150,61.5"/></svg>`}
-const p10xy=i=>{const col=i%3,row=i/3|0;return{x:Math.round(384+(col-row-.5)*150),y:Math.round(360+(col+row)*87),z:col+row}};
+const p10xy=i=>{const col=i%3,row=i/3|0;return{x:Math.round(384+(col-row-.5)*168),y:Math.round(338+(col+row)*97),z:col+row}};
 
 const PD=[
 /* 1 — the menu book */
@@ -4066,8 +4067,8 @@ const PD=[
  th:{key:"leather",ar:"جلد أخضر وذهبي",en:"Leather & Gold",paper:"#f4ead3",deep:"#1f3b2d",ac:"#b8913a",ink:"#2b2117",soft:"#e8dcbc"},
  fit:"منيو على شكل كتاب فاخر: الغلاف الجلدي ينفتح بالبداية، ولكل صنف تنقلب صفحة حقيقية بحركة ثلاثية الأبعاد",
  decor:c=>`<div class="bk"></div><i class="rib"></i>`,
- intro:c=>`<div class="cov"><div class="cvf"><img src="${IMG.logo_cream}" alt=""><b>قائمة نعنع</b><span lang="en">THE MENU</span></div></div>`,
- home:c=>`${pStar("o1")}<div class="ttl e" style="${tD(.1)}"><b>${TCATS[c.ci].ar}</b><span lang="en">N'ANA · ${TCATS[c.ci].en.toUpperCase()}</span></div>
+ intro:c=>`<div class="cov"><div class="cvf"><img src="${IMG.logo_cream}" alt=""><b>قائمة ${BR.ar}</b><span lang="en">THE MENU</span></div></div>`,
+ home:c=>`${pStar("o1")}<div class="ttl e" style="${tD(.1)}"><b>${TCATS[c.ci].ar}</b><span lang="en">${BR.up} · ${TCATS[c.ci].en.toUpperCase()}</span></div>
   ${c.items.map((k,i)=>tItem(k,i,"bkl",`top:${200+i*100}px`,`<div class="cc">${tImg(k)}</div><div class="tx"><b>${tAr(k)}</b>${tEnN(k)}</div><i class="ld"></i>${tPZ(k)}`)).join("")}
   <div class="pgn e" style="${tD(.9)}">— ${"١٢٣"[c.ci]} —</div>${tNav(c)}`,
  det:(c,k)=>`${tLogo(0,"e","left:50%;top:40px;height:52px;translate:-50% 0;--d:.35s")}<svg class="ring" viewBox="0 0 440 440" aria-hidden="true"><circle pathLength="1" cx="220" cy="220" r="205"/></svg><div class="thr">${tImg(k,"hi")}</div>
@@ -4079,7 +4080,7 @@ const PD=[
  th:{key:"midnight",ar:"كحلي وذهبي",en:"Midnight Gold",paper:"#f6f1e6",deep:"#0d1024",ac:"#e3c27a",ink:"#f6f1e6",soft:"#1b2142"},
  fit:"الأصناف على دوّار ثلاثي الأبعاد تحت إضاءة مسرح، الزبون يدوّره بإصبعه، والصنف يطلع تحت الضوء ويتمايل مع انعكاسه",
  decor:c=>`<div class="beam"></div><div class="flr"></div>`,
- intro:c=>`<div class="sw2"></div>${tLogo(1,"il")}<b class="it1">اختر مزاجك</b><span class="it2" lang="en">N'ANA · TEA HOUSE</span>`,
+ intro:c=>`<div class="sw2"></div>${tLogo(1,"il")}<b class="it1">اختر مزاجك</b><span class="it2" lang="en">${BR.up} · ${BR.house}</span>`,
  home:c=>{const n=c.items.length;return `<div class="hd e" style="${tD(.05)}">${tLogo(1,"","height:62px")}<b>${TCATS[c.ci].ar}</b></div>
   <div class="stg"><div class="rot">${c.items.map((k,i)=>`<div class="cs">${tItem(k,i,"ci","",tImg(k))}</div>`).join("")}</div></div>
   <div class="cap"></div><div class="hint e" style="${tD(1)}">↔ اسحب للتدوير · اضغط الصنف اللي قدّامك</div>${tNav(c)}`},
@@ -4106,7 +4107,7 @@ const PD=[
  fit:"يبدأ بكوب يتعبّى شاي قدّام الزبون، والأصناف على رفوف خشب والبخار يطلع من المشروبات الحارة، وكل صنف يعرض مكوّناته بالتشريح",
  decor:c=>`<div class="wall"></div><i class="shf s1"></i><i class="shf s2"></i>`,
  intro:c=>{const u="pg"+(++TUID);return `<svg class="glass" viewBox="0 0 300 420" aria-hidden="true"><defs><clipPath id="${u}"><path d="${GLASS}"/></clipPath></defs><g clip-path="url(#${u})"><g class="rise"><path class="wave" d="M-300,20 Q-225,0 -150,20 T0,20 T150,20 T300,20 T450,20 T600,20 V600 H-300 Z"/></g></g><path class="out" pathLength="1" d="${GLASS}"/></svg>${pSteam("stI")}<b class="it1">على مهل… تتخمّر الحكاية</b>${tLogo(0,"it2")}`},
- home:c=>`<div class="hd e" style="${tD(.05)}"><span lang="en">N'ANA · TEA BAR</span><b>${TCATS[c.ci].ar}</b></div>
+ home:c=>`<div class="hd e" style="${tD(.05)}"><span lang="en">${BR.up} · ${BR.bar}</span><b>${TCATS[c.ci].ar}</b></div>
   ${c.items.map((k,i)=>tItem(k,i,"sh",`left:${54+(i%3)*228}px;top:${i<3?192:512}px`,`${I[k].hot?pSteam():""}${tImg(k)}<div class="tag"><i></i><b>${tAr(k)}</b>${tPZ(k)}</div>`)).join("")}${tNav(c)}`,
  det:(c,k)=>`<div class="nm e" style="${tD(.3)}"><b>${tAr(k)}</b>${tEnN(k,"scr")}</div><div class="thr">${I[k].hot?pSteam("big"):pBub()}${tImg(k,"hi")}</div>
   <div class="lay">${tTagsA(k).map((t,i)=>`<div class="ly e" style="--d:${(.7+i*.2).toFixed(2)}s;top:${i*96}px"><i></i><b>${t}</b></div>`).join("")}</div>
@@ -4132,9 +4133,9 @@ const PD=[
  th:{key:"neon",ar:"فحمي ونيون",en:"Charcoal Neon",paper:"#f3f6f6",deep:"#121418",ac:"#5eead4",ink:"#e9fbf7",soft:"#1e2329"},
  fit:"كل قسم وجه في مكعب ثلاثي الأبعاد يدور بالسحب، والصنف يطلع على منصة مضيئة مع مواصفاته",
  decor:c=>`<div class="grd"></div>`,
- intro:c=>`<div class="ic"><div class="icb">${[0,1,2,3,4,5].map(f=>`<i class="f${f}"></i>`).join("")}</div></div><b class="it1">المنيو من كل الاتجاهات</b><span class="it2" lang="en">N'ANA · 360°</span>`,
- home:c=>`<div class="hd e" style="${tD(.05)}"><b>${TCATS[c.ci].ar}</b><span lang="en">N'ANA · 360°</span></div>
-  <div class="cw e" style="${tD(.15,"tFade")}"><div class="cube">${[0,1,2,3].map(f=>`<div class="fc" style="transform:rotateY(${f*90}deg) translateZ(300px)">${f<3?`<h4>${TCATS[f].ar}<small lang="en">${TCATS[f].en}</small></h4>${TCATS[f].items.slice(0,4).map((k,i)=>tItem(k,i,"cf","",`${tImg(k)}<b>${tAr(k)}</b>${tPZ(k)}`)).join("")}`:`<div class="ab">${tLogo(1,"","height:120px")}<p>شاي وعلوم!</p><small>اسحب المكعب أو اختر القسم</small></div>`}</div>`).join("")}</div></div>
+ intro:c=>`<div class="ic"><div class="icb">${[0,1,2,3,4,5].map(f=>`<i class="f${f}"></i>`).join("")}</div></div><b class="it1">المنيو من كل الاتجاهات</b><span class="it2" lang="en">${BR.up} · 360°</span>`,
+ home:c=>`<div class="hd e" style="${tD(.05)}"><b>${TCATS[c.ci].ar}</b><span lang="en">${BR.up} · 360°</span></div>
+  <div class="cw e" style="${tD(.15,"tFade")}"><div class="cube">${[0,1,2,3].map(f=>`<div class="fc" style="transform:rotateY(${f*90}deg) translateZ(300px)">${f<3?`<h4>${TCATS[f].ar}<small lang="en">${TCATS[f].en}</small></h4>${TCATS[f].items.slice(0,4).map((k,i)=>tItem(k,i,"cf","",`${tImg(k)}<b>${tAr(k)}</b>${tPZ(k)}`)).join("")}`:`<div class="ab">${tLogo(1,"","height:120px")}<p>${BR.tag}</p><small>اسحب المكعب أو اختر القسم</small></div>`}</div>`).join("")}</div></div>
   <div class="hint e" style="${tD(.9)}">↔ اسحب المكعب</div>${tNav(c)}`,
  det:(c,k)=>`<svg class="nring e" viewBox="0 0 520 170" style="${tD(.1,"tFade")}" aria-hidden="true"><ellipse cx="260" cy="85" rx="250" ry="70"/></svg><i class="ped e" style="${tD(.15,"tPop")}"></i><div class="thr">${tImg(k,"hi")}</div>
   <div class="nm e" style="${tD(.35)}"><span lang="en">${tEn(k).toUpperCase()}</span><b>${tAr(k)}</b></div>
@@ -4193,12 +4194,12 @@ const PD=[
  th:{key:"gallery",ar:"معرض ليلي",en:"Night Gallery",paper:"#f3eee6",deep:"#0b0b0b",ac:"#e9c46a",ink:"#f3eee6",soft:"#2b2622"},
  fit:"الأصناف لوحات في معرض مظلم، الزبون يحرّك إصبعه مثل الكشّاف فتنكشف اللوحات، والصنف ينعرض في إطار ذهبي مع لوحة تعريف",
  decor:c=>`<div class="wl"></div>`,
- intro:c=>`<i class="bulb"></i><b class="it1">معرض نعنع</b><span class="it2">المعرض مفتوح</span>`,
- home:c=>`<div class="hd e" style="${tD(.05)}"><span lang="en">N'ANA GALLERY</span><b>${TCATS[c.ci].ar}</b></div>
+ intro:c=>`<i class="bulb"></i><b class="it1">معرض ${BR.ar}</b><span class="it2">المعرض مفتوح</span>`,
+ home:c=>`<div class="hd e" style="${tD(.05)}"><span lang="en">${BR.up} GALLERY</span><b>${TCATS[c.ci].ar}</b></div>
   ${c.items.map((k,i)=>{const F=P8F[i];return tItem(k,i,"fm",`left:${F[0]}px;top:${F[1]}px;width:${F[2]}px;height:${F[3]}px`,`<div class="mat">${tImg(k)}</div><div class="plq"><b>${tAr(k)}</b>${tPZ(k)}</div>`)}).join("")}
   <div class="dark"></div><div class="hint e" style="${tD(1)}">حرّك إصبعك على الجدار…</div>${tNav(c)}`,
  det:(c,k)=>`<div class="lamp e" style="${tD(0,"tFade")}"></div><div class="bfr e" style="${tD(.1,"tPop")}"></div><div class="thr">${tImg(k,"hi")}</div>
-  <div class="plq2 e" style="${tD(.5)}"><b>${tAr(k)}</b><span lang="en">${tEn(k)} — N'ana</span><p>${I[k].dar}</p><div class="rw"><em>المكوّنات</em>${tTagsA(k).join("، ")}</div><div class="rw"><em>القيمة</em>${tPZ(k)}</div></div>${tCtl(c,k)}`,
+  <div class="plq2 e" style="${tD(.5)}"><b>${tAr(k)}</b><span lang="en">${tEn(k)} — ${BR.name}</span><p>${I[k].dar}</p><div class="rw"><em>المكوّنات</em>${tTagsA(k).join("، ")}</div><div class="rw"><em>القيمة</em>${tPZ(k)}</div></div>${tCtl(c,k)}`,
  mount(api){const w=api.w;let mx=384,my=420,tx=384,ty=420,man=0;
   api.on(w,"pointermove",e=>{const r=w.getBoundingClientRect(),s=r.width/768;tx=(e.clientX-r.left)/s;ty=(e.clientY-r.top)/s;man=performance.now()});
   api.on(w,"pointerdown",e=>{const r=w.getBoundingClientRect(),s=r.width/768;tx=(e.clientX-r.left)/s;ty=(e.clientY-r.top)/s;man=performance.now()});
@@ -4230,8 +4231,8 @@ const PD=[
  th:{key:"oak",ar:"تيل وخشب",en:"Teal & Oak",paper:"#f6f4ef",deep:"#0f5e57",ac:"#c79a6b",ink:"#1f2a2a",soft:"#e7e1d6"},
  fit:"يبدأ بباب المحل (الشتر) يرتفع، والأصناف واقفة على كاونتر مجسّم، والكاميرا تقرّب على الصنف وتطلع بطاقته من تحت",
  decor:c=>`<div class="sky"></div>`,
- intro:c=>`<div class="shu"><b>حيّاك في نعنع</b><span>المحل مفتوح…</span></div>`,
- home:c=>`<div class="hd e" style="${tD(.05)}"><b>${TCATS[c.ci].ar}</b><span lang="en">N'ANA · THE COUNTER</span></div>
+ intro:c=>`<div class="shu"><b>حيّاك في ${BR.ar}</b><span>المحل مفتوح…</span></div>`,
+ home:c=>`<div class="hd e" style="${tD(.05)}"><b>${TCATS[c.ci].ar}</b><span lang="en">${BR.up} · THE COUNTER</span></div>
   <div class="isoW"><svg class="base" viewBox="0 0 660 430" aria-hidden="true"><polygon class="t" points="330,0 660,190 330,380 0,190"/><polygon class="l" points="0,190 330,380 330,430 0,240"/><polygon class="r" points="660,190 330,380 330,430 660,240"/></svg>
   ${c.items.map((k,i)=>{const p=p10xy(i);return pTile(p.x,p.y)}).join("")}
   ${c.items.map((k,i)=>{const p=p10xy(i);return tItem(k,i,"is",`left:${p.x-80}px;top:${p.y-150}px;z-index:${10+p.z}`,`${tImg(k)}<div class="pin"><b>${tAr(k)}</b>${tPZ(k)}</div>`)}).join("")}</div>${tNav(c)}`,
@@ -4245,8 +4246,8 @@ const PD=[
 {id:"P11",ar:"المجلة",n:"The Magazine",mood:"classic",vb:"clean",n4:6,introMs:3200,introKick:2100,
  th:{key:"press",ar:"أبيض وأحمر",en:"Press Red",paper:"#f5f2ec",deep:"#111111",ac:"#e63946",ink:"#111111",soft:"#e9e4da"},
  fit:"المنيو مجلة: غلاف ثم صفحة كاملة لكل صنف يمرّرها الزبون للأسفل، صور تتحرك بعمق مع التمرير وعناوين ضخمة",
- intro:c=>`<div class="mc"><span lang="en">N'ANA</span><i>عدد خاص</i><b>المنيو</b><em lang="en">TEA · BAKERY · SWEETS</em></div>`,
- home:c=>`<div class="msc"><section class="cv0"><span class="mgh" lang="en">N'ANA</span><em>العدد ${"١٢٣"[c.ci]} · ${TCATS[c.ci].ar}</em>${tItem(c.items[0],0,"cvi","",tImg(c.items[0]))}<p>${c.items.length} أصناف · مرّر للأسفل ↓</p></section>
+ intro:c=>`<div class="mc"><span lang="en">${BR.up}</span><i>عدد خاص</i><b>المنيو</b><em lang="en">${BR.lines}</em></div>`,
+ home:c=>`<div class="msc"><section class="cv0"><span class="mgh" lang="en">${BR.up}</span><em>العدد ${"١٢٣"[c.ci]} · ${TCATS[c.ci].ar}</em>${tItem(c.items[0],0,"cvi","",tImg(c.items[0]))}<p>${c.items.length} أصناف · مرّر للأسفل ↓</p></section>
   ${c.items.map((k,i)=>`<section class="ss"><i class="no" lang="en">${String(i+1).padStart(2,"0")}</i><h3 lang="en">${tEn(k)}</h3><b>${tAr(k)}</b>${tItem(k,i,"si2","",tImg(k))}<p>${I[k].dar}</p>${tPZ(k)}<button type="button" class="mmore" data-open="${k}">التفاصيل ←</button></section>`).join("")}</div>
   <div class="prg"><i></i></div>${tNav(c)}`,
  det:(c,k)=>`<span class="kk e" style="${tD(.1)}" lang="en">THE MENU · ${TCATS[c.ci].en.toUpperCase()}</span><h3 class="e" style="${tD(.2)}" lang="en">${tEn(k)}</h3><div class="thr">${tImg(k,"hi")}</div>
@@ -4265,7 +4266,7 @@ const PD=[
  th:{key:"kraft",ar:"خشب وكرافت",en:"Wood & Kraft",paper:"#fdfbf7",deep:"#1d3557",ac:"#e76f51",ink:"#1d3557",soft:"#c69c72"},
  fit:"الأصناف صور بولارويد مبعثرة على طاولة خشب، الزبون يسحبها ويحرّكها بإصبعه، والصورة ترتفع وجنبها ورقة بخط اليد فيها الوصف والسعر",
  decor:c=>`<div class="tbl"></div>`,
- intro:c=>`<b class="it1">ابتسم… أنت في نعنع</b><i class="iris"></i><i class="fl"></i>`,
+ intro:c=>`<b class="it1">ابتسم… أنت في ${BR.ar}</b><i class="iris"></i><i class="fl"></i>`,
  home:c=>`<div class="hd e" style="${tD(.05)}"><b>${TCATS[c.ci].ar}</b></div><div class="stk e" style="${tD(.25)}">اسحب الصور<br>واضغط أي صورة</div>
   ${c.items.map((k,i)=>{const P=P12P[i];return tItem(k,i,"po",`left:${P[0]}px;top:${P[1]}px;rotate:${P[2]}deg`,`<i class="tp"></i><div class="pf">${tImg(k)}</div><b>${tAr(k)}</b><span class="pr2">${tPr(k)}</span>`)}).join("")}${tNav(c)}`,
  det:(c,k)=>`<div class="bp e" style="${tD(.05,"tPop")}"><i class="tp"></i><b>${tAr(k)}</b></div><div class="thr">${tImg(k,"hi")}</div>
@@ -4275,13 +4276,14 @@ const PD=[
   api.on(w,"pointermove",e=>{if(!dr)return;const dx=(e.clientX-dr.x)/dr.s,dy=(e.clientY-dr.y)/dr.s;if(Math.hypot(dx,dy)>7)dr.m=1;if(dr.m){dr.p.style.left=Math.max(-60,Math.min(600,dr.l+dx))+"px";dr.p.style.top=Math.max(90,Math.min(760,dr.t+dy))+"px";dr.p.classList.add("lift")}});
   api.on(w,"pointerup",()=>{if(!dr)return;if(dr.m)api.noClick();dr.p.classList.remove("lift");dr=null})}}
 ];
+if(typeof THEME_OVR!=="undefined")PD.forEach(D=>{if(THEME_OVR[D.id])Object.assign(D.th,THEME_OVR[D.id])});
 const PDm={};PD.forEach(D=>PDm[D.id]=D);
 const PGT=PD.map(D=>({id:`tab-${D.th.key}`,kind:"tab",L:D.id,th:Object.assign({bg:D.th.deep,ac:D.th.ac},D.th),ar:D.ar,n:D.n,fitAr:D.fit,mood:D.mood,vb:D.vb}));
 const PMOODS=[["d3","ثلاثي الأبعاد"],["live","حركة حيّة"],["touch","لمس وسحب"],["classic","كلاسيكي فاخر"]];
 
 function PRunner(d,host,mode){
   const preview=mode!=="full",D=PDm[d.L];
-  const w=document.createElement("div");const base=`tw prem ${D.id}${preview?" tprev":""}`;w.className=base;w.dir="rtl";w.setAttribute("style",tVars(D.th));host.appendChild(w);
+  const w=document.createElement("div");const base=`tw prem ${D.id}${BR.cls?" "+BR.cls:""}${preview?" tprev":""}`;w.className=base;w.dir="rtl";w.setAttribute("style",tVars(D.th));host.appendChild(w);
   let c={ci:0,items:[]},cur=null,tok=0,on=0,busy=0,timers=[],loops=new Map(),rafId=0,ac=null,last=0,oSrc=null,oK=null;
   const q=s=>w.querySelector(s),hm=()=>q(".hm"),dt=()=>q(".dt");
   function setCat(i){c={ci:i,items:TCATS[i].items.slice(0,D.n4||6)}}
