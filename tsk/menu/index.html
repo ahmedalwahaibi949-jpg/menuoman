@@ -10,11 +10,13 @@ html,body{margin:0;height:100%;background:#120306;overflow:hidden;font-family:'I
 #feed::-webkit-scrollbar{display:none}
 .sl{position:relative;height:100%;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
 .bg{position:absolute;inset:0;overflow:hidden;background:#1a0509}
-.bg img{position:absolute;left:50%;top:50%;width:auto;height:100%;min-width:100%;object-fit:cover;transform:translate(-50%,-50%) scale(1.06);transform-origin:50% 42%}
-.act .bg img{animation:pull 1.15s cubic-bezier(.2,.8,.2,1) both,drift 10s ease-in-out 1.15s infinite alternate}
-@keyframes pull{from{transform:translate(-50%,-50%) scale(1.35);filter:blur(12px) brightness(.6)}to{transform:translate(-50%,-50%) scale(1.06);filter:none}}
-@keyframes drift{from{transform:translate(-50%,-50%) scale(1.06)}to{transform:translate(-51.5%,-49.3%) scale(1.15)}}
-.sh{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,3,6,.75) 0,rgba(18,3,6,0) 22%,rgba(18,3,6,0) 46%,rgba(26,5,9,.6) 64%,rgba(26,5,9,.96) 86%)}
+.bg .blur{position:absolute;left:-10%;top:-10%;width:120%;height:120%;object-fit:cover;filter:blur(26px) brightness(.72) saturate(1.1);transform:scale(1.1)}
+.bg .fg{position:absolute;left:50%;top:7%;width:158%;height:auto;transform:translateX(-50%);transform-origin:50% 50%;-webkit-mask:linear-gradient(180deg,transparent,#000 9%,#000 80%,transparent);mask:linear-gradient(180deg,transparent,#000 9%,#000 80%,transparent)}
+.act .bg .fg{animation:pull 1.2s cubic-bezier(.2,.8,.2,1) both,drift 10s ease-in-out 1.2s infinite alternate}
+@keyframes pull{from{transform:translateX(-50%) scale(1.3);filter:blur(12px) brightness(.6)}to{transform:translateX(-50%) scale(1);filter:none}}
+@keyframes drift{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-51.5%) translateY(-1.5%) scale(1.07)}}
+.intro .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s}
+.sh{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,3,6,.7) 0,rgba(18,3,6,0) 16%,rgba(18,3,6,0) 50%,rgba(26,5,9,.7) 66%,rgba(26,5,9,.97) 84%)}
 .shine{position:absolute;inset:-20%;pointer-events:none;background:linear-gradient(115deg,transparent 40%,rgba(255,220,160,.28) 50%,transparent 60%);transform:translateX(-120%);mix-blend-mode:screen}
 .act .shine{animation:shine 1.6s ease-out .5s both}
 @keyframes shine{to{transform:translateX(120%)}}
@@ -71,8 +73,8 @@ html,body{margin:0;height:100%;background:#120306;overflow:hidden;font-family:'I
 .bag.bump{animation:bump .5s}
 @keyframes bump{40%{transform:scale(1.25) rotate(-8deg)}}
 /* intro slide */
-.intro .bg img{opacity:0;transition:opacity 1.2s}
-.intro .bg img.on{opacity:1;animation:drift 7s ease-in-out both}
+.intro .bg img.on{opacity:1;animation:idrift 7s ease-in-out both}
+@keyframes idrift{from{transform:scale(1.05)}to{transform:scale(1.18)}}
 .intro .sh{background:radial-gradient(ellipse at 50% 45%,rgba(18,3,6,.35),rgba(18,3,6,.85) 75%)}
 .ic{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
 .ic img{width:calc(150*var(--u));animation:pop 1s cubic-bezier(.2,.8,.2,1) .2s both;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
@@ -121,7 +123,7 @@ html,body{margin:0;height:100%;background:#120306;overflow:hidden;font-family:'I
 .gr button span{position:absolute;left:0;right:0;bottom:0;padding:16px 6px 6px;background:linear-gradient(transparent,rgba(0,0,0,.8));font:600 11px 'Playfair Display';color:#fff;direction:ltr;text-align:left}
 .wm{position:absolute;inset:0;z-index:60;pointer-events:none;overflow:hidden}
 .wm i{position:absolute;left:-40%;width:180%;text-align:center;white-space:nowrap;rotate:-28deg;font:700 calc(22*var(--u)) 'IBM Plex Sans Arabic';letter-spacing:3px;color:rgba(255,255,255,.07);font-style:normal}
-.wm b{position:absolute;top:14px;left:-40px;rotate:-45deg;background:#c9785a;color:#fff;font:700 12px 'IBM Plex Sans Arabic';padding:4px 50px;letter-spacing:2px}
+.wm b{position:absolute;bottom:14px;left:-40px;rotate:45deg;background:#c9785a;color:#fff;font:700 12px 'IBM Plex Sans Arabic';padding:4px 50px;letter-spacing:2px}
 </style></head><body>
 <div id="app">
  <div id="feed"></div>
@@ -130,7 +132,7 @@ html,body{margin:0;height:100%;background:#120306;overflow:hidden;font-family:'I
  <div class="sheet" id="all"><div class="panel"><h2>كل الأطباق <button type="button" data-close>×</button></h2><div class="gr" id="gr"></div></div></div>
  <div class="wm"><i style="top:-6%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:5%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:16%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:27%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:38%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:49%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:60%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:71%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:82%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:93%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><i style="top:104%">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO</i><b>DEMO</b></div>
 </div>
-<script>const IMG={"philly": "../assets/ph/philly.webp", "pepperoni": "../assets/ph/pepperoni.webp", "csando": "../assets/ph/csando.webp", "mozza": "../assets/ph/mozza.webp", "bella": "../assets/ph/bella.webp", "smokeshow": "../assets/ph/smokeshow.webp", "hotchick": "../assets/ph/hotchick.webp", "ricecrispy": "../assets/ph/ricecrispy.webp", "tskchips": "../assets/ph/tskchips.webp", "margherita": "../assets/ph/margherita.webp", "quinoa": "../assets/ph/quinoa.webp", "riskie": "../assets/ph/riskie.webp", "caesar": "../assets/ph/caesar.webp", "gaucho": "../assets/ph/gaucho.webp", "arancini": "../assets/ph/arancini.webp", "burrata": "../assets/ph/burrata.webp", "rose": "../assets/ph/rose.webp", "venom": "../assets/ph/venom.webp", "cluck": "../assets/ph/cluck.webp", "tpenne": "../assets/ph/tpenne.webp", "truffparm": "../assets/ph/truffparm.webp", "chimi": "../assets/ph/chimi.webp", "burratina": "../assets/ph/burratina.webp", "pesto": "../assets/ph/pesto.webp", "wagyu": "../assets/ph/wagyu.webp", "corn": "../assets/ph/corn.webp", "birsket": "../assets/ph/birsket.webp", "briskrice": "../assets/ph/briskrice.webp", "og": "../assets/ph/og.webp", "vodoo": "../assets/ph/vodoo.webp", "blackpepper": "../assets/ph/blackpepper.webp", "truffchips": "../assets/ph/truffchips.webp", "truftrouble": "../assets/ph/truftrouble.webp", "shrimp": "../assets/ph/shrimp.webp", "thai": "../assets/ph/thai.webp", "avo": "../assets/ph/avo.webp", "honey": "../assets/ph/honey.webp", "obsession": "../assets/ph/obsession.webp", "spicyranch": "../assets/ph/spicyranch.webp", "nutcase": "../assets/ph/nutcase.webp", "trufftheory": "../assets/ph/trufftheory.webp"};
+<script>const IMG={"philly": "../assets/hd/philly.webp", "pepperoni": "../assets/hd/pepperoni.webp", "bella": "../assets/hd/bella.webp", "hotchick": "../assets/hd/hotchick.webp", "tskchips": "../assets/hd/tskchips.webp", "margherita": "../assets/hd/margherita.webp", "quinoa": "../assets/hd/quinoa.webp", "riskie": "../assets/hd/riskie.webp", "rose": "../assets/hd/rose.webp", "cluck": "../assets/hd/cluck.webp", "burratina": "../assets/hd/burratina.webp", "corn": "../assets/hd/corn.webp", "truffchips": "../assets/hd/truffchips.webp", "avo": "../assets/hd/avo.webp", "obsession": "../assets/hd/obsession.webp", "nutcase": "../assets/hd/nutcase.webp"};
 /* The Social Kitchen — full menu (names, prices and descriptions from their current online menu; prices in OMR) */
 const CATS=[
  {id:"starters",en:"Starters",ar:"المقبلات",items:[
@@ -189,6 +191,11 @@ const HIRES={cluck:"b_start",og:"b_beef",truffparm:"b_pizza"};
 /* The Social Kitchen — full-screen stories menu */
 const $=s=>document.querySelector(s);
 const ph=k=>IMG[k];
+const PICK={starters:["cluck","riskie","corn","truffchips","tskchips"],salads:["quinoa","avo"],beef:["obsession"],chicken:["nutcase","hotchick"],pizza:["margherita","pepperoni","burratina"],sandwich:["philly"],pasta:["bella","rose"]};
+const MERGE={beef:"burgers",chicken:"burgers"};
+CATS.forEach(c=>{if(!c.drinks)c.items=c.items.filter(a=>(PICK[c.id]||[]).includes(a[0]))});
+{const b=CATS.find(c=>c.id==="beef"),ch=CATS.find(c=>c.id==="chicken");b.items=b.items.concat(ch.items);b.en="Burgers";b.ar="البرجر";CATS.splice(CATS.indexOf(ch),1)}
+for(let i=CATS.length-1;i>=0;i--)if(!CATS[i].drinks&&!CATS[i].items.length)CATS.splice(i,1);
 const LIST=[];CATS.forEach((c,ci)=>{if(!c.drinks)c.items.forEach((a,i)=>LIST.push({k:a[0],en:a[1],ar:a[2],p:a[3],den:a[4],dar:a[5],tg:a[6]||[],ci,i,n:c.items.length}))});
 const BYK={};LIST.forEach((d,j)=>{d.j=j;BYK[d.k]=d});
 const num=p=>parseFloat(String(p).split(/[–-]/)[0]);
@@ -198,10 +205,10 @@ const feed=$("#feed");
 const HEART=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.5 1.1 4.3 2.4.8-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>`;
 const GRID=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>`;
 /* slides */
-feed.innerHTML=`<section class="sl intro act" id="sl-intro"><div class="bg">${["cluck","og","margherita","chimi"].map((k,i)=>`<img src="${ph(k)}" alt="" class="${i?"":"on"}">`).join("")}</div><div class="sh"></div>
+feed.innerHTML=`<section class="sl intro act" id="sl-intro"><div class="bg">${["cluck","obsession","pepperoni","rose"].map((k,i)=>`<img src="${ph(k)}" alt="" class="${i?"":"on"}">`).join("")}</div><div class="sh"></div>
  <div class="ic"><img src="../assets/logo.png" alt="The Social Kitchen"><b class="en">MENU</b><span>قائمة الطعام</span><div class="sw">اسحب للأعلى وتذوّق بعينك<i>⌃</i></div></div></section>`+
- LIST.map(d=>{const C=CATS[d.ci],S=SPOTS[d.j%3];return `<section class="sl dish" data-k="${d.k}" data-j="${d.j}"><div class="bg"><img src="${ph(d.k)}" alt="${d.en}" loading="${d.j<3?"eager":"lazy"}" decoding="async"></div><div class="shine"></div><div class="sh"></div>
- ${d.tg.slice(0,3).map((t,i)=>`<div class="hs${S[i][0]>45?" rt":""}" style="left:${S[i][0]}%;top:${S[i][1]}%;--d:${(1+i*.22).toFixed(2)}s"><i></i><span>${t[1]}<em>${t[0]}</em></span></div>`).join("")}
+ LIST.map(d=>{const C=CATS[d.ci],S=SPOTS[d.j%3];return `<section class="sl dish" data-k="${d.k}" data-j="${d.j}"><div class="bg"><img class="blur" src="${ph(d.k)}" alt="" loading="${d.j<3?"eager":"lazy"}"><img class="fg" src="${ph(d.k)}" alt="${d.en}" loading="${d.j<3?"eager":"lazy"}" decoding="async"></div><div class="shine"></div><div class="sh"></div>
+ ${d.tg.slice(0,3).map((t,i)=>`<div class="hs${S[i][0]>45?" rt":""}" style="${S[i][0]>45?`right:${Math.max(4,96-S[i][0]-8)}%`:`left:${S[i][0]}%`};top:${S[i][1]}%;--d:${(1+i*.22).toFixed(2)}s"><i></i><span>${t[1]}<em>${t[0]}</em></span></div>`).join("")}
  <div class="info"><span class="cat en" style="--d:.15s">${C.en.toUpperCase()} · ${d.i+1}/${d.n}</span><h2 class="en" style="--d:.25s">${d.en}</h2><h3 style="--d:.35s">${d.ar}</h3><p style="--d:.45s">${d.dar}</p>
  <div class="prw" style="--d:.55s"><span class="pz${d.p.length>6?" sm":""}">${PZ(d.p)}</span><button type="button" class="add" data-add="${d.k}">+ أضف</button></div></div>
  <div class="rail"><button type="button" class="lk" data-like="${d.k}" aria-label="أعجبني">${HEART}<small>0</small></button><button type="button" data-grid aria-label="كل الأطباق">${GRID}<small>الكل</small></button></div></section>`}).join("")+
@@ -219,7 +226,7 @@ function setActive(sl){document.querySelectorAll(".sl.act").forEach(x=>{if(x!==s
    document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",+b.dataset.cat===d.ci));const ob=document.querySelector("#tabs .on");if(ob)ob.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})}
   [...bars.children].forEach((b,i)=>b.classList.toggle("done",i<=d.i))}
  else if(sl.id==="sl-end"){curCat=-2;bars.innerHTML="";document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.end!==undefined))}
- const nx=sl.nextElementSibling;if(nx){const im=nx.querySelector(".bg img");if(im)im.loading="eager"}}
+ const nx=sl.nextElementSibling;if(nx)nx.querySelectorAll(".bg img").forEach(im=>im.loading="eager")}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.6)setActive(e.target)}),{root:feed,threshold:[.6]});
 document.querySelectorAll(".sl").forEach(s=>io.observe(s));
 const goSlide=el=>el&&feed.scrollTo({top:el.offsetTop,behavior:"smooth"});
