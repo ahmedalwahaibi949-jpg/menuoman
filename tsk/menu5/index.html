@@ -132,11 +132,11 @@ html,body{background:#2a0a11}
 /* The Social Kitchen — full menu (names, prices and descriptions from their current online menu; prices in OMR) */
 const CATS=[
  {id:"starters",en:"Starters",ar:"المقبلات",items:[
-  ["tskchips","TSK Chips","بطاطس TSK","2.200","Gourmet hand-cut fries, golden-fried","بطاطس مقطّعة يدوياً ومقلية لين تصير ذهبية",[["Potato","بطاطس"],["Hand-cut","مقطّعة يدوياً"]]],
-  ["truffchips","Truffle'd Chips","بطاطس الترافل","2.600","Freshly cut potato fries, crisped to perfection","بطاطس مقطّعة طازجة ومقلية لين تصير مقرمشة",[["Potato","بطاطس"],["Truffle","ترافل"]]],
-  ["cluck","Cluck N Jack","كلَك آند جاك","3.950","Crispy fries topped with chicken pops, velvety cheddar and Monterey Jack","بطاطس مقرمشة مع قطع دجاج وجبن شيدر ومونتيري جاك",[["Chicken","دجاج"],["Cheddar","شيدر"],["Fries","بطاطس"]]],
-  ["riskie","Riskie Briskie","ريسكي بريسكي","4.900","Crispy fries topped with tender, smoky brisket and melted cheddar","بطاطس مقرمشة مع بريسكت مدخّن طري وجبن شيدر ذايب",[["Brisket","بريسكت"],["Cheddar","شيدر"],["Fries","بطاطس"]]],
-  ["corn","Umami Corn Ribs","أضلاع الذرة أومامي","3.500","Charred corn ribs tossed in a bold, umami-rich togarashi sauce","أضلاع ذرة مشوية بصوص توغاراشي غني",[["Corn","ذرة"],["Togarashi","توغاراشي"]]],
+  ["tskchips","TSK Chips","بطاطس TSK","2.200","Our signature hand-cut chips: thick, golden and crunchy outside, soft inside. The perfect partner for any dish.","بطاطس TSK المميزة، مقطّعة يدوياً ومقلية لين تصير ذهبية؛ مقرمشة من برّا وطرية من داخل. أفضل رفيق لأي طبق.",[["Potato","بطاطس"],["Hand-cut","مقطّعة يدوياً"]]],
+  ["truffchips","Truffle'd Chips","بطاطس الترافل","2.600","Freshly cut potatoes fried until perfectly crisp, finished with a creamy truffle drizzle and fresh herbs.","بطاطس مقطّعة طازجة ومقلية لين تصير مقرمشة، مع صوص الترافل الكريمي وأعشاب طازجة.",[["Potato","بطاطس"],["Truffle","ترافل"]]],
+  ["cluck","Cluck N Jack","كلَك آند جاك","3.950","Golden, crispy fries loaded with bite-size crispy chicken pops, smothered in velvety cheddar and melted Monterey Jack. Made for sharing… or not.","بطاطس ذهبية مقرمشة مغطاة بقطع دجاج مقرمشة، وفوقها جبن شيدر كريمي ومونتيري جاك ذايب. مثالية للمشاركة… أو لك وحدك.",[["Chicken","دجاج"],["Cheddar","شيدر"],["Fries","بطاطس"]]],
+  ["riskie","Riskie Briskie","ريسكي بريسكي","4.900","Crispy fries piled high with tender, slow-smoked brisket and a generous blanket of melted cheddar. Smoky, cheesy and seriously satisfying.","بطاطس مقرمشة مغطاة ببريسكت مدخّن على نار هادئة، مع طبقة سخية من جبن الشيدر الذايب. مدخّن وغني ومُشبع.",[["Brisket","بريسكت"],["Cheddar","شيدر"],["Fries","بطاطس"]]],
+  ["corn","Umami Corn Ribs","أضلاع الذرة أومامي","3.500","Sweet corn cut into ribs, charred on the grill and tossed in a bold, umami-rich togarashi sauce, finished with grated cheese and fresh herbs.","ذرة حلوة مقطّعة على شكل أضلاع، مشوية على النار ومقلّبة بصوص توغاراشي الغني بنكهة الأومامي، مع جبن مبشور وأعشاب طازجة.",[["Corn","ذرة"],["Togarashi","توغاراشي"]]],
   ["mozza","Hot Mozza","هوت موزا","3.500","Fried mozzarella tossed in bold Nashville seasoning","موزاريلا مقلية بتتبيلة ناشفيل الحارة",[["Mozzarella","موزاريلا"],["Nashville","ناشفيل"]]],
   ["arancini","Brishroom Arancini","أرانشيني بريشروم","4.500","Crispy risotto bites filled with smoky, slow-cooked brisket","كرات ريزوتو مقرمشة محشوة ببريسكت مدخّن",[["Risotto","ريزوتو"],["Brisket","بريسكت"],["Mushroom","فطر"]]],
   ["shrimp","Achar Glazed Shrimp","روبيان بصوص الأچار","5.500","Succulent shrimp coated in a bold, tangy Omani spiced glaze","روبيان طري بصوص أچار عُماني حار",[["Shrimp","روبيان"],["Omani achar","أچار عُماني"]]],
@@ -145,35 +145,35 @@ const CATS=[
   ["truftrouble","Truf Trouble","تروف ترابل","6.600","Crispy tenderloin bites tossed in a savoury Asian glaze","قطع تندرلوين مقرمشة بصوص آسيوي",[["Tenderloin","تندرلوين"],["Asian glaze","صوص آسيوي"]]]]},
  {id:"salads",en:"Salads",ar:"السلطات",items:[
   ["caesar","TSK Caesar","سيزر TSK","4.000","Crisp romaine, grilled chicken breast and Parmesan shavings","خس روماني مع صدر دجاج مشوي وبارميزان",[["Romaine","خس روماني"],["Chicken","دجاج"],["Parmesan","بارميزان"]]],
-  ["avo","Avo Crunch","أفو كرنش","4.500","Fresh avocado with crispy golden tortilla chips","أفوكادو طازج مع رقائق تورتيلا مقرمشة",[["Avocado","أفوكادو"],["Tortilla","تورتيلا"]]],
-  ["quinoa","Quinao Dates","كينوا وتمر","4.500","Quinoa salad with sweet dates, creamy feta and fresh arugula","سلطة كينوا مع تمر وجبن فيتا وجرجير",[["Quinoa","كينوا"],["Dates","تمر"],["Feta","فيتا"]]],
+  ["avo","Avo Crunch","أفو كرنش","4.500","Fresh avocado and crisp greens with crunchy golden tortilla chips. Light, fresh and full of texture.","أفوكادو طازج مع خضار منعشة ورقائق تورتيلا ذهبية مقرمشة. طبق خفيف مليان قرمشة وانتعاش.",[["Avocado","أفوكادو"],["Tortilla","تورتيلا"]]],
+  ["quinoa","Quinao Dates","كينوا وتمر","4.500","A light, fresh salad of fluffy quinoa, sweet dates, creamy feta and peppery arugula. The perfect balance of sweet and savoury.","سلطة خفيفة ومنعشة من الكينوا مع التمر الحلو وجبن الفيتا الكريمي والجرجير الطازج. توازن مثالي بين الحلو والمالح.",[["Quinoa","كينوا"],["Dates","تمر"],["Feta","فيتا"]]],
   ["burrata","Burrata Blush","بوراتا بلش","4.900","Delicate mixed greens with luscious burrata and blueberry","خضار مشكّلة مع بوراتا كريمية ولمسة توت",[["Burrata","بوراتا"],["Greens","خضار"],["Blueberry","توت"]]]]},
  {id:"beef",en:"Beef Burgers",ar:"برجر لحم",items:[
   ["og","OG Burger","أو جي برجر","1.900 – 3.800","Juicy seared beef patty with melted cheese and ripe tomato","لحم بقري مشوي مع جبن ذايب وطماطم",[["Beef","لحم"],["Cheese","جبن"],["Tomato","طماطم"]]],
   ["venom","Sweet Venom","سويت فينوم","2.100 – 4.200","Beef patty smothered in melted cheese and jalapeño sauce","لحم بقري مع جبن ذايب وصوص هالبينو",[["Beef","لحم"],["Jalapeño","هالبينو"]]],
-  ["obsession","The Obsession","ذا أوبسيشن","2.250 – 4.500","Two juicy, seared beef patties with gooey melted cheese","قطعتين لحم بقري مشوي مع جبن ذايب",[["Double beef","لحم مزدوج"],["Cheese","جبن"]]],
+  ["obsession","The Obsession","ذا أوبسيشن","2.250 – 4.500","Two juicy beef patties seared on a hot grill, layered with gooey melted cheese in a soft, glossy bun. Single or double… you'll be obsessed.","قطعتين لحم بقري عصيرية مشوية على نار قوية، مع جبن ذايب بين خبز طري ولامع. سنقل أو دبل… أكيد بتدمن عليه.",[["Double beef","لحم مزدوج"],["Cheese","جبن"]]],
   ["trufftheory","Truffle Theory","ترافل ثيوري","2.450 – 4.900","Beef patty with melted cheese and velvety truffle cream sauce","لحم بقري مع جبن وصوص كريمة الترافل",[["Beef","لحم"],["Truffle","ترافل"]]],
   ["wagyu","Royal Wagyu","رويال واغيو","3.750 – 5.500","Juicy Wagyu beef layered with earthy Portobello mushrooms","لحم واغيو مع فطر البورتوبيلو",[["Wagyu","واغيو"],["Portobello","بورتوبيلو"]]]]},
  {id:"chicken",en:"Chicken Burgers",ar:"برجر دجاج",items:[
   ["vodoo","Vodoo","فودو","1.900 – 3.800","Crunchy chicken smothered in bold Cajun sauce","دجاج مقرمش بصوص كاجون",[["Chicken","دجاج"],["Cajun","كاجون"]]],
-  ["hotchick","Hot Chick","هوت تشيك","2.100 – 4.200","Crispy chicken layered over chilled iceberg lettuce with a fiery finish","دجاج مقرمش فوق خس آيسبيرغ مع لمسة حارة",[["Chicken","دجاج"],["Iceberg","آيسبيرغ"],["Spicy","حار"]]],
+  ["hotchick","Hot Chick","هوت تشيك","2.100 – 4.200","Crispy chicken over chilled iceberg lettuce with melted cheese and a fiery finish that brings the heat.","دجاج مقرمش فوق خس آيسبيرغ بارد مع جبن ذايب ولمسة حارة تشعل النكهة.",[["Chicken","دجاج"],["Iceberg","آيسبيرغ"],["Spicy","حار"]]],
   ["honey","Honey Hustle","هني هاسل","2.400 – 4.800","Crunchy chicken drizzled with sweet, tangy honey mustard","دجاج مقرمش مع صوص العسل والخردل",[["Chicken","دجاج"],["Honey mustard","عسل وخردل"]]],
-  ["nutcase","The Nutcase","ذا نت كيس","2.200 – 4.400","Crispy chicken smothered in a rich, velvety peanut sauce","دجاج مقرمش مع صوص فول سوداني غني",[["Chicken","دجاج"],["Peanut","فول سوداني"]]]]},
+  ["nutcase","The Nutcase","ذا نت كيس","2.200 – 4.400","Crispy fried chicken smothered in a rich, velvety peanut sauce, with cheese and fresh greens in a soft bun. Nutty, creamy, unforgettable.","دجاج مقلي مقرمش مغطى بصوص فول سوداني غني وكريمي، مع جبن وخضار طازجة في خبز طري. نكهة ما تنتسى.",[["Chicken","دجاج"],["Peanut","فول سوداني"]]]]},
  {id:"pizza",en:"Sourdough Pizza",ar:"بيتزا العجينة المخمّرة",items:[
-  ["margherita","Holy Margherita","هولي مارغريتا","4.950","72-hour fermented sourdough Margherita","مارغريتا بعجينة مخمّرة ٧٢ ساعة",[["72h dough","عجينة ٧٢ ساعة"],["Mozzarella","موزاريلا"],["Basil","ريحان"]]],
-  ["pepperoni","Pepperoni Pop","بيبروني بوب","5.950","72-hour fermented sourdough, tangy tomato sauce and pepperoni","عجينة مخمّرة ٧٢ ساعة مع صوص طماطم وبيبروني",[["Pepperoni","بيبروني"],["Tomato","طماطم"]]],
+  ["margherita","Holy Margherita","هولي مارغريتا","4.950","The classic, done right: 72-hour fermented sourdough, tomato sauce, melted mozzarella and fresh basil, baked until perfectly blistered.","الكلاسيكية كما يجب: عجينة مخمّرة ٧٢ ساعة، صوص طماطم، موزاريلا ذايبة وريحان طازج، مخبوزة لين تتحمّص الأطراف.",[["72h dough","عجينة ٧٢ ساعة"],["Mozzarella","موزاريلا"],["Basil","ريحان"]]],
+  ["pepperoni","Pepperoni Pop","بيبروني بوب","5.950","72-hour fermented sourdough with tangy tomato sauce, melted mozzarella and crispy-edged pepperoni.","عجينة مخمّرة ٧٢ ساعة مع صوص طماطم منعش وموزاريلا ذايبة وشرائح بيبروني مقرمشة الأطراف.",[["Pepperoni","بيبروني"],["Tomato","طماطم"]]],
   ["truffparm","Truffle Parmesan","ترافل بارميزان","6.800","72-hour fermented sourdough with creamy truffle and parmesan","عجينة مخمّرة ٧٢ ساعة مع كريمة الترافل والبارميزان",[["Truffle","ترافل"],["Parmesan","بارميزان"]]],
   ["spicyranch","Spicy Chicken Ranch","سبايسي تشيكن رانش","6.300","72-hour fermented sourdough topped with fiery spicy chicken","عجينة مخمّرة ٧٢ ساعة مع دجاج حار",[["Spicy chicken","دجاج حار"],["Ranch","رانش"]]],
   ["birsket","Birsket","بِرسكت","7.500","72-hour fermented sourdough topped with 8-hour slow-cooked brisket","عجينة مخمّرة ٧٢ ساعة مع بريسكت مطبوخ ٨ ساعات",[["Brisket","بريسكت"],["8-hour cook","٨ ساعات"]]],
-  ["burratina","La Burratina","لا بوراتينا","5.950","72-hour fermented sourdough topped with creamy burrata","عجينة مخمّرة ٧٢ ساعة مع بوراتا كريمية",[["Burrata","بوراتا"],["72h dough","عجينة ٧٢ ساعة"]]]]},
+  ["burratina","La Burratina","لا بوراتينا","5.950","72-hour fermented sourdough topped with creamy burrata and fresh arugula. Soft, rich and elegant.","عجينة مخمّرة ٧٢ ساعة مع بوراتا كريمية وجرجير طازج. طرية وغنية وفخمة.",[["Burrata","بوراتا"],["72h dough","عجينة ٧٢ ساعة"]]]]},
  {id:"sandwich",en:"Sandwiches",ar:"السندويشات",items:[
   ["csando","TSK Chicken Sando","ساندو دجاج TSK","4.100","Classic crispy chicken smothered in melted cheese, nestled in a buttery bun","دجاج مقرمش مع جبن ذايب في خبز بالزبدة",[["Chicken","دجاج"],["Cheese","جبن"]]],
-  ["philly","Philly Milly Sando","فيلي ميلي ساندو","5.900","Juicy tenderloin with sautéed mushrooms","تندرلوين طري مع فطر سوتيه",[["Tenderloin","تندرلوين"],["Mushroom","فطر"]]]]},
+  ["philly","Philly Milly Sando","فيلي ميلي ساندو","5.900","Juicy, tender beef tenderloin with sautéed mushrooms and melted cheese in a toasted roll, served with crispy fries.","تندرلوين لحم طري وعصيري مع فطر سوتيه وجبن ذايب في خبز محمّص، يُقدّم مع بطاطس مقرمشة.",[["Tenderloin","تندرلوين"],["Mushroom","فطر"]]]]},
  {id:"pasta",en:"Pastas",ar:"الباستا",items:[
-  ["bella","Smokin Bella","سموكن بيلا","5.500","Penne tossed in a rich, smoky roasted pepper sauce","بيني بصوص الفلفل المشوي المدخّن",[["Penne","بيني"],["Roasted pepper","فلفل مشوي"]]],
+  ["bella","Smokin Bella","سموكن بيلا","5.500","Penne tossed in a rich, smoky roasted red pepper sauce, finished with fresh herbs. Comforting, with a gentle smoky kick.","بيني بصوص الفلفل الأحمر المشوي المدخّن، مع أعشاب طازجة. طبق دافئ بلمسة مدخّنة.",[["Penne","بيني"],["Roasted pepper","فلفل مشوي"]]],
   ["pesto","Pesto Presto","بيستو بريستو","5.950","Farfalle in vibrant lemon pesto with grilled chicken","فارفالي بصوص بيستو الليمون مع دجاج مشوي",[["Farfalle","فارفالي"],["Lemon pesto","بيستو ليمون"]]],
   ["tpenne","Truffle Penne","بيني الترافل","6.200","Penne in a velvety truffle cream sauce","بيني بصوص كريمة الترافل",[["Penne","بيني"],["Truffle cream","كريمة الترافل"]]],
-  ["rose","Rose Rage","روز ريج","5.800","Al dente rigatoni in a velvety tomato cream sauce","ريغاتوني بصوص الطماطم والكريمة",[["Rigatoni","ريغاتوني"],["Tomato cream","طماطم وكريمة"]]]]},
+  ["rose","Rose Rage","روز ريج","5.800","Al dente rigatoni in a velvety tomato and cream rosé sauce, finished with fresh basil. Creamy, comforting, irresistible.","ريغاتوني مطبوخ على أصوله بصوص روزيه كريمي من الطماطم والكريمة، مع ريحان طازج. كريمي ولا يُقاوَم.",[["Rigatoni","ريغاتوني"],["Tomato cream","طماطم وكريمة"]]]]},
  {id:"mains",en:"Main Courses",ar:"الأطباق الرئيسية",items:[
   ["gaucho","The Gaucho Feast","ذا غاوتشو فيست","6.950","Succulent marinated chicken, creamy and herb-infused","دجاج متبّل طري بالأعشاب والكريمة",[["Chicken","دجاج"],["Herbs","أعشاب"]]],
   ["briskrice","Brisket Rice","رز البريسكت","8.500","Slow-cooked for 8 hours and served with fragrant Mexican rice","بريسكت مطبوخ ٨ ساعات مع رز مكسيكي",[["Brisket","بريسكت"],["Mexican rice","رز مكسيكي"]]],
@@ -221,7 +221,8 @@ function stageHTML(it){const C=CATS[it.ci],H=Math.round(innerHeight/S()),cy=Math
  <svg class="orb fx" viewBox="0 0 340 340" style="left:60px;top:${cy-170}px" aria-hidden="true"><circle cx="170" cy="170" r="160"/></svg>
  ${PL(it.k,"dpl")}
  <div class="dps fx" style="top:${cy+176}px;--d:.15s"><span>${PZ(it.p)}</span></div>
- <div class="nv fx" style="top:${cy+185}px;--d:.2s"><button type="button" data-s="1" aria-label="التالي">‹</button><i><bdi>${it.i+1} / ${C.items.length}</bdi></i><button type="button" data-s="-1" aria-label="السابق">›</button></div></div>`}
+ <div class="nv fx" style="top:${cy+185}px;--d:.2s"><button type="button" data-s="1" aria-label="التالي">‹</button><i><bdi>${it.i+1} / ${C.items.length}</bdi></i><button type="button" data-s="-1" aria-label="السابق">›</button></div>
+ <div class="dd fx" style="top:${cy+258}px;--d:.3s"><b>${it.dar}</b><span>${it.den}</span></div></div>`}
 function place(st,it){const dpl=st.querySelector(".dpl"),cy=parseInt(st.querySelector(".dblk").style.top)+150;dpl.style.left="90px";dpl.style.top=(cy-140)+"px";return dpl}
 function burst(st,dpl){const c={x:dpl.offsetLeft+140,y:dpl.offsetTop+140};
  [0,180].forEach(d=>{const w=document.createElement("i");w.className="wave";Object.assign(w.style,{left:c.x-140+"px",top:c.y-140+"px",width:"280px",height:"280px"});st.appendChild(w);
