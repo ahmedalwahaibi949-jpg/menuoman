@@ -265,5 +265,6 @@ $("#bagb").addEventListener("click",()=>openSheet("ord"));
 document.querySelectorAll(".sheet").forEach(s=>s.addEventListener("click",e=>{if(e.target===s||e.target.closest("[data-close]"))closeSheets()}));
 addEventListener("keydown",e=>{if(e.key==="Escape")closeSheets();if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();feed.scrollBy({top:(e.key==="ArrowDown"?1:-1)*feed.clientHeight,behavior:"smooth"})}});
 window._api={go:j=>{const el=document.querySelector(`.sl[data-j="${j}"]`);feed.scrollTo({top:el.offsetTop})},ord,state:()=>({act:(document.querySelector(".sl.act")||{}).dataset})};
+addEventListener("load",()=>setTimeout(()=>document.querySelectorAll(".sl img[loading=lazy]").forEach(i=>{i.loading="eager";i.decode&&i.decode().catch(()=>{})}),600));
 
 </script></body></html>
