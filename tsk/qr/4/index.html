@@ -1,0 +1,204 @@
+<!doctype html><html lang="ar" dir="rtl" data-mode="qr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#240910"><title>The Social Kitchen · QR · Plates</title>
+<link rel="stylesheet" href="../../assets/fonts.css"><style>*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#0b0507;overflow:hidden;font-family:'IBM Plex Sans Arabic',sans-serif;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;-webkit-user-drag:none;user-select:none;max-width:none}
+.en{font-family:'Playfair Display',serif;direction:ltr}
+bdi{unicode-bidi:isolate}
+#app{position:absolute;top:0;left:0;width:390px;transform-origin:0 0;overflow:hidden;background:var(--bg,#111)}
+#tvs{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;transform-origin:50% 50%;overflow:hidden;background:var(--bg,#111)}
+.scene{position:absolute;inset:0;overflow:hidden}
+.sc{overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sc::-webkit-scrollbar{display:none}
+/* typing */
+.ty span{opacity:0;transition:opacity .12s linear calc(var(--i)*55ms + var(--d,0ms))}
+.in .ty span{opacity:1}
+/* watermark */
+.wm{position:absolute;inset:0;z-index:90;pointer-events:none;overflow:hidden}
+.wm i{position:absolute;left:-25%;width:150%;text-align:center;font:600 11px 'IBM Plex Sans Arabic';letter-spacing:.22em;white-space:nowrap;color:rgba(255,255,255,.2);text-shadow:0 0 2px rgba(0,0,0,.25);transform:rotate(-24deg)}
+.wm b{position:absolute;left:-36px;bottom:12px;width:118px;text-align:center;rotate:45deg;background:#c4623b;color:#fff;font:700 9px 'IBM Plex Sans Arabic';letter-spacing:.28em;padding:3px 0;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+[data-mode=tv] .wm i{font-size:22px}
+[data-mode=tv] .wm b{left:auto;right:0;bottom:0;rotate:0deg;width:auto;padding:10px 26px;font-size:18px;border-radius:12px 0 0 0;letter-spacing:.2em}
+/* bag */
+.bagb{position:absolute;z-index:60;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--accent,#c9a45c);color:var(--onaccent,#241015);box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.bagb svg{width:19px;height:19px}
+.bagb em{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;border-radius:9px;background:#d33a2c;color:#fff;font:700 10px/17px 'IBM Plex Sans Arabic';text-align:center;font-style:normal;padding:0 4px;transform:scale(0);transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.bagb.has em{transform:scale(1)}
+.bagb.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.25)}}
+.fly{position:absolute;z-index:80;pointer-events:none;border-radius:50%;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.sheet{position:absolute;inset:0;z-index:70;background:rgba(10,3,5,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+.sheet.on{opacity:1;pointer-events:auto}
+.sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:78%;overflow:auto;background:#faf5ec;color:#2a1518;border-radius:24px 24px 0 0;padding:20px 20px 26px;transform:translateY(102%);transition:transform .38s cubic-bezier(.2,.8,.2,1);direction:rtl}
+.sheet.on .pn{transform:none}
+.sheet h3{font:600 19px 'IBM Plex Sans Arabic';margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.sheet h3 button{font-size:22px;opacity:.5}
+.sheet .rw{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.sheet .rw img{width:54px;height:40px;object-fit:contain}
+.sheet .rw div{flex:1;font-size:14px;font-weight:500}
+.sheet .rw div small{display:block;font:500 12px 'Playfair Display';opacity:.6;direction:ltr;text-align:right}
+.sheet .q{display:flex;align-items:center;gap:8px}
+.sheet .q button{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.08);font-size:16px;line-height:26px}
+.sheet .q b{min-width:14px;text-align:center;font-size:14px}
+.sheet .tot{display:flex;justify-content:space-between;font:600 17px 'IBM Plex Sans Arabic';padding:14px 0 12px}
+.sheet .go{width:100%;height:46px;border-radius:23px;background:var(--accent,#601825);color:var(--onaccent,#fff);font:600 15px 'IBM Plex Sans Arabic'}
+.sheet .em{padding:34px 0;text-align:center;opacity:.55;font-size:14px}
+.toast{position:absolute;left:50%;bottom:90px;z-index:85;transform:translate(-50%,20px);background:rgba(20,8,10,.92);color:#fff;font:500 13px 'IBM Plex Sans Arabic';padding:10px 18px;border-radius:20px;opacity:0;transition:.3s;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+:root{--bg:#10231a;--gold:#d8b878;--cr:#f2e8d2;--accent:#d8b878;--onaccent:#10231a}
+#app,#tvs{background:radial-gradient(130% 75% at 50% 32%,#27493123 0,#1d3a2a 40%,#0e1f16 100%),#10231a;color:var(--cr)}
+.bgr{position:absolute;inset:0;pointer-events:none;opacity:.5}
+.bgr i{position:absolute;border:1px solid rgba(216,184,120,.16);border-radius:50%}
+.pill{display:inline-block;padding:7px 22px;border-radius:12px;background:rgba(216,184,120,.16);border:1px solid rgba(216,184,120,.55);color:var(--gold);font:italic 700 22px 'Playfair Display';letter-spacing:.02em}
+.hero{position:absolute;left:50%;margin-left:-175px;width:350px;height:350px;top:calc(var(--H)*.15 + 62px)}
+.hero .r1,.hero .r2,.hero .dc{position:absolute;border-radius:50%}
+.hero .r1{inset:0;border:1px solid rgba(216,184,120,.55)}
+.hero .r2{inset:14px;border:1.5px dashed rgba(216,184,120,.45);animation:spin 40s linear infinite}
+.hero .dc{inset:34px;background:radial-gradient(circle at 35% 30%,#3d6a4a,#1a3525 70%);box-shadow:inset 0 0 40px rgba(0,0,0,.45),0 18px 40px rgba(0,0,0,.45)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .hi{position:absolute;left:50%;top:54%;width:330px;margin-left:-165px;transform:translateY(-50%);filter:drop-shadow(0 20px 18px rgba(0,0,0,.5))}
+.hero .hi.h{opacity:0}
+.hero .hw{position:absolute;inset:0;display:grid;place-items:center}
+.hero .hw img{position:absolute;width:330px;height:290px;object-fit:contain;filter:drop-shadow(0 20px 18px rgba(0,0,0,.55))}
+.nm{position:absolute;left:0;right:0;top:calc(var(--H)*.15 + 425px);text-align:center;padding:0 24px}
+.nm h2{font:italic 700 31px/1.1 'Playfair Display';color:var(--gold)}
+.nm b{display:block;font:600 21px 'IBM Plex Sans Arabic';margin-top:4px}
+.nm span{display:block;font:500 13px/1.55 'IBM Plex Sans Arabic';opacity:.72;margin-top:6px;padding:0 6px}
+.buy{position:absolute;left:0;right:0;bottom:118px;display:flex;justify-content:center;gap:12px;align-items:center}
+.buy .pz{height:46px;padding:0 20px;border-radius:23px;border:1.5px solid var(--gold);color:var(--gold);font:700 19px/43px 'Playfair Display';white-space:nowrap}
+.buy .pz small{font-size:11px;opacity:.8}
+.buy .addb{height:46px;padding:0 24px;border-radius:23px;background:var(--gold);color:#10231a;font:700 15px 'IBM Plex Sans Arabic'}
+.th{position:absolute;left:0;right:0;bottom:30px;display:flex;justify-content:center;gap:12px;padding:0 10px;direction:ltr}
+.th button{flex:none;width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3d6a4a,#1a3525 75%);border:1.5px solid rgba(216,184,120,.35);display:grid;place-items:center;overflow:hidden;transition:.4s;opacity:.7}
+.th button img{width:76px;height:50px;object-fit:contain;filter:drop-shadow(0 4px 4px rgba(0,0,0,.4))}
+.th button.on{opacity:1;border-color:var(--gold);box-shadow:0 0 0 3px #10231a,0 0 0 4.5px var(--gold);transform:scale(1.12)}
+.cats{position:absolute;left:0;right:0;top:58px;display:flex;gap:8px;overflow-x:auto;padding:0 14px;scrollbar-width:none;justify-content:flex-start;direction:rtl}
+.cats::-webkit-scrollbar{display:none}
+.cats button{flex:none;padding:7px 16px;border-radius:15px;border:1px solid rgba(216,184,120,.5);color:var(--gold);font:600 12.5px 'IBM Plex Sans Arabic';white-space:nowrap;transition:.3s}
+.cats button.on{background:var(--gold);color:#10231a}
+.tb{position:absolute;left:14px;top:12px;height:38px;display:flex;align-items:center;gap:10px}
+.tb img{width:34px}
+.tb span{font:italic 700 15px 'Playfair Display';color:var(--gold)}
+.fx{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.in .fx{opacity:1;transform:none}
+/* ================= TV ================= */
+[data-mode=tv] .hero{left:620px;margin-left:-440px;top:100px;width:880px;height:880px}
+[data-mode=tv] .hero .r2{inset:34px;border-width:3px}
+[data-mode=tv] .hero .dc{inset:90px}
+[data-mode=tv] .hero .hw img{width:900px;height:740px}
+[data-mode=tv] .tvt{position:absolute;left:1180px;right:100px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:0}
+[data-mode=tv] .tvt .pill{align-self:flex-start;font-size:44px;padding:12px 40px;border-radius:22px;margin-bottom:40px}
+[data-mode=tv] .tvt h2{font:italic 700 104px/1.05 'Playfair Display';color:var(--gold)}
+[data-mode=tv] .tvt b{font:600 62px 'IBM Plex Sans Arabic';margin-top:14px}
+[data-mode=tv] .tvt span.d{font:500 32px/1.6 'IBM Plex Sans Arabic';opacity:.75;margin-top:18px;max-width:640px}
+[data-mode=tv] .tvt .pz{align-self:flex-start;margin-top:40px;height:96px;padding:0 50px;border-radius:48px;border:3px solid var(--gold);color:var(--gold);font:700 52px/90px 'Playfair Display'}
+[data-mode=tv] .tvt .pz small{font-size:24px}
+[data-mode=tv] .th{bottom:50px;left:60px;right:auto;width:1040px;gap:26px;justify-content:center}
+[data-mode=tv] .th button{width:130px;height:130px}
+[data-mode=tv] .th button img{width:160px;height:104px}
+[data-mode=tv] .th button.on{box-shadow:0 0 0 6px #10231a,0 0 0 9px var(--gold)}
+[data-mode=tv] .scene{opacity:0;transition:opacity .9s}
+[data-mode=tv] .scene.in{opacity:1}
+[data-mode=tv] .scene.out{opacity:0}
+[data-mode=qr][data-sh="1"] .hero{transform:scale(.8);transform-origin:50% 0;top:calc(var(--H)*.1 + 54px)}
+[data-mode=qr][data-sh="1"] .nm{top:calc(var(--H)*.1 + 54px + 285px)}
+[data-mode=qr][data-sh="1"] .nm h2{font-size:27px}
+[data-mode=qr][data-sh="1"] .nm b{font-size:18px}
+[data-mode=qr][data-sh="1"] .nm span{display:none}
+[data-mode=qr][data-sh="1"] .buy{bottom:104px}
+[data-mode=qr][data-sh="1"] .th{bottom:26px}
+[data-mode=qr][data-sh="1"] .th button{width:54px;height:54px}
+</style></head><body><div id="app"></div>
+<script>const DATA={"D": [{"k": "tskchips", "en": "TSK Chips", "ar": "بطاطس TSK", "p": "2.200", "den": "Our signature hand-cut chips: thick, golden and crunchy outside, soft inside. The perfect partner for any dish.", "dar": "بطاطس TSK المميزة، مقطّعة يدوياً ومقلية لين تصير ذهبية؛ مقرمشة من برّا وطرية من داخل. أفضل رفيق لأي طبق.", "c": 0}, {"k": "truffchips", "en": "Truffle'd Chips", "ar": "بطاطس الترافل", "p": "2.600", "den": "Freshly cut potatoes fried until perfectly crisp, finished with a creamy truffle drizzle and fresh herbs.", "dar": "بطاطس مقطّعة طازجة ومقلية لين تصير مقرمشة، مع صوص الترافل الكريمي وأعشاب طازجة.", "c": 0}, {"k": "cluck", "en": "Cluck N Jack", "ar": "كلَك آند جاك", "p": "3.950", "den": "Golden, crispy fries loaded with bite-size crispy chicken pops, smothered in velvety cheddar and melted Monterey Jack. Made for sharing… or not.", "dar": "بطاطس ذهبية مقرمشة مغطاة بقطع دجاج مقرمشة، وفوقها جبن شيدر كريمي ومونتيري جاك ذايب. مثالية للمشاركة… أو لك وحدك.", "c": 0}, {"k": "riskie", "en": "Riskie Briskie", "ar": "ريسكي بريسكي", "p": "4.900", "den": "Crispy fries piled high with tender, slow-smoked brisket and a generous blanket of melted cheddar. Smoky, cheesy and seriously satisfying.", "dar": "بطاطس مقرمشة مغطاة ببريسكت مدخّن على نار هادئة، مع طبقة سخية من جبن الشيدر الذايب. مدخّن وغني ومُشبع.", "c": 0}, {"k": "corn", "en": "Umami Corn Ribs", "ar": "أضلاع الذرة أومامي", "p": "3.500", "den": "Sweet corn cut into ribs, charred on the grill and tossed in a bold, umami-rich togarashi sauce, finished with grated cheese and fresh herbs.", "dar": "ذرة حلوة مقطّعة على شكل أضلاع، مشوية على النار ومقلّبة بصوص توغاراشي الغني بنكهة الأومامي، مع جبن مبشور وأعشاب طازجة.", "c": 0}, {"k": "avo", "en": "Avo Crunch", "ar": "أفو كرنش", "p": "4.500", "den": "Fresh avocado and crisp greens with crunchy golden tortilla chips. Light, fresh and full of texture.", "dar": "أفوكادو طازج مع خضار منعشة ورقائق تورتيلا ذهبية مقرمشة. طبق خفيف مليان قرمشة وانتعاش.", "c": 1}, {"k": "quinoa", "en": "Quinao Dates", "ar": "كينوا وتمر", "p": "4.500", "den": "A light, fresh salad of fluffy quinoa, sweet dates, creamy feta and peppery arugula. The perfect balance of sweet and savoury.", "dar": "سلطة خفيفة ومنعشة من الكينوا مع التمر الحلو وجبن الفيتا الكريمي والجرجير الطازج. توازن مثالي بين الحلو والمالح.", "c": 1}, {"k": "obsession", "en": "The Obsession", "ar": "ذا أوبسيشن", "p": "2.250 – 4.500", "den": "Two juicy beef patties seared on a hot grill, layered with gooey melted cheese in a soft, glossy bun. Single or double… you'll be obsessed.", "dar": "قطعتين لحم بقري عصيرية مشوية على نار قوية، مع جبن ذايب بين خبز طري ولامع. سنقل أو دبل… أكيد بتدمن عليه.", "c": 2}, {"k": "hotchick", "en": "Hot Chick", "ar": "هوت تشيك", "p": "2.100 – 4.200", "den": "Crispy chicken over chilled iceberg lettuce with melted cheese and a fiery finish that brings the heat.", "dar": "دجاج مقرمش فوق خس آيسبيرغ بارد مع جبن ذايب ولمسة حارة تشعل النكهة.", "c": 2}, {"k": "nutcase", "en": "The Nutcase", "ar": "ذا نت كيس", "p": "2.200 – 4.400", "den": "Crispy fried chicken smothered in a rich, velvety peanut sauce, with cheese and fresh greens in a soft bun. Nutty, creamy, unforgettable.", "dar": "دجاج مقلي مقرمش مغطى بصوص فول سوداني غني وكريمي، مع جبن وخضار طازجة في خبز طري. نكهة ما تنتسى.", "c": 2}, {"k": "philly", "en": "Philly Milly Sando", "ar": "فيلي ميلي ساندو", "p": "5.900", "den": "Juicy, tender beef tenderloin with sautéed mushrooms and melted cheese in a toasted roll, served with crispy fries.", "dar": "تندرلوين لحم طري وعصيري مع فطر سوتيه وجبن ذايب في خبز محمّص، يُقدّم مع بطاطس مقرمشة.", "c": 2}, {"k": "margherita", "en": "Holy Margherita", "ar": "هولي مارغريتا", "p": "4.950", "den": "The classic, done right: 72-hour fermented sourdough, tomato sauce, melted mozzarella and fresh basil, baked until perfectly blistered.", "dar": "الكلاسيكية كما يجب: عجينة مخمّرة ٧٢ ساعة، صوص طماطم، موزاريلا ذايبة وريحان طازج، مخبوزة لين تتحمّص الأطراف.", "c": 3}, {"k": "pepperoni", "en": "Pepperoni Pop", "ar": "بيبروني بوب", "p": "5.950", "den": "72-hour fermented sourdough with tangy tomato sauce, melted mozzarella and crispy-edged pepperoni.", "dar": "عجينة مخمّرة ٧٢ ساعة مع صوص طماطم منعش وموزاريلا ذايبة وشرائح بيبروني مقرمشة الأطراف.", "c": 3}, {"k": "burratina", "en": "La Burratina", "ar": "لا بوراتينا", "p": "5.950", "den": "72-hour fermented sourdough topped with creamy burrata and fresh arugula. Soft, rich and elegant.", "dar": "عجينة مخمّرة ٧٢ ساعة مع بوراتا كريمية وجرجير طازج. طرية وغنية وفخمة.", "c": 3}, {"k": "bella", "en": "Smokin Bella", "ar": "سموكن بيلا", "p": "5.500", "den": "Penne tossed in a rich, smoky roasted red pepper sauce, finished with fresh herbs. Comforting, with a gentle smoky kick.", "dar": "بيني بصوص الفلفل الأحمر المشوي المدخّن، مع أعشاب طازجة. طبق دافئ بلمسة مدخّنة.", "c": 4}, {"k": "rose", "en": "Rose Rage", "ar": "روز ريج", "p": "5.800", "den": "Al dente rigatoni in a velvety tomato and cream rosé sauce, finished with fresh basil. Creamy, comforting, irresistible.", "dar": "ريغاتوني مطبوخ على أصوله بصوص روزيه كريمي من الطماطم والكريمة، مع ريحان طازج. كريمي ولا يُقاوَم.", "c": 4}], "C": [{"id": "starters", "en": "Starters", "ar": "المقبلات"}, {"id": "salads", "en": "Salads", "ar": "السلطات"}, {"id": "burgers", "en": "Burgers", "ar": "البرجر والسندويش"}, {"id": "pizza", "en": "Pizza", "ar": "البيتزا"}, {"id": "pasta", "en": "Pasta", "ar": "الباستا"}]};
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const TV=document.documentElement.dataset.mode==='tv';
+const {D,C}=DATA;
+const THEMES=[{bg:'#6b1424',pa:'#f7e3e1',ink:'#4a0d19'},{bg:'#1f4a33',pa:'#e0f0e5',ink:'#12301f'},{bg:'#a85a12',pa:'#fae8cf',ink:'#5c3006'},{bg:'#26324f',pa:'#e0e6f5',ink:'#18203a'},{bg:'#a23b22',pa:'#f9dfd7',ink:'#5e1d0e'},{bg:'#5a2147',pa:'#f2ddec',ink:'#3b122e'},{bg:'#11586a',pa:'#d9eef2',ink:'#0b3a46'}];
+const TMAP=[0,2,1,3,4,5,6,0,1,3,2,4,5,6,0,1];
+D.forEach((d,i)=>{d.i=i;d.t=THEMES[TMAP[i]];d.n=String(i+1).padStart(2,'0');d.src='../../assets/cut/'+d.k+'.webp';d.num=parseFloat(d.p);d.cat=C[d.c]});
+C.forEach((c,ci)=>c.items=D.filter(d=>d.c===ci));
+D.forEach(d=>d.j=d.cat.items.indexOf(d));
+const BY={};D.forEach(d=>BY[d.k]=d);
+const LOGO='../../assets/logo.png',MARKC='../../assets/mark_cream.png',MARKW='../../assets/mark_wine.png';
+const ty=(t,d)=>[...t].map((ch,i)=>`<span style="--i:${i}">${ch===' '?'&nbsp;':ch}</span>`).join('');
+const APP=$('#app'),TVS=$('#tvs');
+let Z=1,H=844;
+function fit(){
+ if(TV){const s=Math.min(innerWidth/1920,innerHeight/1080);TVS.style.transform='scale('+s+')';return}
+ Z=Math.min(innerWidth,480)/390;H=innerHeight/Z;
+ APP.style.height=H+'px';APP.style.transform='scale('+Z+')';APP.style.left=((innerWidth-390*Z)/2)+'px';
+ document.documentElement.style.setProperty('--H',H+'px');document.documentElement.style.setProperty('--k',Math.min(1,H/820));document.documentElement.dataset.sh=H<760?'1':'0';
+}
+fit();addEventListener('resize',fit);
+const ROOT=TV?TVS:APP;
+function wm(){let r='';const n=TV?9:11;for(let i=0;i<n;i++)r+=`<i style="top:${i*(TV?130:90)-30}px">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO · نموذج تجريبي</i>`;return `<div class="wm">${r}<b>DEMO</b></div>`}
+function toast(t){let e=$('.toast');if(!e){e=document.createElement('div');e.className='toast';ROOT.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+/* ---------- order bag (QR) ---------- */
+const Bag={m:{},btn:null,mount(css){
+  const b=document.createElement('button');b.className='bagb';b.setAttribute('aria-label','طلبي');b.style.cssText=css||'top:14px;right:14px';
+  b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><em>0</em>';
+  APP.appendChild(b);this.btn=b;b.onclick=()=>this.open();
+  const s=document.createElement('div');s.className='sheet';s.innerHTML='<div class="pn"></div>';APP.appendChild(s);this.sh=s;
+  s.addEventListener('click',e=>{if(e.target===s)this.close();const a=e.target.closest('[data-q]');if(a){this.chg(a.dataset.k,+a.dataset.q)}if(e.target.closest('[data-x]'))this.close();if(e.target.closest('.go')){this.close();this.m={};this.upd();toast('تم إرسال الطلب (نموذج تجريبي) ✓')}});
+ },
+ count(){return Object.values(this.m).reduce((a,b)=>a+b,0)},
+ total(){return Object.entries(this.m).reduce((a,[k,q])=>a+BY[k].num*q,0)},
+ add(k,from){this.m[k]=(this.m[k]||0)+1;if(from)this.fly(from,k);else this.upd(1)},
+ chg(k,n){this.m[k]=(this.m[k]||0)+n;if(this.m[k]<=0)delete this.m[k];this.upd();this.render()},
+ upd(b){const n=this.count();const e=$('em',this.btn);e.textContent=n;this.btn.classList.toggle('has',n>0);if(b){this.btn.classList.remove('bump');void this.btn.offsetWidth;this.btn.classList.add('bump')}},
+ fly(from,k){const a=APP.getBoundingClientRect(),r=from.getBoundingClientRect(),t=this.btn.getBoundingClientRect();
+  const f=document.createElement('img');f.className='fly';f.src=BY[k].src;const w=54;
+  const x0=(r.left+r.width/2-a.left)/Z-w/2,y0=(r.top+r.height/2-a.top)/Z-w/2,x1=(t.left+t.width/2-a.left)/Z-w/2,y1=(t.top+t.height/2-a.top)/Z-w/2;
+  f.style.cssText=`left:0;top:0;width:${w}px;height:${w}px`;APP.appendChild(f);
+  const an=f.animate([{transform:`translate(${x0}px,${y0}px) scale(1.3)`,opacity:1},{transform:`translate(${(x0+x1)/2}px,${Math.min(y0,y1)-60}px) scale(1)`,opacity:1,offset:.5},{transform:`translate(${x1}px,${y1}px) scale(.3)`,opacity:.4}],{duration:750,easing:'cubic-bezier(.5,0,.3,1)',fill:'forwards'});
+  an.onfinish=()=>{f.remove();this.upd(1)}},
+ open(){this.render();this.sh.classList.add('on')},close(){this.sh.classList.remove('on')},
+ render(){const ks=Object.keys(this.m);$('.pn',this.sh).innerHTML=`<h3><span>طلبي</span><button data-x aria-label="إغلاق">×</button></h3>`+(ks.length?ks.map(k=>`<div class="rw"><img src="${BY[k].src}" alt=""><div>${BY[k].ar}<small>${BY[k].en}</small></div><div class="q"><button data-q="-1" data-k="${k}">−</button><b>${this.m[k]}</b><button data-q="1" data-k="${k}">+</button></div></div>`).join('')+`<div class="tot"><span>المجموع التقريبي</span><span><bdi>${this.total().toFixed(3)}</bdi> ر.ع</span></div><button class="go">إرسال الطلب</button>`:'<div class="em">لم تضف أي طبق بعد</div>')}
+};
+/* ---------- TV player ---------- */
+function tvPlay(seq){let i=0,cur=null;
+ (function next(){const s=seq[i%seq.length];i++;const el=document.createElement('div');el.className='scene '+(s.cls||'');el.innerHTML=s.html;TVS.insertBefore(el,$('.wm',TVS));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{el.classList.add('in');el.firstElementChild&&el.firstElementChild.classList.add('in')}));
+  if(cur){const o=cur;o.classList.add('out');setTimeout(()=>o.remove(),s.x||1200)}
+  cur=el;setTimeout(next,s.dur)})();
+}
+function mountWm(){ROOT.insertAdjacentHTML('beforeend',wm())}
+window.__ready=0;
+
+const dec=()=>`<div class="bgr"><i style="left:-120px;top:-140px;width:480px;height:480px"></i><i style="right:-200px;bottom:-100px;width:560px;height:560px"></i><i style="right:-90px;bottom:10px;width:340px;height:340px"></i></div>`;
+const thumbs=(d)=>`<div class="th">${d.cat.items.map(x=>`<button data-k="${x.k}" class="${x===d?'on':''}" aria-label="${x.en}"><img src="${x.src}" alt=""></button>`).join('')}</div>`;
+if(!TV){
+ APP.innerHTML=`${dec()}<div class="tb"><img src="${MARKC}" alt=""><span>The Social Kitchen</span></div>
+ <div class="cats">${C.map((c,i)=>`<button data-c="${i}">${c.ar}</button>`).join('')}</div>
+ <div class="hero" id="hero"><i class="r1"></i><i class="r2"></i><i class="dc"></i><div class="hw"><img id="hi" alt=""></div></div>
+ <div class="nm" id="nm"></div><div class="buy" id="buy"></div><div id="thw"></div>`;
+ mountWm();Bag.mount('top:12px;right:12px;z-index:60');
+ const hi=$('#hi'),nm=$('#nm'),buy=$('#buy'),thw=$('#thw'),cats=$$('.cats button');let cur=null,busy=0;
+ function texts(d){nm.innerHTML=`<h2 class="en">${d.en}</h2><b>${d.ar}</b><span>${d.dar}</span>`;buy.innerHTML=`<span class="pz en"><bdi>${d.p}</bdi> <small>OMR</small></span><button class="addb" data-k="${d.k}">أضف +</button>`}
+ function show(d,dir,first){const old=cur;cur=d;
+  cats.forEach(b=>b.classList.toggle('on',+b.dataset.c===d.c));const ob=cats.find(b=>b.classList.contains('on'));if(ob)ob.parentNode.scrollTo({left:ob.offsetLeft-ob.parentNode.clientWidth/2+ob.offsetWidth/2,behavior:first?'auto':'smooth'});
+  thw.innerHTML=thumbs(d);
+  const inn=()=>{hi.src=d.src;texts(d);[nm,buy].forEach(e=>{e.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:500,easing:'ease-out',fill:'backwards'})});
+   busy=1;const a=hi.animate([{transform:`translateX(${dir*140}px) rotate(${dir*50}deg) scale(.45)`,opacity:0,filter:'blur(10px)'},{transform:'translateX(0) rotate(0) scale(1.05)',opacity:1,filter:'blur(0)',offset:.75},{transform:'none',opacity:1,filter:'blur(0)'}],{duration:760,easing:'cubic-bezier(.2,.9,.3,1)'});a.onfinish=()=>{busy=0}};
+  if(first||!old){inn();return}
+  const b=hi.animate([{transform:'none',opacity:1},{transform:`translateX(${-dir*140}px) rotate(${-dir*50}deg) scale(.45)`,opacity:0,filter:'blur(8px)'}],{duration:320,easing:'ease-in',fill:'forwards'});b.onfinish=()=>{b.cancel();inn()}}
+ const go=(d,dir)=>{if(busy||d===cur)return;show(d,dir!=null?dir:(d.i>cur.i?1:-1))};
+ cats.forEach(b=>b.onclick=()=>go(C[+b.dataset.c].items[0]));
+ thw.addEventListener('click',e=>{const t=e.target.closest('button');if(t)go(BY[t.dataset.k])});
+ buy.addEventListener('click',e=>{const a=e.target.closest('.addb');if(a)Bag.add(a.dataset.k,$('#hi'))});
+ const step=n=>go(D[(cur.i+n+D.length)%D.length],n);
+ let x0=null;$('#hero').addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});$('#hero').addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40)step(dx<0?1:-1)});
+ $('#hero').addEventListener('click',()=>step(1));
+ window._api={go:k=>go(BY[k]),step,state:()=>({cur:cur&&cur.k,busy})};
+ show(D[0],1,true);
+}else{
+ mountWm();
+ const sc=d=>`<div class="in-s">${dec()}<div class="hero"><i class="r1"></i><i class="r2"></i><i class="dc"></i><div class="hw"><img src="${d.src}" alt=""></div></div>
+ <div class="tvt"><span class="pill">${d.cat.en}</span><h2 class="en">${d.en}</h2><b>${d.ar}</b><span class="d">${d.dar}</span><span class="pz en"><bdi>${d.p}</bdi> <small>OMR</small></span></div>${thumbs(d)}</div>`;
+ const seq=[{dur:3200,html:`<div>${dec()}<img src="${LOGO}" style="position:absolute;left:760px;top:190px;width:400px;border-radius:50%" alt=""><h1 class="en" style="position:absolute;left:0;right:0;top:640px;text-align:center;font:italic 700 130px 'Playfair Display';color:var(--gold)">The Social Kitchen</h1><div style="position:absolute;left:0;right:0;top:830px;text-align:center;font:600 48px 'IBM Plex Sans Arabic';opacity:.8">قائمة الطعام</div></div>`}];
+ D.forEach(d=>seq.push({dur:5200,html:sc(d)}));
+ tvPlay(seq);
+}
+
+window.__ready=1;</script></body></html>

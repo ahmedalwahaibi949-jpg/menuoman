@@ -1,0 +1,232 @@
+<!doctype html><html lang="ar" dir="rtl" data-mode="qr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#240910"><title>The Social Kitchen · QR · Orbit</title>
+<link rel="stylesheet" href="../../assets/fonts.css"><style>*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#0b0507;overflow:hidden;font-family:'IBM Plex Sans Arabic',sans-serif;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;-webkit-user-drag:none;user-select:none;max-width:none}
+.en{font-family:'Playfair Display',serif;direction:ltr}
+bdi{unicode-bidi:isolate}
+#app{position:absolute;top:0;left:0;width:390px;transform-origin:0 0;overflow:hidden;background:var(--bg,#111)}
+#tvs{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;transform-origin:50% 50%;overflow:hidden;background:var(--bg,#111)}
+.scene{position:absolute;inset:0;overflow:hidden}
+.sc{overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sc::-webkit-scrollbar{display:none}
+/* typing */
+.ty span{opacity:0;transition:opacity .12s linear calc(var(--i)*55ms + var(--d,0ms))}
+.in .ty span{opacity:1}
+/* watermark */
+.wm{position:absolute;inset:0;z-index:90;pointer-events:none;overflow:hidden}
+.wm i{position:absolute;left:-25%;width:150%;text-align:center;font:600 11px 'IBM Plex Sans Arabic';letter-spacing:.22em;white-space:nowrap;color:rgba(255,255,255,.2);text-shadow:0 0 2px rgba(0,0,0,.25);transform:rotate(-24deg)}
+.wm b{position:absolute;left:-36px;bottom:12px;width:118px;text-align:center;rotate:45deg;background:#c4623b;color:#fff;font:700 9px 'IBM Plex Sans Arabic';letter-spacing:.28em;padding:3px 0;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+[data-mode=tv] .wm i{font-size:22px}
+[data-mode=tv] .wm b{left:auto;right:0;bottom:0;rotate:0deg;width:auto;padding:10px 26px;font-size:18px;border-radius:12px 0 0 0;letter-spacing:.2em}
+/* bag */
+.bagb{position:absolute;z-index:60;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--accent,#c9a45c);color:var(--onaccent,#241015);box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.bagb svg{width:19px;height:19px}
+.bagb em{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;border-radius:9px;background:#d33a2c;color:#fff;font:700 10px/17px 'IBM Plex Sans Arabic';text-align:center;font-style:normal;padding:0 4px;transform:scale(0);transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.bagb.has em{transform:scale(1)}
+.bagb.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.25)}}
+.fly{position:absolute;z-index:80;pointer-events:none;border-radius:50%;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.sheet{position:absolute;inset:0;z-index:70;background:rgba(10,3,5,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+.sheet.on{opacity:1;pointer-events:auto}
+.sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:78%;overflow:auto;background:#faf5ec;color:#2a1518;border-radius:24px 24px 0 0;padding:20px 20px 26px;transform:translateY(102%);transition:transform .38s cubic-bezier(.2,.8,.2,1);direction:rtl}
+.sheet.on .pn{transform:none}
+.sheet h3{font:600 19px 'IBM Plex Sans Arabic';margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.sheet h3 button{font-size:22px;opacity:.5}
+.sheet .rw{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.sheet .rw img{width:54px;height:40px;object-fit:contain}
+.sheet .rw div{flex:1;font-size:14px;font-weight:500}
+.sheet .rw div small{display:block;font:500 12px 'Playfair Display';opacity:.6;direction:ltr;text-align:right}
+.sheet .q{display:flex;align-items:center;gap:8px}
+.sheet .q button{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.08);font-size:16px;line-height:26px}
+.sheet .q b{min-width:14px;text-align:center;font-size:14px}
+.sheet .tot{display:flex;justify-content:space-between;font:600 17px 'IBM Plex Sans Arabic';padding:14px 0 12px}
+.sheet .go{width:100%;height:46px;border-radius:23px;background:var(--accent,#601825);color:var(--onaccent,#fff);font:600 15px 'IBM Plex Sans Arabic'}
+.sheet .em{padding:34px 0;text-align:center;opacity:.55;font-size:14px}
+.toast{position:absolute;left:50%;bottom:90px;z-index:85;transform:translate(-50%,20px);background:rgba(20,8,10,.92);color:#fff;font:500 13px 'IBM Plex Sans Arabic';padding:10px 18px;border-radius:20px;opacity:0;transition:.3s;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+:root{--bg:#fbf8f1;--wine:#601825;--accent:#601825;--onaccent:#fbf8f1;--ink:#601825}
+#app,#tvs{background:var(--bg);color:var(--wine)}
+.an{font-family:'Anton','Impact',sans-serif;font-weight:400;text-transform:uppercase;direction:ltr}
+.gh{position:absolute;pointer-events:none;background:repeating-conic-gradient(var(--g,rgba(96,24,37,.22)) 0 25%,transparent 0 50%) 0 0/22px 22px}
+.gh.a{right:0;top:0;width:150px;height:150px;-webkit-mask:linear-gradient(225deg,#000 25%,transparent 62%);mask:linear-gradient(225deg,#000 25%,transparent 62%)}
+.gh.b{left:0;bottom:0;width:130px;height:130px;-webkit-mask:linear-gradient(45deg,#000 25%,transparent 62%);mask:linear-gradient(45deg,#000 25%,transparent 62%)}
+.orb{direction:ltr;unicode-bidi:isolate;position:absolute;left:50%;top:50%;overflow:visible;color:currentColor;animation:orb 60s linear infinite;pointer-events:none}
+.orb.fast{animation-duration:28s}
+.orb.rv{animation-direction:reverse}
+.orb text{font-family:'Anton','Impact',sans-serif;fill:currentColor;opacity:.9;letter-spacing:.04em}
+@keyframes orb{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+/* ---- QR list ---- */
+.hd5{position:relative;padding:66px 22px 6px;direction:ltr}
+.hd5 .mk{position:absolute;left:18px;top:14px;width:34px}
+.hd5 h1{font:400 92px/.95 'Anton';letter-spacing:.01em;color:var(--wine)}
+.hd5 p{font:600 13px 'IBM Plex Sans Arabic';opacity:.7;margin-top:6px;letter-spacing:.04em}
+.cn{display:flex;align-items:center;gap:12px;padding:30px 22px 6px;direction:ltr}
+.cn span{font:400 24px 'Anton';letter-spacing:.14em;text-transform:uppercase}
+.cn i{flex:1;height:2px;background:var(--wine);opacity:.25}
+.cn b{font:600 14px 'IBM Plex Sans Arabic';opacity:.7}
+.bk{position:relative;height:238px;color:var(--ink);cursor:pointer}
+.bk .dc{position:absolute;top:19px;width:200px;height:200px;opacity:0;transition:transform .9s cubic-bezier(.2,1.1,.4,1),opacity .6s}
+.bk.rt .dc{right:-54px;transform:translateX(70%) rotate(60deg) scale(.7)}
+.bk.lf .dc{left:-54px;transform:translateX(-70%) rotate(-60deg) scale(.7)}
+.bk.in .dc{opacity:1;transform:none}
+.ds{position:absolute;inset:0;border-radius:50%;background:var(--pa);box-shadow:inset 0 -12px 24px rgba(0,0,0,.06)}
+.dc img{position:absolute;left:50%;top:50%;width:250px;transform:translate(-50%,-52%);filter:drop-shadow(0 14px 12px rgba(40,15,10,.38));z-index:2}
+.bk .orb{width:278px;height:278px}
+.bk .tx{position:absolute;top:50%;transform:translateY(-50%);width:182px;opacity:0;transition:opacity .6s .25s,transform .7s .25s}
+.bk.rt .tx{left:22px;transform:translate(-20px,-50%)}
+.bk.lf .tx{right:22px;transform:translate(20px,-50%);text-align:left}
+.bk.in .tx{opacity:1;transform:translateY(-50%)}
+.bk .no{display:block;font:italic 500 13px 'Playfair Display';opacity:.55;margin-bottom:4px}
+.bk h3{font-size:31px;line-height:1.04;letter-spacing:.01em}
+.bk .tx b{display:block;font:600 15px 'IBM Plex Sans Arabic';margin-top:6px;opacity:.85}
+.bk .pc{display:inline-block;margin-top:10px;padding:3px 13px;border-radius:14px;background:var(--ink);color:#fff;font:600 13px 'Playfair Display';font-style:normal}
+.bk.lf .tx{direction:ltr}
+.ft5{padding:30px 20px 60px;text-align:center;font:500 11px 'IBM Plex Sans Arabic';opacity:.5}
+.dv{position:absolute;inset:0;z-index:40;background:var(--pa);color:var(--ink)}
+.dd{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:60px 22px 22px}
+.dd .gh{--g:rgba(0,0,0,.08)}
+.bk2{position:absolute;left:14px;top:12px;width:38px;height:38px;border-radius:50%;border:1.8px solid currentColor;font-size:22px;line-height:34px;z-index:5}
+.cnt{position:absolute;right:62px;top:20px;font:italic 500 15px 'Playfair Display';opacity:.6;direction:ltr}
+.bgw{position:relative;flex:none;width:390px;height:calc(330px*var(--k));margin-top:4px}
+.bgi{position:absolute;left:50%;top:0;margin-left:-195px;width:390px;height:330px;transform:scale(var(--k));transform-origin:50% 0}
+.bgi .dcd{position:absolute;left:50%;top:50%;width:250px;height:250px;margin:-125px 0 0 -125px}
+.bgi .ds{background:rgba(255,255,255,.6)}
+.bgi img{position:absolute;left:50%;top:50%;width:330px;transform:translate(-50%,-54%) scale(.5) rotate(-20deg);opacity:0;transition:transform 1s cubic-bezier(.2,1.2,.4,1) .35s,opacity .4s .35s;filter:drop-shadow(0 18px 16px rgba(40,15,10,.4));z-index:2}
+.in .bgi img{transform:translate(-50%,-54%);opacity:1}
+.bgi .orb{width:380px;height:380px}
+.pn5{position:absolute;top:150px;z-index:6;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.55);font-size:22px;line-height:34px}
+.pn5.p{left:12px}.pn5.n{right:12px}
+.dd h2{font-size:48px;line-height:1.02;text-align:center;margin-top:6px;opacity:0;transform:translateY(16px);transition:.6s .5s}
+.dd .ar5{font:700 23px 'IBM Plex Sans Arabic';margin-top:6px;opacity:0;transition:.6s .6s}
+.dd p{font:500 13.5px/1.6 'IBM Plex Sans Arabic';text-align:center;opacity:0;margin-top:8px;max-width:320px;transition:.6s .7s}
+.dd .ar5,.dd p{transform:translateY(12px)}
+.in h2,.in .ar5,.in p{opacity:1;transform:none}
+.in p{opacity:.78}
+.act5{margin-top:auto;display:flex;gap:12px;align-items:center;opacity:0;transform:translateY(14px);transition:.6s .8s}
+.in .act5{opacity:1;transform:none}
+.act5 .pz{height:48px;padding:0 24px;border-radius:24px;background:var(--ink);color:#fff;font:700 20px/48px 'Playfair Display';white-space:nowrap}
+.act5 .addb{height:48px;padding:0 26px;border-radius:24px;border:2px solid var(--ink);font:600 15px 'IBM Plex Sans Arabic'}
+/* ================= TV ================= */
+.os{position:absolute;inset:0;background:var(--pa);color:var(--ink);clip-path:circle(0% at 68% 50%);transition:clip-path 1.25s cubic-bezier(.6,0,.2,1)}
+.os.in{clip-path:circle(150% at 68% 50%)}
+.os .gh.a{width:480px;height:480px;--g:rgba(0,0,0,.1);background-size:44px 44px}
+.os .gh.b{width:420px;height:420px;--g:rgba(0,0,0,.1);background-size:44px 44px}
+.os .dcz{position:absolute;left:1430px;top:540px}
+.os .dcz .ds{position:absolute;left:-360px;top:-360px;width:720px;height:720px;background:rgba(255,255,255,.55);transform:scale(.4);opacity:0;transition:transform 1s cubic-bezier(.2,1.2,.4,1) .5s,opacity .5s .5s}
+.os.in .dcz .ds{transform:none;opacity:1}
+.os .dcz img{position:absolute;left:-450px;top:-340px;width:900px;height:700px;object-fit:contain;transform:scale(.5) rotate(-24deg);opacity:0;transition:transform 1.2s cubic-bezier(.2,1.2,.4,1) .7s,opacity .5s .7s;filter:drop-shadow(0 30px 26px rgba(40,15,10,.4));z-index:2}
+.os.in .dcz img{transform:none;opacity:1}
+.os .dcz .orb{width:1044px;height:1044px;left:0;top:0}
+.os .tt5{position:absolute;left:110px;top:0;bottom:0;width:780px;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateX(-40px);transition:.8s .6s}
+.os.in .tt5{opacity:1;transform:none}
+.os .tt5 .no{font:italic 500 34px 'Playfair Display';opacity:.6;margin-bottom:14px;direction:ltr}
+.os .tt5 h2{font:400 150px/.98 'Anton';text-transform:uppercase;direction:ltr}
+.os .tt5 b{font:700 70px 'IBM Plex Sans Arabic';margin-top:24px}
+.os .tt5 p{font:500 32px/1.6 'IBM Plex Sans Arabic';opacity:.78;margin-top:12px;max-width:700px}
+.os .tt5 .pz{align-self:flex-start;margin-top:40px;height:104px;padding:0 54px;border-radius:52px;background:var(--ink);color:#fff;font:700 56px/104px 'Playfair Display'}
+.os .tt5 .pz small{font-size:26px;opacity:.8}
+.os .bar5{position:absolute;left:120px;right:120px;bottom:44px;height:5px;background:rgba(0,0,0,.12);border-radius:3px;overflow:hidden}
+.os .bar5 i{display:block;height:100%;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:0 50%;transition:transform 5.4s linear}
+.os.in .bar5 i{transform:none}
+</style></head><body><div id="app"></div>
+<script>const DATA={"D": [{"k": "tskchips", "en": "TSK Chips", "ar": "بطاطس TSK", "p": "2.200", "den": "Our signature hand-cut chips: thick, golden and crunchy outside, soft inside. The perfect partner for any dish.", "dar": "بطاطس TSK المميزة، مقطّعة يدوياً ومقلية لين تصير ذهبية؛ مقرمشة من برّا وطرية من داخل. أفضل رفيق لأي طبق.", "c": 0}, {"k": "truffchips", "en": "Truffle'd Chips", "ar": "بطاطس الترافل", "p": "2.600", "den": "Freshly cut potatoes fried until perfectly crisp, finished with a creamy truffle drizzle and fresh herbs.", "dar": "بطاطس مقطّعة طازجة ومقلية لين تصير مقرمشة، مع صوص الترافل الكريمي وأعشاب طازجة.", "c": 0}, {"k": "cluck", "en": "Cluck N Jack", "ar": "كلَك آند جاك", "p": "3.950", "den": "Golden, crispy fries loaded with bite-size crispy chicken pops, smothered in velvety cheddar and melted Monterey Jack. Made for sharing… or not.", "dar": "بطاطس ذهبية مقرمشة مغطاة بقطع دجاج مقرمشة، وفوقها جبن شيدر كريمي ومونتيري جاك ذايب. مثالية للمشاركة… أو لك وحدك.", "c": 0}, {"k": "riskie", "en": "Riskie Briskie", "ar": "ريسكي بريسكي", "p": "4.900", "den": "Crispy fries piled high with tender, slow-smoked brisket and a generous blanket of melted cheddar. Smoky, cheesy and seriously satisfying.", "dar": "بطاطس مقرمشة مغطاة ببريسكت مدخّن على نار هادئة، مع طبقة سخية من جبن الشيدر الذايب. مدخّن وغني ومُشبع.", "c": 0}, {"k": "corn", "en": "Umami Corn Ribs", "ar": "أضلاع الذرة أومامي", "p": "3.500", "den": "Sweet corn cut into ribs, charred on the grill and tossed in a bold, umami-rich togarashi sauce, finished with grated cheese and fresh herbs.", "dar": "ذرة حلوة مقطّعة على شكل أضلاع، مشوية على النار ومقلّبة بصوص توغاراشي الغني بنكهة الأومامي، مع جبن مبشور وأعشاب طازجة.", "c": 0}, {"k": "avo", "en": "Avo Crunch", "ar": "أفو كرنش", "p": "4.500", "den": "Fresh avocado and crisp greens with crunchy golden tortilla chips. Light, fresh and full of texture.", "dar": "أفوكادو طازج مع خضار منعشة ورقائق تورتيلا ذهبية مقرمشة. طبق خفيف مليان قرمشة وانتعاش.", "c": 1}, {"k": "quinoa", "en": "Quinao Dates", "ar": "كينوا وتمر", "p": "4.500", "den": "A light, fresh salad of fluffy quinoa, sweet dates, creamy feta and peppery arugula. The perfect balance of sweet and savoury.", "dar": "سلطة خفيفة ومنعشة من الكينوا مع التمر الحلو وجبن الفيتا الكريمي والجرجير الطازج. توازن مثالي بين الحلو والمالح.", "c": 1}, {"k": "obsession", "en": "The Obsession", "ar": "ذا أوبسيشن", "p": "2.250 – 4.500", "den": "Two juicy beef patties seared on a hot grill, layered with gooey melted cheese in a soft, glossy bun. Single or double… you'll be obsessed.", "dar": "قطعتين لحم بقري عصيرية مشوية على نار قوية، مع جبن ذايب بين خبز طري ولامع. سنقل أو دبل… أكيد بتدمن عليه.", "c": 2}, {"k": "hotchick", "en": "Hot Chick", "ar": "هوت تشيك", "p": "2.100 – 4.200", "den": "Crispy chicken over chilled iceberg lettuce with melted cheese and a fiery finish that brings the heat.", "dar": "دجاج مقرمش فوق خس آيسبيرغ بارد مع جبن ذايب ولمسة حارة تشعل النكهة.", "c": 2}, {"k": "nutcase", "en": "The Nutcase", "ar": "ذا نت كيس", "p": "2.200 – 4.400", "den": "Crispy fried chicken smothered in a rich, velvety peanut sauce, with cheese and fresh greens in a soft bun. Nutty, creamy, unforgettable.", "dar": "دجاج مقلي مقرمش مغطى بصوص فول سوداني غني وكريمي، مع جبن وخضار طازجة في خبز طري. نكهة ما تنتسى.", "c": 2}, {"k": "philly", "en": "Philly Milly Sando", "ar": "فيلي ميلي ساندو", "p": "5.900", "den": "Juicy, tender beef tenderloin with sautéed mushrooms and melted cheese in a toasted roll, served with crispy fries.", "dar": "تندرلوين لحم طري وعصيري مع فطر سوتيه وجبن ذايب في خبز محمّص، يُقدّم مع بطاطس مقرمشة.", "c": 2}, {"k": "margherita", "en": "Holy Margherita", "ar": "هولي مارغريتا", "p": "4.950", "den": "The classic, done right: 72-hour fermented sourdough, tomato sauce, melted mozzarella and fresh basil, baked until perfectly blistered.", "dar": "الكلاسيكية كما يجب: عجينة مخمّرة ٧٢ ساعة، صوص طماطم، موزاريلا ذايبة وريحان طازج، مخبوزة لين تتحمّص الأطراف.", "c": 3}, {"k": "pepperoni", "en": "Pepperoni Pop", "ar": "بيبروني بوب", "p": "5.950", "den": "72-hour fermented sourdough with tangy tomato sauce, melted mozzarella and crispy-edged pepperoni.", "dar": "عجينة مخمّرة ٧٢ ساعة مع صوص طماطم منعش وموزاريلا ذايبة وشرائح بيبروني مقرمشة الأطراف.", "c": 3}, {"k": "burratina", "en": "La Burratina", "ar": "لا بوراتينا", "p": "5.950", "den": "72-hour fermented sourdough topped with creamy burrata and fresh arugula. Soft, rich and elegant.", "dar": "عجينة مخمّرة ٧٢ ساعة مع بوراتا كريمية وجرجير طازج. طرية وغنية وفخمة.", "c": 3}, {"k": "bella", "en": "Smokin Bella", "ar": "سموكن بيلا", "p": "5.500", "den": "Penne tossed in a rich, smoky roasted red pepper sauce, finished with fresh herbs. Comforting, with a gentle smoky kick.", "dar": "بيني بصوص الفلفل الأحمر المشوي المدخّن، مع أعشاب طازجة. طبق دافئ بلمسة مدخّنة.", "c": 4}, {"k": "rose", "en": "Rose Rage", "ar": "روز ريج", "p": "5.800", "den": "Al dente rigatoni in a velvety tomato and cream rosé sauce, finished with fresh basil. Creamy, comforting, irresistible.", "dar": "ريغاتوني مطبوخ على أصوله بصوص روزيه كريمي من الطماطم والكريمة، مع ريحان طازج. كريمي ولا يُقاوَم.", "c": 4}], "C": [{"id": "starters", "en": "Starters", "ar": "المقبلات"}, {"id": "salads", "en": "Salads", "ar": "السلطات"}, {"id": "burgers", "en": "Burgers", "ar": "البرجر والسندويش"}, {"id": "pizza", "en": "Pizza", "ar": "البيتزا"}, {"id": "pasta", "en": "Pasta", "ar": "الباستا"}]};
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const TV=document.documentElement.dataset.mode==='tv';
+const {D,C}=DATA;
+const THEMES=[{bg:'#6b1424',pa:'#f7e3e1',ink:'#4a0d19'},{bg:'#1f4a33',pa:'#e0f0e5',ink:'#12301f'},{bg:'#a85a12',pa:'#fae8cf',ink:'#5c3006'},{bg:'#26324f',pa:'#e0e6f5',ink:'#18203a'},{bg:'#a23b22',pa:'#f9dfd7',ink:'#5e1d0e'},{bg:'#5a2147',pa:'#f2ddec',ink:'#3b122e'},{bg:'#11586a',pa:'#d9eef2',ink:'#0b3a46'}];
+const TMAP=[0,2,1,3,4,5,6,0,1,3,2,4,5,6,0,1];
+D.forEach((d,i)=>{d.i=i;d.t=THEMES[TMAP[i]];d.n=String(i+1).padStart(2,'0');d.src='../../assets/cut/'+d.k+'.webp';d.num=parseFloat(d.p);d.cat=C[d.c]});
+C.forEach((c,ci)=>c.items=D.filter(d=>d.c===ci));
+D.forEach(d=>d.j=d.cat.items.indexOf(d));
+const BY={};D.forEach(d=>BY[d.k]=d);
+const LOGO='../../assets/logo.png',MARKC='../../assets/mark_cream.png',MARKW='../../assets/mark_wine.png';
+const ty=(t,d)=>[...t].map((ch,i)=>`<span style="--i:${i}">${ch===' '?'&nbsp;':ch}</span>`).join('');
+const APP=$('#app'),TVS=$('#tvs');
+let Z=1,H=844;
+function fit(){
+ if(TV){const s=Math.min(innerWidth/1920,innerHeight/1080);TVS.style.transform='scale('+s+')';return}
+ Z=Math.min(innerWidth,480)/390;H=innerHeight/Z;
+ APP.style.height=H+'px';APP.style.transform='scale('+Z+')';APP.style.left=((innerWidth-390*Z)/2)+'px';
+ document.documentElement.style.setProperty('--H',H+'px');document.documentElement.style.setProperty('--k',Math.min(1,H/820));document.documentElement.dataset.sh=H<760?'1':'0';
+}
+fit();addEventListener('resize',fit);
+const ROOT=TV?TVS:APP;
+function wm(){let r='';const n=TV?9:11;for(let i=0;i<n;i++)r+=`<i style="top:${i*(TV?130:90)-30}px">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO · نموذج تجريبي</i>`;return `<div class="wm">${r}<b>DEMO</b></div>`}
+function toast(t){let e=$('.toast');if(!e){e=document.createElement('div');e.className='toast';ROOT.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+/* ---------- order bag (QR) ---------- */
+const Bag={m:{},btn:null,mount(css){
+  const b=document.createElement('button');b.className='bagb';b.setAttribute('aria-label','طلبي');b.style.cssText=css||'top:14px;right:14px';
+  b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><em>0</em>';
+  APP.appendChild(b);this.btn=b;b.onclick=()=>this.open();
+  const s=document.createElement('div');s.className='sheet';s.innerHTML='<div class="pn"></div>';APP.appendChild(s);this.sh=s;
+  s.addEventListener('click',e=>{if(e.target===s)this.close();const a=e.target.closest('[data-q]');if(a){this.chg(a.dataset.k,+a.dataset.q)}if(e.target.closest('[data-x]'))this.close();if(e.target.closest('.go')){this.close();this.m={};this.upd();toast('تم إرسال الطلب (نموذج تجريبي) ✓')}});
+ },
+ count(){return Object.values(this.m).reduce((a,b)=>a+b,0)},
+ total(){return Object.entries(this.m).reduce((a,[k,q])=>a+BY[k].num*q,0)},
+ add(k,from){this.m[k]=(this.m[k]||0)+1;if(from)this.fly(from,k);else this.upd(1)},
+ chg(k,n){this.m[k]=(this.m[k]||0)+n;if(this.m[k]<=0)delete this.m[k];this.upd();this.render()},
+ upd(b){const n=this.count();const e=$('em',this.btn);e.textContent=n;this.btn.classList.toggle('has',n>0);if(b){this.btn.classList.remove('bump');void this.btn.offsetWidth;this.btn.classList.add('bump')}},
+ fly(from,k){const a=APP.getBoundingClientRect(),r=from.getBoundingClientRect(),t=this.btn.getBoundingClientRect();
+  const f=document.createElement('img');f.className='fly';f.src=BY[k].src;const w=54;
+  const x0=(r.left+r.width/2-a.left)/Z-w/2,y0=(r.top+r.height/2-a.top)/Z-w/2,x1=(t.left+t.width/2-a.left)/Z-w/2,y1=(t.top+t.height/2-a.top)/Z-w/2;
+  f.style.cssText=`left:0;top:0;width:${w}px;height:${w}px`;APP.appendChild(f);
+  const an=f.animate([{transform:`translate(${x0}px,${y0}px) scale(1.3)`,opacity:1},{transform:`translate(${(x0+x1)/2}px,${Math.min(y0,y1)-60}px) scale(1)`,opacity:1,offset:.5},{transform:`translate(${x1}px,${y1}px) scale(.3)`,opacity:.4}],{duration:750,easing:'cubic-bezier(.5,0,.3,1)',fill:'forwards'});
+  an.onfinish=()=>{f.remove();this.upd(1)}},
+ open(){this.render();this.sh.classList.add('on')},close(){this.sh.classList.remove('on')},
+ render(){const ks=Object.keys(this.m);$('.pn',this.sh).innerHTML=`<h3><span>طلبي</span><button data-x aria-label="إغلاق">×</button></h3>`+(ks.length?ks.map(k=>`<div class="rw"><img src="${BY[k].src}" alt=""><div>${BY[k].ar}<small>${BY[k].en}</small></div><div class="q"><button data-q="-1" data-k="${k}">−</button><b>${this.m[k]}</b><button data-q="1" data-k="${k}">+</button></div></div>`).join('')+`<div class="tot"><span>المجموع التقريبي</span><span><bdi>${this.total().toFixed(3)}</bdi> ر.ع</span></div><button class="go">إرسال الطلب</button>`:'<div class="em">لم تضف أي طبق بعد</div>')}
+};
+/* ---------- TV player ---------- */
+function tvPlay(seq){let i=0,cur=null;
+ (function next(){const s=seq[i%seq.length];i++;const el=document.createElement('div');el.className='scene '+(s.cls||'');el.innerHTML=s.html;TVS.insertBefore(el,$('.wm',TVS));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{el.classList.add('in');el.firstElementChild&&el.firstElementChild.classList.add('in')}));
+  if(cur){const o=cur;o.classList.add('out');setTimeout(()=>o.remove(),s.x||1200)}
+  cur=el;setTimeout(next,s.dur)})();
+}
+function mountWm(){ROOT.insertAdjacentHTML('beforeend',wm())}
+window.__ready=0;
+
+let UID=0;
+function ring(d,r,fs,cls){const id='o'+(++UID),c=r+fs*2,sz=c*2,len=2*Math.PI*r;const unit=`${d.en.toUpperCase()} · ${d.p} OMR · `;const reps=Math.max(2,Math.round(len/(unit.length*fs*.72)));
+ return `<svg class="orb ${cls||''}" viewBox="0 0 ${sz} ${sz}"><defs><path id="${id}" d="M${c-r},${c} a${r},${r} 0 1,1 ${2*r},0 a${r},${r} 0 1,1 ${-2*r},0"/></defs><text font-size="${fs}"><textPath href="#${id}" textLength="${(len-3).toFixed(1)}" lengthAdjust="spacing">${unit.repeat(reps)}</textPath></text></svg>`}
+const vars=d=>`--pa:${d.t.pa};--ink:${d.t.ink}`;
+const blk=d=>`<article class="bk ${d.i%2?'lf':'rt'}" data-k="${d.k}" style="${vars(d)}"><div class="dc"><i class="ds"></i>${ring(d,116,11.5,d.i%2?'rv':'')}<img src="${d.src}" alt="${d.en}"></div><div class="tx"><span class="no">№ ${d.n}</span><h3 class="an">${d.en}</h3><b>${d.ar}</b><i class="pc"><bdi>${d.p}</bdi> OMR</i></div></article>`;
+function dd(d){const i=d.i;return `<div class="dd" style="${vars(d)}"><i class="gh a"></i><button class="bk2" aria-label="رجوع">‹</button><span class="cnt">${d.n} / ${D.length}</span>
+ <div class="bgw"><div class="bgi"><div class="dcd"><i class="ds"></i></div>${ring(d,165,14,'fast')}<img src="${d.src}" alt="${d.en}"></div></div>
+ <button class="pn5 p" data-s="-1" aria-label="السابق">‹</button><button class="pn5 n" data-s="1" aria-label="التالي">›</button>
+ <h2 class="an">${d.en}</h2><b class="ar5">${d.ar}</b><p>${d.dar}</p>
+ <div class="act5"><span class="pz en"><bdi>${d.p}</bdi> OMR</span><button class="addb" data-k="${d.k}">أضف +</button></div></div>`}
+if(!TV){
+ APP.innerHTML=`<div class="sc" id="sc" style="position:absolute;inset:0"><i class="gh a"></i><header class="hd5"><img class="mk" src="${MARKW}" alt=""><h1 class="an">Menu</h1><p>THE SOCIAL KITCHEN · قائمة الطعام</p></header>
+ ${C.map(c=>`<h3 class="cn"><span>${c.en}</span><i></i><b>${c.ar}</b></h3>${c.items.map(blk).join('')}`).join('')}<div class="ft5">الأسعار بالريال العُماني · نموذج تجريبي</div><i class="gh b" style="position:fixed"></i></div>`;
+ mountWm();Bag.mount('top:12px;right:12px;z-index:60');
+ const sc=$('#sc');let cur=null,busy=0,layer=null;
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{root:sc,rootMargin:'0px 0px -8% 0px'});
+ $$('.bk').forEach(b=>io.observe(b));
+ const R=(x,y)=>Math.hypot(Math.max(x,390-x),Math.max(y,H-y))+30;
+ function wipe(d,x,y,after){busy=1;const el=document.createElement('div');el.className='dv';el.style.cssText=vars(d)+';background:'+d.t.pa;el.innerHTML=dd(d);APP.insertBefore(el,$('.wm',APP));
+  const a=el.animate([{clipPath:`circle(0px at ${x}px ${y}px)`},{clipPath:`circle(${R(x,y)}px at ${x}px ${y}px)`}],{duration:700,easing:'cubic-bezier(.6,0,.2,1)',fill:'forwards'});
+  const rest=layer;layer=el;cur=d.k;requestAnimationFrame(()=>setTimeout(()=>el.firstElementChild.classList.add('in'),200));
+  a.onfinish=()=>{if(rest)rest.remove();a.cancel();busy=0;if(after)after()}}
+ const pt=el=>{const a=APP.getBoundingClientRect(),r=el.getBoundingClientRect();return[(r.left+r.width/2-a.left)/Z,(r.top+r.height/2-a.top)/Z]};
+ function open(k,from){if(busy||cur)return;const[x,y]=pt(from);history.pushState({d:1},'','#'+k);wipe(BY[k],x,y)}
+ function close(){if(!layer||busy)return;busy=1;const b=$('.bk2',layer),[x,y]=pt(b);const el=layer;
+  const a=el.animate([{clipPath:`circle(${R(x,y)}px at ${x}px ${y}px)`},{clipPath:`circle(0px at ${x}px ${y}px)`}],{duration:560,easing:'cubic-bezier(.6,0,.2,1)',fill:'forwards'});
+  a.onfinish=()=>{el.remove();layer=null;cur=null;busy=0}}
+ function step(n){if(busy||!cur)return;const d=BY[cur],nx=D[(d.i+n+D.length)%D.length],b=$(n>0?'.pn5.n':'.pn5.p',layer),[x,y]=pt(b);wipe(nx,x,y);history.replaceState({d:1},'','#'+nx.k)}
+ sc.addEventListener('click',e=>{const b=e.target.closest('.bk');if(b)open(b.dataset.k,b.querySelector('.ds'))});
+ APP.addEventListener('click',e=>{if(!layer)return;if(e.target.closest('.bk2'))return history.state&&history.state.d?history.back():close();const a=e.target.closest('.addb');if(a)return Bag.add(a.dataset.k,a);const s=e.target.closest('.pn5');if(s)step(+s.dataset.s)});
+ addEventListener('popstate',()=>{if(cur)close()});
+ let x0=null;APP.addEventListener('touchstart',e=>{x0=layer?e.touches[0].clientX:null},{passive:true});APP.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60)step(dx<0?1:-1)});
+ window._api={open:k=>open(k,$(`.bk[data-k="${k}"] .ds`)),close,step,state:()=>({cur,busy})};
+}else{
+ mountWm();
+ const sc=(d,i)=>`<div class="os" style="${vars(d)}"><i class="gh a"></i><i class="gh b"></i><div class="dcz"><i class="ds"></i>${ring(d,470,26,'fast')}<img src="${d.src}" alt=""></div>
+ <div class="tt5"><span class="no">№ ${d.n} · ${d.cat.en}</span><h2>${d.en}</h2><b>${d.ar}</b><p>${d.dar}</p><span class="pz en"><bdi>${d.p}</bdi> <small>OMR</small></span></div><div class="bar5"><i></i></div></div>`;
+ const seq=[{dur:3200,html:`<div style="position:absolute;inset:0"><i class="gh a" style="width:480px;height:480px;background-size:44px 44px"></i><i class="gh b" style="width:420px;height:420px;background-size:44px 44px"></i><img src="${MARKW}" style="position:absolute;left:880px;top:180px;width:160px" alt=""><h1 class="an" style="position:absolute;left:0;right:0;top:340px;text-align:center;font-size:330px;line-height:1">Menu</h1><div style="position:absolute;left:0;right:0;top:720px;text-align:center;font:600 44px 'IBM Plex Sans Arabic';letter-spacing:.06em;opacity:.75">THE SOCIAL KITCHEN · قائمة الطعام</div></div>`}];
+ D.forEach((d,i)=>seq.push({dur:5600,x:1500,html:sc(d,i)}));
+ tvPlay(seq);
+}
+
+window.__ready=1;</script></body></html>

@@ -1,0 +1,239 @@
+<!doctype html><html lang="ar" dir="rtl" data-mode="qr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#240910"><title>The Social Kitchen · QR · Editorial</title>
+<link rel="stylesheet" href="../../assets/fonts.css"><style>*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#0b0507;overflow:hidden;font-family:'IBM Plex Sans Arabic',sans-serif;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;-webkit-user-drag:none;user-select:none;max-width:none}
+.en{font-family:'Playfair Display',serif;direction:ltr}
+bdi{unicode-bidi:isolate}
+#app{position:absolute;top:0;left:0;width:390px;transform-origin:0 0;overflow:hidden;background:var(--bg,#111)}
+#tvs{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;transform-origin:50% 50%;overflow:hidden;background:var(--bg,#111)}
+.scene{position:absolute;inset:0;overflow:hidden}
+.sc{overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sc::-webkit-scrollbar{display:none}
+/* typing */
+.ty span{opacity:0;transition:opacity .12s linear calc(var(--i)*55ms + var(--d,0ms))}
+.in .ty span{opacity:1}
+/* watermark */
+.wm{position:absolute;inset:0;z-index:90;pointer-events:none;overflow:hidden}
+.wm i{position:absolute;left:-25%;width:150%;text-align:center;font:600 11px 'IBM Plex Sans Arabic';letter-spacing:.22em;white-space:nowrap;color:rgba(255,255,255,.2);text-shadow:0 0 2px rgba(0,0,0,.25);transform:rotate(-24deg)}
+.wm b{position:absolute;left:-36px;bottom:12px;width:118px;text-align:center;rotate:45deg;background:#c4623b;color:#fff;font:700 9px 'IBM Plex Sans Arabic';letter-spacing:.28em;padding:3px 0;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+[data-mode=tv] .wm i{font-size:22px}
+[data-mode=tv] .wm b{left:auto;right:0;bottom:0;rotate:0deg;width:auto;padding:10px 26px;font-size:18px;border-radius:12px 0 0 0;letter-spacing:.2em}
+/* bag */
+.bagb{position:absolute;z-index:60;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--accent,#c9a45c);color:var(--onaccent,#241015);box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.bagb svg{width:19px;height:19px}
+.bagb em{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;border-radius:9px;background:#d33a2c;color:#fff;font:700 10px/17px 'IBM Plex Sans Arabic';text-align:center;font-style:normal;padding:0 4px;transform:scale(0);transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.bagb.has em{transform:scale(1)}
+.bagb.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.25)}}
+.fly{position:absolute;z-index:80;pointer-events:none;border-radius:50%;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.sheet{position:absolute;inset:0;z-index:70;background:rgba(10,3,5,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+.sheet.on{opacity:1;pointer-events:auto}
+.sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:78%;overflow:auto;background:#faf5ec;color:#2a1518;border-radius:24px 24px 0 0;padding:20px 20px 26px;transform:translateY(102%);transition:transform .38s cubic-bezier(.2,.8,.2,1);direction:rtl}
+.sheet.on .pn{transform:none}
+.sheet h3{font:600 19px 'IBM Plex Sans Arabic';margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.sheet h3 button{font-size:22px;opacity:.5}
+.sheet .rw{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.sheet .rw img{width:54px;height:40px;object-fit:contain}
+.sheet .rw div{flex:1;font-size:14px;font-weight:500}
+.sheet .rw div small{display:block;font:500 12px 'Playfair Display';opacity:.6;direction:ltr;text-align:right}
+.sheet .q{display:flex;align-items:center;gap:8px}
+.sheet .q button{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.08);font-size:16px;line-height:26px}
+.sheet .q b{min-width:14px;text-align:center;font-size:14px}
+.sheet .tot{display:flex;justify-content:space-between;font:600 17px 'IBM Plex Sans Arabic';padding:14px 0 12px}
+.sheet .go{width:100%;height:46px;border-radius:23px;background:var(--accent,#601825);color:var(--onaccent,#fff);font:600 15px 'IBM Plex Sans Arabic'}
+.sheet .em{padding:34px 0;text-align:center;opacity:.55;font-size:14px}
+.toast{position:absolute;left:50%;bottom:90px;z-index:85;transform:translate(-50%,20px);background:rgba(20,8,10,.92);color:#fff;font:500 13px 'IBM Plex Sans Arabic';padding:10px 18px;border-radius:20px;opacity:0;transition:.3s;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+:root{--bg:#240910;--cream:#efe4d0;--wine:#601825;--dk:#240910;--accent:#efe4d0;--onaccent:#240910}
+.sa,.sb{position:absolute;inset:0}
+.sa{background:var(--dk);color:var(--cream)}
+.sb{background:var(--cream);color:var(--dk)}
+/* ---- scene A (dark) ---- */
+.sa .lab{position:absolute;left:22px;top:92px;font-size:10px;letter-spacing:.28em;opacity:.75}
+.sa .ln{position:absolute;right:0;top:98px;width:140px;height:1px;background:var(--cream);opacity:.55;transform:scaleX(0);transform-origin:100% 50%;transition:transform .9s .2s}
+.sa.in .ln{transform:none}
+.sa .hl{position:absolute;left:22px;top:128px;width:200px;font:500 36px/1.1 'Playfair Display';letter-spacing:.015em;font-weight:500}
+.sa .card{position:absolute;right:-50px;top:calc(var(--H)*.285);width:260px;height:260px;border-radius:40px;background:#e9dcc3;transform:translateX(130%) rotate(8deg);transition:transform 1s cubic-bezier(.2,.8,.2,1) .1s;box-shadow:0 30px 50px -20px rgba(0,0,0,.6)}
+.sa.in .card{transform:rotate(-14deg)}
+.sa .rg{position:absolute;inset:-6px;width:272px;height:272px}
+.sa .rg circle{fill:none;stroke:#601825;stroke-width:1.4;opacity:.55;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s ease .6s}
+.sa.in .rg circle{stroke-dashoffset:0}
+.sa .dish{position:absolute;left:-52px;top:22px;width:350px;transform:rotate(14deg) scale(.5);opacity:0;transition:transform .9s cubic-bezier(.2,1.3,.4,1) .55s,opacity .4s .55s;filter:drop-shadow(0 22px 22px rgba(60,20,10,.45))}
+.sa.in .dish{transform:rotate(14deg) scale(1);opacity:1}
+.sa .pr{position:absolute;left:22px;bottom:168px;opacity:0;transform:translateY(16px);transition:.7s .7s}
+.sa.in .pr{opacity:1;transform:none}
+.pr small{display:block;font-size:11px;letter-spacing:.3em;opacity:.7}
+.pr b{display:block;font:500 46px/1 'Playfair Display'}
+.sa .dsc{position:absolute;left:22px;bottom:56px;width:240px;opacity:0;transform:translateY(16px);transition:.7s .9s}
+.sa.in .dsc{opacity:1;transform:none}
+.dsc b{display:block;font:600 17px 'IBM Plex Sans Arabic';margin-bottom:3px}
+.dsc span{display:block;font:400 12px/1.55 'IBM Plex Sans Arabic';opacity:.75}
+.mk{position:absolute;left:50%;bottom:16px;width:30px;margin-left:-15px;opacity:.7}
+/* ---- scene B (cream) ---- */
+.sb .band{position:absolute;left:125px;width:140px;top:0;bottom:0;background:var(--wine);transform:scaleY(0);transform-origin:50% 0;transition:transform .8s cubic-bezier(.6,0,.2,1)}
+.sb.in .band{transform:none}
+.two{position:absolute;left:0;right:0;text-align:center}
+.two .lb{position:absolute;inset:0;color:var(--cream);clip-path:inset(0 125px 0 125px)}
+.two .la{position:relative}
+.sb .hl{position:relative;font:500 36px/1.1 'Playfair Display';letter-spacing:.02em;padding:0 30px}
+.sb .t1{top:92px}
+.sb .t2{top:calc(var(--H)*.2 + 66px)}
+.sb .t2 .a{font:600 17px 'IBM Plex Sans Arabic';padding:0 20px}
+.sb .stk{position:absolute;left:0;right:0;bottom:118px;height:calc(var(--H)*.5)}
+.sb .stk img{position:absolute;left:50%;width:330px;margin-left:-165px;transform:translateY(130%);opacity:0;transition:transform .9s cubic-bezier(.2,1.1,.4,1),opacity .3s;filter:drop-shadow(0 14px 14px rgba(0,0,0,.45))}
+.sb.in .stk img{transform:none;opacity:1}
+.sb .stk img:nth-child(1){bottom:0;transition-delay:.35s}
+.sb .stk img:nth-child(2){bottom:104px;width:290px;margin-left:-145px;transition-delay:.6s}
+.sb .stk img:nth-child(3){bottom:196px;width:250px;margin-left:-125px;transition-delay:.85s}
+.sb .t3{top:auto;bottom:78px;text-align:left;padding-left:22px;opacity:0;transform:translateY(16px);transition:.7s 1.1s}
+.sb.in .t3{opacity:1;transform:none}
+.sb .t3 .lb{padding-left:22px}
+.sb .t3 .pr{position:relative;left:auto;bottom:auto;opacity:1;transform:none;transition:none}
+.sb .no{position:absolute;right:22px;top:calc(var(--H)*.2 + 6px);font:500 15px 'Playfair Display';letter-spacing:.1em;opacity:.55}
+/* ---- QR chrome ---- */
+#feed{position:absolute;inset:0;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;overscroll-behavior:contain}
+#feed::-webkit-scrollbar{display:none}
+.sl{position:relative;height:var(--H);scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
+.bar{position:absolute;left:0;right:0;top:0;z-index:50;padding:14px 14px 0;display:flex;align-items:center;gap:10px;pointer-events:none;transition:color .5s;color:var(--cream)}
+.bar>*{pointer-events:auto}
+.bar .mk2{width:30px;height:30px;flex:none;transition:filter .5s}
+[data-tone=light] .bar{color:var(--dk)}
+[data-tone=light] .bar .mk2{filter:invert(1) brightness(.3)}
+.tabs{flex:1;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-right:50px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;padding:6px 12px;border-radius:16px;border:1px solid currentColor;font:500 12px 'IBM Plex Sans Arabic';opacity:.6;white-space:nowrap}
+.tabs button.on{opacity:1;background:var(--cream);color:var(--dk);border-color:var(--cream)}
+[data-tone=light] .tabs button.on{background:var(--dk);color:var(--cream);border-color:var(--dk)}
+.addb{position:absolute;right:18px;bottom:44px;z-index:5;height:46px;padding:0 20px;border-radius:23px;background:var(--cream);color:var(--dk);font:600 14px 'IBM Plex Sans Arabic';box-shadow:0 8px 22px rgba(0,0,0,.35);display:flex;align-items:center;gap:6px}
+.sa~.addb{background:var(--cream);color:var(--dk)}
+.sb~.addb{background:var(--wine);color:var(--cream)}
+.hint{position:absolute;left:50%;bottom:12px;margin-left:-8px;z-index:4;width:16px;height:16px;border-left:2px solid currentColor;border-top:2px solid currentColor;transform:rotate(45deg);opacity:.5;animation:hint 1.6s infinite}
+@keyframes hint{50%{transform:rotate(45deg) translate(5px,5px);opacity:.15}}
+/* ================= TV ================= */
+[data-mode=tv] .sa .lab{left:120px;top:110px;font-size:20px}
+[data-mode=tv] .sa .ln{width:560px;top:122px}
+[data-mode=tv] .sa .hl{left:120px;top:210px;width:880px;font-size:132px;line-height:1.06}
+[data-mode=tv] .sa .card{right:130px;top:150px;width:700px;height:700px;border-radius:90px}
+[data-mode=tv] .sa .rg{inset:-14px;width:728px;height:728px}
+[data-mode=tv] .sa .dish{left:-130px;top:30px;width:900px;height:640px;object-fit:contain}
+[data-mode=tv] .sa .pr{left:120px;bottom:240px}
+[data-mode=tv] .pr small{font-size:22px}
+[data-mode=tv] .pr b{font-size:120px}
+[data-mode=tv] .sa .dsc{left:120px;bottom:90px;width:800px}
+[data-mode=tv] .dsc b{font-size:34px;margin-bottom:8px}
+[data-mode=tv] .dsc span{font-size:24px}
+[data-mode=tv] .mk{width:64px;margin-left:-32px;bottom:34px}
+[data-mode=tv] .sb .band{left:750px;width:420px}
+[data-mode=tv] .two .lb{clip-path:inset(0 750px 0 750px)}
+[data-mode=tv] .sb .hl{font-size:104px;padding:0}
+[data-mode=tv] .sb .t1{top:70px}
+[data-mode=tv] .sb .t2{top:218px}
+[data-mode=tv] .sb .t2 .a{font-size:30px}
+[data-mode=tv] .sb .stk{bottom:10px;height:800px}
+[data-mode=tv] .sb .stk img{width:760px;height:300px;margin-left:-380px;object-fit:contain}
+[data-mode=tv] .sb .stk img:nth-child(2){bottom:205px;width:680px;height:270px;margin-left:-340px}
+[data-mode=tv] .sb .stk img:nth-child(3){bottom:395px;width:600px;height:240px;margin-left:-300px}
+[data-mode=tv] .sb .t3{bottom:auto;top:430px;padding-left:120px}
+[data-mode=tv] .sb .t3 .lb{padding-left:120px}
+[data-mode=tv] .sb .no{right:auto;left:120px;top:370px;font-size:26px}
+[data-mode=tv] .sb .pd{position:absolute;right:120px;top:420px;width:520px;text-align:right;color:var(--dk);opacity:0;transform:translateY(16px);transition:.7s 1.2s}
+[data-mode=tv] .sb.in .pd{opacity:1;transform:none}
+.out{animation:none}
+[data-mode=tv] .scene{transition:opacity .9s}
+[data-mode=tv] .scene.out{opacity:0}
+</style></head><body><div id="app"></div>
+<script>const DATA={"D": [{"k": "tskchips", "en": "TSK Chips", "ar": "بطاطس TSK", "p": "2.200", "den": "Our signature hand-cut chips: thick, golden and crunchy outside, soft inside. The perfect partner for any dish.", "dar": "بطاطس TSK المميزة، مقطّعة يدوياً ومقلية لين تصير ذهبية؛ مقرمشة من برّا وطرية من داخل. أفضل رفيق لأي طبق.", "c": 0}, {"k": "truffchips", "en": "Truffle'd Chips", "ar": "بطاطس الترافل", "p": "2.600", "den": "Freshly cut potatoes fried until perfectly crisp, finished with a creamy truffle drizzle and fresh herbs.", "dar": "بطاطس مقطّعة طازجة ومقلية لين تصير مقرمشة، مع صوص الترافل الكريمي وأعشاب طازجة.", "c": 0}, {"k": "cluck", "en": "Cluck N Jack", "ar": "كلَك آند جاك", "p": "3.950", "den": "Golden, crispy fries loaded with bite-size crispy chicken pops, smothered in velvety cheddar and melted Monterey Jack. Made for sharing… or not.", "dar": "بطاطس ذهبية مقرمشة مغطاة بقطع دجاج مقرمشة، وفوقها جبن شيدر كريمي ومونتيري جاك ذايب. مثالية للمشاركة… أو لك وحدك.", "c": 0}, {"k": "riskie", "en": "Riskie Briskie", "ar": "ريسكي بريسكي", "p": "4.900", "den": "Crispy fries piled high with tender, slow-smoked brisket and a generous blanket of melted cheddar. Smoky, cheesy and seriously satisfying.", "dar": "بطاطس مقرمشة مغطاة ببريسكت مدخّن على نار هادئة، مع طبقة سخية من جبن الشيدر الذايب. مدخّن وغني ومُشبع.", "c": 0}, {"k": "corn", "en": "Umami Corn Ribs", "ar": "أضلاع الذرة أومامي", "p": "3.500", "den": "Sweet corn cut into ribs, charred on the grill and tossed in a bold, umami-rich togarashi sauce, finished with grated cheese and fresh herbs.", "dar": "ذرة حلوة مقطّعة على شكل أضلاع، مشوية على النار ومقلّبة بصوص توغاراشي الغني بنكهة الأومامي، مع جبن مبشور وأعشاب طازجة.", "c": 0}, {"k": "avo", "en": "Avo Crunch", "ar": "أفو كرنش", "p": "4.500", "den": "Fresh avocado and crisp greens with crunchy golden tortilla chips. Light, fresh and full of texture.", "dar": "أفوكادو طازج مع خضار منعشة ورقائق تورتيلا ذهبية مقرمشة. طبق خفيف مليان قرمشة وانتعاش.", "c": 1}, {"k": "quinoa", "en": "Quinao Dates", "ar": "كينوا وتمر", "p": "4.500", "den": "A light, fresh salad of fluffy quinoa, sweet dates, creamy feta and peppery arugula. The perfect balance of sweet and savoury.", "dar": "سلطة خفيفة ومنعشة من الكينوا مع التمر الحلو وجبن الفيتا الكريمي والجرجير الطازج. توازن مثالي بين الحلو والمالح.", "c": 1}, {"k": "obsession", "en": "The Obsession", "ar": "ذا أوبسيشن", "p": "2.250 – 4.500", "den": "Two juicy beef patties seared on a hot grill, layered with gooey melted cheese in a soft, glossy bun. Single or double… you'll be obsessed.", "dar": "قطعتين لحم بقري عصيرية مشوية على نار قوية، مع جبن ذايب بين خبز طري ولامع. سنقل أو دبل… أكيد بتدمن عليه.", "c": 2}, {"k": "hotchick", "en": "Hot Chick", "ar": "هوت تشيك", "p": "2.100 – 4.200", "den": "Crispy chicken over chilled iceberg lettuce with melted cheese and a fiery finish that brings the heat.", "dar": "دجاج مقرمش فوق خس آيسبيرغ بارد مع جبن ذايب ولمسة حارة تشعل النكهة.", "c": 2}, {"k": "nutcase", "en": "The Nutcase", "ar": "ذا نت كيس", "p": "2.200 – 4.400", "den": "Crispy fried chicken smothered in a rich, velvety peanut sauce, with cheese and fresh greens in a soft bun. Nutty, creamy, unforgettable.", "dar": "دجاج مقلي مقرمش مغطى بصوص فول سوداني غني وكريمي، مع جبن وخضار طازجة في خبز طري. نكهة ما تنتسى.", "c": 2}, {"k": "philly", "en": "Philly Milly Sando", "ar": "فيلي ميلي ساندو", "p": "5.900", "den": "Juicy, tender beef tenderloin with sautéed mushrooms and melted cheese in a toasted roll, served with crispy fries.", "dar": "تندرلوين لحم طري وعصيري مع فطر سوتيه وجبن ذايب في خبز محمّص، يُقدّم مع بطاطس مقرمشة.", "c": 2}, {"k": "margherita", "en": "Holy Margherita", "ar": "هولي مارغريتا", "p": "4.950", "den": "The classic, done right: 72-hour fermented sourdough, tomato sauce, melted mozzarella and fresh basil, baked until perfectly blistered.", "dar": "الكلاسيكية كما يجب: عجينة مخمّرة ٧٢ ساعة، صوص طماطم، موزاريلا ذايبة وريحان طازج، مخبوزة لين تتحمّص الأطراف.", "c": 3}, {"k": "pepperoni", "en": "Pepperoni Pop", "ar": "بيبروني بوب", "p": "5.950", "den": "72-hour fermented sourdough with tangy tomato sauce, melted mozzarella and crispy-edged pepperoni.", "dar": "عجينة مخمّرة ٧٢ ساعة مع صوص طماطم منعش وموزاريلا ذايبة وشرائح بيبروني مقرمشة الأطراف.", "c": 3}, {"k": "burratina", "en": "La Burratina", "ar": "لا بوراتينا", "p": "5.950", "den": "72-hour fermented sourdough topped with creamy burrata and fresh arugula. Soft, rich and elegant.", "dar": "عجينة مخمّرة ٧٢ ساعة مع بوراتا كريمية وجرجير طازج. طرية وغنية وفخمة.", "c": 3}, {"k": "bella", "en": "Smokin Bella", "ar": "سموكن بيلا", "p": "5.500", "den": "Penne tossed in a rich, smoky roasted red pepper sauce, finished with fresh herbs. Comforting, with a gentle smoky kick.", "dar": "بيني بصوص الفلفل الأحمر المشوي المدخّن، مع أعشاب طازجة. طبق دافئ بلمسة مدخّنة.", "c": 4}, {"k": "rose", "en": "Rose Rage", "ar": "روز ريج", "p": "5.800", "den": "Al dente rigatoni in a velvety tomato and cream rosé sauce, finished with fresh basil. Creamy, comforting, irresistible.", "dar": "ريغاتوني مطبوخ على أصوله بصوص روزيه كريمي من الطماطم والكريمة، مع ريحان طازج. كريمي ولا يُقاوَم.", "c": 4}], "C": [{"id": "starters", "en": "Starters", "ar": "المقبلات"}, {"id": "salads", "en": "Salads", "ar": "السلطات"}, {"id": "burgers", "en": "Burgers", "ar": "البرجر والسندويش"}, {"id": "pizza", "en": "Pizza", "ar": "البيتزا"}, {"id": "pasta", "en": "Pasta", "ar": "الباستا"}]};
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const TV=document.documentElement.dataset.mode==='tv';
+const {D,C}=DATA;
+const THEMES=[{bg:'#6b1424',pa:'#f7e3e1',ink:'#4a0d19'},{bg:'#1f4a33',pa:'#e0f0e5',ink:'#12301f'},{bg:'#a85a12',pa:'#fae8cf',ink:'#5c3006'},{bg:'#26324f',pa:'#e0e6f5',ink:'#18203a'},{bg:'#a23b22',pa:'#f9dfd7',ink:'#5e1d0e'},{bg:'#5a2147',pa:'#f2ddec',ink:'#3b122e'},{bg:'#11586a',pa:'#d9eef2',ink:'#0b3a46'}];
+const TMAP=[0,2,1,3,4,5,6,0,1,3,2,4,5,6,0,1];
+D.forEach((d,i)=>{d.i=i;d.t=THEMES[TMAP[i]];d.n=String(i+1).padStart(2,'0');d.src='../../assets/cut/'+d.k+'.webp';d.num=parseFloat(d.p);d.cat=C[d.c]});
+C.forEach((c,ci)=>c.items=D.filter(d=>d.c===ci));
+D.forEach(d=>d.j=d.cat.items.indexOf(d));
+const BY={};D.forEach(d=>BY[d.k]=d);
+const LOGO='../../assets/logo.png',MARKC='../../assets/mark_cream.png',MARKW='../../assets/mark_wine.png';
+const ty=(t,d)=>[...t].map((ch,i)=>`<span style="--i:${i}">${ch===' '?'&nbsp;':ch}</span>`).join('');
+const APP=$('#app'),TVS=$('#tvs');
+let Z=1,H=844;
+function fit(){
+ if(TV){const s=Math.min(innerWidth/1920,innerHeight/1080);TVS.style.transform='scale('+s+')';return}
+ Z=Math.min(innerWidth,480)/390;H=innerHeight/Z;
+ APP.style.height=H+'px';APP.style.transform='scale('+Z+')';APP.style.left=((innerWidth-390*Z)/2)+'px';
+ document.documentElement.style.setProperty('--H',H+'px');document.documentElement.style.setProperty('--k',Math.min(1,H/820));document.documentElement.dataset.sh=H<760?'1':'0';
+}
+fit();addEventListener('resize',fit);
+const ROOT=TV?TVS:APP;
+function wm(){let r='';const n=TV?9:11;for(let i=0;i<n;i++)r+=`<i style="top:${i*(TV?130:90)-30}px">نموذج تجريبي · DEMO · نموذج تجريبي · DEMO · نموذج تجريبي</i>`;return `<div class="wm">${r}<b>DEMO</b></div>`}
+function toast(t){let e=$('.toast');if(!e){e=document.createElement('div');e.className='toast';ROOT.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+/* ---------- order bag (QR) ---------- */
+const Bag={m:{},btn:null,mount(css){
+  const b=document.createElement('button');b.className='bagb';b.setAttribute('aria-label','طلبي');b.style.cssText=css||'top:14px;right:14px';
+  b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><em>0</em>';
+  APP.appendChild(b);this.btn=b;b.onclick=()=>this.open();
+  const s=document.createElement('div');s.className='sheet';s.innerHTML='<div class="pn"></div>';APP.appendChild(s);this.sh=s;
+  s.addEventListener('click',e=>{if(e.target===s)this.close();const a=e.target.closest('[data-q]');if(a){this.chg(a.dataset.k,+a.dataset.q)}if(e.target.closest('[data-x]'))this.close();if(e.target.closest('.go')){this.close();this.m={};this.upd();toast('تم إرسال الطلب (نموذج تجريبي) ✓')}});
+ },
+ count(){return Object.values(this.m).reduce((a,b)=>a+b,0)},
+ total(){return Object.entries(this.m).reduce((a,[k,q])=>a+BY[k].num*q,0)},
+ add(k,from){this.m[k]=(this.m[k]||0)+1;if(from)this.fly(from,k);else this.upd(1)},
+ chg(k,n){this.m[k]=(this.m[k]||0)+n;if(this.m[k]<=0)delete this.m[k];this.upd();this.render()},
+ upd(b){const n=this.count();const e=$('em',this.btn);e.textContent=n;this.btn.classList.toggle('has',n>0);if(b){this.btn.classList.remove('bump');void this.btn.offsetWidth;this.btn.classList.add('bump')}},
+ fly(from,k){const a=APP.getBoundingClientRect(),r=from.getBoundingClientRect(),t=this.btn.getBoundingClientRect();
+  const f=document.createElement('img');f.className='fly';f.src=BY[k].src;const w=54;
+  const x0=(r.left+r.width/2-a.left)/Z-w/2,y0=(r.top+r.height/2-a.top)/Z-w/2,x1=(t.left+t.width/2-a.left)/Z-w/2,y1=(t.top+t.height/2-a.top)/Z-w/2;
+  f.style.cssText=`left:0;top:0;width:${w}px;height:${w}px`;APP.appendChild(f);
+  const an=f.animate([{transform:`translate(${x0}px,${y0}px) scale(1.3)`,opacity:1},{transform:`translate(${(x0+x1)/2}px,${Math.min(y0,y1)-60}px) scale(1)`,opacity:1,offset:.5},{transform:`translate(${x1}px,${y1}px) scale(.3)`,opacity:.4}],{duration:750,easing:'cubic-bezier(.5,0,.3,1)',fill:'forwards'});
+  an.onfinish=()=>{f.remove();this.upd(1)}},
+ open(){this.render();this.sh.classList.add('on')},close(){this.sh.classList.remove('on')},
+ render(){const ks=Object.keys(this.m);$('.pn',this.sh).innerHTML=`<h3><span>طلبي</span><button data-x aria-label="إغلاق">×</button></h3>`+(ks.length?ks.map(k=>`<div class="rw"><img src="${BY[k].src}" alt=""><div>${BY[k].ar}<small>${BY[k].en}</small></div><div class="q"><button data-q="-1" data-k="${k}">−</button><b>${this.m[k]}</b><button data-q="1" data-k="${k}">+</button></div></div>`).join('')+`<div class="tot"><span>المجموع التقريبي</span><span><bdi>${this.total().toFixed(3)}</bdi> ر.ع</span></div><button class="go">إرسال الطلب</button>`:'<div class="em">لم تضف أي طبق بعد</div>')}
+};
+/* ---------- TV player ---------- */
+function tvPlay(seq){let i=0,cur=null;
+ (function next(){const s=seq[i%seq.length];i++;const el=document.createElement('div');el.className='scene '+(s.cls||'');el.innerHTML=s.html;TVS.insertBefore(el,$('.wm',TVS));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{el.classList.add('in');el.firstElementChild&&el.firstElementChild.classList.add('in')}));
+  if(cur){const o=cur;o.classList.add('out');setTimeout(()=>o.remove(),s.x||1200)}
+  cur=el;setTimeout(next,s.dur)})();
+}
+function mountWm(){ROOT.insertAdjacentHTML('beforeend',wm())}
+window.__ready=0;
+
+function scene(d,i){
+ const alt=d.i%2;
+ if(!alt) return `<div class="sa"><div class="lab en">${d.cat.en.toUpperCase()} · ${d.n}</div><i class="ln"></i>
+  <h1 class="hl en ty">${ty(d.en.toUpperCase())}</h1>
+  <div class="card"><svg class="rg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" pathLength="1"/><circle cx="200" cy="200" r="170" pathLength="1"/></svg><img class="dish" src="${d.src}" alt="${d.en}"></div>
+  <div class="pr en"><small>OMR</small><b><bdi>${d.p}</bdi></b></div>
+  <div class="dsc"><b>${d.ar}</b><span>${d.dar}</span></div>${TV?'<img class="mk" src="'+MARKC+'" alt="">':''}</div>`;
+ const tt=(c)=>`<div class="hl en">${c}</div>`;
+ const two=(cls,inner)=>`<div class="two ${cls}"><div class="la">${inner}</div><div class="lb" aria-hidden="true">${inner}</div></div>`;
+ return `<div class="sb"><i class="band"></i>
+  ${two('t1','<h1 class="hl en ty">'+ty(d.en.toUpperCase())+'</h1>')}
+  ${two('t2','<span class="a">'+d.ar+'</span>')}
+  <div class="no en">#${d.n}</div>
+  <div class="stk"><img src="${d.src}" alt=""><img src="${d.src}" alt=""><img src="${d.src}" alt=""></div>
+  ${two('t3','<div class="pr en"><small>OMR</small><b><bdi>'+d.p+'</bdi></b></div>')}
+  ${TV?'<div class="pd"><div class="dsc"><span>'+d.dar+'</span></div></div>':''}</div>`;
+}
+if(!TV){
+ APP.innerHTML=`<div id="feed">${D.map(d=>`<section class="sl" data-i="${d.i}">${scene(d)}<button class="addb" data-k="${d.k}"><span>أضف</span><b>+</b></button>${d.i===0?'<i class="hint"></i>':''}</section>`).join('')}</div>
+ <div class="bar"><img class="mk2" src="${MARKC}" alt=""><div class="tabs">${C.map((c,i)=>`<button data-c="${i}" class="${i?'':'on'}">${c.ar}</button>`).join('')}</div></div>`;
+ mountWm();Bag.mount('top:12px;right:12px;z-index:60');
+ const feed=$('#feed'),sls=$$('.sl'),tabs=$$('.tabs button');let cur=-1;
+ function act(i){if(i===cur)return;cur=i;sls.forEach((s,j)=>s.classList.toggle('in',j===i));const sc=sls[i].firstElementChild;sls[i].firstElementChild.classList.add('in');sls.forEach((s,j)=>{if(j!==i)s.firstElementChild.classList.remove('in')});
+  APP.dataset.tone=D[i].i%2?'light':'dark';tabs.forEach((b,k)=>{const on=+b.dataset.c===D[i].c;b.classList.toggle('on',on);if(on)b.parentNode.scrollTo({left:b.offsetLeft-60,behavior:'smooth'})})}
+ feed.addEventListener('scroll',()=>act(Math.max(0,Math.min(D.length-1,Math.round(feed.scrollTop/H)))),{passive:true});
+ tabs.forEach(b=>b.onclick=()=>{const i=C[+b.dataset.c].items[0].i;feed.scrollTo({top:i*H,behavior:'smooth'})});
+ feed.addEventListener('click',e=>{const a=e.target.closest('.addb');if(a)Bag.add(a.dataset.k,a)});
+ addEventListener('resize',()=>{feed.scrollTop=Math.max(0,cur)*H});
+ act(0);
+}else{
+ mountWm();
+ const seq=[{cls:'',html:`<div class="sa in"><div class="lab en" style="top:430px;left:0;right:0;text-align:center;font-size:24px">THE SOCIAL KITCHEN</div><img src="${LOGO}" style="position:absolute;left:810px;top:150px;width:300px;border-radius:50%" alt=""><h1 class="en" style="position:absolute;left:0;right:0;top:520px;text-align:center;font:500 150px 'Playfair Display';letter-spacing:.2em">MENU</h1></div>`,dur:3200}];
+ D.forEach(d=>seq.push({html:scene(d),dur:5600,cls:d.i%2?'sbw':''}));
+ tvPlay(seq);
+}
+
+window.__ready=1;</script></body></html>
