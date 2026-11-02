@@ -1,90 +1,55 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>منيو عُمان · منيو QR تفاعلي</title><meta name="description" content="منيو QR يتحرك ويتفاعل مع كل ضغطة. جرّبه الحين."><meta name="theme-color" content="#0E0B0C">
-<link rel="stylesheet" href="tsk/assets/fonts.css"><style>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>منيو عُمان · منيو QR تفاعلي فاخر</title><meta name="description" content="منيو QR تفاعلي بتصميم فاخر لمطاعم وكوفيهات عُمان."><meta name="theme-color" content="#0A0809">
+<link rel="stylesheet" href="assets/fonts.css"><style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0E0B0C;--sun:#FFB81C;--line:rgba(255,255,255,.16)}
+:root{--bg:#0A0809;--ivory:#F3EBDD;--gold:linear-gradient(110deg,#8A5F1C 0%,#F6E3A1 22%,#C9973B 45%,#F6E3A1 62%,#8A5F1C 100%)}
 html{background:var(--bg)}
-body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:#fff;line-height:1.7}
-:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:linear-gradient(#0E0B0Cdd,transparent)}
-.logo{font:700 21px 'Reem Kufi';color:var(--sun)}
-.wa{background:var(--sun);color:#15122B;font-weight:700;font-size:14px;padding:9px 18px;border-radius:30px;text-decoration:none;white-space:nowrap}
-#story{height:420vh;position:relative}
-.stick{position:sticky;top:0;height:100dvh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 6vw;gap:3vw}
-.halo{position:absolute;left:25%;top:50%;width:62vmin;height:62vmin;margin:-31vmin;border-radius:50%;background:#B8561E;filter:blur(90px);opacity:.45;transition:background .8s}
-.copy{position:relative;height:300px}
-.sc{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s;pointer-events:none}
-.sc.on{opacity:1;transform:none}
-h1,h2{font-family:'Reem Kufi',sans-serif;font-weight:700;line-height:1.15}
-.sc h1{font-size:clamp(46px,7.4vw,112px);margin-bottom:16px}
-.sc p{font-size:clamp(17px,1.7vw,23px);max-width:23em;opacity:.8}
-.plate{position:relative;height:100%;display:grid;place-items:center}
-.dish{position:absolute;width:min(50vw,760px);max-height:78vh;object-fit:contain;opacity:0;will-change:transform,opacity;filter:drop-shadow(0 40px 50px rgba(0,0,0,.6))}
-.dots{position:absolute;right:20px;top:50%;display:grid;gap:10px;transform:translateY(-50%)}
-.dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:.3s}
-.dots i.on{background:var(--sun);height:22px;border-radius:4px}
-.hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:13px;opacity:.6;transition:opacity .4s}
-#demo{position:relative;height:100dvh;display:flex;flex-direction:column;overflow:hidden;border-top:1px solid var(--line)}
-.glow{position:absolute;top:50%;left:50%;width:min(80vw,760px);height:min(80vw,760px);margin:calc(min(80vw,760px)/-2);border-radius:50%;filter:blur(110px);opacity:.5;background:var(--gl);transition:background .9s;pointer-events:none}
-.dh{position:relative;z-index:1;flex:none;display:flex;align-items:center;justify-content:center;padding:62px 16px 8px}
-.tabs{display:flex;background:rgba(255,255,255,.1);border-radius:30px;padding:3px}
-.tab{font:inherit;font-weight:600;font-size:14px;color:#fff;background:none;border:0;padding:6px 18px;border-radius:30px;cursor:pointer}
-.tab.on{background:var(--sun);color:#15122B}
-main{position:relative;z-index:1;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:6vw;padding:10px 14px;perspective:1200px}
-#wrap{transition:transform .25s ease-out}
-#box{position:relative;overflow:hidden;background:#000;box-shadow:0 0 0 8px #2a2650,0 20px 60px rgba(0,0,0,.5)}
-#box.qr{border-radius:30px}#box.tv{border-radius:12px}
-#box.qr::before{content:"";position:absolute;top:9px;left:50%;width:70px;height:20px;margin-left:-35px;border-radius:12px;background:#0c0a1d;z-index:3;pointer-events:none}
-#fr{position:absolute;top:0;right:0;border:0;transform-origin:top right;transition:opacity .3s}#fr.out{opacity:0}
-.ring{position:absolute;right:50%;top:56%;width:80px;height:80px;margin:-40px -40px 0 0;border-radius:50%;border:3px solid #fff;pointer-events:none;animation:ping 1.5s ease-out 3}
-@keyframes ping{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.5);opacity:0}}
-.pitch{display:none;max-width:340px}
-.pitch h2{font-size:clamp(36px,4vw,56px);margin-bottom:12px}.pitch h2 em{font-style:normal;color:var(--sun)}
-.pitch p{opacity:.8;font-size:17px;margin-bottom:22px}
-.scan{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:18px;padding:12px 16px}
-.scan svg{width:88px;height:88px;border-radius:8px;flex:none}.scan b{display:block;font-size:16px}.scan span{font-size:13.5px;opacity:.7}
-@media(min-width:1000px){.pitch{display:block}}
-.chips{position:relative;z-index:1;flex:none;padding:10px 12px calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;justify-content:center;overflow-x:auto}
-.chip{font:inherit;font-weight:600;font-size:14px;color:#fff;background:none;border:1.5px solid var(--line);padding:7px 16px;border-radius:30px;cursor:pointer;white-space:nowrap}
-.chip.on{border-color:var(--sun);color:var(--sun)}
-#cta{min-height:70vh;display:grid;place-items:center;text-align:center;padding:80px 20px;background:var(--sun);color:#15122B}
-#cta h2{font-size:clamp(40px,7vw,96px);margin-bottom:14px}#cta p{font-size:19px;margin-bottom:26px}
-#cta a.big{display:inline-block;background:#15122B;color:var(--sun);font-weight:700;font-size:20px;padding:16px 38px;border-radius:50px;text-decoration:none}
-footer{text-align:center;padding:20px;font-size:13px;opacity:.6}
-@media(max-width:820px){.stick{grid-template-columns:1fr;grid-template-rows:44% 1fr;padding:60px 22px 0;gap:0}.plate{order:-1}.dish{width:min(86vw,420px);max-height:34vh}.halo{left:50%;top:28%;width:70vw;height:70vw;margin:-35vw}.copy{height:auto;min-height:230px}.sc{justify-content:flex-start}.dots{right:10px}.logo{display:none}.top{justify-content:flex-end}}
-@media(prefers-reduced-motion:reduce){.ring{animation:none;opacity:0}.sc,#fr{transition:none}}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--ivory);line-height:1.8;--mx:50%;--my:30%}
+:focus-visible{outline:2px solid #F6E3A1;outline-offset:3px}
+body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(201,151,59,.13),transparent 70%)}
+.bar{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:right;transform:scaleX(0);background:var(--gold);z-index:25}
+.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(18px,4vw,48px)}
+.logo{font:400 26px 'Aref Ruqaa';background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wa{color:#F6E3A1;border:1px solid rgba(246,227,161,.5);padding:8px 22px;border-radius:40px;font-size:14px;text-decoration:none;transition:background .3s,color .3s}
+.wa:hover{background:#F6E3A1;color:#0A0809}
+#story{height:560vh;position:relative}
+.stick{position:sticky;top:0;height:100dvh;overflow:hidden;display:grid;place-items:center}
+.orn{position:absolute;width:min(112vmin,1000px);aspect-ratio:1;opacity:.55;will-change:transform;animation:draw 2.4s ease-out both}
+@keyframes draw{from{opacity:0;transform:scale(.7) rotate(-40deg)}}
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 7vw;opacity:0;will-change:transform,opacity,filter}
+.sc h1,.sc h2{font:400 clamp(54px,9.4vw,150px)/1.12 'Aref Ruqaa';background:var(--gold);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;padding:.08em .1em;margin-bottom:.3em;text-shadow:none}
+.sc:first-child h1{animation:shine 3.2s ease-out .4s both}
+@keyframes shine{from{background-position:100% 0}to{background-position:0 0}}
+.sc p{font-size:clamp(16px,1.7vw,22px);max-width:26em;opacity:.78;font-weight:300}
+.cue{position:absolute;bottom:26px;left:50%;width:1px;height:54px;background:linear-gradient(#F6E3A1,transparent);transform-origin:top;animation:cue 2s ease-in-out infinite;transition:opacity .4s}
+@keyframes cue{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+#cta{position:relative;z-index:2;min-height:100vh;display:grid;place-items:center;text-align:center;padding:90px 7vw;border-top:1px solid rgba(246,227,161,.18)}
+#cta h2{font:400 clamp(56px,10vw,160px)/1.1 'Aref Ruqaa';background:var(--gold);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;padding:.08em .1em;margin-bottom:.2em}
+#cta p{font-size:clamp(16px,1.7vw,21px);opacity:.78;font-weight:300;margin-bottom:34px}
+.big{display:inline-block;background:var(--gold);background-size:200% 100%;color:#0A0809;font-weight:600;font-size:19px;padding:16px 46px;border-radius:50px;text-decoration:none;transition:background-position .6s}
+.big:hover{background-position:100% 0}
+footer{position:relative;z-index:2;text-align:center;padding:22px;font-size:13px;opacity:.5}
+@media(max-width:700px){.top{padding:16px 18px}.logo{font-size:22px}.orn{width:150vw}}
+@media(prefers-reduced-motion:reduce){.orn,.cue,.sc:first-child h1{animation:none}}
 </style></head><body>
-<div class="top"><span class="logo">منيو عُمان</span><a class="wa" href="#" data-wa>أبي منيو لمطعمي</a></div>
-<section id="story"><div class="stick"><div class="halo" id="halo"></div>
-<div class="copy"><div class="sc on"><h1>أصمم منيو يتحرك.</h1><p>منيو QR تفاعلي لمطعمك. الزبون يمسح الكود، يضغط على الطبق، والمنيو يرد عليه.</p></div><div class="sc"><h1>ليش تحتاجه؟</h1><p>الزبون يختار بعينه قبل لسانه. المنيو الورقي يعطيه اسم وسعر، والتفاعلي يوريه الطبق كأنه قدامه.</p></div><div class="sc"><h1>يشبه مطعمك.</h1><p>ألوانك وصورك وأطباقك، مو قالب جاهز يشبه كل المطاعم.</p></div><div class="sc"><h1>وتغيّره متى ما تبي.</h1><p>سعر جديد أو طبق جديد، والكود اللي على الطاولات يبقى نفسه.</p></div></div><div class="plate"><img class="dish" src="tsk/assets/cut/margherita.webp" alt=""><img class="dish" src="tsk/assets/cut/hotchick.webp" alt=""><img class="dish" src="tsk/assets/cut/tskchips.webp" alt=""><img class="dish" src="tsk/assets/cut/pepperoni.webp" alt=""></div>
-<div class="dots"><i></i><i></i><i></i><i></i></div><div class="hint" id="hint">اسحب لتحت</div></div></section>
-<section id="demo"><div class="glow" id="glow" style="--gl:#8C1D3A"></div>
-<div class="dh"><div class="tabs" role="tablist"><button class="tab on" data-m="qr" role="tab">منيو QR</button><button class="tab" data-m="tv" role="tab">شاشة TV</button></div></div>
-<main><div class="pitch"><h2>جرّبه <em>بنفسك</em></h2><p>اضغط على الطبق، وبدّل الأنماط من تحت.</p><div class="scan"><svg viewBox="0 0 35 35" shape-rendering="crispEdges" aria-label="QR code"><rect width="35" height="35" fill="#fff"/><path d="M1 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM9 1h1v1h-1zM11 1h1v1h-1zM13 1h1v1h-1zM19 1h1v1h-1zM20 1h1v1h-1zM21 1h1v1h-1zM24 1h1v1h-1zM27 1h1v1h-1zM28 1h1v1h-1zM29 1h1v1h-1zM30 1h1v1h-1zM31 1h1v1h-1zM32 1h1v1h-1zM33 1h1v1h-1zM1 2h1v1h-1zM7 2h1v1h-1zM9 2h1v1h-1zM13 2h1v1h-1zM15 2h1v1h-1zM17 2h1v1h-1zM18 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM23 2h1v1h-1zM24 2h1v1h-1zM27 2h1v1h-1zM33 2h1v1h-1zM1 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM7 3h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM14 3h1v1h-1zM15 3h1v1h-1zM16 3h1v1h-1zM19 3h1v1h-1zM25 3h1v1h-1zM27 3h1v1h-1zM29 3h1v1h-1zM30 3h1v1h-1zM31 3h1v1h-1zM33 3h1v1h-1zM1 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM7 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM16 4h1v1h-1zM19 4h1v1h-1zM23 4h1v1h-1zM25 4h1v1h-1zM27 4h1v1h-1zM29 4h1v1h-1zM30 4h1v1h-1zM31 4h1v1h-1zM33 4h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM7 5h1v1h-1zM11 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM17 5h1v1h-1zM19 5h1v1h-1zM25 5h1v1h-1zM27 5h1v1h-1zM29 5h1v1h-1zM30 5h1v1h-1zM31 5h1v1h-1zM33 5h1v1h-1zM1 6h1v1h-1zM7 6h1v1h-1zM11 6h1v1h-1zM13 6h1v1h-1zM15 6h1v1h-1zM16 6h1v1h-1zM17 6h1v1h-1zM23 6h1v1h-1zM25 6h1v1h-1zM27 6h1v1h-1zM33 6h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1zM9 7h1v1h-1zM11 7h1v1h-1zM13 7h1v1h-1zM15 7h1v1h-1zM17 7h1v1h-1zM19 7h1v1h-1zM21 7h1v1h-1zM23 7h1v1h-1zM25 7h1v1h-1zM27 7h1v1h-1zM28 7h1v1h-1zM29 7h1v1h-1zM30 7h1v1h-1zM31 7h1v1h-1zM32 7h1v1h-1zM33 7h1v1h-1zM9 8h1v1h-1zM11 8h1v1h-1zM15 8h1v1h-1zM16 8h1v1h-1zM17 8h1v1h-1zM18 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM25 8h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM6 9h1v1h-1zM7 9h1v1h-1zM8 9h1v1h-1zM10 9h1v1h-1zM11 9h1v1h-1zM12 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM22 9h1v1h-1zM27 9h1v1h-1zM30 9h1v1h-1zM32 9h1v1h-1zM33 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM8 10h1v1h-1zM11 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM21 10h1v1h-1zM24 10h1v1h-1zM27 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM31 10h1v1h-1zM33 10h1v1h-1zM3 11h1v1h-1zM4 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM10 11h1v1h-1zM11 11h1v1h-1zM13 11h1v1h-1zM14 11h1v1h-1zM19 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM26 11h1v1h-1zM28 11h1v1h-1zM29 11h1v1h-1zM30 11h1v1h-1zM32 11h1v1h-1zM33 11h1v1h-1zM1 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM13 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM28 12h1v1h-1zM30 12h1v1h-1zM32 12h1v1h-1zM1 13h1v1h-1zM2 13h1v1h-1zM4 13h1v1h-1zM5 13h1v1h-1zM6 13h1v1h-1zM7 13h1v1h-1zM8 13h1v1h-1zM11 13h1v1h-1zM12 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM17 13h1v1h-1zM20 13h1v1h-1zM21 13h1v1h-1zM23 13h1v1h-1zM28 13h1v1h-1zM29 13h1v1h-1zM30 13h1v1h-1zM32 13h1v1h-1zM1 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM21 14h1v1h-1zM22 14h1v1h-1zM25 14h1v1h-1zM28 14h1v1h-1zM30 14h1v1h-1zM31 14h1v1h-1zM32 14h1v1h-1zM2 15h1v1h-1zM3 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM8 15h1v1h-1zM10 15h1v1h-1zM11 15h1v1h-1zM13 15h1v1h-1zM15 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM27 15h1v1h-1zM28 15h1v1h-1zM29 15h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM13 16h1v1h-1zM16 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM26 16h1v1h-1zM27 16h1v1h-1zM28 16h1v1h-1zM29 16h1v1h-1zM30 16h1v1h-1zM31 16h1v1h-1zM7 17h1v1h-1zM8 17h1v1h-1zM10 17h1v1h-1zM14 17h1v1h-1zM15 17h1v1h-1zM17 17h1v1h-1zM21 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM29 17h1v1h-1zM31 17h1v1h-1zM2 18h1v1h-1zM3 18h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM12 18h1v1h-1zM13 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM19 18h1v1h-1zM21 18h1v1h-1zM24 18h1v1h-1zM25 18h1v1h-1zM26 18h1v1h-1zM27 18h1v1h-1zM29 18h1v1h-1zM30 18h1v1h-1zM33 18h1v1h-1zM1 19h1v1h-1zM2 19h1v1h-1zM3 19h1v1h-1zM5 19h1v1h-1zM6 19h1v1h-1zM7 19h1v1h-1zM8 19h1v1h-1zM9 19h1v1h-1zM10 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM14 19h1v1h-1zM16 19h1v1h-1zM19 19h1v1h-1zM21 19h1v1h-1zM22 19h1v1h-1zM26 19h1v1h-1zM27 19h1v1h-1zM28 19h1v1h-1zM29 19h1v1h-1zM31 19h1v1h-1zM32 19h1v1h-1zM1 20h1v1h-1zM4 20h1v1h-1zM5 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM21 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM25 20h1v1h-1zM26 20h1v1h-1zM29 20h1v1h-1zM32 20h1v1h-1zM33 20h1v1h-1zM1 21h1v1h-1zM2 21h1v1h-1zM3 21h1v1h-1zM6 21h1v1h-1zM7 21h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM10 21h1v1h-1zM11 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM16 21h1v1h-1zM17 21h1v1h-1zM20 21h1v1h-1zM22 21h1v1h-1zM24 21h1v1h-1zM30 21h1v1h-1zM31 21h1v1h-1zM32 21h1v1h-1zM33 21h1v1h-1zM1 22h1v1h-1zM4 22h1v1h-1zM6 22h1v1h-1zM8 22h1v1h-1zM10 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM27 22h1v1h-1zM30 22h1v1h-1zM31 22h1v1h-1zM33 22h1v1h-1zM3 23h1v1h-1zM4 23h1v1h-1zM7 23h1v1h-1zM9 23h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM13 23h1v1h-1zM15 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM21 23h1v1h-1zM22 23h1v1h-1zM23 23h1v1h-1zM24 23h1v1h-1zM25 23h1v1h-1zM27 23h1v1h-1zM29 23h1v1h-1zM32 23h1v1h-1zM33 23h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM9 24h1v1h-1zM13 24h1v1h-1zM16 24h1v1h-1zM21 24h1v1h-1zM25 24h1v1h-1zM28 24h1v1h-1zM30 24h1v1h-1zM1 25h1v1h-1zM5 25h1v1h-1zM7 25h1v1h-1zM9 25h1v1h-1zM13 25h1v1h-1zM15 25h1v1h-1zM18 25h1v1h-1zM19 25h1v1h-1zM20 25h1v1h-1zM23 25h1v1h-1zM25 25h1v1h-1zM26 25h1v1h-1zM27 25h1v1h-1zM28 25h1v1h-1zM29 25h1v1h-1zM9 26h1v1h-1zM11 26h1v1h-1zM12 26h1v1h-1zM13 26h1v1h-1zM15 26h1v1h-1zM16 26h1v1h-1zM17 26h1v1h-1zM19 26h1v1h-1zM20 26h1v1h-1zM22 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM29 26h1v1h-1zM30 26h1v1h-1zM1 27h1v1h-1zM2 27h1v1h-1zM3 27h1v1h-1zM4 27h1v1h-1zM5 27h1v1h-1zM6 27h1v1h-1zM7 27h1v1h-1zM9 27h1v1h-1zM10 27h1v1h-1zM12 27h1v1h-1zM13 27h1v1h-1zM14 27h1v1h-1zM15 27h1v1h-1zM18 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM22 27h1v1h-1zM24 27h1v1h-1zM25 27h1v1h-1zM27 27h1v1h-1zM29 27h1v1h-1zM1 28h1v1h-1zM7 28h1v1h-1zM9 28h1v1h-1zM12 28h1v1h-1zM13 28h1v1h-1zM14 28h1v1h-1zM16 28h1v1h-1zM17 28h1v1h-1zM18 28h1v1h-1zM19 28h1v1h-1zM22 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM29 28h1v1h-1zM30 28h1v1h-1zM31 28h1v1h-1zM32 28h1v1h-1zM33 28h1v1h-1zM1 29h1v1h-1zM3 29h1v1h-1zM4 29h1v1h-1zM5 29h1v1h-1zM7 29h1v1h-1zM12 29h1v1h-1zM13 29h1v1h-1zM15 29h1v1h-1zM16 29h1v1h-1zM17 29h1v1h-1zM18 29h1v1h-1zM19 29h1v1h-1zM20 29h1v1h-1zM21 29h1v1h-1zM22 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM26 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM29 29h1v1h-1zM31 29h1v1h-1zM32 29h1v1h-1zM33 29h1v1h-1zM1 30h1v1h-1zM3 30h1v1h-1zM4 30h1v1h-1zM5 30h1v1h-1zM7 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM12 30h1v1h-1zM13 30h1v1h-1zM14 30h1v1h-1zM15 30h1v1h-1zM17 30h1v1h-1zM18 30h1v1h-1zM20 30h1v1h-1zM23 30h1v1h-1zM28 30h1v1h-1zM33 30h1v1h-1zM1 31h1v1h-1zM3 31h1v1h-1zM4 31h1v1h-1zM5 31h1v1h-1zM7 31h1v1h-1zM9 31h1v1h-1zM12 31h1v1h-1zM13 31h1v1h-1zM14 31h1v1h-1zM15 31h1v1h-1zM16 31h1v1h-1zM17 31h1v1h-1zM19 31h1v1h-1zM21 31h1v1h-1zM22 31h1v1h-1zM27 31h1v1h-1zM28 31h1v1h-1zM1 32h1v1h-1zM7 32h1v1h-1zM10 32h1v1h-1zM12 32h1v1h-1zM13 32h1v1h-1zM14 32h1v1h-1zM15 32h1v1h-1zM18 32h1v1h-1zM19 32h1v1h-1zM20 32h1v1h-1zM23 32h1v1h-1zM24 32h1v1h-1zM25 32h1v1h-1zM26 32h1v1h-1zM28 32h1v1h-1zM29 32h1v1h-1zM30 32h1v1h-1zM33 32h1v1h-1zM1 33h1v1h-1zM2 33h1v1h-1zM3 33h1v1h-1zM4 33h1v1h-1zM5 33h1v1h-1zM6 33h1v1h-1zM7 33h1v1h-1zM9 33h1v1h-1zM11 33h1v1h-1zM12 33h1v1h-1zM13 33h1v1h-1zM17 33h1v1h-1zM18 33h1v1h-1zM22 33h1v1h-1zM24 33h1v1h-1zM29 33h1v1h-1zM31 33h1v1h-1z" fill="#15122B"/></svg><div><b>أو من جوالك</b><span>امسح الكود بالكاميرا</span></div></div></div>
-<div id="wrap"><div id="box" class="qr"><iframe id="fr" title="عيّنة المنيو التفاعلي" src="tsk/qr/1/" loading="lazy"></iframe><span class="ring" id="ring"></span></div></div></main>
-<div class="chips" role="group" aria-label="نمط المنيو"><button class="chip on" data-n="1">إديتوريال</button><button class="chip" data-n="2">بوستر</button><button class="chip" data-n="3">الألوان المتحولة</button><button class="chip" data-n="4">الأطباق الدائرية</button><button class="chip" data-n="5">المدار</button></div></section>
-<section id="cta"><div><h2>خلنا نسوي منيو مطعمك.</h2><p>ابعث لي اللوقو وصور الأطباق وأنا أجهّز لك نموذج.</p><a class="big" href="#" data-wa>كلمني على واتساب</a></div></section>
+<div class="bar" id="bar"></div>
+<div class="top"><span class="logo">منيو عُمان</span><a class="wa" href="#" data-wa>تواصل معي</a></div>
+<section id="story"><div class="stick"><svg viewBox="-300 -300 600 600" class="orn" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E3A1"/><stop offset=".5" stop-color="#C9973B"/><stop offset="1" stop-color="#8A5F1C"/></linearGradient></defs><g fill="none" stroke="url(#g)" stroke-width="1.2">
+<circle r="290"/><circle r="262" stroke-dasharray="2 9"/><circle r="236"/><circle r="150"/><circle r="120" stroke-dasharray="1 6"/>
+<polygon points="166.9,166.9 -166.9,166.9 -166.9,-166.9 166.9,-166.9"/><polygon points="236.0,0.0 0.0,236.0 -236.0,0.0 -0.0,-236.0"/>
+<polygon points="150.0,0.0 106.1,106.1 0.0,150.0 -106.1,106.1 -150.0,0.0 -106.1,-106.1 -0.0,-150.0 106.1,-106.1"/>
+
+</g></svg><div class="sc"><h1>فخامة مطعمك<br>تبدأ من منيوه.</h1><p>منيو QR تفاعلي يتحرك مع كل ضغطة.</p></div><div class="sc"><h2>ضيفك يحكم عليك<br>قبل أول لقمة.</h2><p>والمنيو الورقي يقول له: اسم وسعر، وبس.</p></div><div class="sc"><h2>والتفاعلي يقول:<br>هذا طبق يستاهل.</h2><p>الطبق يكبر ويتحرك وتتغير ألوان الشاشة تحت إصبعه.</p></div><div class="sc"><h2>يشبهك أنت.</h2><p>ألوانك وخطك وصور أطباقك. ما فيه قالب ثاني يشبهه.</p></div><div class="sc"><h2>وتغيّره<br>متى ما تبي.</h2><p>سعر جديد أو طبق جديد، والكود اللي على الطاولات يبقى نفسه.</p></div><div class="cue" id="cue"></div></div></section>
+<section id="cta"><div><h2>خلنا نبدأ.</h2><p>ابعث لي اللوقو وصور الأطباق، وأجهّز لك نموذج بتصميمك.</p><a class="big" href="#" data-wa>كلمني على واتساب</a></div></section>
 <footer>منيو عُمان · أحمد الوهيبي · 95989547</footer>
 <script>
-const WA='https://wa.me/96895989547?text='+encodeURIComponent('السلام عليكم، شفت المنيو التفاعلي وأبي منيو لمطعمي.');
-document.querySelectorAll('[data-wa]').forEach(a=>a.href=WA);
-/* story */
-const story=document.getElementById('story'),dish=[...document.querySelectorAll('.dish')],sc=[...document.querySelectorAll('.sc')],dots=[...document.querySelectorAll('.dots i')],halo=document.getElementById('halo'),hint=document.getElementById('hint');
-const HC=['#B8561E','#C98A2B','#9C6A22','#B23A2A'],K=dish.length;
-const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const cl=(v,a,b)=>Math.min(b,Math.max(a,v));
-function tick(){const r=story.getBoundingClientRect(),p=cl(-r.top/(r.height-innerHeight),0,.9999),x=p*K,ai=Math.floor(x);
-dish.forEach((d,i)=>{const u=x-i,fin=cl((u+.2)/.2,0,1),fout=cl((i+1+.2-x)/.2,0,1),o=Math.min(fin,fout),s=.86+.2*cl(u,0,1)+.06*(1-fin),rot=rm?0:(u-.5)*16,ty=rm?0:(1-fin)*70-(1-fout)*50;
-d.style.opacity=o;d.style.transform='translateY('+ty+'px) rotate('+rot+'deg) scale('+s+')'});
-sc.forEach((e,i)=>e.classList.toggle('on',i===ai));dots.forEach((e,i)=>e.classList.toggle('on',i===ai));halo.style.background=HC[ai];hint.style.opacity=p>.02?0:.6}
+document.querySelectorAll('[data-wa]').forEach(a=>a.href='https://wa.me/96895989547?text='+encodeURIComponent('السلام عليكم، شفت موقعك وأبي منيو تفاعلي لمطعمي.'));
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches,cl=(v,a,b)=>Math.min(b,Math.max(a,v));
+const story=document.getElementById('story'),sc=[...document.querySelectorAll('.sc')],orn=document.querySelector('.orn'),bar=document.getElementById('bar'),cue=document.getElementById('cue'),K=sc.length;
+function tick(){const r=story.getBoundingClientRect(),p=cl(-r.top/(r.height-innerHeight),0,.9999),x=p*K;
+sc.forEach((e,i)=>{let d=x-(i+.5);if(i===0&&d<0)d=0;if(i===K-1&&d>0)d=0;const o=cl((.62-Math.abs(d))/.2,0,1);e.style.opacity=o;e.style.pointerEvents=o>.5?'auto':'none';if(!rm)e.style.transform='translateY('+(-d*50)+'px) scale('+(1+(1-o)*(d>0?-.05:.07))+')',e.style.filter='blur('+((1-o)*14)+'px)'});
+if(!rm){orn.style.animation='none';orn.style.transform='rotate('+(p*200)+'deg) scale('+(.85+p*.45)+')'}
+bar.style.transform='scaleX('+cl(scrollY/(document.body.scrollHeight-innerHeight),0,1)+')';cue.style.opacity=p>.02?0:1}
 addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
-/* demo */
-const box=document.getElementById('box'),fr=document.getElementById('fr'),main=document.querySelector('#demo main'),pt=document.querySelector('.pitch'),wrap=document.getElementById('wrap');
-let mode='qr',n=1;const D={qr:[390,800],tv:[1920,1080]},GL=['#8C1D3A', '#E8452B', '#C94F7C', '#D8A93C', '#1FA39B'];
-function fit(){const [w,h]=D[mode],aw=main.clientWidth-28-(mode==='qr'&&pt.offsetWidth?pt.offsetWidth+main.clientWidth*.06:0),ah=main.clientHeight-20,s=Math.min(aw/w,ah/h);box.style.width=w*s+'px';box.style.height=h*s+'px';fr.style.width=w+'px';fr.style.height=h+'px';fr.style.transform='scale('+s+')'}
-function load(){fr.classList.add('out');setTimeout(()=>{fr.onload=()=>fr.classList.remove('out');fr.src='tsk/'+mode+'/'+n+'/'},250)}
-addEventListener('resize',fit);
-document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{const v=+c.dataset.n;if(v===n)return;n=v;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));document.getElementById('glow').style.setProperty('--gl',GL[n-1]);load()});
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{if(t.dataset.m===mode)return;mode=t.dataset.m;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));box.className=mode;pt.style.display=mode==='qr'?'':'none';document.getElementById('ring').style.display=mode==='qr'?'':'none';fit();load()});
-if(matchMedia('(hover:hover)').matches&&!rm){main.addEventListener('pointermove',e=>{const r=main.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;wrap.style.transform='rotateY('+(x*-10)+'deg) rotateX('+(y*6)+'deg)'});main.addEventListener('pointerleave',()=>wrap.style.transform='')}
-fit();
+if(matchMedia('(hover:hover)').matches)addEventListener('pointermove',e=>{document.body.style.setProperty('--mx',e.clientX+'px');document.body.style.setProperty('--my',e.clientY+'px')},{passive:true});
 </script></body></html>
