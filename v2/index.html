@@ -42,6 +42,10 @@ h1,h2,h3{font-family:var(--dsp);font-weight:800;line-height:1.25;text-wrap:balan
 .hero h1 em{font-style:normal;color:var(--hot)}
 .hero .sub{font-size:clamp(16px,1.45vw,19px);color:var(--mute);max-width:31em;margin:20px 0 30px}
 .meta{border-top:1px solid var(--line);padding-top:20px;max-width:31em}
+.food{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 22px}.food span{font-size:14px;color:var(--mute);margin-inline-end:4px}
+.food button{font:600 15px var(--txt);min-height:44px;padding:8px 18px;border-radius:30px;border:1.5px solid var(--line);background:none;color:var(--iv);cursor:pointer}
+.food button[aria-pressed=true]{background:var(--hot);border-color:var(--hot);color:#1A0E08}
+@media(max-width:900px){.food{order:1;margin:4px 0 0}}
 .cnt{font:600 15px var(--txt);color:var(--hot2)}
 .cnt b{font:800 56px/1 var(--dsp);color:var(--iv);margin-inline-end:8px;vertical-align:-8px;font-variant-numeric:tabular-nums}
 .sname{font:700 26px var(--dsp);margin:10px 0 2px}
@@ -106,6 +110,7 @@ h1,h2,h3{font-family:var(--dsp);font-weight:800;line-height:1.25;text-wrap:balan
 .pz .gb{border-radius:44% 56% 52% 48%/55% 42% 58% 45%}
 .pz .wob{animation:wob 3s ease-in-out infinite}@keyframes wob{0%,100%{scale:1}40%{scale:1.08 .93}60%{scale:.95 1.06}}
 .pz .turn{animation:turn 6s ease-in-out infinite}@keyframes turn{0%,100%{transform:perspective(90cqw) rotateY(-22deg)}50%{transform:perspective(90cqw) rotateY(22deg)}}
+.pz .ds{display:block;font:400 3.3cqw/1.5 'Readex Pro','IBM Plex Sans Arabic',sans-serif;direction:rtl;opacity:.85;margin-top:.6cqw;text-wrap:balance}
 .pz .drw{font-size:24px;stroke-dasharray:420;stroke-dashoffset:0}
 
 /* ===== sections ===== */
@@ -184,6 +189,7 @@ footer{text-align:center;padding:28px 20px 40px;font-size:14px;color:var(--mute)
  <div class="hero-copy">
   <h1>منيو يتحرك<br>تحت إصبع <em>زبونك.</em></h1>
   <p class="sub">أصمم منيو QR وشاشة عرض لمطعمك أو كوفيك، بأطباقك وألوانك. اضغط على المنيو وجرّب واحد من ٨٢ نمط.</p>
+  <div class="food" role="group" aria-label="شوف الأنماط بأكل مطعمك"><span>جرّب على:</span><button data-food="it">مطعم إيطالي</button><button data-food="bg">برجر وستيك</button><button data-food="cafe">كوفي وحلويات</button></div>
   <div class="meta" aria-live="polite">
    <div class="cnt"><b id="hn">01</b>/ <span id="htot">82</span></div>
    <div class="sname" id="hname"></div>
@@ -193,7 +199,7 @@ footer{text-align:center;padding:28px 20px 40px;font-size:14px;color:var(--mute)
     <button class="nav" id="prev" aria-label="النمط السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
     <button class="nav" id="next" aria-label="النمط التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
    </div>
-   <p class="demo">النماذج بأطباق كوفي «نعنع»، والأسعار فيها للعرض فقط.</p>
+   <p class="demo" id="demo"></p>
   </div>
  </div>
  <div class="stagewrap"><button class="pause" id="pause" aria-label="إيقاف الحركة التلقائية" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="pico" d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg></button><div class="stage" id="stage" role="button" tabindex="0" aria-label="اضغط لتشغيل حركة المنيو"><span class="hint">اضغط على المنيو</span><div class="pz" id="hero"></div></div></div>
@@ -375,7 +381,37 @@ const RAW=[
 ['gummy','lemon','marhey','jelly','','حلاوة','','dr','حلاوة'],
 ['clean','cleangreen','brico','blur','','BAKEHOUSE','','bk','المخبز النظيف'],
 ['plinth','spot2','iserif','spin','','Signature','','tr','منصة الضيافة']];
-const S=RAW.map((r,i)=>({n:i+1,L:r[0],p:PAL[r[1]],f:r[2],m:r[3],fx:r[4],t:r[5],sub:r[6],set:SET[r[7]],cat:r[9]||r[7],name:r[8]}));
+const S=RAW.map((r,i)=>({n:i+1,L:r[0],p:PAL[r[1]],f:r[2],m:r[3],fx:r[4],t:r[5],t0:r[5],sub:r[6],sub0:r[6],k:r[7],set:SET[r[7]],cat:r[9]||r[7],name:r[8]}));
+/* restaurant samples: [arabic, english, sample price, arabic description] */
+Object.assign(D,{
+ 'food/salmon':['سلطة السلمون المشوي','Grilled Salmon Salad','5.900','سلمون مشوي على خس وطماطم كرزية وزيتون وجبنة فيتا'],
+ 'food/steak':['ستيك على روستي','Steak & Rösti','7.500','قطع لحم بقري فوق روستي البطاطس، بصوص الديمي جلاس'],
+ 'food/loaded':['بطاطس محمّلة بالدجاج','Loaded Chicken Fries','3.200','بطاطس ودجاج مقرمش بصوص الجبن والرانش والصوص الحار'],
+ 'food/crispyburger':['برجر البصل المقرمش','Crispy Onion Burger','3.900','لحم بقري وشيدر وبصل مقرمش وصوص البيت، مع بطاطس'],
+ 'food/blueburger':['برجر البلو تشيز','Blue Cheese Burger','4.200','لحم بقري مشوي مع صوص البلو تشيز والجرجير، مع بطاطس'],
+ 'food/smash':['دبل سماش برجر','Double Smash Burger','3.500','قطعتين لحم مضغوطة وجبنة مذابة ومخلل وصوص خاص'],
+ 'food/avoburger':['برجر دجاج أفوكادو','Chicken Avocado Burger','3.400','صدر دجاج مشوي وموزاريلا وأفوكادو وطماطم وجرجير'],
+ 'food/mushroom':['تالياتيلي بالفطر','Mushroom Tagliatelle','3.800','تالياتيلي بصوص كريمي مع الفطر والبقدونس'],
+ 'food/fusilli':['فوسيلي بريمافيرا','Fusilli Primavera','3.200','فوسيلي بالبروكلي والفطر والفلفل والطماطم'],
+ 'food/pomodoro':['سباغيتي بومودورو','Spaghetti Pomodoro','2.900','سباغيتي بصلصة الطماطم المحمّرة والريحان'],
+ 'food/parmesan':['سباغيتي بالبارميزان','Parmesan Spaghetti','3.300','سباغيتي بالكريمة والبارميزان والأعشاب'],
+ 'food/penne':['بيني بالطماطم المجففة','Mediterranean Penne','3.600','بيني بصوص كريمي مع طماطم مجففة وزيتون أسود'],
+ 'food/alfredo':['فيتوتشيني ألفريدو','Fettuccine Alfredo','3.400','فيتوتشيني بصوص الألفريدو الكريمي والبقدونس']});
+const ITL=['food/alfredo','food/pomodoro','food/mushroom','food/penne','food/fusilli','food/parmesan','food/salmon'];
+const BRG=['food/smash','food/crispyburger','food/avoburger','food/blueburger','food/loaded','food/steak','food/salmon'];
+const CUIS={cafe:{label:'كوفي وحلويات',set:k=>SET[k]},it:{label:'مطعم إيطالي',set:()=>ITL},bg:{label:'برجر وستيك',set:()=>BRG}};
+const TT={it:{L1:['PASTA','Pasta Bar','TRATTORIA','Al Dente','MANGIA!','Italiano','Buon Appetito','la Cucina'],L2:['PASTA|FRESCA','PASTA|NIGHT','AL|DENTE','MAMMA|MIA'],
+  L3:['TWIRL|IT|UP','SLOW|COOKED|PASTA','MORE|PARMESAN|PLEASE'],AR:['باستا','مطبخ إيطالي','باستا طازجة','على أصوله'],RING:'PASTA · AMORE · ',
+  SUB:['صلصة البيت','إيطالي على أصوله','لف الشوكة وكُل','عشاء الليلة']},
+ bg:{L1:['BURGERS','Grill House','SMASHED','Juicy!','THE GRILL','Fire & Bun','FRIES & MORE','Big Bite'],L2:['SMASH|BURGERS','BURGER|BAR','DOUBLE|STACK','GRILL|TIME'],
+  L3:['STACK|IT|HIGH','EXTRA|CHEESE|PLEASE','HOT|OFF THE|GRILL'],AR:['برجر','مشويات','برجر وبطاطس','من الشواية'],RING:'BURGERS · FRIES · ',
+  SUB:['برجر يشبع','مع بطاطس مقرمشة','جوعان؟','من الشواية للطاولة']}};
+let FOODC='it';
+function applyCuisine(c){FOODC=c;S.forEach(s=>{s.set=CUIS[c].set(s.k);
+ if(c==='cafe'||s.cat==='rm'){s.t=s.t0;s.sub=s.sub0;return}
+ const L=TT[c],ar=/[\u0600-\u06FF]/.test(s.t0),nl=lines(s.t0).length,pick=a=>a[s.n%a.length];
+ s.t=!s.t0?'':s.L==='ring'?L.RING:ar?pick(L.AR):nl>=3?pick(L.L3):nl===2?pick(L.L2):pick(L.L1);s.sub=s.sub0?pick(L.SUB):''})}
+
 const MT={spin:'الطبق يدور ويتبدّل',pop:'الطبق ينبض ويكبر',slide:'الطبق ينزلق من الجنب',drop:'الطبق يطيح وينطّ',flip:'الطبق ينقلب مثل الكرت',blur:'الطبق يذوب ويوضح',zoom:'الطبق يقرّب للزبون',rise:'الطبق يطلع من تحت',swing:'الطبق يتمرجح',slap:'الستيكر ينلصق مكانه',jelly:'الطبق يتمطّط مثل الجيلي'};
 const FX={orbit:'والأطباق الصغيرة تدور حوله',bg:'والخلفية تغيّر لونها',wipe:'مع ستارة لون بين الأطباق',type:'والكلام يطلع حرف حرف',steam:'والبخار يطلع منه',draw:'واسم الطبق ينكتب بخط اليد',frost:'مع ستارة ثلج',squash:'والاسم يتمطّط'};
 
@@ -476,14 +512,14 @@ tea:s=>{const fs=fit(s.t,s.f,52,19);return `${[0,1,2].map(i=>`<div class="ab" st
  <div class="ab" style="left:6cqw;bottom:6cqw;font:400 5.4cqw 'Anton';letter-spacing:.06em;color:var(--ac)">ORDER NOW!</div>`},
 living:s=>`<div class="ab t" style="top:7cqw;left:0;right:0;text-align:center;${ff(s.f)};font-size:${fit(s.t,s.f,70,11)}cqw;color:var(--ac)">${s.t}</div>
  <svg class="ab steam" style="left:33cqw;top:19cqw;width:34cqw;height:26cqw" viewBox="0 0 60 46" aria-hidden="true"><path d="M14 44c-6-9 6-13 0-22s4-14 2-20"/><path d="M30 44c-6-9 6-13 0-22s4-14 2-20"/><path d="M46 44c-6-9 6-13 0-22s4-14 2-20"/></svg>
- ${I(0,'left:14cqw;top:38cqw;width:72cqw;height:48cqw','bob')}
- <div class="ab" style="left:0;right:0;bottom:15cqw;text-align:center">${N(0,'font-size:9cqw')}</div>
+ ${I(0,'left:16cqw;top:36cqw;width:68cqw;height:44cqw','bob')}
+ <div class="ab" style="left:8cqw;right:8cqw;bottom:14.5cqw;text-align:center">${N(0,'font-size:6.8cqw')}<span data-sw data-i="0" data-f="ds" class="ds"></span></div>
  <div class="ab" style="left:0;right:0;bottom:7cqw;display:flex;justify-content:center;gap:3cqw;align-items:baseline">${E(0,'display:inline')}${P(0)}</div>`,
 callig:s=>`<div class="ab" style="top:6cqw;left:6cqw;right:6cqw;display:flex;justify-content:space-between;font:500 2.8cqw 'Playfair Display';letter-spacing:.2em;text-transform:uppercase"><span data-sw data-i="0" data-f="en"></span><span>N° ${pad(s.n)}</span></div>
  <svg class="ab" style="left:4cqw;right:4cqw;top:12cqw;width:92cqw;height:44cqw" viewBox="0 0 100 48" aria-hidden="true"><text data-sw data-i="0" data-f="nm" data-svgfit="90,30" class="drw" x="50" y="36" text-anchor="middle" direction="rtl" style="font-family:${F[s.f]},'Reem Kufi';fill:var(--ac);stroke:var(--ac);stroke-width:.35"></text></svg>
  <div class="ab" style="left:20cqw;right:20cqw;top:57cqw;border-top:.3cqw solid var(--ink);opacity:.4"></div>
- ${I(0,'left:12cqw;top:60cqw;width:76cqw;height:50cqw','bob')}
- <div class="ab" style="left:0;right:0;bottom:7cqw;text-align:center">${P(0,'font-size:6.4cqw')}</div>`,
+ ${I(0,'left:12cqw;top:60cqw;width:76cqw;height:46cqw','bob')}
+ <div class="ab" style="left:10cqw;right:10cqw;bottom:6cqw;text-align:center"><span data-sw data-i="0" data-f="ds" class="ds" style="margin-bottom:1.4cqw"></span>${P(0,'font-size:6.4cqw')}</div>`,
 sign:s=>`<div class="ab" style="inset:0;background:var(--al)"></div>
  <div class="ab grain" style="inset:0"></div>
  <div class="ab" style="left:6cqw;right:6cqw;top:6cqw;height:31cqw;background:var(--bg);border-radius:4cqw;box-shadow:inset 0 0 0 1.4cqw var(--bg),inset 0 0 0 2cqw var(--ac),0 1.6cqw 0 rgba(0,0,0,.18)"></div>
@@ -521,7 +557,7 @@ story:s=>`<div class="ab" style="inset:0;background:radial-gradient(circle at 50
  <div class="ab" style="top:8cqw;left:4cqw;display:flex;align-items:center;gap:2cqw;color:#fff;font:700 3.4cqw 'Bricolage Grotesque','Readex Pro'"><i style="width:7cqw;height:7cqw;border-radius:50%;background:var(--bg);display:grid;place-items:center;color:var(--ac);font:800 3.4cqw 'Bricolage Grotesque';font-style:normal">M</i>${s.t}</div>
  ${I(0,'left:4cqw;top:18cqw;width:92cqw;height:76cqw','bob')}
  <div class="ab" style="left:0;right:0;bottom:0;height:44cqw;background:linear-gradient(transparent,rgba(0,0,0,.5))"></div>
- <div class="ab" style="right:6cqw;left:6cqw;bottom:16cqw;text-align:right;color:#fff">${N(0,'font-size:9cqw')}${E(0)}</div>
+ <div class="ab" style="right:6cqw;left:6cqw;bottom:16cqw;text-align:right;color:#fff">${N(0,'font-size:8.4cqw')}<span data-sw data-i="0" data-f="ds" class="ds" style="max-width:70cqw;margin-inline-start:auto"></span></div>
  <div class="ab" style="right:6cqw;bottom:6cqw;background:var(--bg);color:var(--ink);border-radius:8cqw;padding:1.8cqw 4cqw">${P(0,'color:var(--ink)')}</div>
  <div class="ab" style="left:6cqw;bottom:7.4cqw;color:#fff;font:500 3.2cqw 'Readex Pro';direction:rtl">اضغط للتالي ‹</div>`,
 bento:s=>`<div class="ab t" style="top:5cqw;left:6cqw;${ff(s.f)};font-weight:800;font-size:${fit(s.t,s.f,50,10)}cqw;color:var(--ink);letter-spacing:-.02em">${s.t}</div>
@@ -573,13 +609,14 @@ plinth:s=>`<div class="ab" style="inset:0;background:var(--ink)"></div>
  <div class="ab" style="left:6cqw;bottom:5cqw;color:var(--bg);font:500 2.6cqw 'Playfair Display';letter-spacing:.2em;opacity:.7">N° ${pad(s.n)}</div>`
 
 };
-const KEYS=Object.keys(D);KEYS.forEach(k=>{const im=new Image();im.src=IMG+k+'.webp'});
+const preload=c=>[...new Set(S.flatMap(s=>CUIS[c].set(s.k)))].forEach(k=>{const im=new Image();im.src=IMG+k+'.webp'});
 function key(s,off,i){return s.set[(off+i)%s.set.length]}
 function setEl(el,s,off){const k=key(s,off,+el.dataset.i),d=D[k];switch(el.dataset.f){
  case'img':el.src=IMG+k+'.webp';el.alt=d[0];break;
  case'nm':el.textContent=d[0];if(el.dataset.fit){const[a,m,w]=el.dataset.fit.split(',').map(Number);el.style.fontSize=Math.min(m,a/(d[0].length*w))+'cqw'}
   if(el.dataset.svgfit){const[a,m]=el.dataset.svgfit.split(',').map(Number);el.style.fontSize=Math.min(m,a/(d[0].length*.62))+'px'}break;
  case'en':el.textContent=d[1];break;
+ case'ds':el.textContent=d[3]||'';break;
  case'pr':el.innerHTML=d[2]+'<i>ر.ع</i>';break;case'pn':el.textContent=d[2].replace(/0+$/,'').replace(/\.$/,'');break;
  case'bars':{const c=off%s.set.length;[...el.children].forEach((b,j)=>{b.className='bar'+(j<c?' done':'');if(j===c){void b.offsetWidth;b.className='bar on'}})}}}
 function render(p,s,off=(s.n*2)%s.set.length){const c=s.p;p.style.cssText=`--bg:${c[0]};--ink:${c[1]};--ac:${c[2]};--al:${c[3]}`;p.dataset.n=s.n;
@@ -621,9 +658,9 @@ const $=q=>document.querySelector(q),$$=q=>[...document.querySelectorAll(q)];
 const hero=$('#hero'),stage=$('#stage');let cur=0,lastUser=0;
 const BASE=location.href.split('#')[0];
 const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
-const styleMsg=s=>`السلام عليكم، شفت موقعك وعجبني النمط #${pad(s.n)} «${s.name}». أبي منيو مثله لمطعمي.\n${BASE}#s${s.n}`;
+const styleMsg=s=>`السلام عليكم، شفت موقعك وعجبني النمط #${pad(s.n)} «${s.name}» (${CUIS[FOODC].label}). أبي منيو مثله لمطعمي.\n${BASE}#s${s.n}`;
 function meta(s){$('#hn').textContent=pad(s.n);$('#htot').textContent=S.length;$('#hname').textContent=s.name;
- $('#hdesc').textContent=MT[s.m]+(s.fx?'، '+FX[s.fx]:'')+' · '+CAT[s.cat];
+ $('#hdesc').textContent=MT[s.m]+(s.fx?'، '+FX[s.fx]:'')+' · '+(FOODC==='cafe'||s.cat==='rm'?CAT[s.cat]:CUIS[FOODC].label);
  $('#wantt').textContent='أبي النمط #'+pad(s.n);$('#mn').textContent='#'+pad(s.n);$('#mname').textContent=s.name;
  [$('#want'),$('#want2'),$('#mwant')].forEach(a=>a.href=wa(styleMsg(s)));
  $$('.tile').forEach(t=>t.setAttribute('aria-current',+t.dataset.n===s.n));
@@ -669,6 +706,15 @@ function paintPk(){const s=S[cur];$('#pk').innerHTML=PK.map(p=>{const v=PRICES[p
 /* ---------- misc ---------- */
 $$('[data-wa]').forEach(a=>a.href=wa('السلام عليكم، شفت موقعك وأبي منيو تفاعلي لمطعمي.'));
 const vid=$('#work video');new IntersectionObserver(e=>{if(e[0].isIntersecting&&!RM.matches)vid.play().catch(()=>{});else vid.pause()},{threshold:.3}).observe(vid);
+function setFood(c,first){applyCuisine(c);preload(c);$$('[data-food]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.food===c));
+ $('#demo').textContent=c==='cafe'?'النماذج بأطباق كوفي «نعنع»، والأسعار فيها للعرض فقط.':'صور الأطباق والأسعار للعرض فقط. أصمم منيوك بصور أطباقك أنت.';
+ try{localStorage.setItem('food',c)}catch(e){}
+ if(gridDone)$$('.tile').forEach(t=>{const s=S[t.dataset.n-1];render(t.firstChild,s);t.firstChild.querySelectorAll('img').forEach(i=>i.loading='lazy')});
+ $$('.chip').forEach(ch=>{const keep=c==='cafe'||ch.dataset.c==='all'||ch.dataset.c==='rm';ch.hidden=!keep;if(!keep&&ch.getAttribute('aria-pressed')==='true')$('.chip[data-c=all]').click()});
+ if(!first)go(cur,true)}
+$$('[data-food]').forEach(b=>b.onclick=()=>{user();setFood(b.dataset.food)});
+const qf=new URLSearchParams(location.search).get('food');let sf=null;try{sf=localStorage.getItem('food')}catch(e){}
+setFood(CUIS[qf]?qf:CUIS[sf]?sf:'it',true);
 const h=location.hash.match(/^#s(\d+)$/);go(h?Math.min(S.length,+h[1])-1:0,false);
 </script>
 </body></html>
