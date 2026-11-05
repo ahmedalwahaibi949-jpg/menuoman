@@ -1,0 +1,19 @@
+{
+ "id": "B-021",
+ "set": "display",
+ "family": "pour",
+ "familyName": {
+  "ar": "البخار والسكب",
+  "en": "Steam & Pour"
+ },
+ "name": {
+  "ar": "سكب النعناع",
+  "en": "Mint Pour"
+ },
+ "palette": "mint-cream",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "cafe"
+}

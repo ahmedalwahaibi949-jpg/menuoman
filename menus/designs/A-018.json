@@ -1,0 +1,20 @@
+{
+ "id": "A-018",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "دفتر المقهى",
+  "en": "Café Notebook"
+ },
+ "palette": "kraft",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "cafe",
+ "reveal": "page"
+}

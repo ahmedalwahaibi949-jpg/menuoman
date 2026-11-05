@@ -1,0 +1,19 @@
+{
+ "id": "B-002",
+ "set": "display",
+ "family": "spine-parade",
+ "familyName": {
+  "ar": "موكب العمود",
+  "en": "Spine Parade"
+ },
+ "name": {
+  "ar": "موكب الطماطم",
+  "en": "Tomato Parade"
+ },
+ "palette": "tomato",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "burger"
+}

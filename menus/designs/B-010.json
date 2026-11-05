@@ -1,0 +1,19 @@
+{
+ "id": "B-010",
+ "set": "display",
+ "family": "turntable",
+ "familyName": {
+  "ar": "المنصة الدوّارة",
+  "en": "Hero Turntable"
+ },
+ "name": {
+  "ar": "منصة الجوز",
+  "en": "Walnut Stage"
+ },
+ "palette": "walnut",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "italian"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "A-003",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "ليلة الشواء",
+  "en": "Midnight Grill"
+ },
+ "palette": "midnight-navy",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "grill",
+ "reveal": "circle"
+}

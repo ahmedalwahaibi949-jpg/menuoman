@@ -1,0 +1,20 @@
+{
+ "id": "A-001",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "سبورة البرغر",
+  "en": "Chalk Burger"
+ },
+ "palette": "chalk-green",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "burger",
+ "reveal": "puzzle"
+}

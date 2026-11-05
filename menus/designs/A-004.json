@@ -1,0 +1,20 @@
+{
+ "id": "A-004",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "نعناع وكريمة",
+  "en": "Mint & Cream"
+ },
+ "palette": "mint-cream",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "cafe",
+ "reveal": "blinds"
+}

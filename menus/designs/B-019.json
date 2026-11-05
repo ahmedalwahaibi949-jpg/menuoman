@@ -1,0 +1,19 @@
+{
+ "id": "B-019",
+ "set": "display",
+ "family": "stack",
+ "familyName": {
+  "ar": "بناء البرغر",
+  "en": "Stack Builder"
+ },
+ "name": {
+  "ar": "برج الغابة",
+  "en": "Forest Stack"
+ },
+ "palette": "forest",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "burger"
+}

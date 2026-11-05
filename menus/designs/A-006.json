@@ -1,0 +1,20 @@
+{
+ "id": "A-006",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الزعفران",
+  "en": "Saffron Orbit"
+ },
+ "palette": "saffron",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "italian",
+ "reveal": "dive"
+}

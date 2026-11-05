@@ -1,0 +1,19 @@
+{
+ "id": "B-020",
+ "set": "display",
+ "family": "stack",
+ "familyName": {
+  "ar": "بناء البرغر",
+  "en": "Stack Builder"
+ },
+ "name": {
+  "ar": "برج الحجر",
+  "en": "Stone Stack"
+ },
+ "palette": "stone",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "burger"
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مكتبة تصاميم المنيو المتحرك</title>
+<meta name="description" content="تصاميم منيو تفاعلية تُفتح بلمسة، وتصاميم عرض متحركة للشاشات وتيك توك.">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="stylesheet" href="../assets/poster-fonts2.css">
+<link rel="stylesheet" href="../assets/menuza-fonts.css">
+<link rel="stylesheet" href="../assets/poster-fonts.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../assets/fonts.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="engine/engine.css">
+<style>
+:root{--g:#0F0F0E;--g2:#191917;--t:#F3EEE6;--m:#A39C90;--l:rgba(243,238,230,.12);--a:#E8B44A}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--g)}body{font:400 16px/1.7 'Readex Pro',sans-serif;color:var(--t);background:var(--g);min-height:100vh}
+:focus-visible{outline:2px solid var(--a);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1400px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+header.top{padding:clamp(40px,7vw,90px) 0 26px}
+h1{font:700 clamp(36px,6vw,78px)/1.2 'Alexandria',sans-serif;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--a)}
+.lead{color:var(--m);max-width:42em;margin-top:14px;font-size:clamp(16px,1.4vw,19px)}
+.bar{position:sticky;top:0;z-index:10;background:rgba(15,15,14,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--l);padding:12px 0}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.grp{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.grp>span{font-size:13px;color:var(--m);margin-inline-end:4px}
+.chip{font:500 14px 'Readex Pro';color:var(--t);background:var(--g2);border:1px solid var(--l);border-radius:30px;padding:0 14px;min-height:40px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--t);color:var(--g);border-color:var(--t)}
+.count{margin-inline-start:auto;font-size:14px;color:var(--m)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:clamp(14px,2vw,24px);padding:28px 0 80px}
+.tile{all:unset;cursor:pointer;display:block}
+.tile .fr{aspect-ratio:9/16;border-radius:18px;overflow:hidden;position:relative;background:#222;box-shadow:0 16px 36px rgba(0,0,0,.45);transition:transform .3s}
+.tile:hover .fr{transform:translateY(-4px)}.tile:focus-visible .fr{outline:2px solid var(--a);outline-offset:4px}
+.tile .badge{position:absolute;top:10px;inset-inline-start:10px;z-index:30;font:600 11px 'Readex Pro';background:rgba(0,0,0,.6);color:#fff;border-radius:20px;padding:3px 10px}
+.tile .cap{display:flex;justify-content:space-between;gap:8px;margin-top:10px;font-size:14px}
+.tile .cap b{font:700 13px 'Alexandria';color:var(--a);direction:ltr}
+.tile .cap small{display:block;color:var(--m);font-size:12.5px}
+.ov{position:fixed;inset:0;z-index:50;background:rgba(5,5,5,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px}
+.ov.on{display:flex}
+.ov .tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center}
+.ov .dev{position:relative;background:#000;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 8px #1d1d1b;transition:width .4s,height .4s}
+.ov iframe{border:0;width:100%;height:100%;display:block}
+.ov .x{min-width:44px}
+.ov .nm{font:700 18px 'Alexandria'}
+@media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}.ov{padding:8px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+ <h1>مكتبة تصاميم <em>المنيو المتحرك</em></h1>
+ <p class="lead">كل تصميم تفاعلي يبدأ بغلاف عليه كلمة «منيو». المسه، فينفتح وتدخل إلى الأقسام والأطباق. وتصاميم العرض تعمل وحدها على شاشة المطعم أو في مقاطع تيك توك.</p>
+</div></header>
+<div class="bar"><div class="wrap">
+ <div class="grp" id="fSet"><span>النوع</span></div>
+ <div class="grp" id="fFam"><span>العائلة</span></div>
+ <div class="grp" id="fCui"><span>المطبخ</span></div>
+ <div class="grp" id="fTone"><span>الألوان</span></div>
+ <span class="count" id="count"></span>
+</div></div>
+<main class="wrap"><div class="grid" id="grid"></div></main>
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="معاينة التصميم">
+ <div class="tools"><span class="nm" id="ovName"></span>
+  <button class="chip" data-frame="phone" aria-pressed="true">هاتف</button><button class="chip" data-frame="tablet" aria-pressed="false">تابلت</button><button class="chip" data-frame="tv" aria-pressed="false">شاشة</button>
+  <button class="chip" id="ovLang" aria-pressed="false">English</button>
+  <button class="chip" id="ovRec" hidden>تسجيل مرة واحدة</button>
+  <button class="chip x" id="ovX" aria-label="إغلاق">✕</button></div>
+ <div class="dev" id="dev"><iframe id="ovF" title="معاينة التصميم" allow="autoplay"></iframe></div>
+</div>
+<script src="engine/data.js"></script>
+<script src="engine/engine.js"></script>
+<script>
+(async () => {
+  const D = await (await fetch('designs/index.json')).json(), $ = q => document.querySelector(q), $$ = q => [...document.querySelectorAll(q)];
+  const CUI = { burger: 'برغر', italian: 'إيطالي', grill: 'مشويات', cafe: 'مقهى', ramadan: 'رمضان' }, TONE = { dark: 'داكنة', light: 'فاتحة', warm: 'دافئة' };
+  const F = { set: 'all', fam: 'all', cui: 'all', tone: 'all' };
+  const fams = [...new Map(D.map(d => [d.family, d.familyName.ar])).entries()];
+  const chips = (box, key, opts) => { $(box).insertAdjacentHTML('beforeend', [['all', 'الكل'], ...opts].map(([v, t]) => `<button class="chip" data-k="${key}" data-v="${v}" aria-pressed="${v === 'all'}">${t}</button>`).join('')) };
+  chips('#fSet', 'set', [['interactive', 'تفاعلي'], ['display', 'للعرض فقط']]); chips('#fFam', 'fam', fams); chips('#fCui', 'cui', Object.entries(CUI)); chips('#fTone', 'tone', Object.entries(TONE));
+  const grid = $('#grid'), live = new Map();
+  grid.innerHTML = D.map(d => `<button class="tile" data-id="${d.id}" aria-label="${d.id} ${d.name.ar}"><div class="fr"><span class="badge">${d.set === 'interactive' ? 'تفاعلي' : 'عرض'}</span><div class="m" style="position:absolute;inset:0"></div></div><div class="cap"><span>${d.name.ar}<small>${d.familyName.ar}</small></span><b>${d.id}</b></div></button>`).join('');
+  const io = new IntersectionObserver(es => es.forEach(e => { const t = e.target, id = t.dataset.id, cfg = D.find(d => d.id === id);
+    if (e.isIntersecting) { let h = live.get(id); if (!h) { h = MenuEngine.mount(t.querySelector('.m'), cfg, { mode: 'thumb' }); live.set(id, h) } else h.play && h.play() }
+    else { const h = live.get(id); h && h.pause && h.pause() } }), { rootMargin: '200px' });
+  $$('.tile').forEach(t => io.observe(t));
+  const apply = () => { let n = 0; $$('.tile').forEach(t => { const d = D.find(x => x.id === t.dataset.id), tone = MENU_DATA.palettes[d.palette][5];
+    const ok = (F.set === 'all' || d.set === F.set) && (F.fam === 'all' || d.family === F.fam) && (F.cui === 'all' || d.cuisine === F.cui) && (F.tone === 'all' || tone === F.tone); t.hidden = !ok; n += ok });
+    $('#count').textContent = `${n} من ${D.length} تصميمًا` };
+  document.addEventListener('click', e => { const c = e.target.closest('.chip[data-k]'); if (!c) return; F[c.dataset.k] = c.dataset.v; $$(`.chip[data-k="${c.dataset.k}"]`).forEach(x => x.setAttribute('aria-pressed', x === c)); apply() });
+  apply();
+  /* preview overlay */
+  let cur = null, frame = 'phone', lang = 'ar', last = null;
+  const size = () => { const W = innerWidth - 24, H = innerHeight - 110, r = { phone: 9 / 19.5, tablet: 3 / 4, tv: 16 / 9 }[frame]; let w = Math.min(W, H * r), h = w / r; Object.assign($('#dev').style, { width: w + 'px', height: h + 'px', borderRadius: frame === 'tv' ? '10px' : '28px' }) };
+  const load = (rec) => { $('#ovF').src = `view.html?id=${cur.id}&lang=${lang}${rec ? '&record=1' : ''}` };
+  const open = id => { cur = D.find(d => d.id === id); last = document.activeElement; $('#ovName').textContent = `${cur.id} · ${cur.name.ar}`; $('#ovRec').hidden = cur.set !== 'display'; frame = cur.set === 'display' ? 'tv' : 'phone';
+    $$('.ov [data-frame]').forEach(b => b.setAttribute('aria-pressed', b.dataset.frame === frame)); size(); load(); $('#ov').classList.add('on'); document.body.style.overflow = 'hidden'; $('#ovX').focus() };
+  const close = () => { $('#ov').classList.remove('on'); $('#ovF').src = 'about:blank'; document.body.style.overflow = ''; last && last.focus() };
+  grid.addEventListener('click', e => { const t = e.target.closest('.tile'); if (t) open(t.dataset.id) });
+  $$('.ov [data-frame]').forEach(b => b.onclick = () => { frame = b.dataset.frame; $$('.ov [data-frame]').forEach(x => x.setAttribute('aria-pressed', x === b)); size() });
+  $('#ovLang').onclick = () => { lang = lang === 'ar' ? 'en' : 'ar'; $('#ovLang').textContent = lang === 'ar' ? 'English' : 'العربية'; load() };
+  $('#ovRec').onclick = () => load(true);
+  $('#ovX').onclick = close; addEventListener('keydown', e => { if (e.key === 'Escape' && $('#ov').classList.contains('on')) close() });
+  addEventListener('resize', () => $('#ov').classList.contains('on') && size());
+  const h = location.hash.slice(1); if (D.find(d => d.id === h)) open(h);
+})();
+</script>
+</body>
+</html>

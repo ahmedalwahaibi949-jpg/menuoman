@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>تصميم منيو</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="stylesheet" href="../assets/poster-fonts2.css">
+<link rel="stylesheet" href="../assets/menuza-fonts.css">
+<link rel="stylesheet" href="../assets/poster-fonts.css">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="engine/engine.css">
+<style>html,body{margin:0;height:100%;background:#000;overflow:hidden}#app{position:fixed;inset:0}</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="engine/data.js"></script>
+<script src="engine/engine.js"></script>
+<script>
+(async () => {
+  const q = new URLSearchParams(location.search), id = (q.get('id') || 'A-001').replace(/[^A-Z0-9-]/g, '');
+  const cfg = await (await fetch('designs/' + id + '.json')).json();
+  document.title = cfg.name.ar + ' · ' + cfg.id;
+  const lang = q.get('lang') === 'en' ? 'en' : 'ar';
+  await document.fonts.ready.catch(() => {});
+  MenuEngine.mount(document.getElementById('app'), cfg, { lang, record: q.get('record') === '1', onDone: () => parent.postMessage({ done: id }, '*') });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+ "id": "B-006",
+ "set": "display",
+ "family": "turntable",
+ "familyName": {
+  "ar": "المنصة الدوّارة",
+  "en": "Hero Turntable"
+ },
+ "name": {
+  "ar": "منصة الليل",
+  "en": "Night Stage"
+ },
+ "palette": "midnight-navy",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "grill"
+}

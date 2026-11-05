@@ -1,0 +1,19 @@
+{
+ "id": "B-017",
+ "set": "display",
+ "family": "stack",
+ "familyName": {
+  "ar": "بناء البرغر",
+  "en": "Stack Builder"
+ },
+ "name": {
+  "ar": "برج كحلي",
+  "en": "Navy Stack"
+ },
+ "palette": "navy-cream",
+ "fonts": [
+  "alex",
+  "anton"
+ ],
+ "cuisine": "burger"
+}

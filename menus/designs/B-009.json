@@ -1,0 +1,19 @@
+{
+ "id": "B-009",
+ "set": "display",
+ "family": "turntable",
+ "familyName": {
+  "ar": "المنصة الدوّارة",
+  "en": "Hero Turntable"
+ },
+ "name": {
+  "ar": "منصة القهوة",
+  "en": "Coffee Stage"
+ },
+ "palette": "espresso",
+ "fonts": [
+  "markazi",
+  "iserif"
+ ],
+ "cuisine": "cafe"
+}

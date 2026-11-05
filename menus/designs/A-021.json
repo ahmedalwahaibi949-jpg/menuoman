@@ -1,0 +1,20 @@
+{
+ "id": "A-021",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب البرغر",
+  "en": "Burger Doors"
+ },
+ "palette": "black-orange",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "burger",
+ "reveal": "doors"
+}

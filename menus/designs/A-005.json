@@ -1,0 +1,20 @@
+{
+ "id": "A-005",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود رمضان",
+  "en": "Ramadan Spine"
+ },
+ "palette": "lantern-indigo",
+ "fonts": [
+  "ruqaa",
+  "bodoni"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "curtain"
+}

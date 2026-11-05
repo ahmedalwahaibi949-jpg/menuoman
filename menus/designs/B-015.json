@@ -1,0 +1,19 @@
+{
+ "id": "B-015",
+ "set": "display",
+ "family": "explode",
+ "familyName": {
+  "ar": "انفجار المكوّنات",
+  "en": "Ingredient Explosion"
+ },
+ "name": {
+  "ar": "تشريح الكرافت",
+  "en": "Kraft Anatomy"
+ },
+ "palette": "kraft",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "burger"
+}

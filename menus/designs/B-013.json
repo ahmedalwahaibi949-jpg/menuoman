@@ -1,0 +1,19 @@
+{
+ "id": "B-013",
+ "set": "display",
+ "family": "explode",
+ "familyName": {
+  "ar": "انفجار المكوّنات",
+  "en": "Ingredient Explosion"
+ },
+ "name": {
+  "ar": "انفجار الفحم",
+  "en": "Ember Burst"
+ },
+ "palette": "black-orange",
+ "fonts": [
+  "alex",
+  "anton"
+ ],
+ "cuisine": "burger"
+}

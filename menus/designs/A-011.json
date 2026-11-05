@@ -1,0 +1,20 @@
+{
+ "id": "A-011",
+ "set": "interactive",
+ "family": "susan",
+ "familyName": {
+  "ar": "الطاولة الدوّارة",
+  "en": "Lazy Susan"
+ },
+ "name": {
+  "ar": "صينية الجوز",
+  "en": "Walnut Table"
+ },
+ "palette": "walnut",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "cafe",
+ "reveal": "curtain"
+}

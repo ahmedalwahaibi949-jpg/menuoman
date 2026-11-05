@@ -1,0 +1,19 @@
+{
+ "id": "B-004",
+ "set": "display",
+ "family": "spine-parade",
+ "familyName": {
+  "ar": "موكب العمود",
+  "en": "Spine Parade"
+ },
+ "name": {
+  "ar": "موكب الحجر",
+  "en": "Stone Parade"
+ },
+ "palette": "stone",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "grill"
+}

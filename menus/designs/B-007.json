@@ -1,0 +1,19 @@
+{
+ "id": "B-007",
+ "set": "display",
+ "family": "turntable",
+ "familyName": {
+  "ar": "المنصة الدوّارة",
+  "en": "Hero Turntable"
+ },
+ "name": {
+  "ar": "منصة النبيذي",
+  "en": "Oxblood Stage"
+ },
+ "palette": "oxblood",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "burger"
+}

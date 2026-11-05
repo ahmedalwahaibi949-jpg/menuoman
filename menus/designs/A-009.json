@@ -1,0 +1,20 @@
+{
+ "id": "A-009",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الزيتون",
+  "en": "Olive Orbit"
+ },
+ "palette": "olive-sand",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "grill",
+ "reveal": "doors"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "A-013",
+ "set": "interactive",
+ "family": "susan",
+ "familyName": {
+  "ar": "الطاولة الدوّارة",
+  "en": "Lazy Susan"
+ },
+ "name": {
+  "ar": "طاولة السماء",
+  "en": "Sky Table"
+ },
+ "palette": "sky",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "burger",
+ "reveal": "dive"
+}

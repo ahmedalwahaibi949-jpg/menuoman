@@ -1,0 +1,20 @@
+{
+ "id": "A-020",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "كتاب الحلويات",
+  "en": "Sweets Book"
+ },
+ "palette": "lilac",
+ "fonts": [
+  "alex",
+  "iserif"
+ ],
+ "cuisine": "cafe",
+ "reveal": "page"
+}

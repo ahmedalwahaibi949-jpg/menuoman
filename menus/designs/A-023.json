@@ -1,0 +1,20 @@
+{
+ "id": "A-023",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب الورد",
+  "en": "Rose Doors"
+ },
+ "palette": "rose-copper",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "cafe",
+ "reveal": "circle"
+}

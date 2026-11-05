@@ -1,0 +1,19 @@
+{
+ "id": "B-012",
+ "set": "display",
+ "family": "explode",
+ "familyName": {
+  "ar": "انفجار المكوّنات",
+  "en": "Ingredient Explosion"
+ },
+ "name": {
+  "ar": "انفجار الطماطم",
+  "en": "Tomato Burst"
+ },
+ "palette": "tomato",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "burger"
+}

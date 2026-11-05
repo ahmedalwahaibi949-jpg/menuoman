@@ -1,0 +1,19 @@
+{
+ "id": "B-022",
+ "set": "display",
+ "family": "pour",
+ "familyName": {
+  "ar": "البخار والسكب",
+  "en": "Steam & Pour"
+ },
+ "name": {
+  "ar": "سكب الإسبريسو",
+  "en": "Espresso Pour"
+ },
+ "palette": "espresso",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "cafe"
+}

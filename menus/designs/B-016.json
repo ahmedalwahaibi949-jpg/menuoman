@@ -1,0 +1,19 @@
+{
+ "id": "B-016",
+ "set": "display",
+ "family": "stack",
+ "familyName": {
+  "ar": "بناء البرغر",
+  "en": "Stack Builder"
+ },
+ "name": {
+  "ar": "برج الخردل",
+  "en": "Mustard Stack"
+ },
+ "palette": "mustard",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "burger"
+}

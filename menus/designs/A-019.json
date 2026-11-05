@@ -1,0 +1,20 @@
+{
+ "id": "A-019",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "مجلة البرغر",
+  "en": "Burger Journal"
+ },
+ "palette": "navy-cream",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "burger",
+ "reveal": "doors"
+}

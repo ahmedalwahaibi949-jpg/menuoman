@@ -1,0 +1,20 @@
+{
+ "id": "A-010",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الفيروز",
+  "en": "Teal Orbit"
+ },
+ "palette": "teal-coral",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "cafe",
+ "reveal": "blinds"
+}

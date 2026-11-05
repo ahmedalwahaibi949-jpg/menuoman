@@ -1,0 +1,20 @@
+{
+ "id": "A-008",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الحلا",
+  "en": "Blush Orbit"
+ },
+ "palette": "blush",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "cafe",
+ "reveal": "circle"
+}

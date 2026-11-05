@@ -1,0 +1,20 @@
+{
+ "id": "A-007",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الفحم",
+  "en": "Charcoal Orbit"
+ },
+ "palette": "charcoal-mustard",
+ "fonts": [
+  "alex",
+  "archivo"
+ ],
+ "cuisine": "burger",
+ "reveal": "iris"
+}

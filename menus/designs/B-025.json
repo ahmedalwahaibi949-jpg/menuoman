@@ -1,0 +1,19 @@
+{
+ "id": "B-025",
+ "set": "display",
+ "family": "pour",
+ "familyName": {
+  "ar": "البخار والسكب",
+  "en": "Steam & Pour"
+ },
+ "name": {
+  "ar": "سكب الورد",
+  "en": "Rose Pour"
+ },
+ "palette": "rose-copper",
+ "fonts": [
+  "markazi",
+  "iserif"
+ ],
+ "cuisine": "cafe"
+}

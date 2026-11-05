@@ -1,0 +1,20 @@
+{
+ "id": "A-002",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "تراتوريا الطين",
+  "en": "Clay Trattoria"
+ },
+ "palette": "terracotta",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "italian",
+ "reveal": "doors"
+}

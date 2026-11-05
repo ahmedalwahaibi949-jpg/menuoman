@@ -1,0 +1,19 @@
+{
+ "id": "B-008",
+ "set": "display",
+ "family": "turntable",
+ "familyName": {
+  "ar": "المنصة الدوّارة",
+  "en": "Hero Turntable"
+ },
+ "name": {
+  "ar": "منصة الزمرد",
+  "en": "Emerald Stage"
+ },
+ "palette": "emerald-gold",
+ "fonts": [
+  "ruqaa",
+  "play"
+ ],
+ "cuisine": "ramadan"
+}

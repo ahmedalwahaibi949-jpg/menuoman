@@ -1,0 +1,19 @@
+{
+ "id": "B-003",
+ "set": "display",
+ "family": "spine-parade",
+ "familyName": {
+  "ar": "موكب العمود",
+  "en": "Spine Parade"
+ },
+ "name": {
+  "ar": "موكب الإسبريسو",
+  "en": "Espresso Parade"
+ },
+ "palette": "espresso",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "cafe"
+}

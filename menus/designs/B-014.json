@@ -1,0 +1,19 @@
+{
+ "id": "B-014",
+ "set": "display",
+ "family": "explode",
+ "familyName": {
+  "ar": "انفجار المكوّنات",
+  "en": "Ingredient Explosion"
+ },
+ "name": {
+  "ar": "انفجار السماء",
+  "en": "Sky Burst"
+ },
+ "palette": "sky",
+ "fonts": [
+  "lalezar",
+  "brico"
+ ],
+ "cuisine": "burger"
+}

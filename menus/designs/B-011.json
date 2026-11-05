@@ -1,0 +1,19 @@
+{
+ "id": "B-011",
+ "set": "display",
+ "family": "explode",
+ "familyName": {
+  "ar": "انفجار المكوّنات",
+  "en": "Ingredient Explosion"
+ },
+ "name": {
+  "ar": "تشريح البرغر",
+  "en": "Burger Anatomy"
+ },
+ "palette": "charcoal-mustard",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "burger"
+}
