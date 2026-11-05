@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>منيو عُمان · منيو يشد زبونك</title>
+<meta name="description" content="أصمم منيو QR وشاشة عرض يتحرك لمطعمك أو كوفيك. أكثر من ٨٢ نمط، والطلب على واتساب.">
+<meta name="robots" content="noindex">
+<link rel="preload" href="../assets/reel/menus.webp" as="image">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="stylesheet" href="../assets/poster-fonts2.css">
+<style>
+:root{--bg:#F5F8EF;--green:#08482D;--mint:#DAE7C7;--ink:#101410;--sub:#5E5E61;--u:min(calc(100vw / 1440),calc(100vh / 1080));
+ --dsp:'Alexandria','Readex Pro',sans-serif;--txt:'Readex Pro','IBM Plex Sans Arabic',sans-serif;--hand:'Marhey','Readex Pro',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg)}
+body{font-family:var(--txt);color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased;display:grid;place-items:center}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:8px}
+::selection{background:var(--green);color:#fff}
+.frame{position:relative;width:calc(1440 * var(--u));height:calc(1080 * var(--u));overflow:hidden}
+.ab{position:absolute}
+.logo{right:calc(37*var(--u));top:calc(36*var(--u));display:flex;align-items:center;gap:calc(10*var(--u));font:800 calc(22*var(--u)) var(--dsp);color:var(--ink)}
+.logo svg{width:calc(28*var(--u));height:calc(28*var(--u))}
+.nav{right:calc(505*var(--u));top:calc(40*var(--u));display:flex;gap:calc(31*var(--u));font:500 calc(16.4*var(--u)) var(--txt)}
+.nav a{padding:calc(4*var(--u)) 0}.nav a:hover{color:var(--green)}
+.pill{display:inline-grid;place-items:center;border-radius:999px;font:500 calc(15*var(--u)) var(--txt);height:calc(40*var(--u));padding:0 calc(18*var(--u));white-space:nowrap}
+.login{left:calc(152*var(--u));width:calc(112*var(--u));top:calc(29*var(--u));background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgba(16,20,16,.08)}
+.signup{left:calc(36*var(--u));width:calc(108*var(--u));top:calc(29*var(--u));background:var(--green);color:#fff}
+.badge{left:50%;transform:translateX(-50%);top:calc(115*var(--u));height:calc(37*var(--u));padding:0 calc(18*var(--u));border-radius:999px;background:var(--mint);color:var(--green);font:500 calc(16.6*var(--u)) var(--txt);display:flex;align-items:center;gap:calc(8*var(--u));white-space:nowrap}
+.badge i{width:calc(7*var(--u));height:calc(7*var(--u));border-radius:50%;background:var(--green)}
+h1{left:0;right:0;top:calc(170*var(--u));text-align:center;font:800 calc(84*var(--u))/calc(108*var(--u)) var(--dsp);letter-spacing:-.01em;color:var(--ink)}
+h1 span{display:block}
+h1 em{font-style:normal;color:var(--green)}
+.subl{left:0;right:0;top:calc(400*var(--u));text-align:center;font:400 calc(20.8*var(--u))/calc(34*var(--u)) var(--txt);color:var(--sub)}
+.note{font:600 calc(30*var(--u))/1.25 var(--hand);color:var(--green);white-space:nowrap}
+.n1{left:calc(1440*var(--u) - 1212*var(--u) - 190*var(--u));top:calc(300*var(--u));transform:rotate(-12deg)}
+.n2{left:calc(1440*var(--u) - 521*var(--u) - 60*var(--u));top:calc(930*var(--u));transform:rotate(-14deg);font-size:calc(27*var(--u))}
+.doodle{fill:none;stroke:var(--green);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cta{left:50%;transform:translateX(-50%);top:calc(901*var(--u));width:calc(190*var(--u));height:calc(74*var(--u));border-radius:999px;border:1.5px dashed var(--green);display:grid;place-items:center}
+.cta a{width:calc(172*var(--u));height:calc(58*var(--u));border-radius:999px;background:var(--green);color:#fff;display:grid;place-items:center;font:600 calc(18*var(--u)) var(--txt);transition:transform .2s}
+.cta a:hover{transform:scale(1.03)}
+.row{left:0;top:0;width:100%;height:100%;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.row.drag{cursor:grabbing}
+.card{position:absolute;overflow:hidden;background:#e7eedc;will-change:clip-path,transform}
+.card .tile{position:absolute;left:0;top:0;transform-origin:0 0}
+.card .tile video,.card .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.card video{opacity:0;transition:opacity .4s}.card video.ready{opacity:1}
+.play{position:absolute;width:calc(30*var(--u));height:calc(30*var(--u));border-radius:50%;background:rgba(255,255,255,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;pointer-events:none}
+.play svg{width:42%;height:42%;fill:#fff;margin-left:8%}
+.mtop,.mcopy,.mbot{display:none}
+
+@media (max-width:820px){
+ body{overflow-x:hidden;overflow-y:auto;display:block}
+ .frame{width:100%;height:auto;min-height:100dvh;overflow:visible;display:flex;flex-direction:column;align-items:center;padding:14px 0 28px}
+ .frame>.ab:not(.row){display:none}
+ .mtop{display:flex;width:100%;justify-content:space-between;align-items:center;padding:0 16px}
+ .mtop .logo,.mtop .signup{position:static;transform:none}
+ .mtop .logo{font-size:19px;gap:8px}.mtop .logo svg{width:24px;height:24px}
+ .mtop .signup{height:40px;font-size:14px;padding:0 16px;width:auto}
+ .mcopy{display:block;text-align:center;padding:26px 16px 0}
+ .mcopy .badge{position:static;transform:none;display:inline-flex;height:32px;font-size:13.5px;padding:0 14px;gap:7px}.mcopy .badge i{width:6px;height:6px}
+ .mcopy h1{position:static;font-size:clamp(34px,9.6vw,52px);line-height:1.3;margin-top:16px}
+ .mcopy .subl{position:static;font-size:15.5px;line-height:1.75;margin-top:12px}
+ .row{position:relative!important;width:100%;height:270px;margin-top:20px;overflow:hidden}
+ .mbot{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:18px}
+ .mbot .cta{position:static;transform:none;width:190px;height:74px}.mbot .cta a{width:172px;height:58px;font-size:17px}
+ .mbot .note{position:static;transform:rotate(-6deg);font-size:22px}
+ .play{width:24px;height:24px}
+}
+@media (prefers-reduced-motion:reduce){.card video{display:none}}
+</style>
+</head>
+<body>
+<main class="frame" id="frame">
+ <a class="ab logo" href="../v2/"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="5" width="18" height="18" rx="3" transform="rotate(45 14 14)" fill="none" stroke="#08482D" stroke-width="2.4"/><rect x="10.5" y="10.5" width="7" height="7" rx="1" transform="rotate(45 14 14)" fill="#08482D"/></svg>منيو عُمان</a>
+ <nav class="ab nav" aria-label="أقسام الموقع"><a href="../v2/#styles">الأنماط</a><a href="../v2/#price">الباقات</a><a href="../nana/">أعمالي</a><a href="../v2/#faq">أسئلة</a><a href="#" data-wa>تواصل</a></nav>
+ <a class="ab pill login" href="../nana/">شوف شغلي</a>
+ <a class="ab pill signup" href="#" data-wa>اطلب منيوك</a>
+ <div class="ab badge"><i></i>أكثر من ٨٢ نمط منيو يتحرك</div>
+ <h1 class="ab"><span>منيو يشد زبونك</span><span>من <em>أول لمسة</em></span></h1>
+ <p class="ab subl">أصمم منيو QR وشاشة عرض لمطعمك أو كوفيك، بأطباقك وألوانك.<br>كل طبق يتحرك تحت إصبع الزبون، والطلب يوصلك على واتساب.<br>اختر النمط اللي يعجبك وأرسل لي رقمه.</p>
+
+ <svg class="ab doodle" id="dd1" style="left:calc(1440*var(--u) - 263*var(--u) - 40*var(--u));top:calc(370*var(--u));width:calc(40*var(--u));height:calc(40*var(--u))" viewBox="0 0 40 40" aria-hidden="true"><path d="M14 6 6 34"/><path d="M28 6 20 34"/></svg>
+ <div class="ab note n1" id="n1">شوف الأكل<br>يتحرك</div>
+ <svg class="ab doodle" id="dd2" style="left:calc(160*var(--u));top:calc(400*var(--u));width:calc(130*var(--u));height:calc(190*var(--u))" viewBox="0 0 130 190" aria-hidden="true"><path d="M70 6C112 30 120 82 92 116 74 138 48 146 34 176"/><path d="M26 160 33 178 52 172"/></svg>
+ <div class="ab note n2" id="n2">بدون تطبيق</div>
+ <svg class="ab doodle" id="dd3" style="left:calc(1440*var(--u) - 590*var(--u));top:calc(900*var(--u));width:calc(70*var(--u));height:calc(60*var(--u))" viewBox="0 0 70 60" aria-hidden="true"><path d="M60 40C46 50 26 46 14 26"/><path d="M8 34 13 24 24 27"/></svg>
+ <div class="ab cta"><a href="#" data-wa>صمّم منيوك</a></div>
+
+ <div class="mtop"><a class="logo" href="../v2/"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="5" width="18" height="18" rx="3" transform="rotate(45 14 14)" fill="none" stroke="#08482D" stroke-width="2.4"/><rect x="10.5" y="10.5" width="7" height="7" rx="1" transform="rotate(45 14 14)" fill="#08482D"/></svg>منيو عُمان</a><a class="pill signup" href="#" data-wa>اطلب منيوك</a></div>
+ <div class="mcopy"><div class="badge"><i></i>أكثر من ٨٢ نمط منيو يتحرك</div><h1><span>منيو يشد زبونك</span><span>من <em>أول لمسة</em></span></h1><p class="subl">أصمم منيو QR وشاشة عرض لمطعمك أو كوفيك، بأطباقك وألوانك. كل طبق يتحرك، والطلب يوصلك على واتساب.</p></div>
+
+ <div class="ab row" id="row" aria-label="نماذج منيو تتحرك. اسحب للتصفح"></div>
+
+ <div class="mbot"><div class="cta"><a href="#" data-wa>صمّم منيوك</a></div><div class="note">بدون تطبيق</div></div>
+</main>
+<script>
+const WA='https://wa.me/96895989547?text='+encodeURIComponent('السلام عليكم، شفت موقعك وأبي منيو يتحرك لمطعمي.');
+document.querySelectorAll('[data-wa]').forEach(a=>{a.href=WA;a.target='_blank';a.rel='noopener'});
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SRC='../assets/reel/menus.mp4',POSTER='../assets/reel/menus.webp';
+/* tile -> style number in the full catalogue (row-major, left to right) */
+const TILE=[[53,'it'],[5,'it'],[35,'it'],[27,'it'],[1,'it'],[47,'bg'],[12,'bg'],[62,'bg'],[14,'bg'],[4,'bg']];
+const N=10,PITCH=196,row=document.getElementById('row'),frame=document.getElementById('frame');
+const cards=[];
+for(let i=0;i<N;i++){const a=document.createElement('a');a.className='card';a.href=`../v2/?food=${TILE[i][1]}#s${TILE[i][0]}`;a.draggable=false;a.setAttribute('aria-label','نمط رقم '+TILE[i][0]);
+ a.innerHTML=`<div class="tile"><img src="${POSTER}" alt="" draggable="false">${RM?'':`<video src="${SRC}" muted loop playsinline preload="auto"></video>`}</div><span class="play"><svg viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z"/></svg></span>`;
+ row.appendChild(a);const v=a.querySelector('video');if(v){v.addEventListener('loadeddata',()=>v.classList.add('ready'),{once:true});v.play().catch(()=>{})}
+ cards.push({el:a,tile:a.firstChild,play:a.querySelector('.play'),v,col:i%5,r:Math.floor(i/5)})}
+/* keep videos on one timestamp */
+setInterval(()=>{const m=cards[0].v;if(!m||m.readyState<2)return;cards.forEach(c=>{if(c.v&&c.v!==m&&Math.abs(c.v.currentTime-m.currentTime)>.08)c.v.currentTime=m.currentTime})},1500);
+
+/* rounded quad path */
+function quad(p,r){let d='';for(let i=0;i<4;i++){const a=p[(i+3)%4],b=p[i],c=p[(i+1)%4];
+ const l1=Math.hypot(b[0]-a[0],b[1]-a[1]),l2=Math.hypot(c[0]-b[0],c[1]-b[1]),k1=Math.min(r,l1/2)/l1,k2=Math.min(r,l2/2)/l2;
+ const s=[b[0]+(a[0]-b[0])*k1,b[1]+(a[1]-b[1])*k1],e=[b[0]+(c[0]-b[0])*k2,b[1]+(c[1]-b[1])*k2];
+ d+=(i?'L':'M')+s[0].toFixed(1)+' '+s[1].toFixed(1)+'Q'+b[0].toFixed(1)+' '+b[1].toFixed(1)+' '+e[0].toFixed(1)+' '+e[1].toFixed(1)}return d+'Z'}
+
+let off=0,vel=0,drag=null,lastT=null;
+const mobile=()=>innerWidth<=820;
+function layout(){const mob=mobile();
+ const W=mob?row.clientWidth:frame.clientWidth,u=mob?W/640:W/1440,CX=mob?320:720,R=mob?306:706,CY=mob?(row.clientHeight/u)/2+8:687;
+ const span=N*PITCH;
+ cards.forEach((c,k)=>{let t=((k*PITCH-off)%span+span)%span-span/2;
+  const x=CX+t*(1+.083*(t/R)**2),d=Math.min(1.4,Math.abs(x-CX)/R),w=170+48*d*d;
+  const xl=x-w/2,xr=x+w/2,ql=Math.min(1.4,Math.abs(xl-CX)/R),qr=Math.min(1.4,Math.abs(xr-CX)/R);
+  const hl=280+92*ql**2.6,hr=280+92*qr**2.6,cy=CY-12*d*d,H=Math.max(hl,hr);
+  const bx=xl*u,by=(cy-H/2)*u,bw=w*u,bh=H*u;
+  const P=[[0,(H-hl)/2*u],[bw,(H-hr)/2*u],[bw,(H+hr)/2*u],[0,(H+hl)/2*u]];
+  const el=c.el.style;el.left=bx+'px';el.top=by+'px';el.width=bw+'px';el.height=bh+'px';el.clipPath=`path('${quad(P,15*u)}')`;
+  el.visibility=(xr<-60||xl>(mob?700:1500))?'hidden':'visible';
+  const th=Math.max(bh,bw/0.75),tw=th*0.75;
+  const ts=c.tile.style;ts.width=5*tw+'px';ts.height=2*th+'px';ts.left=((bw-tw)/2-c.col*tw)+'px';ts.top=((bh-th)/2-c.r*th)+'px';
+  const ps=c.play.style,pb=Math.min(hl,hr);ps.left=(12*u)+'px';ps.top=((H+Math.min(hl,hr))/2*u-(12+30)*u*(mob?.8:1))+'px'})}
+
+/* time from a long-running animation clock */
+const clock=document.documentElement.animate([{opacity:1},{opacity:1}],{duration:1e9});
+function tick(){const now=clock.currentTime||0;const dt=lastT==null?0:Math.min(.05,(now-lastT)/1000);lastT=now;
+ if(!drag){off+=vel*dt;vel*=Math.pow(.05,dt);if(!RM)off+=50*dt}
+ layout();requestAnimationFrame(tick)}
+requestAnimationFrame(tick);
+/* drag */
+let moved=0;
+row.addEventListener('pointerdown',e=>{const u=mobile()?row.clientWidth/640:frame.clientWidth/1440;drag={x:e.clientX,u,t:performance.now()};moved=0;vel=0;row.setPointerCapture(e.pointerId);row.classList.add('drag')});
+row.addEventListener('pointermove',e=>{if(!drag)return;const dx=(e.clientX-drag.x)/drag.u,now=performance.now(),dts=Math.max(.008,(now-drag.t)/1000);off-=dx;vel=-dx/dts;moved+=Math.abs(dx);drag.x=e.clientX;drag.t=now});
+const end=()=>{if(!drag)return;drag=null;row.classList.remove('drag');vel=Math.max(-2600,Math.min(2600,vel))};
+row.addEventListener('pointerup',end);row.addEventListener('pointercancel',end);
+row.addEventListener('click',e=>{if(moved>6){e.preventDefault();e.stopPropagation()}},true);
+
+/* entrance */
+if(!RM){const A=(sel,kf,o)=>document.querySelectorAll(sel).forEach(el=>el.animate(kf,{fill:'both',easing:'cubic-bezier(.2,.8,.2,1)',...o}));
+ A('.nav,.logo,.pill',[{opacity:0,translate:'0 -14px'},{opacity:1,translate:'0 0'}],{duration:600});
+ A('.badge',[{opacity:0,scale:.8},{opacity:1,scale:1}],{duration:500,delay:150});
+ document.querySelectorAll('h1 span').forEach((s,i)=>s.animate([{opacity:0,filter:'blur(12px)',transform:'translateY(24px)'},{opacity:1,filter:'blur(0)',transform:'none'}],{duration:800,delay:260+i*140,fill:'both',easing:'cubic-bezier(.2,.8,.2,1)'}));
+ A('.subl',[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:700,delay:560});
+ A('#row',[{opacity:0,transform:'translateY(60px)'},{opacity:1,transform:'none'}],{duration:1000,delay:650});
+ A('.cta',[{opacity:0,scale:.7},{opacity:1,scale:1}],{duration:600,delay:950});
+ document.querySelectorAll('.doodle path').forEach((p,i)=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:900,delay:1150+i*160,fill:'both',easing:'ease-out'})});
+ A('.note',[{opacity:0},{opacity:1}],{duration:700,delay:1300})}
+</script>
+</body>
+</html>
