@@ -1,5 +1,5 @@
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>منيو عُمان · منيو يشد زبونك من أول لمسة</title>
+<title>منيو عُمان · ماذا لو تحرّكت قائمة مطعمك؟</title>
 <meta name="description" content="أصمم منيو QR وشاشة عرض لمطعمك أو كوفيك، بأطباقك وألوانك. ٨٢ نمط حركة، والطلب والتعديل على واتساب.">
 <meta name="theme-color" content="#F5F8EF">
 <link rel="canonical" href="https://ahmedalwahaibi949-jpg.github.io/menuoman/v2/">
@@ -57,8 +57,8 @@ h1,h2,h3{font-family:var(--dsp);font-weight:800;line-height:1.25;text-wrap:balan
 .stagewrap{position:relative;padding:18px}
 .stagewrap::before{content:"";position:absolute;inset:-8px -26px -4px;border:1.5px dashed rgba(8,72,45,.35);border-radius:50% 50% 26px 26px/22% 22% 26px 26px;pointer-events:none}
 .stagewrap::after{content:"";position:absolute;inset:-36px -54px -18px;border-radius:50% 50% 40px 40px/24% 24% 40px 40px;background:radial-gradient(closest-side,rgba(8,72,45,.22),transparent);z-index:-1;pointer-events:none}
-.stage{height:min(78vh,780px,calc((100vw - 2*clamp(16px,4vw,40px))*1.3333));aspect-ratio:3/4;position:relative;cursor:pointer;border-radius:22px;box-shadow:0 30px 70px rgba(16,40,24,.2),0 0 0 1px rgba(16,20,16,.06);overflow:hidden}
-.stage .pz{position:absolute;inset:0;border-radius:inherit}
+.stage{height:min(78vh,780px,calc((100vw - 2*clamp(16px,4vw,40px))*1.3333));aspect-ratio:3/4;position:relative;cursor:pointer;border-radius:22px;overflow:visible}
+.stage .pz{position:absolute;inset:0;border-radius:inherit;box-shadow:0 30px 70px rgba(16,40,24,.2),0 0 0 1px rgba(16,20,16,.06)}
 .hint{position:absolute;top:14px;left:14px;z-index:12;background:rgba(0,0,0,.55);color:#fff;font-size:13px;padding:5px 14px;border-radius:20px;pointer-events:none;transition:opacity .4s}
 .stage.tapped .hint{opacity:0}
 .pause{position:absolute;z-index:14;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;display:grid;place-items:center}.pause svg{width:18px;height:18px}
@@ -133,8 +133,8 @@ h1,h2,h3{font-family:var(--dsp);font-weight:800;line-height:1.25;text-wrap:balan
 .r-n1{left:calc(38*var(--u));top:calc(300*var(--u));transform:rotate(-12deg)}
 .r-n2{left:calc(859*var(--u));top:calc(930*var(--u));transform:rotate(-14deg);font-size:calc(27*var(--u))}
 .r-doodle{fill:none;stroke:var(--rg);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.r-cta{left:50%;transform:translateX(-50%);top:calc(901*var(--u));width:calc(190*var(--u));height:calc(74*var(--u));border-radius:999px;border:1.5px dashed var(--rg);display:grid;place-items:center}
-.r-cta a{width:calc(172*var(--u));height:calc(58*var(--u));border-radius:999px;background:var(--rg);color:#fff;display:grid;place-items:center;font:600 calc(18*var(--u)) var(--txt);text-decoration:none;transition:transform .2s}
+.r-cta{left:50%;transform:translateX(-50%);top:calc(901*var(--u));width:calc(250*var(--u));height:calc(74*var(--u));border-radius:999px;border:1.5px dashed var(--rg);display:grid;place-items:center}
+.r-cta a{width:calc(232*var(--u));height:calc(58*var(--u));border-radius:999px;background:var(--rg);color:#fff;display:grid;place-items:center;font:600 calc(18*var(--u)) var(--txt);text-decoration:none;transition:transform .2s}
 .r-cta a:hover{transform:scale(1.03)}
 .r-row{left:0;top:0;width:100%;height:100%;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .r-row.drag{cursor:grabbing}
@@ -159,7 +159,7 @@ h1,h2,h3{font-family:var(--dsp);font-weight:800;line-height:1.25;text-wrap:balan
  .r-mcopy .r-subl{position:static;font-size:15.5px;line-height:1.75;margin-top:12px}
  .r-row{position:relative!important;width:100%;height:270px;margin-top:20px;overflow:hidden}
  .r-mbot{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:18px}
- .r-mbot .r-cta{position:static;transform:none;width:190px;height:74px}.r-mbot .r-cta a{width:172px;height:58px;font-size:17px}
+ .r-mbot .r-cta{position:static;transform:none;width:236px;height:74px}.r-mbot .r-cta a{width:218px;height:58px;font-size:17px}
  .r-mbot .r-note{position:static;transform:rotate(-6deg);font-size:22px}
  .r-play{width:24px;height:24px}
 }
@@ -174,6 +174,57 @@ body.past .top{transform:none}
 .atlas ul{list-style:none;display:grid;gap:8px;margin:0 0 26px;color:var(--mute)}
 .atlas li{padding-inline-start:20px;position:relative}.atlas li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:8px;height:8px;border-radius:50%;background:var(--hot)}
 @media(max-width:820px){.atlas{grid-template-columns:1fr}}
+
+/* ===== menu covers ===== */
+@property --bl{syntax:'<percentage>';inherits:false;initial-value:0%}
+.pz .cv{position:absolute;inset:0;z-index:30;perspective:140cqw}
+.pz .cvh{position:absolute;inset:0;background:var(--cvb);color:var(--cvf);overflow:hidden;backface-visibility:hidden}
+.pz .cv[data-t="0"] .cvh{clip-path:inset(0 50% 0 0)}.pz .cv[data-t="0"] .cvh2{clip-path:inset(0 0 0 50%)}
+.pz .cv[data-t="0"]::after{content:"";position:absolute;left:50%;top:6cqw;bottom:6cqw;width:.35cqw;margin-left:-.17cqw;background:linear-gradient(var(--cvf) 0 12%,transparent 12% 52%,var(--cvf) 52%);opacity:.22;z-index:2}
+.pz .cv[data-t="1"] .cvw{top:40cqw}.pz .cv[data-t="1"] .cvs{top:90cqw}.pz .cv[data-t="1"] .cvp{top:103cqw}.pz .cv[data-t="1"] .cvt{top:auto;bottom:10cqw}
+.pz .cv[data-t="1"] .cvd{left:-12cqw;top:-10cqw;bottom:auto;width:58cqw;height:44cqw;transform:rotate(18deg)}
+.pz .cv[data-t="4"] .cvw{color:transparent;-webkit-text-stroke:.6cqw var(--cvf)}
+.pz .cv[data-t="2"] .cvi::before{inset:6cqw;border-width:.9cqw;border-style:double;opacity:.4}
+.pz .cv[data-t="5"] .cvw{font-size:38cqw;top:16cqw}.pz .cv[data-t="5"] .cvs{top:74cqw}
+.pz .cv[data-t="2"]{-webkit-mask:repeating-linear-gradient(to bottom,#000 0 calc(16.7% - var(--bl)),transparent calc(16.7% - var(--bl)) 16.7%);mask:repeating-linear-gradient(to bottom,#000 0 calc(16.7% - var(--bl)),transparent calc(16.7% - var(--bl)) 16.7%)}
+.pz .cv[data-t="3"] .cvh{transform-origin:100% 50%}
+.pz .cvi{position:absolute;inset:0}
+.pz .cvi::before{content:"";position:absolute;inset:4cqw;border:.35cqw solid currentColor;border-radius:2.4cqw;opacity:.32}
+.pz .cvi::after{content:"";position:absolute;left:50%;top:4cqw;width:7cqw;height:7cqw;margin:-3.5cqw;background:var(--cvb);border:.35cqw solid currentColor;transform:rotate(45deg);opacity:.9}
+.pz .cvt{position:absolute;top:12cqw;left:8cqw;right:8cqw;text-align:center;font:500 3.1cqw/1.3 'Playfair Display',serif;letter-spacing:.32em;text-transform:uppercase;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr}
+.pz .cvw{position:absolute;top:20cqw;left:0;right:0;text-align:center;font-size:31cqw;line-height:1.3;font-weight:700;direction:rtl}
+.pz .cvs{position:absolute;top:70cqw;left:6cqw;right:6cqw;text-align:center;font:500 4.4cqw/1.4 'Readex Pro',sans-serif;opacity:.9;direction:rtl}
+.pz .cvd{position:absolute;width:66cqw;height:48cqw;object-fit:contain;left:17cqw;bottom:-16cqw;transform:rotate(-8deg);filter:drop-shadow(0 2cqw 3cqw rgba(0,0,0,.35))}
+.pz .cv[data-t="1"] .cvd,.pz .cv[data-t="4"] .cvd{left:-14cqw;bottom:-8cqw;transform:rotate(16deg)}
+.pz .cv[data-t="3"] .cvd,.pz .cv[data-t="5"] .cvd{left:auto;right:-16cqw;bottom:-6cqw;transform:rotate(-18deg)}
+.pz .cvp{position:absolute;left:50%;top:84cqw;transform:translateX(-50%);background:var(--cvf);color:var(--cvb);font:600 3.8cqw/1 'Readex Pro',sans-serif;border-radius:10cqw;padding:2.2cqw 5cqw;white-space:nowrap;direction:rtl}
+.stage .pz .cvp{animation:cvp 2.2s ease-in-out infinite}
+@keyframes cvp{50%{transform:translateX(-50%) scale(1.08)}}
+.stage .pz .cvd{animation:peek 3.4s ease-in-out infinite}
+@keyframes peek{50%{translate:0 -2.4cqw}}
+/* in-menu controls */
+.pz .pui{position:absolute;top:3cqw;left:3cqw;right:3cqw;z-index:25;display:flex;gap:2cqw;align-items:center;pointer-events:none;direction:ltr}
+.pz .pui .sp{flex:1}
+.pz .pbtn{pointer-events:auto;min-width:11cqw;height:11cqw;border-radius:6cqw;background:rgba(0,0,0,.52);color:#fff;border:0;display:inline-flex;align-items:center;justify-content:center;gap:1.4cqw;font:600 3.6cqw 'Readex Pro',sans-serif;padding:0 3.4cqw;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.pz .pbtn svg{width:4.8cqw;height:4.8cqw;flex:none}
+.pz.closed .pui,.pz.closed .psh{display:none}
+.pz .psh{position:absolute;left:0;right:0;bottom:0;z-index:26;max-height:72%;background:var(--bg);color:var(--ink);border-radius:5cqw 5cqw 0 0;box-shadow:0 -2cqw 7cqw rgba(0,0,0,.28);padding:3cqw 4cqw 4cqw;direction:rtl;overflow:auto;transform:translateY(105%);visibility:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),visibility 0s .5s}
+.pz .psh.on{transform:none;visibility:visible;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.pz .psh h4{font:700 4.4cqw 'Alexandria',sans-serif;margin:1cqw 1cqw 2cqw;display:flex;justify-content:space-between;align-items:center}
+.pz .psh h4 i{width:12cqw;height:1cqw;border-radius:1cqw;background:currentColor;opacity:.25;position:absolute;left:50%;top:1.6cqw;margin-left:-6cqw}
+.pz .psr{display:grid;grid-template-columns:15cqw 1fr auto;gap:3cqw;align-items:center;width:100%;padding:2cqw;border-radius:3cqw;text-align:right;color:inherit;background:none;border:0;cursor:pointer;font:400 3.4cqw 'Readex Pro',sans-serif}
+.pz .psr img{width:15cqw;height:12cqw;object-fit:contain}
+.pz .psr b{display:block;font:600 4.2cqw/1.35 'Alexandria',sans-serif}
+.pz .psr small{display:block;opacity:.7;font-size:3cqw;line-height:1.4;margin-top:.4cqw}
+.pz .psr span{color:var(--ac);font:400 4.2cqw 'Anton','Readex Pro',sans-serif;direction:ltr;white-space:nowrap}
+.pz .psr[aria-current=true]{background:color-mix(in srgb,var(--ac) 14%,transparent)}
+.pz .psr+.psr{margin-top:1cqw}
+.atlas-copy{max-width:760px;margin-bottom:8px}
+.atlas-copy .tag{display:inline-block;background:#DAE7C7;color:#08482D;font:600 13px var(--txt);border-radius:20px;padding:3px 12px;margin-bottom:12px}
+.atlas-frame{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px rgba(16,40,24,.14);background:#ebe1cd}
+.atlas-frame iframe{display:block;width:100%;height:min(780px,88vh);border:0}
+@media(max-width:760px){.atlas-frame iframe{height:1460px}}
+@media(prefers-reduced-motion:reduce){.stage .pz .cvp,.stage .pz .cvd{animation:none}}
 
 [id]{scroll-margin-top:84px}
 /* ===== sections ===== */
@@ -220,7 +271,7 @@ section.s{padding:clamp(64px,9vw,120px) 0}
 .pkr .price small{font:500 14px var(--txt);color:var(--mute);margin-inline-start:6px}
 .pkr .ask{font:600 15px var(--txt);color:var(--hot2);display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
 .pkr.best{background:linear-gradient(90deg,transparent,rgba(8,72,45,.08),transparent)}
-.pkr.best h3::after{content:"الأنسب لأغلب المطاعم";font:600 12px var(--txt);background:var(--hot);color:#fff;border-radius:20px;padding:2px 10px;margin-inline-start:10px;vertical-align:4px;white-space:nowrap}
+.pkr.best h3::after{content:"الأنسب لمعظم المطاعم";font:600 12px var(--txt);background:var(--hot);color:#fff;border-radius:20px;padding:2px 10px;margin-inline-start:10px;vertical-align:4px;white-space:nowrap}
 .adds{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .adds span{border:1.5px dashed var(--line);border-radius:30px;padding:8px 16px;font-size:14.5px;color:var(--mute)}
 .adds b{color:var(--iv);font-weight:600}
@@ -244,123 +295,122 @@ footer{text-align:center;padding:28px 20px 40px;font-size:14px;color:var(--mute)
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pz *{animation:none!important}.tile,.btn{transition:none}}
 </style></head><body>
 <header class="top"><a class="logo" href="#top"><i aria-hidden="true"></i>منيو عُمان</a>
- <nav class="topnav" aria-label="أقسام الصفحة"><a href="#try">جرّب</a><a href="#styles">الأنماط</a><a href="#atlas">أطلس</a><a href="#why">ليش أنا</a><a href="#price">الباقات</a><a href="#faq">أسئلة</a></nav>
- <a class="btn sm" data-wa="top" href="https://wa.me/96895989547">كلمني على واتساب</a></header>
+ <nav class="topnav" aria-label="أقسام الصفحة"><a href="#try">جرّب</a><a href="#styles">التصاميم</a><a href="#atlas">أطلس</a><a href="#why">لماذا أنا</a><a href="#price">الباقات</a><a href="#faq">أسئلة</a></nav>
+ <a class="btn sm" data-wa="top" href="https://wa.me/96895989547">تواصل عبر واتساب</a></header>
 
 <main id="top">
 <section class="reel" id="reel" aria-label="منيو عُمان">
 <div class="r-frame" id="rframe">
  <a class="r-ab r-logo" href="#top"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="5" width="18" height="18" rx="3" transform="rotate(45 14 14)" fill="none" stroke="#08482D" stroke-width="2.4"/><rect x="10.5" y="10.5" width="7" height="7" rx="1" transform="rotate(45 14 14)" fill="#08482D"/></svg>منيو عُمان</a>
- <nav class="r-ab r-nav" aria-label="أقسام الموقع"><a href="#styles">الأنماط</a><a href="#price">الباقات</a><a href="#work">أعمالي</a><a href="#faq">أسئلة</a><a href="#" data-wa>تواصل</a></nav>
+ <nav class="r-ab r-nav" aria-label="أقسام الموقع"><a href="#styles">التصاميم</a><a href="#price">الباقات</a><a href="#work">أعمالي</a><a href="#faq">أسئلة</a><a href="#" data-wa>تواصل</a></nav>
  <a class="r-ab r-pill r-login" href="#try">جرّب بنفسك</a>
- <a class="r-ab r-pill r-signup" href="#" data-wa>اطلب منيوك</a>
- <div class="r-ab r-badge"><i></i>أكثر من ٨٢ نمط منيو يتحرك</div>
- <h1 class="r-ab"><span>منيو يشد زبونك</span><span>من <em>أول لمسة</em></span></h1>
- <p class="r-ab r-subl">أصمم منيو QR وشاشة عرض لمطعمك أو كوفيك، بأطباقك وألوانك.<br>كل طبق يتحرك تحت إصبع الزبون، والطلب يوصلك على واتساب.<br>اختر النمط اللي يعجبك وأرسل لي رقمه.</p>
+ <a class="r-ab r-pill r-signup" href="#" data-wa>اطلب تصميمك</a>
+ <div class="r-ab r-badge"><i></i>٨٢ تصميمًا لم يرها زبائنك بعد</div>
+ <h1 class="r-ab"><span>ماذا لو تحرّكت</span><span>قائمة <em>مطعمك؟</em></span></h1>
+ <p class="r-ab r-subl">يمسح زبونك الرمز، فتنفتح أمامه قائمة تتحرك أطباقها مع كل لمسة.<br>صمّمتُ ٨٢ أسلوبًا، ولكلٍّ منها غلاف يخفي ما بداخله.<br>المس كلمة «منيو» في أي تصميم، واكتشف بنفسك.</p>
  <svg class="r-ab r-doodle" style="left:calc(1137*var(--u));top:calc(370*var(--u));width:calc(40*var(--u));height:calc(40*var(--u))" viewBox="0 0 40 40" aria-hidden="true"><path d="M14 6 6 34"/><path d="M28 6 20 34"/></svg>
- <div class="r-ab r-note r-n1">شوف الأكل<br>يتحرك</div>
+ <div class="r-ab r-note r-n1">المس أي<br>بطاقة</div>
  <svg class="r-ab r-doodle" style="left:calc(160*var(--u));top:calc(400*var(--u));width:calc(130*var(--u));height:calc(190*var(--u))" viewBox="0 0 130 190" aria-hidden="true"><path d="M70 6C112 30 120 82 92 116 74 138 48 146 34 176"/><path d="M26 160 33 178 52 172"/></svg>
- <div class="r-ab r-note r-n2">بدون تطبيق</div>
+ <div class="r-ab r-note r-n2">دون تطبيق</div>
  <svg class="r-ab r-doodle" style="left:calc(850*var(--u));top:calc(900*var(--u));width:calc(70*var(--u));height:calc(60*var(--u))" viewBox="0 0 70 60" aria-hidden="true"><path d="M60 40C46 50 26 46 14 26"/><path d="M8 34 13 24 24 27"/></svg>
- <div class="r-ab r-cta"><a href="#" data-wa>صمّم منيوك</a></div>
- <div class="r-mtop"><a class="r-logo" href="#top"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="5" width="18" height="18" rx="3" transform="rotate(45 14 14)" fill="none" stroke="#08482D" stroke-width="2.4"/><rect x="10.5" y="10.5" width="7" height="7" rx="1" transform="rotate(45 14 14)" fill="#08482D"/></svg>منيو عُمان</a><a class="r-pill r-signup" href="#" data-wa>اطلب منيوك</a></div>
- <div class="r-mcopy"><div class="r-badge"><i></i>أكثر من ٨٢ نمط منيو يتحرك</div><h1><span>منيو يشد زبونك</span><span>من <em>أول لمسة</em></span></h1><p class="r-subl">أصمم منيو QR وشاشة عرض لمطعمك أو كوفيك، بأطباقك وألوانك. كل طبق يتحرك، والطلب يوصلك على واتساب.</p></div>
- <div class="r-ab r-row" id="rrow" aria-label="نماذج منيو تتحرك. اسحب للتصفح، واضغط على أي نموذج تجربه"></div>
- <div class="r-mbot"><div class="r-cta"><a href="#" data-wa>صمّم منيوك</a></div><div class="r-note">بدون تطبيق</div></div>
+ <div class="r-ab r-cta"><a href="#try">اكتشف ما بالداخل</a></div>
+ <div class="r-mtop"><a class="r-logo" href="#top"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="5" width="18" height="18" rx="3" transform="rotate(45 14 14)" fill="none" stroke="#08482D" stroke-width="2.4"/><rect x="10.5" y="10.5" width="7" height="7" rx="1" transform="rotate(45 14 14)" fill="#08482D"/></svg>منيو عُمان</a><a class="r-pill r-signup" href="#" data-wa>اطلب تصميمك</a></div>
+ <div class="r-mcopy"><div class="r-badge"><i></i>٨٢ تصميمًا لم يرها زبائنك بعد</div><h1><span>ماذا لو تحرّكت</span><span>قائمة <em>مطعمك؟</em></span></h1><p class="r-subl">يمسح زبونك الرمز، فتنفتح أمامه قائمة تتحرك أطباقها مع كل لمسة. لكل تصميم غلاف يخفي ما بداخله.</p></div>
+ <div class="r-ab r-row" id="rrow" aria-label="نماذج قوائم تتحرك. اسحبها للتصفح، والمس أي نموذج لتجربته"></div>
+ <div class="r-mbot"><div class="r-cta"><a href="#try">اكتشف ما بالداخل</a></div><div class="r-note">دون تطبيق</div></div>
 </div>
 </section>
 <div class="wrap hero" id="try">
  <div class="hero-copy">
-  <h2 class="big">جرّب بنفسك:<br>اضغط على <em>المنيو.</em></h2>
-  <p class="sub">هذا بالضبط اللي بيشوفه زبونك على جواله. غيّر نوع الأكل، وقلّب بين الـ٨٢ نمط، واختر اللي يناسب مطعمك.</p>
-  <div class="food" role="group" aria-label="شوف الأنماط بأكل مطعمك"><span>جرّب على:</span><button data-food="it">مطعم إيطالي</button><button data-food="bg">برجر وستيك</button><button data-food="cafe">كوفي وحلويات</button></div>
+  <h2 class="big">المس كلمة «منيو»…<br>وانظر ماذا <em>يحدث.</em></h2>
+  <p class="sub">هكذا سيرى زبونك قائمتك على هاتفه. اختر مطبخك، وتنقّل بين التصاميم، ثم ادخل إلى أي قائمة لتتصفح أطباقها.</p>
+  <div class="food" role="group" aria-label="اختر نوع المطبخ"><span>اختر مطبخك:</span><button data-food="it">مطعم إيطالي</button><button data-food="bg">برغر وستيك</button><button data-food="cafe">مقهى وحلويات</button></div>
   <div class="meta" aria-live="polite">
    <div class="cnt"><b id="hn">01</b>/ <span id="htot">82</span></div>
    <div class="sname" id="hname"></div>
    <div class="sdesc" id="hdesc"></div>
    <div class="ctl">
-    <a class="btn" id="want" href="https://wa.me/96895989547"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span id="wantt">أبي هذا النمط</span></a>
-    <button class="nav" id="prev" aria-label="النمط السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
-    <button class="nav" id="next" aria-label="النمط التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
+    <a class="btn" id="want" href="https://wa.me/96895989547"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span id="wantt">أريد هذا التصميم</span></a>
+    <button class="nav" id="prev" aria-label="التصميم السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+    <button class="nav" id="next" aria-label="التصميم التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
    </div>
    <p class="demo" id="demo"></p>
   </div>
  </div>
- <div class="stagewrap"><button class="pause" id="pause" aria-label="إيقاف الحركة التلقائية" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="pico" d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg></button><div class="stage" id="stage" role="button" tabindex="0" aria-label="اضغط لتشغيل حركة المنيو"><span class="hint">اضغط على المنيو</span><div class="pz" id="hero"></div></div></div>
+ <div class="stagewrap"><div class="stage" id="stage" role="group" tabindex="0" aria-label="المس كلمة منيو لفتح القائمة، ثم المس الطبق لتبديله"><span class="hint">المس كلمة «منيو»</span><div class="pz" id="hero"></div></div></div>
 </div>
 
 <div class="proofstrip" id="work"><div class="wrap proof">
- <video src="../videos/scircle-nana.mp4" poster="../assets/img/nana-frame.webp" muted loop playsinline controls preload="none" aria-label="شاشة عرض منيو كوفي نعنع"></video>
- <div><h2>كوفي «نعنع» يشتغل بمنيو وشاشة من تصميمي</h2><p>الفيديو من شاشة العرض داخل الكوفي. نفس التصميم يفتح على جوال الزبون من كود QR.</p></div>
- <a class="btn gh" href="../nana/">جرّب منيو نعنع</a>
+ <video src="../videos/scircle-nana.mp4" poster="../assets/img/nana-frame.webp" muted loop playsinline controls preload="none" aria-label="شاشة عرض قائمة مقهى نعنع"></video>
+ <div><h2>مقهى «نعنع» يعمل بقائمة وشاشة من تصميمي</h2><p>هذا المقطع من شاشة العرض داخل المقهى، والتصميم نفسه يفتح على هاتف الزبون من رمز QR.</p></div>
+ <a class="btn gh" href="#styles">شاهد التصاميم</a>
 </div></div>
 
 <section class="s" id="styles"><div class="wrap">
- <h2>٨٢ نمط، اختر اللي يشبه مطعمك</h2>
- <p class="lead">اضغط على أي نمط يفتح فوق ويشتغل. أرسل لي رقمه، وأصممه بأطباقك وأسعارك وألوانك.</p>
- <div class="chips" id="chips" role="group" aria-label="تصفية الأنماط"></div>
+ <h2>٨٢ غلافًا… وخلف كل غلاف قائمة</h2>
+ <p class="lead">يبدأ كل تصميم بغلاف يحمل كلمة «منيو». اختر الغلاف الذي يشبه مطعمك، فيفتح في الأعلى لتدخل إليه.</p>
+ <div class="chips" id="chips" role="group" aria-label="تصفية التصاميم"></div>
  <div class="grid" id="grid"></div>
 </div></section>
 
-<section class="s" id="atlas" style="padding-top:0"><div class="wrap atlas">
- <a href="../sample-atlas/" aria-label="افتح نموذج منيو أطلس"><img src="../assets/img/atlas-shot.webp" alt="منيو أطلس: صفحة طبق فيها صورة الطبق ووصفه وسعراته وسعره" loading="lazy" width="1100" height="688"></a>
- <div>
-  <span class="tag">النمط الفاخر</span>
-  <h2>منيو أطلس</h2>
-  <p class="lead" style="margin-bottom:18px">كل طبق له صفحة كاملة مثل قطعة في متحف. الزبون يحرّك الطبق ويقرّبه، ويقرأ قصته وتفاصيله.</p>
-  <ul><li>وصف الطبق ومستوى الحرارة</li><li>السعرات ووقت التحضير والمكونات اللي تسبب حساسية</li><li>السعر شامل الضريبة، وزر طلب على واتساب</li><li>وضع غداء ووضع عشاء</li></ul>
-  <a class="btn" href="../sample-atlas/">افتح نموذج أطلس</a>
+<section class="s" id="atlas" style="padding-top:0"><div class="wrap">
+ <div class="atlas-copy">
+  <span class="tag">التصميم الفاخر</span>
+  <h2>قائمة أطلس: لكل طبق صفحته</h2>
+  <p class="lead">يُعرض كل طبق كأنه قطعة في متحف. جرّبها هنا مباشرة: حرّك الطبق، وقرّبه، وتنقّل بين الأقسام.</p>
+  <div class="adds" style="margin:0 0 24px"><span>الوصف ومستوى الحرارة</span><span>السعرات والمكوّنات المسببة للحساسية</span><span>السعر شاملًا الضريبة</span><span>زر الطلب عبر واتساب</span><span>وضع للغداء وآخر للعشاء</span></div>
  </div>
+ <div class="atlas-frame"><iframe src="../sample-atlas/" title="نموذج قائمة أطلس، يمكنك تجربته هنا" loading="lazy"></iframe></div>
 </div></section>
 <div class="wrap"><div class="fil"></div></div>
 
 <section class="s" id="why"><div class="wrap">
- <h2>الفرق عن منصات المنيو الجاهزة</h2>
- <p class="lead">المنصات تعطيك قالب واشتراك. أنا أصمم لك منيو واحد، لمطعمك أنت.</p>
- <table class="vs"><thead><tr><th scope="col"><span class="sr"></span></th><th scope="col">منصة منيو جاهزة</th><th scope="col">منيو عُمان</th></tr></thead><tbody>
-  <tr><th scope="row">التصميم</th><td data-h="منصة جاهزة">قالب يشبه منيو مطاعم ثانية</td><td data-h="منيو عُمان">مصمم لأطباقك وألوانك وشعارك</td></tr>
+ <h2>ما الذي يميّزني عن منصات القوائم الجاهزة؟</h2>
+ <p class="lead">تمنحك المنصات قالبًا واشتراكًا شهريًا، أما أنا فأصمّم قائمة واحدة لمطعمك وحده.</p>
+ <table class="vs"><thead><tr><th scope="col"><span class="sr"></span></th><th scope="col">منصة قوائم جاهزة</th><th scope="col">منيو عُمان</th></tr></thead><tbody>
+  <tr><th scope="row">التصميم</th><td data-h="منصة جاهزة">قالب يشبه قوائم مطاعم أخرى</td><td data-h="منيو عُمان">مصمَّم لأطباقك وألوانك وشعارك</td></tr>
   <tr><th scope="row">الصور</th><td data-h="منصة جاهزة">صور ثابتة في قائمة</td><td data-h="منيو عُمان">كل طبق يتحرك مع لمسة الزبون</td></tr>
-  <tr><th scope="row">التعديل</th><td data-h="منصة جاهزة">تدخل لوحة تحكم وتعدّل بنفسك</td><td data-h="منيو عُمان">ترسل لي على واتساب وأعدّله لك</td></tr>
-  <tr><th scope="row">الطلبات</th><td data-h="منصة جاهزة">تطبيقات التوصيل تاخذ عمولة على كل طلب</td><td data-h="منيو عُمان">الطلب يوصل لواتساب مطعمك مباشرة</td></tr>
+  <tr><th scope="row">التعديل</th><td data-h="منصة جاهزة">تدخل لوحة التحكم وتعدّل بنفسك</td><td data-h="منيو عُمان">ترسل إليّ عبر واتساب وأعدّلها لك</td></tr>
+  <tr><th scope="row">الطلبات</th><td data-h="منصة جاهزة">تطبيقات التوصيل تقتطع عمولة من كل طلب</td><td data-h="منيو عُمان">يصلك الطلب على واتساب مطعمك مباشرة</td></tr>
  </tbody></table>
- <p class="note">الأسعار في المنيو تكون بالعربي وواضحة وشاملة الضريبة، مثل ما يطلب قانون حماية المستهلك في عُمان.</p>
+ <p class="note">تظهر الأسعار في القائمة بالعربية، واضحةً وشاملةً الضريبة، كما يشترط قانون حماية المستهلك في عُمان.</p>
 </div></section>
 
 <section class="s" id="how" style="padding-top:0"><div class="wrap">
- <h2>كيف يوصل لزبونك</h2>
- <p class="lead">كود صغير على الطاولة يفتح المنيو على جوال الزبون.</p>
+ <h2>كيف تصل قائمتك إلى زبونك؟</h2>
+ <p class="lead">رمز صغير على الطاولة يفتح القائمة على هاتف الزبون.</p>
  <div class="steps">
-  <div class="step"><b>١</b><h3>يمسح الكود</h3><p>بكاميرا الجوال، والمنيو يفتح في المتصفح بدون تطبيق.</p></div>
-  <div class="step"><b>٢</b><h3>يتصفح الأطباق</h3><p>صورة كبيرة لكل طبق، وتتحرك بالنمط اللي اخترته.</p></div>
-  <div class="step"><b>٣</b><h3>يطلب</h3><p>يرسل طلبه على واتساب، أو ينادي النادل وهو عارف وش يبي.</p></div>
+  <div class="step"><b>١</b><h3>يمسح الرمز</h3><p>بكاميرا هاتفه، فتفتح القائمة في المتصفح دون تطبيق.</p></div>
+  <div class="step"><b>٢</b><h3>يفتح الغلاف</h3><p>يلمس كلمة «منيو»، فتنكشف الأطباق بالحركة التي اخترتها.</p></div>
+  <div class="step"><b>٣</b><h3>يطلب</h3><p>يرسل طلبه عبر واتساب، أو ينادي النادل وقد عرف ما يريد.</p></div>
  </div>
 </div></section>
 <div class="wrap"><div class="fil"></div></div>
 
 <section class="s" id="price"><div class="wrap">
  <h2>الباقات</h2>
- <p class="lead">كل باقة فيها النمط اللي تختاره، بأطباقك وأسعارك وألوانك.</p>
+ <p class="lead">تتضمن كل باقة التصميم الذي تختاره، بأطباقك وأسعارك وألوانك.</p>
  <div class="pk" id="pk"></div>
- <div class="adds"><span><b>لغتين</b> عربي وإنجليزي</span><span><b>طلب واتساب</b> من داخل المنيو</span><span><b>روابط</b> إنستغرام والموقع على الخريطة</span><span><b>كارت الطاولة</b> جاهز للطباعة</span><span><b>نسخة رمضان</b> بأطباق الفطور والسحور</span></div>
+ <div class="adds"><span><b>لغتان</b> العربية والإنجليزية</span><span><b>الطلب عبر واتساب</b> من داخل القائمة</span><span><b>روابط</b> إنستغرام والموقع على الخريطة</span><span><b>بطاقة الطاولة</b> جاهزة للطباعة</span><span><b>نسخة رمضان</b> لأطباق الإفطار والسحور</span></div>
 </div></section>
 
 <section class="s" id="faq" style="padding-top:0"><div class="wrap faq">
- <h2>أسئلة توصلني كثير</h2>
- <details><summary>الزبون يحتاج ينزّل تطبيق؟</summary><p>لا. يفتح كاميرا الجوال ويمسح الكود، والمنيو يفتح في المتصفح على طول.</p></details>
- <details><summary>ليش منيو يتحرك وما أكتفي بملف PDF؟</summary><p>ملف الـPDF يطلع صغير على الجوال والزبون يكبّره بإصبعه. المنيو المتحرك يفتح بحجم الشاشة، وكل طبق بصورة كبيرة تشد العين.</p></details>
- <details><summary>أقدر أغيّر الأسعار والأطباق بعدين؟</summary><p>إيه. باقة «مع التحديث» تشمل تعديل الأسعار والأطباق متى ما طلبت.</p></details>
- <details><summary>وش أحتاج أرسل لك؟</summary><p>رقم النمط اللي عجبك، وقائمة أطباقك وأسعارها، وصورها، وشعار المطعم إذا عندك.</p></details>
- <details><summary>يشتغل على شاشة التلفزيون في المطعم؟</summary><p>إيه. باقة «QR + شاشة» تعرض نفس المنيو متحرك على شاشة داخل المطعم، مثل شاشة كوفي نعنع.</p></details>
- <details><summary>المنيو يكون بالعربي والإنجليزي؟</summary><p>إذا تبي. إضافة «لغتين» تحط العربي والإنجليزي في نفس المنيو.</p></details>
+ <h2>أسئلة تصلني كثيرًا</h2>
+ <details><summary>هل يحتاج الزبون إلى تنزيل تطبيق؟</summary><p>لا. يفتح كاميرا هاتفه ويمسح الرمز، فتظهر القائمة في المتصفح فورًا.</p></details>
+ <details><summary>لماذا قائمة متحركة بدلًا من ملف PDF؟</summary><p>يظهر ملف PDF صغيرًا على الهاتف، فيضطر الزبون إلى تكبيره بإصبعه. أما القائمة المتحركة فتملأ الشاشة، ويظهر كل طبق بصورة كبيرة تجذب العين.</p></details>
+ <details><summary>هل أستطيع تغيير الأسعار والأطباق لاحقًا؟</summary><p>نعم. تشمل باقة «مع التحديث» تعديل الأسعار والأطباق متى طلبت ذلك.</p></details>
+ <details><summary>ماذا أحتاج أن أرسل إليك؟</summary><p>رقم التصميم الذي أعجبك، وقائمة أطباقك وأسعارها، وصورها، وشعار المطعم إن وُجد.</p></details>
+ <details><summary>هل تعمل القائمة على شاشة داخل المطعم؟</summary><p>نعم. تعرض باقة «QR + شاشة» القائمة نفسها متحركةً على شاشة داخل المطعم، كما في مقهى «نعنع».</p></details>
+ <details><summary>هل تكون القائمة بالعربية والإنجليزية؟</summary><p>إن رغبت في ذلك. تضيف خدمة «لغتان» العربية والإنجليزية في القائمة نفسها.</p></details>
 </div></section>
 
 <section class="s close"><div class="wrap">
- <h2>اختر نمطك وأرسل لي رقمه.</h2>
- <p class="lead">أرد عليك على واتساب، ونتفق على الأطباق والألوان.</p>
- <a class="btn" id="want2" href="https://wa.me/96895989547">أرسل النمط على واتساب</a>
+ <h2>تصميمك التالي ينتظر رقمًا واحدًا.</h2>
+ <p class="lead">اختر التصميم وأرسل إليّ رقمه، وسأردّ عليك عبر واتساب لنتفق على الأطباق والألوان.</p>
+ <a class="btn" id="want2" href="https://wa.me/96895989547">أرسل رقم التصميم</a>
 </div></section>
 </main>
-<div class="mbar" aria-label="النمط المختار"><button class="nav" id="mprev" aria-label="النمط السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button><div class="mi"><b id="mn">#01</b><span id="mname"></span></div><button class="nav" id="mnext" aria-label="النمط التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button><a class="btn sm" id="mwant" href="https://wa.me/96895989547">أبي هذا النمط</a></div>
+<div class="mbar" aria-label="التصميم المختار"><button class="nav" id="mprev" aria-label="التصميم السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button><div class="mi"><b id="mn">#01</b><span id="mname"></span></div><button class="nav" id="mnext" aria-label="التصميم التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button><a class="btn sm" id="mwant" href="https://wa.me/96895989547">أريد هذا التصميم</a></div>
 <div class="wrap"><div class="fil"></div></div>
 <footer>منيو عُمان · أحمد الوهيبي · <a href="https://wa.me/96895989547">95989547</a></footer>
 
@@ -494,7 +544,7 @@ Object.assign(D,{
  'food/alfredo':['فيتوتشيني ألفريدو','Fettuccine Alfredo','3.400','فيتوتشيني بصوص الألفريدو الكريمي والبقدونس']});
 const ITL=['food/alfredo','food/pomodoro','food/mushroom','food/penne','food/fusilli','food/parmesan','food/salmon'];
 const BRG=['food/smash','food/crispyburger','food/avoburger','food/blueburger','food/loaded','food/steak','food/salmon'];
-const CUIS={cafe:{label:'كوفي وحلويات',set:k=>SET[k]},it:{label:'مطعم إيطالي',set:()=>ITL},bg:{label:'برجر وستيك',set:()=>BRG}};
+const CUIS={cafe:{label:'مقهى وحلويات',set:k=>SET[k]},it:{label:'مطعم إيطالي',set:()=>ITL},bg:{label:'برغر وستيك',set:()=>BRG}};
 const TT={it:{L1:['PASTA','Pasta Bar','TRATTORIA','Al Dente','MANGIA!','Italiano','Buon Appetito','la Cucina'],L2:['PASTA|FRESCA','PASTA|NIGHT','AL|DENTE','MAMMA|MIA'],
   L3:['TWIRL|IT|UP','SLOW|COOKED|PASTA','MORE|PARMESAN|PLEASE'],AR:['باستا','مطبخ إيطالي','باستا طازجة','على أصوله'],RING:'PASTA · AMORE · ',
   SUB:['صلصة البيت','إيطالي على أصوله','لف الشوكة وكُل','عشاء الليلة']},
@@ -507,8 +557,8 @@ function applyCuisine(c){FOODC=c;S.forEach(s=>{s.set=CUIS[c].set(s.k);
  const L=TT[c],ar=/[\u0600-\u06FF]/.test(s.t0),nl=lines(s.t0).length,pick=a=>a[s.n%a.length];
  s.t=!s.t0?'':s.L==='ring'?L.RING:ar?pick(L.AR):nl>=3?pick(L.L3):nl===2?pick(L.L2):pick(L.L1);s.sub=s.sub0?pick(L.SUB):''})}
 
-const MT={spin:'الطبق يدور ويتبدّل',pop:'الطبق ينبض ويكبر',slide:'الطبق ينزلق من الجنب',drop:'الطبق يطيح وينطّ',flip:'الطبق ينقلب مثل الكرت',blur:'الطبق يذوب ويوضح',zoom:'الطبق يقرّب للزبون',rise:'الطبق يطلع من تحت',swing:'الطبق يتمرجح',slap:'الستيكر ينلصق مكانه',jelly:'الطبق يتمطّط مثل الجيلي'};
-const FX={orbit:'والأطباق الصغيرة تدور حوله',bg:'والخلفية تغيّر لونها',wipe:'مع ستارة لون بين الأطباق',type:'والكلام يطلع حرف حرف',steam:'والبخار يطلع منه',draw:'واسم الطبق ينكتب بخط اليد',frost:'مع ستارة ثلج',squash:'والاسم يتمطّط'};
+const MT={spin:'يدور الطبق ويتبدّل',pop:'ينبض الطبق ويكبر',slide:'ينزلق الطبق من الجانب',drop:'يسقط الطبق ويرتدّ',flip:'ينقلب الطبق كالبطاقة',blur:'يذوب الطبق ثم يتضح',zoom:'يقترب الطبق من الزبون',rise:'يصعد الطبق من الأسفل',swing:'يتأرجح الطبق',slap:'يلتصق الملصق في مكانه',jelly:'يتمطّط الطبق كالهلام'};
+const FX={orbit:'وتدور الأطباق الصغيرة حوله',bg:'وتتبدّل ألوان الخلفية',wipe:'مع ستارة لونية بين الأطباق',type:'وتظهر الكلمات حرفًا حرفًا',steam:'ويتصاعد منه البخار',draw:'ويُكتب اسم الطبق بخط اليد',frost:'مع ستارة من الجليد',squash:'ويتمطّط الاسم'};
 
 const pad=n=>String(n).padStart(2,'0');
 const lines=t=>t.split('|');
@@ -654,7 +704,7 @@ story:s=>`<div class="ab" style="inset:0;background:radial-gradient(circle at 50
  <div class="ab" style="left:0;right:0;bottom:0;height:44cqw;background:linear-gradient(transparent,rgba(0,0,0,.5))"></div>
  <div class="ab" style="right:6cqw;left:6cqw;bottom:16cqw;text-align:right;color:#fff">${N(0,'font-size:8.4cqw')}<span data-sw data-i="0" data-f="ds" class="ds" style="max-width:70cqw;margin-inline-start:auto"></span></div>
  <div class="ab" style="right:6cqw;bottom:6cqw;background:var(--bg);color:var(--ink);border-radius:8cqw;padding:1.8cqw 4cqw">${P(0,'color:var(--ink)')}</div>
- <div class="ab" style="left:6cqw;bottom:7.4cqw;color:#fff;font:500 3.2cqw 'Readex Pro';direction:rtl">اضغط للتالي ‹</div>`,
+ <div class="ab" style="left:6cqw;bottom:7.4cqw;color:#fff;font:500 3.2cqw 'Readex Pro';direction:rtl">المس للتالي ‹</div>`,
 bento:s=>`<div class="ab t" style="top:5cqw;left:6cqw;${ff(s.f)};font-weight:800;font-size:${fit(s.t,s.f,50,10)}cqw;color:var(--ink);letter-spacing:-.02em">${s.t}</div>
  <div class="ab ar" style="top:6.4cqw;right:6cqw;font-size:4.2cqw">${s.sub}</div>
  <div class="ab" style="left:5cqw;right:5cqw;top:18cqw;bottom:5cqw;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.5fr 1fr 1fr;gap:2.4cqw">
@@ -714,9 +764,9 @@ function setEl(el,s,off){const k=key(s,off,+el.dataset.i),d=D[k];switch(el.datas
  case'ds':el.textContent=d[3]||'';break;
  case'pr':el.innerHTML=d[2]+'<i>ر.ع</i>';break;case'pn':el.textContent=d[2].replace(/0+$/,'').replace(/\.$/,'');break;
  case'bars':{const c=off%s.set.length;[...el.children].forEach((b,j)=>{b.className='bar'+(j<c?' done':'');if(j===c){void b.offsetWidth;b.className='bar on'}})}}}
-function render(p,s,off=(s.n*2)%s.set.length){const c=s.p;p.style.cssText=`--bg:${c[0]};--ink:${c[1]};--ac:${c[2]};--al:${c[3]}`;p.dataset.n=s.n;
+function render(p,s,off=(s.n*2)%s.set.length,ui=false){const c=s.p;p.style.cssText=`--bg:${c[0]};--ink:${c[1]};--ac:${c[2]};--al:${c[3]}`;p.dataset.n=s.n;
  p.innerHTML=LAY[s.L](s)+(s.fx==='wipe'?'<div class="wp"></div>':'')+(s.fx==='frost'?'<div class="fr"></div>':'');
- p.querySelectorAll('[data-sw]').forEach(e=>setEl(e,s,off));p._off=off;p._alt=0;p._rot=0}
+ p.querySelectorAll('[data-sw]').forEach(e=>setEl(e,s,off));p._off=off;p._alt=0;p._rot=0;dressCover(p,s,off,ui)}
 
 const RM=matchMedia('(prefers-reduced-motion: reduce)');
 const M={spin:[['rotate(0) scale(1)','rotate(-150deg) scale(.3)'],['rotate(150deg) scale(.3)','none']],
@@ -729,7 +779,7 @@ const EZO='cubic-bezier(.55,0,.8,.2)',EZI={drop:'cubic-bezier(.3,1.5,.5,1)',pop:
 function kf(m,phase,isTxt){const mm=isTxt&&!['slide','flip'].includes(m)?'rise':m,[a,b]=M[mm][phase],o=phase?[0,1]:[1,0],bl=m==='blur';
  return [{transform:a,opacity:o[0],filter:bl?`blur(${phase?14:0}px)`:'none'},{transform:b,opacity:o[1],filter:bl?`blur(${phase?0:14}px)`:'none'}]}
 const curtain=(el,ph,dir)=>el.animate(dir==='v'?[{clipPath:ph?'inset(0 0 0 0)':'inset(0 0 100% 0)'},{clipPath:ph?'inset(100% 0 0 0)':'inset(0 0 0 0)'}]:[{clipPath:ph?'inset(0 0 0 0)':'inset(0 100% 0 0)'},{clipPath:ph?'inset(0 0 0 100%)':'inset(0 0 0 0)'}],{duration:ph?440:380,easing:'cubic-bezier(.7,0,.3,1)',fill:'both'}).finished;
-async function swap(p){if(p._busy)return;p._busy=1;const s=S[p.dataset.n-1],rm=RM.matches;
+async function swap(p,to){if(p._busy||p.classList.contains('closed'))return;p._busy=1;const s=S[p.dataset.n-1],rm=RM.matches;
  const all=[...p.querySelectorAll('[data-sw]')],els=all.filter(e=>e.dataset.f!=='bars'&&!e.classList.contains('drw')),wp=p.querySelector('.wp'),fr=p.querySelector('.fr'),chs=[...p.querySelectorAll('.ch')],drw=[...p.querySelectorAll('.drw')],sq=[...p.querySelectorAll('.sq')];
  const run=(e,ph)=>{const isT=e.tagName!=='IMG';return e.animate(rm?[{opacity:ph?0:1},{opacity:ph?1:0}]:kf(s.m,ph,isT),{duration:ph?560:300,easing:ph?(EZI[s.m]||'cubic-bezier(.2,.8,.2,1)'):EZO,fill:'both',delay:ph&&!rm?(+e.dataset.i||0)*70:0}).finished};
  const outs=els.map(e=>run(e,0));
@@ -739,7 +789,7 @@ async function swap(p){if(p._busy)return;p._busy=1;const s=S[p.dataset.n-1],rm=R
  if(s.fx==='bg'){p._alt^=1;p.style.setProperty('--ac',p._alt?s.p[3]:s.p[2])}
  if(s.fx==='orbit'){p._rot+=120;const o=p.querySelector('.orb');if(o)o.style.transform=`rotate(${p._rot}deg)`}
  await Promise.all(outs);
- p._off++;all.forEach(e=>setEl(e,s,p._off));
+ p._off=to??p._off+1;all.forEach(e=>setEl(e,s,p._off));
  await Promise.all(els.filter(e=>e.tagName==='IMG').map(e=>e.decode().catch(()=>{})));
  const ins=els.map(e=>run(e,1));
  if(wp&&!rm)ins.push(curtain(wp,1));if(fr&&!rm)ins.push(curtain(fr,1,'v'));
@@ -748,39 +798,80 @@ async function swap(p){if(p._busy)return;p._busy=1;const s=S[p.dataset.n-1],rm=R
  if(!rm)sq.forEach(t=>ins.push(t.animate([{transform:'scale(1.5,.45)'},{transform:'scale(.82,1.22)',offset:.45},{transform:'scale(1.06,.95)',offset:.75},{transform:'none'}],{duration:760,easing:'ease-out'}).finished));
  await Promise.all(ins);p._busy=0}
 
+
+/* ---------- covers: every menu starts closed on the word «منيو» ---------- */
+const ARF={anton:'lalezar',archivo:'alex',play:'messiri',vibes:'ruqaa',shrik:'marhey',brico:'alex',iserif:'markazi'};
+const CF={kufi:"'Reem Kufi'",ruqaa:"'Aref Ruqaa'",lalezar:"'Lalezar'",marhey:"'Marhey'",messiri:"'El Messiri'",markazi:"'Markazi Text'",alex:"'Alexandria'"};
+const CT=['يُفتح الغلاف كبابين','ينكمش الغلاف إلى نقطة اللمس','يُفتح الغلاف كالستائر','يُقلب الغلاف كصفحة كتاب','تغوص داخل الكلمة','يرتفع الغلاف كستارة المسرح'];
+const lum=h=>{const v=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(c=>c<=.03928?c/12.92:((c+.055)/1.055)**2.4);return .2126*v[0]+.7152*v[1]+.0722*v[2]};
+const ratio=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+function coverHTML(s,off){const t=s.n%6,f=CF[ARF[s.f]||s.f]||"'Alexandria'",k=key(s,off,0),lat=(s.t||'MENU').replace(/\|/g,' ').replace(/ · $/,'');
+ const inner=`<div class="cvi"><span class="cvt">${lat}</span><b class="cvw" style="font-family:${f},'Alexandria',sans-serif">منيو</b><span class="cvs">${CUIS[FOODC].label} · ${s.name}</span><img class="cvd" src="${IMG+k}.webp" alt="" draggable="false"><span class="cvp">المس للدخول</span></div>`;
+ return `<div class="cv" data-t="${t}" aria-hidden="true"><div class="cvh">${inner}</div>${t===0?`<div class="cvh cvh2">${inner}</div>`:''}</div>`}
+const UI=`<div class="pui"><button class="pbtn" data-a="back" aria-label="العودة إلى الغلاف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5V20H4z"/></svg></button><span class="sp"></span>
+ <button class="pbtn" data-a="list" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>الأطباق</button>
+ <button class="pbtn" data-a="pause" aria-label="إيقاف الحركة التلقائية" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor"><path class="pico" d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg></button></div>
+ <div class="psh" role="dialog" aria-label="أطباق القائمة"><h4><i></i>اختر طبقًا<button class="pbtn" data-a="close" aria-label="إغلاق القائمة" style="background:var(--ink);color:var(--bg);min-width:9cqw;height:9cqw;padding:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></h4><div class="psl"></div></div>`;
+function dressCover(p,s,off,ui){const c=s.p,ok=ratio(c[2],c[0])>=3;p.style.setProperty('--cvb',ok?c[2]:c[1]);p.style.setProperty('--cvf',c[0]);
+ p.insertAdjacentHTML('beforeend',coverHTML(s,off)+(ui?UI:''));p.classList.add('closed')}
+const EOPEN='cubic-bezier(.7,0,.2,1)';
+async function openMenu(p,x,y){if(!p.classList.contains('closed')||p._opening)return;p._opening=1;
+ const cv=p.querySelector('.cv'),t=+cv.dataset.t,rm=RM.matches,hs=[...cv.querySelectorAll('.cvh')],r=p.getBoundingClientRect();
+ const px=x==null?50:(x-r.left)/r.width*100,py=y==null?42:(y-r.top)/r.height*100,o={duration:900,easing:EOPEN,fill:'forwards'};
+ p.classList.remove('closed');let a;
+ if(rm)a=[cv.animate([{opacity:1},{opacity:0}],{duration:160,fill:'forwards'})];
+ else if(t===0)a=[hs[0].animate([{transform:'none'},{transform:'translateX(-104%)'}],o),hs[1].animate([{transform:'none'},{transform:'translateX(104%)'}],o)];
+ else if(t===1)a=[cv.animate([{clipPath:`circle(150% at ${px}% ${py}%)`},{clipPath:`circle(0% at ${px}% ${py}%)`}],{...o,duration:820})];
+ else if(t===2)a=[cv.animate([{'--bl':'0%'},{'--bl':'16.7%'}],{...o,duration:950})];
+ else if(t===3)a=[hs[0].animate([{transform:'rotateY(0)',filter:'brightness(1)'},{transform:'rotateY(-118deg)',filter:'brightness(.6)'}],{...o,duration:1050}),cv.animate([{opacity:1},{opacity:1,offset:.75},{opacity:0}],{...o,duration:1050})];
+ else if(t===4){cv.style.transformOrigin='50% 36%';a=[cv.animate([{transform:'none',opacity:1,filter:'blur(0)'},{transform:'scale(7)',opacity:0,filter:'blur(8px)'}],{...o,duration:880,easing:'cubic-bezier(.6,0,.4,1)'})]}
+ else a=[cv.animate([{transform:'none'},{transform:'translateY(-26%) scaleY(.97)',offset:.38},{transform:'translateY(-106%)'}],{...o,duration:1000})];
+ if(!rm)[...p.querySelectorAll('.sl,.nm,.pr,.en,.ds,.t,.row')].forEach((e,i)=>{if(e.closest('.cv,.psh'))return;e.animate([{opacity:0,translate:'0 5cqw'},{opacity:1,translate:'0 0'}],{duration:650,delay:300+Math.min(i,14)*35,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'})});
+ if(!rm)p.querySelectorAll('.drw').forEach(t=>t.animate([{strokeDashoffset:420,fillOpacity:0},{strokeDashoffset:0,fillOpacity:0,offset:.72},{strokeDashoffset:0,fillOpacity:1}],{duration:1600,delay:350,easing:'ease-in-out',fill:'backwards'}));
+ await Promise.all(a.map(x=>x.finished));cv.style.visibility='hidden';a.forEach(x=>x.cancel());cv.style.transformOrigin='';p._opening=0}
+function closeMenu(p){const cv=p.querySelector('.cv');if(!cv||p.classList.contains('closed'))return;toggleList(p,false);p.classList.add('closed');cv.style.visibility='';
+ if(!RM.matches)cv.animate([{opacity:0,transform:'scale(1.05)'},{opacity:1,transform:'none'}],{duration:480,easing:'cubic-bezier(.2,.8,.2,1)'})}
+function toggleList(p,on){const sh=p.querySelector('.psh'),b=p.querySelector('[data-a=list]');if(!sh)return;
+ on=on??!sh.classList.contains('on');
+ if(on){const s=S[p.dataset.n-1],curK=key(s,p._off,0);
+  sh.querySelector('.psl').innerHTML=s.set.map((k,j)=>{const d=D[k];return `<button class="psr" data-j="${j}" aria-current="${k===curK}"><img src="${IMG+k}.webp" alt=""><span style="all:unset;display:block"><b>${d[0]}</b><small>${d[3]||d[1]}</small></span><span>${d[2]} ر.ع</span></button>`}).join('')}
+ sh.classList.toggle('on',on);b.setAttribute('aria-expanded',on);sh.inert=!on}
+
 /* ---------- hero ---------- */
 const $=q=>document.querySelector(q),$$=q=>[...document.querySelectorAll(q)];
 const hero=$('#hero'),stage=$('#stage');let cur=0,lastUser=0;
 const BASE=location.href.split('#')[0];
 const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
-const styleMsg=s=>`السلام عليكم، شفت موقعك وعجبني النمط #${pad(s.n)} «${s.name}» (${CUIS[FOODC].label}). أبي منيو مثله لمطعمي.\n${BASE}#s${s.n}`;
+const styleMsg=s=>`السلام عليكم، شاهدت موقعك وأعجبني التصميم #${pad(s.n)} «${s.name}» (${CUIS[FOODC].label}). أرغب في قائمة مثله لمطعمي.\n${BASE}#s${s.n}`;
 function meta(s){$('#hn').textContent=pad(s.n);$('#htot').textContent=S.length;$('#hname').textContent=s.name;
- $('#hdesc').textContent=MT[s.m]+(s.fx?'، '+FX[s.fx]:'')+' · '+(FOODC==='cafe'||s.cat==='rm'?CAT[s.cat]:CUIS[FOODC].label);
- $('#wantt').textContent='أبي النمط #'+pad(s.n);$('#mn').textContent='#'+pad(s.n);$('#mname').textContent=s.name;
+ $('#hdesc').textContent=CT[s.n%6]+'، ثم '+MT[s.m]+(s.fx?' '+FX[s.fx]:'')+' · '+(FOODC==='cafe'||s.cat==='rm'?CAT[s.cat]:CUIS[FOODC].label);
+ $('#wantt').textContent='أريد التصميم #'+pad(s.n);$('#mn').textContent='#'+pad(s.n);$('#mname').textContent=s.name;
  [$('#want'),$('#want2'),$('#mwant')].forEach(a=>a.href=wa(styleMsg(s)));
  $$('.tile').forEach(t=>t.setAttribute('aria-current',+t.dataset.n===s.n));
  history.replaceState(null,'','#s'+s.n);paintPk()}
-async function go(i,anim=true){cur=(i+S.length)%S.length;const s=S[cur];
- if(anim&&!RM.matches)await hero.animate([{opacity:1,transform:'none'},{opacity:0,transform:'scale(.97)'}],{duration:220,easing:EZO,fill:'both'}).finished;
- render(hero,s);meta(s);
+async function go(i,anim=true,dir=1){cur=(i+S.length)%S.length;const s=S[cur],rm=RM.matches;
+ if(anim&&!rm)await hero.animate([{transform:'none',opacity:1},{transform:`translateX(${-dir*42}%) rotate(${-dir*12}deg) scale(.84)`,opacity:0}],{duration:360,easing:EZO,fill:'both'}).finished;
+ render(hero,s,undefined,true);meta(s);setPaused(paused);
  await Promise.all([...hero.querySelectorAll('img')].map(e=>e.decode().catch(()=>{})));
- hero.animate([{opacity:0,transform:'scale(1.03)'},{opacity:1,transform:'none'}],{duration:anim&&!RM.matches?420:1,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'});
- hero.querySelectorAll('.drw').forEach(t=>!RM.matches&&t.animate([{strokeDashoffset:420,fillOpacity:0},{strokeDashoffset:0,fillOpacity:0,offset:.72},{strokeDashoffset:0,fillOpacity:1}],{duration:1600,easing:'ease-in-out'}))}
+ hero.animate(anim&&!rm?[{transform:`translateX(${dir*34}%) rotate(${dir*9}deg) scale(.9)`,opacity:0},{transform:'none',opacity:1}]:[{opacity:1},{opacity:1}],{duration:anim&&!rm?700:1,easing:'cubic-bezier(.2,1.25,.4,1)',fill:'both'})}
 const user=()=>{lastUser=Date.now();stage.classList.add('tapped')};
-stage.addEventListener('click',()=>{user();swap(hero)});
-stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();user();swap(hero)}});
-$('#next').onclick=$('#mnext').onclick=()=>{user();go(cur+1)};$('#prev').onclick=$('#mprev').onclick=()=>{user();go(cur-1)};
+stage.addEventListener('click',e=>{user();const b=e.target.closest('[data-a],.psr');if(b){act(b);return}if(e.target.closest('.psh'))return;
+ if(hero.classList.contains('closed'))openMenu(hero,e.clientX,e.clientY);else swap(hero)});
+function act(b){if(b.classList.contains('psr')){const j=+b.dataset.j;toggleList(hero,false);setTimeout(()=>swap(hero,j),200);return}
+ const a=b.dataset.a;if(a==='back')closeMenu(hero);else if(a==='list')toggleList(hero);else if(a==='close')toggleList(hero,false);else if(a==='pause')setPaused(!paused)}
+stage.addEventListener('keydown',e=>{if(e.target!==stage)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();user();hero.classList.contains('closed')?openMenu(hero):swap(hero)}else if(e.key==='Escape')toggleList(hero,false)});
+$('#next').onclick=$('#mnext').onclick=()=>{user();go(cur+1,true,1)};$('#prev').onclick=$('#mprev').onclick=()=>{user();go(cur-1,true,-1)};
 let heroVis=true;new IntersectionObserver(e=>heroVis=e[0].isIntersecting,{threshold:.35}).observe(stage);
 let paused=false,hovering=false;
-const pb=$('#pause');pb.onclick=()=>{paused=!paused;pb.setAttribute('aria-pressed',paused);pb.setAttribute('aria-label',paused?'تشغيل الحركة التلقائية':'إيقاف الحركة التلقائية');$('#pico').setAttribute('d',paused?'M8 5v14l11-7z':'M7 5h3v14H7zM14 5h3v14h-3z')};
+function setPaused(v){paused=v;const b=hero.querySelector('[data-a=pause]');if(!b)return;if(RM.matches){b.hidden=true;return}
+ b.setAttribute('aria-pressed',v);b.setAttribute('aria-label',v?'تشغيل الحركة التلقائية':'إيقاف الحركة التلقائية');b.querySelector('.pico').setAttribute('d',v?'M8 5v14l11-7z':'M7 5h3v14H7zM14 5h3v14h-3z')}
 ['pointerenter','focusin'].forEach(ev=>stage.addEventListener(ev,()=>hovering=true));['pointerleave','focusout'].forEach(ev=>stage.addEventListener(ev,()=>hovering=false));
-if(RM.matches)pb.hidden=true;
-setInterval(()=>{if(!paused&&!hovering&&heroVis&&!document.hidden&&!RM.matches&&Date.now()-lastUser>6000)swap(hero)},2800);
+setInterval(()=>{if(!paused&&!hovering&&heroVis&&!document.hidden&&!RM.matches&&!hero.classList.contains('closed')&&!hero.querySelector('.psh.on')&&Date.now()-lastUser>6000)swap(hero)},2800);
 
 /* ---------- grid ---------- */
 const grid=$('#grid'),chips=$('#chips');let gridDone=false;
 function buildGrid(){if(gridDone)return;gridDone=true;const fr=document.createDocumentFragment();
- S.forEach(s=>{const b=document.createElement('button');b.className='tile';b.dataset.n=s.n;b.dataset.cat=s.cat;b.setAttribute('aria-label',`النمط ${s.n}: ${s.name}`);
+ S.forEach(s=>{const b=document.createElement('button');b.className='tile';b.dataset.n=s.n;b.dataset.cat=s.cat;b.setAttribute('aria-label',`التصميم ${s.n}: ${s.name}`);
   b.innerHTML=`<div class="pz" aria-hidden="true"></div><span class="tn"><span>${s.name}</span><b>#${pad(s.n)}</b></span>`;
   render(b.firstChild,s);b.firstChild.querySelectorAll('img').forEach(i=>i.loading='lazy');
   b.onclick=()=>{user();go(s.n-1,false);scrollTo({top:0,behavior:RM.matches?'auto':'smooth'})};fr.appendChild(b)});
@@ -792,17 +883,17 @@ chips.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;buildGrid();$$(
  $$('.tile').forEach(t=>t.classList.toggle('hide',b.dataset.c!=='all'&&t.dataset.cat!==b.dataset.c))};
 
 /* ---------- packages ---------- */
-const PK=[['qr','منيو QR','منيو يتحرك بالنمط اللي تختاره، برابط وكود QR جاهز للطباعة على الطاولات.'],
- ['screen','QR + شاشة','نفس المنيو، مع عرض يتحرك على شاشة داخل المطعم.',1],
- ['update','مع التحديث','كل ما فوق، وأعدّل لك الأسعار والأطباق متى ما طلبت.']];
+const PK=[['qr','قائمة QR','قائمة متحركة بالتصميم الذي تختاره، مع رابط ورمز QR جاهز للطباعة على الطاولات.'],
+ ['screen','QR + شاشة','القائمة نفسها، مع عرض متحرك على شاشة داخل المطعم.',1],
+ ['update','مع التحديث','كل ما سبق، وأعدّل لك الأسعار والأطباق متى طلبت.']];
 function paintPk(){const s=S[cur];$('#pk').innerHTML=PK.map(p=>{const v=PRICES[p[0]];
- return `<div class="pkr${p[3]?' best':''}"><h3>${p[1]}</h3><p>${p[2]}</p><div class="pc">${v!=null?`<div class="price"><small>من</small>${v}<small>ر.ع</small></div>`:`<a class="ask" href="${wa(`السلام عليكم، كم سعر باقة «${p[1]}» بالنمط #${pad(s.n)} «${s.name}»؟`)}">السعر على واتساب</a>`}</div></div>`}).join('')}
+ return `<div class="pkr${p[3]?' best':''}"><h3>${p[1]}</h3><p>${p[2]}</p><div class="pc">${v!=null?`<div class="price"><small>من</small>${v}<small>ر.ع</small></div>`:`<a class="ask" href="${wa(`السلام عليكم، كم سعر باقة «${p[1]}» بالتصميم #${pad(s.n)} «${s.name}»؟`)}">اسأل عن السعر عبر واتساب</a>`}</div></div>`}).join('')}
 
 /* ---------- misc ---------- */
-$$('[data-wa]').forEach(a=>a.href=wa('السلام عليكم، شفت موقعك وأبي منيو تفاعلي لمطعمي.'));
+$$('[data-wa]').forEach(a=>a.href=wa('السلام عليكم، شاهدت موقعك وأرغب في قائمة متحركة لمطعمي.'));
 const vid=$('#work video');new IntersectionObserver(e=>{if(e[0].isIntersecting&&!RM.matches)vid.play().catch(()=>{});else vid.pause()},{threshold:.3}).observe(vid);
 function setFood(c,first){applyCuisine(c);preload(c);$$('[data-food]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.food===c));
- $('#demo').textContent=c==='cafe'?'النماذج بأطباق كوفي «نعنع»، والأسعار فيها للعرض فقط.':'صور الأطباق والأسعار للعرض فقط. أصمم منيوك بصور أطباقك أنت.';
+ $('#demo').textContent=c==='cafe'?'النماذج بأطباق مقهى «نعنع»، والأسعار فيها للعرض فقط.':'الصور والأسعار للعرض فقط، وسيكون تصميمك بصور أطباقك.';
  try{localStorage.setItem('food',c)}catch(e){}
  if(gridDone)$$('.tile').forEach(t=>{const s=S[t.dataset.n-1];render(t.firstChild,s);t.firstChild.querySelectorAll('img').forEach(i=>i.loading='lazy')});
  $$('.chip').forEach(ch=>{const keep=c==='cafe'||ch.dataset.c==='all'||ch.dataset.c==='rm';ch.hidden=!keep;if(!keep&&ch.getAttribute('aria-pressed')==='true')$('.chip[data-c=all]').click()});
@@ -817,7 +908,7 @@ const h=location.hash.match(/^#s(\d+)$/);go(h?Math.min(S.length,+h[1])-1:0,false
  const TILE=[[53,'it'],[5,'it'],[35,'it'],[27,'it'],[1,'it'],[47,'bg'],[12,'bg'],[62,'bg'],[14,'bg'],[4,'bg']];
  const openTile=i=>{user();if(FOODC!==TILE[i][1])setFood(TILE[i][1],true);go(TILE[i][0]-1,false);document.getElementById('try').scrollIntoView({behavior:RRM?'auto':'smooth'})};
  const N=10,PITCH=196,row=document.getElementById('rrow'),frame=document.getElementById('rframe'),reel=document.getElementById('reel');const cards=[];
- for(let i=0;i<N;i++){const a=document.createElement('a');a.className='r-card';a.href='#try';a.draggable=false;a.setAttribute('aria-label','جرّب النمط رقم '+TILE[i][0]);
+ for(let i=0;i<N;i++){const a=document.createElement('a');a.className='r-card';a.href='#try';a.draggable=false;a.setAttribute('aria-label','جرّب التصميم رقم '+TILE[i][0]);
   a.innerHTML=`<div class="r-tile"><img src="${POSTER}" alt="" draggable="false">${RRM?'':`<video src="${SRC}" muted loop playsinline preload="auto"></video>`}</div><span class="r-play"><svg viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z"/></svg></span>`;
   a.addEventListener('click',e=>{e.preventDefault();if(e.detail===0)openTile(i)});
   row.appendChild(a);const v=a.querySelector('video');if(v){v.addEventListener('loadeddata',()=>v.classList.add('ready'),{once:true});v.play().catch(()=>{})}
@@ -857,9 +948,10 @@ const h=location.hash.match(/^#s(\d+)$/);go(h?Math.min(S.length,+h[1])-1:0,false
   A('.r-subl',[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:700,delay:560});
   A('.r-row',[{opacity:0,transform:'translateY(60px)'},{opacity:1,transform:'none'}],{duration:1000,delay:650});
   A('.r-cta',[{opacity:0,scale:.7},{opacity:1,scale:1}],{duration:600,delay:950});
+  reel.querySelectorAll('.r-cta a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.getElementById('try').scrollIntoView({behavior:'smooth'})}));
   reel.querySelectorAll('.r-doodle path').forEach((p,i)=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:900,delay:1150+i*160,fill:'both',easing:'ease-out'})});
   A('.r-note',[{opacity:0},{opacity:1}],{duration:700,delay:1300})}
- reel.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa('السلام عليكم، شفت موقعك وأبي منيو يتحرك لمطعمي.');a.target='_blank';a.rel='noopener'});
+ reel.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa('السلام عليكم، شاهدت موقعك وأرغب في قائمة متحركة لمطعمي.')});
 })();
 </script>
 </body></html>
