@@ -42,7 +42,7 @@ window.MENUZA = {
       'f.pick': 'Choose a package', 'f.unsure': 'Not sure yet — advise me',
       'f.send': 'Send request on WhatsApp', 'f.privacy': 'Nothing is stored on this website. Your details go straight into a WhatsApp message that you review before sending.',
       'f.err.required': 'Please fill this in.', 'f.err.phone': 'Enter an Omani number, e.g. 9xxx xxxx.', 'f.ok': 'WhatsApp is opening with your request.',
-      'footer.tag': 'More Than Just a Menu.', 'footer.loc': 'Muscat, Oman', 'footer.rights': 'All rights reserved.',
+      'footer.tag': 'More Than Just a Menu.', 'footer.loc': 'Oman', 'footer.rights': 'All rights reserved.',
       'demo.chef': "Chef's pick", 'demo.add': 'Add to order', 'demo.order': 'View order', 'demo.items': 'items', 'demo.total': 'Total',
       'demo.send': 'Send order on WhatsApp', 'demo.note': 'Demo: in your menu, this sends the order to your restaurant’s WhatsApp.',
       'demo.back': 'Back', 'demo.empty': 'Your order is empty.', 'demo.omr': 'OMR'
@@ -78,7 +78,7 @@ window.MENUZA = {
       'f.pick': 'اختر باقة', 'f.unsure': 'لم أقرّر بعد، أريد نصيحتكم',
       'f.send': 'أرسل الطلب عبر واتساب', 'f.privacy': 'لا يُحفَظ أي شيء في هذا الموقع. تنتقل بياناتك مباشرة إلى رسالة واتساب تراجعها قبل إرسالها.',
       'f.err.required': 'يُرجى تعبئة هذا الحقل.', 'f.err.phone': 'أدخل رقمًا عُمانيًا، مثل 9xxx xxxx.', 'f.ok': 'يُفتح واتساب الآن وفيه طلبك.',
-      'footer.tag': 'أكثر من مجرد قائمة.', 'footer.loc': 'مسقط، عُمان', 'footer.rights': 'جميع الحقوق محفوظة.',
+      'footer.tag': 'أكثر من مجرد قائمة.', 'footer.loc': 'سلطنة عُمان', 'footer.rights': 'جميع الحقوق محفوظة.',
       'demo.chef': 'اختيار الشيف', 'demo.add': 'أضف إلى الطلب', 'demo.order': 'عرض الطلب', 'demo.items': 'أصناف', 'demo.total': 'الإجمالي',
       'demo.send': 'أرسل الطلب عبر واتساب', 'demo.note': 'عرض تجريبي: في قائمتك يُرسَل الطلب إلى واتساب مطعمك.',
       'demo.back': 'رجوع', 'demo.empty': 'طلبك فارغ.', 'demo.omr': 'ر.ع'
