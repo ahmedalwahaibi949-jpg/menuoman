@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>منيو أطلس · نموذج</title>
+<meta name="description" content="نموذج منيو أطلس: كل طبق معروض مثل قطعة في متحف. اسحب الطبق وقرّبه واقرأ تفاصيله.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../assets/atlas-fonts.css">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<style>
+:root{
+ --bg:#ebe1cd;--panel:#f8f2e6;--line:#d6c9ae;--ink:#241c14;--muted:#7a6b58;
+ --accent:#b4532a;--accent-ink:#fff;--accent-tint:#f3dfcd;--chip:#e4d8c2;--shadow:70,48,24;
+ --serif:"Fraunces","Iowan Old Style",Georgia,serif;
+ --sans:"Instrument Sans","Readex Pro","Segoe UI",system-ui,sans-serif;
+ --ar:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+ --ard:"Alexandria","Readex Pro",sans-serif;
+ --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+ --ease:cubic-bezier(.22,.8,.24,1)}
+.hero[data-light="dusk"]{--bg:#17120d;--panel:#211a13;--line:#3d3225;--ink:#f1e7d6;--muted:#a89880;--accent:#e08a4f;--accent-ink:#17120d;--accent-tint:#3b2415;--chip:#2d251b;--shadow:0,0,0}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);font-family:var(--ar);color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased;transition:background-color .6s var(--ease)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+svg{display:block}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.lat{font-family:var(--serif);font-style:italic;direction:ltr;unicode-bidi:isolate}
+.mono{font-family:var(--mono);direction:ltr;unicode-bidi:isolate}
+
+.hero{position:relative;height:100vh;height:100dvh;display:grid;grid-template-columns:200px minmax(0,1fr) clamp(300px,27vw,360px);overflow:hidden;background:var(--bg);color:var(--ink);transition:background-color .6s var(--ease),color .6s var(--ease)}
+
+/* sidebar */
+.side{display:flex;flex-direction:column;padding:22px 24px 18px 12px;border-left:1px solid var(--line);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.brand{font:700 25px/1.2 var(--ard);white-space:nowrap}
+.brand small{display:block;font:400 9.5px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:6px;direction:ltr;text-align:right}
+.nav{list-style:none;padding:0;margin:20px 0 12px;display:grid;gap:2px}
+.nav button{width:100%;display:flex;gap:14px;align-items:center;padding:7px 10px;border-radius:3px;font-size:14px;line-height:1.25;text-align:start;box-shadow:inset -2px 0 0 transparent;transition:background-color .2s}
+.nav button:hover{background:var(--chip)}
+.nav button[aria-current="page"]{background:var(--accent-tint);box-shadow:inset -2px 0 0 var(--accent)}
+.nav small{display:block;font:400 10.5px var(--ar);color:var(--muted);margin-top:2px}
+.feature{margin-top:auto;background:var(--panel);border:1px solid var(--line);border-right:3px solid var(--accent);border-radius:3px;padding:14px 14px 16px}
+.eyebrow{font:500 9.5px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.feature .eyebrow{font:500 11px var(--ar);letter-spacing:0;text-transform:none}
+.feature img{display:block;width:92px;height:76px;object-fit:contain;margin:6px auto 4px}
+.feature h3{font:600 15px/1.35 var(--ard)}
+.feature p{font-size:12px;line-height:1.6;color:var(--muted);margin-top:6px}
+.feature a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:var(--ink);text-underline-offset:3px}
+.feature a .ico{width:14px;height:14px;transform:scaleX(-1)}
+
+/* centre */
+.main{display:grid;grid-template-rows:auto minmax(0,1fr);padding:40px 26px 14px 18px;min-width:0}
+.tabs{display:flex;gap:10px;transition:opacity .5s var(--ease),transform .5s var(--ease);overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.tab{position:relative;flex:none;width:130px;padding:16px 8px 11px;display:grid;justify-items:center;background:var(--panel);border:1px solid var(--line);border-radius:3px;transition:transform .25s var(--ease),border-color .25s}
+.tab::before{content:attr(data-no);position:absolute;right:8px;top:6px;font:400 9.5px var(--mono);letter-spacing:.1em;color:var(--muted)}
+.tab::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .35s var(--ease)}
+.tab img{width:58px;height:48px;object-fit:contain}
+.tab b{font:600 13px/1.3 var(--ard);margin-top:4px;text-align:center}
+.tab i{font:italic 400 11.5px var(--serif);color:var(--muted);direction:ltr}
+.tab:hover{transform:translateY(-2px);border-color:var(--muted)}
+.tab[aria-selected="true"]{border-color:var(--ink)}.tab[aria-selected="true"]::after{transform:scaleX(1)}
+
+.stage{position:relative;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;border-radius:3px;min-height:0;perspective:1300px}
+.stage.dragging{cursor:grabbing}
+.plate{position:absolute;inset:10px 0 24px;z-index:1;pointer-events:none}
+.plate i{position:absolute;width:14px;height:14px;border:0 solid var(--line)}
+.plate i:nth-child(1){top:0;right:0;border-top-width:1px;border-right-width:1px}.plate i:nth-child(2){top:0;left:0;border-top-width:1px;border-left-width:1px}
+.plate i:nth-child(3){bottom:0;right:0;border-bottom-width:1px;border-right-width:1px}.plate i:nth-child(4){bottom:0;left:0;border-bottom-width:1px;border-left-width:1px}
+.ground{position:absolute;left:50%;bottom:17%;width:min(58%,440px);height:44px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(var(--shadow),.24),rgba(var(--shadow),0));z-index:2;transition:opacity .5s,transform .7s var(--ease)}
+.stage.switching .ground{opacity:0;transform:translateX(-50%) scaleX(.4)}
+.spec{position:absolute;inset:12% 18% 24%;z-index:4;display:grid;place-items:center;transform-style:preserve-3d;will-change:transform;pointer-events:none}
+.spec img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 22px 22px rgba(var(--shadow),.28))}
+.hint{position:absolute;left:4px;top:8px;z-index:6;display:flex;gap:6px;align-items:center;font-size:11.5px;color:var(--muted);transition:opacity .6s}
+.hint .ico{width:15px;height:15px}
+.hero.touched .hint{opacity:0}
+.rail{position:absolute;right:0;top:50%;transform:translateY(-50%);display:grid;gap:9px;z-index:6}
+.rail button{width:40px;height:40px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);border-radius:3px;transition:border-color .2s,transform .15s,background-color .2s}
+.rail button:hover{border-color:var(--accent)}.rail button:active{transform:scale(.92)}
+.rail button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.rail .ico{width:17px;height:17px}
+.turn{position:absolute;left:50%;bottom:46px;transform:translateX(-50%);z-index:6;display:flex;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:3px 4px;font:400 12px var(--mono)}
+.turn button{height:30px;min-width:34px;display:grid;place-items:center;border-radius:2px;padding:0 6px}
+.turn button:hover{background:var(--chip)}.turn .ico{width:16px;height:16px}
+.scale{position:absolute;right:0;bottom:30px;z-index:6;font-size:11px;color:var(--muted)}
+.scale::before{content:"";display:block;width:72px;height:6px;border:1px solid var(--muted);border-top:0;margin-bottom:4px}
+.caption{position:absolute;bottom:0;left:0;right:0;text-align:center;font:300 italic clamp(17px,1.65vw,22px)/1.3 var(--serif);letter-spacing:-.01em;z-index:6;direction:ltr}
+
+/* card */
+.info{display:grid;grid-template-rows:auto minmax(0,1fr);gap:16px;padding:13px 0 14px 26px;min-width:0;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.top{display:flex;gap:10px;align-items:center}
+.search{flex:1;height:34px;padding:0 12px;display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:3px;color:var(--muted)}
+.search:focus-within{border-color:var(--accent)}
+.search .ico{width:15px;height:15px}
+.search input{flex:1;min-width:0;border:0;background:none;font:400 12px var(--ar);color:var(--ink);outline:0}
+.iconbtn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center}.iconbtn:hover{background:var(--chip)}
+.cart{position:relative}.cart b{position:absolute;top:2px;left:2px;min-width:16px;height:16px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font:600 10px/16px var(--mono);text-align:center;padding:0 4px;transform:scale(0);transition:transform .3s var(--ease)}
+.cart.has b{transform:scale(1)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:3px;box-shadow:inset 0 0 0 4px var(--panel),inset 0 0 0 5px var(--line);padding:26px 24px 20px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;transition:background-color .6s}
+.detail{display:flex;flex-direction:column;min-height:100%}
+.detail>*{animation:rise .6s var(--ease) both;animation-delay:calc(var(--i,0)*45ms)}
+.detail.leaving>*{animation:sink .2s ease-in both;animation-delay:0s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+@keyframes sink{to{opacity:0;transform:translateY(-6px)}}
+.detail .eyebrow{font:500 11px var(--ar);letter-spacing:0;color:var(--muted)}
+.detail .eyebrow .mono{font-size:10px;letter-spacing:.14em}
+.detail h1{font:700 clamp(32px,3.2vw,44px)/1.15 var(--ard);margin-top:10px;text-wrap:balance}
+.detail h1 em{display:block;font:300 italic clamp(19px,1.7vw,24px)/1.1 var(--serif);color:var(--muted);margin-top:8px;letter-spacing:-.01em;direction:ltr;text-align:right}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tags span{font-size:11.5px;padding:4px 10px;border-radius:2px;border:1px solid var(--line)}
+.lede{font-size:13.5px;line-height:1.85;margin-top:16px;text-wrap:pretty}
+.heat{margin-top:16px}
+.heat .bar{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;height:6px;gap:1px}
+.heat .bar b{background:var(--chip)}.heat .bar b:first-child{border-radius:0 2px 2px 0}.heat .bar b:last-child{border-radius:2px 0 0 2px}
+.heat u{position:absolute;top:-3px;height:12px;width:3px;background:var(--accent);border-radius:1px;transition:right .7s var(--ease)}
+.heat .lab{display:grid;grid-template-columns:1fr 1fr 1fr;margin-top:10px;font-size:10.5px;color:var(--muted)}
+.heat .lab span:nth-child(2){text-align:center}.heat .lab span:nth-child(3){text-align:left}
+.detail h2{font:600 11px var(--ar);color:var(--muted);margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.traits{margin-top:10px;display:grid;gap:9px}
+.traits div{display:flex;align-items:baseline;gap:10px;font-size:13px}
+.traits .ico{width:18px;height:18px;color:var(--muted);align-self:center}
+.traits dt{color:var(--muted);flex:1;display:flex}
+.traits dt::after{content:"";flex:1;border-bottom:1px dotted var(--line);margin:0 8px;transform:translateY(-4px)}
+.traits dd{margin:0;font-weight:500;text-align:left}
+.traits .price dd{font:500 15px var(--mono);color:var(--accent)}
+.pair{display:flex;gap:14px;align-items:center;margin-top:12px;font-size:13px}
+.pair .ico{color:var(--muted)}
+.cta{display:flex;gap:8px;margin-top:16px}
+.add{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:3px;background:var(--accent);color:var(--accent-ink);font:600 14px var(--ar);transition:transform .15s}
+.add:active{transform:scale(.97)}
+.add .ico{width:17px;height:17px}
+.closeup-wrap{margin-top:auto;padding-top:16px}
+.closeup{width:100%;display:grid;grid-template-columns:76px 1fr 18px;gap:14px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:3px;text-align:start;transition:border-color .2s,background-color .2s}
+.closeup:hover,.closeup[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-tint)}
+.lens{width:76px;height:76px;border-radius:2px;background-color:var(--chip);background-size:420%;background-repeat:no-repeat}
+.closeup b{display:block;font:600 15px var(--ard)}
+.closeup small{display:block;font-size:11.5px;line-height:1.55;color:var(--muted);margin-top:3px}
+.closeup .ico{width:18px;height:18px;transform:scaleX(-1);transition:transform .3s var(--ease)}
+.closeup[aria-pressed="true"] .ico{transform:scaleX(-1) rotate(180deg)}
+
+/* focus */
+.hero.focus .side{opacity:0;transform:translateX(24px);pointer-events:none}
+.hero.focus .info{opacity:0;transform:translateX(-24px);pointer-events:none}
+.hero.focus .tabs{opacity:0;transform:translateY(-16px);pointer-events:none}
+.hero.focus .main{grid-column:1/-1;grid-row:1;padding-inline:6vw}
+.hero.focus .side,.hero.focus .info{grid-row:1}
+.hero.focus .main{z-index:3}
+
+@media(max-width:1100px){.hero{grid-template-columns:minmax(0,1fr) clamp(280px,36vw,340px)}.side{display:none}.main{padding-right:20px}}
+@media(max-width:760px){
+ body{overflow:auto}
+ .hero{display:flex;flex-direction:column;height:auto;min-height:100dvh}
+ .info{display:contents}
+ .top{order:1;padding:10px 14px 0}.top::before{content:"منيو أطلس";font:700 19px var(--ard);margin-left:auto}
+ .search{flex:0 0 36px;width:36px;padding:0;justify-content:center;border-radius:50%}.search input{display:none}
+ .main{order:2;padding:10px 14px 6px;height:62dvh;min-height:420px}
+ .tabs{gap:8px}.tab{width:auto;min-width:150px;grid-template-columns:44px 1fr;grid-template-rows:auto auto;justify-items:start;column-gap:8px;padding:8px 10px}
+ .tab::before{display:none}.tab img{grid-row:span 2;width:44px;height:40px}.tab b{margin:0;text-align:start}
+ .rail{gap:7px}.rail button{width:36px;height:36px}.turn{bottom:30px}.caption{font-size:15px}.hint{display:none}
+ .ground{bottom:19%;height:30px}
+ .card{order:3;position:relative;z-index:7;border-radius:10px 10px 0 0;border-width:1px 0 0;box-shadow:none;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+ .detail h1{font-size:30px;margin-top:4px}.tags{margin-top:10px}.lede{margin-top:10px;font-size:13px}.detail h2{margin-top:12px;padding-top:10px}
+ .hero.focus .card,.hero.focus .top{display:none}.hero.focus .main{height:100dvh}
+}
+@media(max-height:620px) and (min-width:761px){.main{padding-top:16px}.side{padding-top:14px}.nav{margin-top:12px}.feature img,.feature p{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V20h-5.5v-5h-5v5H4z"/></symbol>
+ <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.8 2.5 5.3 5.7.7-4.2 4 1.1 5.7-5.1-2.8-5.1 2.8L8 13.8l-4.2-4 5.7-.7z"/></symbol>
+ <symbol id="i-pasta" viewBox="0 0 24 24"><path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M8 13c0-3 2-5 1-9M12 13c0-4 1.5-6 .5-9M16 13c0-3-1.5-5-.5-8"/></symbol>
+ <symbol id="i-burger" viewBox="0 0 24 24"><path d="M4.5 10.5C5 6.5 8 4.5 12 4.5s7 2 7.5 6z"/><path d="M3.5 14h17M4.5 17.5h15a0 0 0 0 1 0 0c0 1.2-1 2-2.2 2H6.7c-1.2 0-2.2-.8-2.2-2z"/><path d="M3.5 14c1.5 1 2.5 1 4 0s2.5-1 4 0 2.5 1 4 0 2.5-1 5 0"/></symbol>
+ <symbol id="i-grill" viewBox="0 0 24 24"><path d="M4 9h16a8 8 0 0 1-16 0z"/><path d="M8 4c-.8 1 .8 2 0 3M12 3.5c-.8 1 .8 2 0 3M16 4c-.8 1 .8 2 0 3M8 17l-2 4M16 17l2 4"/></symbol>
+ <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19 13 11"/></symbol>
+ <symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 8h12v5a6 6 0 0 1-12 0zM17 9.5h1.5a2.5 2.5 0 0 1 0 5H17M8 3.5c-.8 1 .8 2 0 3M12 3.5c-.8 1 .8 2 0 3"/></symbol>
+ <symbol id="i-cake" viewBox="0 0 24 24"><path d="M4 20h16v-7H4zM4 15.5c2 1.2 3.5 1.2 5.3 0s3.5-1.2 5.4 0 3.5 1.2 5.3 0M12 13V9M12 6.5c-1-1-1-2 0-3 1 1 1 2 0 3z"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 7l5 5-5 5"/></symbol>
+ <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4.5 4.5M10.5 8v5M8 10.5h5"/></symbol>
+ <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4.5 4.5"/></symbol>
+ <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+ <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.8"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6"/></symbol>
+ <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></symbol>
+ <symbol id="i-ccw" viewBox="0 0 24 24"><path d="M5 12a7 7 0 1 0 2.3-5.2L5 9M5 4.5V9h4.5"/></symbol>
+ <symbol id="i-cw" viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2.3-5.2L19 9M19 4.5V9h-4.5"/></symbol>
+ <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+ <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4.5 19.5l1.1-3.6A8 8 0 1 1 8.6 19z"/><path d="M9 8.5c0 3.5 2.8 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.5-2-1.5-2.4-2.4l.8-1-1-2z"/></symbol>
+ <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+ <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8.5 12V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0v4.5c0 3.3-2.2 5.5-5.5 5.5-2.5 0-4-1-5.3-3.2L4.5 13.5c-.6-1.2 1-2.3 2-1.2l2 2.2"/></symbol>
+ <symbol id="t-fire" viewBox="0 0 24 24"><path d="M12 3c1 3 4 4.5 4 8.5a4 4 0 0 1-8 0c0-1.5.5-2.5 1.5-3.5 0 1.5.7 2.3 1.5 2.5C10.5 8 11 5.5 12 3z"/><path d="M7 21h10"/></symbol>
+ <symbol id="t-time" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2M10 3h4"/></symbol>
+ <symbol id="t-warn" viewBox="0 0 24 24"><path d="M12 4 21 19.5H3zM12 10v4.5M12 17v.01"/></symbol>
+ <symbol id="t-tag" viewBox="0 0 24 24"><path d="M3.5 12.5V4h8.5l8.5 8.5-8.5 8.5z"/><circle cx="8" cy="8.5" r="1.3"/></symbol>
+ <symbol id="t-glass" viewBox="0 0 24 24"><path d="M7 3.5h10l-1.5 16.5h-7zM7.6 9h8.8"/></symbol>
+</svg>
+
+<main class="hero" id="hero" data-light="day">
+ <aside class="side" aria-label="أقسام المنيو">
+  <div class="brand">منيو أطلس<small>Trattoria · Vol. I</small></div>
+  <ul class="nav" id="nav"></ul>
+  <div class="feature">
+   <div class="eyebrow">طبق الشيف اليوم</div>
+   <img id="featImg" alt="">
+   <h3 id="featTitle"></h3>
+   <p id="featText"></p>
+   <a href="#detail">اقرأ عنه<svg class="ico"><use href="#i-arrow"/></svg></a>
+  </div>
+ </aside>
+
+ <section class="main">
+  <div class="tabs" id="tabs" role="tablist" aria-label="أطباق القسم"></div>
+  <div class="stage" id="stage" tabindex="0" aria-label="الطبق. اسحب لتحريكه، استخدم العجلة أو إصبعين للتكبير، ودبل كليك للرجوع.">
+   <div class="plate" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+   <div class="ground"></div>
+   <div class="spec" id="spec"><img id="specImg" alt="" draggable="false"></div>
+   <div class="hint" aria-hidden="true"><svg class="ico"><use href="#i-hand"/></svg>اسحب الطبق · قرّب بالعجلة</div>
+   <div class="rail" role="toolbar" aria-label="أدوات العرض">
+    <button id="zoomIn" class="on" aria-label="تكبير"><svg class="ico"><use href="#i-plus"/></svg></button>
+    <button id="zoomOut" aria-label="تصغير"><svg class="ico"><use href="#i-search"/></svg></button>
+    <button id="expand" aria-label="تكبير العرض" aria-pressed="false"><svg class="ico"><use href="#i-expand"/></svg></button>
+    <button id="light" aria-label="وضع العشاء" aria-pressed="false"><svg class="ico"><use id="lightIco" href="#i-moon"/></svg></button>
+   </div>
+   <div class="turn"><button id="turnL" aria-label="لف لليسار"><svg class="ico"><use href="#i-ccw"/></svg></button><button id="turnFull" aria-label="لفة كاملة">360°</button><button id="turnR" aria-label="لف لليمين"><svg class="ico"><use href="#i-cw"/></svg></button></div>
+   <div class="scale" id="scale"></div>
+   <p class="caption" id="caption"></p>
+  </div>
+ </section>
+
+ <section class="info">
+  <div class="top">
+   <label class="search"><svg class="ico"><use href="#i-search"/></svg><input type="search" placeholder="ابحث عن طبق أو مكوّن…" aria-label="ابحث في المنيو"></label>
+   <button class="iconbtn cart" id="cart" aria-label="طلبك"><svg class="ico"><use href="#i-bag"/></svg><b id="cartN">0</b></button>
+  </div>
+  <div class="card" id="card"><article class="detail" id="detail" aria-live="polite"></article></div>
+ </section>
+</main>
+
+<script>
+const IMG='../assets/img/food/';
+const SECTIONS=[
+ {id:'pasta',ico:'i-pasta',ar:'باستا',items:['alfredo','mushroom','pomodoro','penne','parmesan','fusilli']},
+ {id:'burger',ico:'i-burger',ar:'برجر',items:['smash','crispyburger','blueburger','avoburger']},
+ {id:'grill',ico:'i-grill',ar:'مشويات',items:['steak','loaded']},
+ {id:'salad',ico:'i-leaf',ar:'سلطات',items:['salmon']}];
+/* sample content: names, stories, calories and prices are illustrative */
+const DISH={
+ alfredo:{ar:'فيتوتشيني ألفريدو',en:'Fettuccine Alfredo',price:'3.400',kcal:820,min:12,heat:0,allergens:'قمح، ألبان',tags:['كريمي','نباتي','الأكثر طلباً'],
+  lede:'شرائط فيتوتشيني عريضة تنطبخ لين تصير طرية من غير ما تنكسر، وبعدها تتقلّب في زبدة وكريمة وبارميزان لين يغطيها الصوص كلها. بقدونس مفروم فوقها وبس.',
+  pair:'ليموناضة بالنعناع',caption:'Butter, cream, patience.',closeup:'الصوص يمسك بالشريحة من أول لفّة، وهذا اللي يخلي الألفريدو ألفريدو.',lens:'50% 45%',scale:'٢٨ سم',feat:['أبسط طبق وأصعب واحد.','ثلاث مكونات بس، وما ينفع تغلط في ولا واحد.']},
+ mushroom:{ar:'تالياتيلي بالفطر',en:'Mushroom Tagliatelle',price:'3.800',kcal:760,min:14,heat:1,allergens:'قمح، ألبان',tags:['فطر محمّر','نباتي'],
+  lede:'فطر يتحمّر في المقلاة لين يصير لونه بني، وبعدها يدخل صوص كريمي بالفلفل الأسود. التالياتيلي تلتف على الشوكة ويطلع معها الصوص مطاطي.',
+  pair:'عصير برتقال طازج',caption:'Lift the fork. Watch it stretch.',closeup:'الجبنة الذايبة تمتد خيوط بين الشوكة والصحن.',lens:'45% 20%',scale:'٢٦ سم',feat:['شوكة وحدة ما تكفي.','فطر محمّر وكريمة وفلفل أسود.']},
+ pomodoro:{ar:'سباغيتي بومودورو',en:'Spaghetti Pomodoro',price:'2.900',kcal:610,min:10,heat:1,allergens:'قمح',tags:['نباتي','طماطم إيطالية'],
+  lede:'صلصة طماطم تنطبخ على نار هادية لين تتحمّر أطرافها في المقلاة، مع ثوم وزيت زيتون وورق ريحان طازج. أخف طبق في القائمة.',
+  pair:'مياه فوارة بالليمون',caption:'Tomato, fire, basil. Nothing else.',closeup:'الأطراف المحمّرة من المقلاة فيها أقوى نكهة.',lens:'50% 55%',scale:'٢٧ سم',feat:['النسخة الأصلية.','طماطم وريحان وزيت زيتون.']},
+ penne:{ar:'بيني بالطماطم المجففة',en:'Mediterranean Penne',price:'3.600',kcal:780,min:13,heat:1,allergens:'قمح، ألبان',tags:['زيتون أسود','نباتي'],
+  lede:'بيني في صوص كريمي مع طماطم مجففة بالشمس وزيتون كالاماتا وبقدونس. حلاوة الطماطم وملوحة الزيتون في كل لقمة.',
+  pair:'شاي مثلّج بالخوخ',caption:'Sun-dried, never rushed.',closeup:'قطع الطماطم المجففة تعطي اللون الأحمر الوحيد في الطبق.',lens:'55% 40%',scale:'٢٤ سم',feat:['البحر المتوسط في صحن.','طماطم مجففة وزيتون.']},
+ parmesan:{ar:'سباغيتي بالبارميزان',en:'Parmesan Spaghetti',price:'3.300',kcal:740,min:11,heat:0,allergens:'قمح، ألبان',tags:['بارميزان','نباتي'],
+  lede:'سباغيتي بكريمة خفيفة وأعشاب مجففة، ويتبرش فوقها البارميزان قدامك لين يغطي الصحن.',
+  pair:'ليموناضة',caption:'More parmesan. Always.',closeup:'البارميزان يتبرش ناعم فوق الطبق قبل ما يوصلك.',lens:'40% 35%',scale:'٢٦ سم',feat:['للي يحب الجبن.','بارميزان مبروش قدامك.']},
+ fusilli:{ar:'فوسيلي بريمافيرا',en:'Fusilli Primavera',price:'3.200',kcal:580,min:12,heat:1,allergens:'قمح',tags:['خضار موسمية','نباتي'],
+  lede:'فوسيلي حلزوني يمسك الصوص في كل لفّة، مع بروكلي وفطر وفلفل وطماطم كرزية. الطبق الملوّن في القائمة.',
+  pair:'عصير جزر وبرتقال',caption:'Every colour on one plate.',closeup:'كل حلزونة فوسيلي تحبس شوية صوص.',lens:'45% 45%',scale:'٢٥ سم',feat:['خضار الموسم.','ملوّن وخفيف.']},
+ smash:{ar:'دبل سماش برجر',en:'Double Smash Burger',price:'3.500',kcal:980,min:9,heat:1,allergens:'قمح، ألبان، سمسم',tags:['لحم بقري','قطعتين'],
+  lede:'قطعتين لحم تنضغط على الصاج لين تصير أطرافها مقرمشة، وبينها جبنة أمريكية ذايبة ومخلل وصوص البيت، في خبز بريوش بالسمسم.',
+  pair:'ميلك شيك فانيلا',caption:'Smashed thin. Stacked high.',closeup:'الحواف المقرمشة من الضغط على الصاج.',lens:'30% 55%',scale:'١٢ سم',feat:['الضغط هو السر.','قطعتين لحم وجبنة ذايبة.']},
+ crispyburger:{ar:'برجر البصل المقرمش',en:'Crispy Onion Burger',price:'3.900',kcal:1050,min:11,heat:1,allergens:'قمح، ألبان',tags:['بصل مقرمش','مع بطاطس'],
+  lede:'لحم بقري مشوي مع شيدر وبصل مقلي مقرمش وصوص البيت، ويوصل مع بطاطس مقلية ذهبية.',
+  pair:'كولا',caption:'The crunch comes first.',closeup:'حلقات البصل تتقلى قبل التقديم بدقيقة.',lens:'45% 35%',scale:'١٣ سم',feat:['قرمشة فوق قرمشة.','بصل مقلي وشيدر.']},
+ blueburger:{ar:'برجر البلو تشيز',en:'Blue Cheese Burger',price:'4.200',kcal:990,min:12,heat:0,allergens:'قمح، ألبان',tags:['بلو تشيز','جرجير'],
+  lede:'لحم بقري مشوي على الفحم، فوقه صوص بلو تشيز كريمي وجرجير طازج، مع بطاطس رفيعة.',
+  pair:'ليموناضة بالزنجبيل',caption:'Bold cheese, quiet bun.',closeup:'صوص البلو تشيز يذوب على اللحم الحار.',lens:'35% 40%',scale:'١٣ سم',feat:['للي يحب الطعم القوي.','بلو تشيز وجرجير.']},
+ avoburger:{ar:'برجر دجاج أفوكادو',en:'Chicken Avocado Burger',price:'3.400',kcal:760,min:10,heat:0,allergens:'قمح، ألبان، سمسم',tags:['دجاج مشوي','أفوكادو'],
+  lede:'صدر دجاج مشوي مع موزاريلا ذايبة وأفوكادو مهروس وطماطم وجرجير، في خبز بالسمسم.',
+  pair:'عصير ليمون بالنعناع',caption:'Green, grilled, golden.',closeup:'طبقة الأفوكادو تحت الدجاج مباشرة.',lens:'50% 70%',scale:'١٢ سم',feat:['أخف برجر في القائمة.','دجاج وأفوكادو.']},
+ steak:{ar:'ستيك على روستي',en:'Steak & Rösti',price:'7.500',kcal:1100,min:20,heat:1,allergens:'ألبان',tags:['لحم بقري','طبق الشيف'],
+  lede:'قطعتين لحم بقري فوق أقراص روستي البطاطس المقرمشة، بصوص الديمي جلاس وبطاطس رفيعة مقلية وطماطم مشوية.',
+  pair:'عصير رمان',caption:'Crisp below, tender above.',closeup:'خيوط البطاطس المقرمشة فوق اللحم.',lens:'35% 30%',scale:'٣٠ سم',feat:['طبق الشيف.','لحم بقري وروستي.']},
+ loaded:{ar:'بطاطس محمّلة بالدجاج',en:'Loaded Chicken Fries',price:'3.200',kcal:1150,min:10,heat:2,allergens:'قمح، ألبان، بيض',tags:['حار','للمشاركة'],
+  lede:'صينية بطاطس ودجاج مقرمش، فوقها صوص الجبن والرانش والصوص الحار وبقدونس. تكفي اثنين.',
+  pair:'ليموناضة باردة',caption:'Made for sharing. Rarely shared.',closeup:'ثلاث صوصات فوق بعض: جبن ورانش وحار.',lens:'50% 50%',scale:'٣٥ سم',feat:['حطها بالنص.','صينية تكفي اثنين.']},
+ salmon:{ar:'سلطة السلمون المشوي',en:'Grilled Salmon Salad',price:'5.900',kcal:520,min:15,heat:0,allergens:'سمك، ألبان',tags:['سمك','خفيف'],
+  lede:'قطعة سلمون مشوية بالفلفل الأسود فوق خس وطماطم كرزية وزيتون وجبنة فيتا، مع صوص الليمون وزيت الزيتون.',
+  pair:'مياه فوارة',caption:'Light, but never small.',closeup:'جلد السلمون يتحمّر لين يصير مقرمش.',lens:'45% 30%',scale:'٢٨ سم',feat:['أخف طبق.','سلمون وفيتا.']}};
+
+const $=q=>document.querySelector(q),hero=$('#hero'),stage=$('#stage'),spec=$('#spec'),specImg=$('#specImg');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,DUR=RM?1:780;
+const pad=n=>String(n).padStart(2,'0');
+let sec=0,cur=0,cart=0;
+
+/* sidebar */
+$('#nav').innerHTML=[`<li><button><svg class="ico"><use href="#i-star"/></svg><span>اختيارات الشيف</span></button></li>`].concat(SECTIONS.map((s,i)=>`<li><button data-sec="${i}"><svg class="ico"><use href="#${s.ico}"/></svg><span>${s.ar}<small>${s.items.length} أطباق</small></span></button></li>`),
+ [`<li><button disabled style="opacity:.55"><svg class="ico"><use href="#i-cup"/></svg><span>مشروبات<small>قريباً</small></span></button></li>`,`<li><button disabled style="opacity:.55"><svg class="ico"><use href="#i-cake"/></svg><span>حلويات<small>قريباً</small></span></button></li>`]).join('');
+$('#nav').onclick=e=>{const b=e.target.closest('[data-sec]');if(b)openSection(+b.dataset.sec)};
+
+/* tabs */
+const tabsEl=$('#tabs');
+function openSection(i){sec=i;
+ document.querySelectorAll('#nav [data-sec]').forEach(b=>{if(+b.dataset.sec===i)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+ const items=SECTIONS[i].items;tabsEl.innerHTML=items.map((k,j)=>`<button class="tab" role="tab" id="tab-${k}" data-no="${pad(j+1)}" aria-selected="false" tabindex="-1"><img src="${IMG+k}.webp" alt=""><b>${DISH[k].ar}</b><i>${DISH[k].en}</i></button>`).join('');
+ [...tabsEl.children].forEach((t,j)=>t.onclick=()=>select(j));cur=-1;select(0,true)}
+tabsEl.addEventListener('keydown',e=>{const n=tabsEl.children.length;if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();
+ const d=e.key==='ArrowLeft'?1:-1;const j=(cur+d+n)%n;select(j);tabsEl.children[j].focus()});
+
+/* card */
+const detail=$('#detail');
+function paint(k,instant){const d=DISH[k],S=SECTIONS[sec];
+ const fill=()=>{let i=0;const r=()=>`style="--i:${i++}"`;
+  detail.innerHTML=`<div class="eyebrow" ${r()}>${S.ar} · طبق <span class="mono">TR-${pad(SECTIONS[sec].items.indexOf(k)+1)}</span></div>
+  <h1 ${r()}>${d.ar}<em>${d.en}</em></h1>
+  <div class="tags" ${r()}>${d.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+  <p class="lede" ${r()}>${d.lede}</p>
+  <div class="heat" ${r()} aria-label="مستوى الحرارة"><div class="bar"><b></b><b></b><b></b><u style="right:calc(${[8,50,92][d.heat]}% - 1.5px)"></u></div><div class="lab"><span>هادي</span><span>وسط</span><span>حار</span></div></div>
+  <h2 ${r()}>تفاصيل الطبق</h2>
+  <dl class="traits" ${r()}>
+   <div><svg class="ico"><use href="#t-fire"/></svg><dt>السعرات</dt><dd><span class="mono">${d.kcal}</span> سعرة</dd></div>
+   <div><svg class="ico"><use href="#t-time"/></svg><dt>وقت التحضير</dt><dd><span class="mono">${d.min}</span> دقيقة</dd></div>
+   <div><svg class="ico"><use href="#t-warn"/></svg><dt>يحتوي على</dt><dd>${d.allergens}</dd></div>
+   <div class="price"><svg class="ico"><use href="#t-tag"/></svg><dt>السعر شامل الضريبة</dt><dd>${d.price} <small style="font:400 11px var(--ar)">ر.ع</small></dd></div>
+  </dl>
+  <h2 ${r()}>يمشي معه</h2>
+  <div class="pair" ${r()}><svg class="ico"><use href="#t-glass"/></svg>${d.pair}</div>
+  <div class="cta" ${r()}><button class="add" id="add"><svg class="ico"><use href="#i-wa"/></svg>أضف للطلب على واتساب</button></div>
+  <div class="closeup-wrap" ${r()}><button class="closeup" id="closeup" aria-pressed="false"><span class="lens" style="background-image:url(${IMG+k}.webp);background-position:${d.lens}"></span><span><b>تفصيلة قريبة</b><small>${d.closeup}</small></span><svg class="ico"><use href="#i-chev"/></svg></button></div>`;
+  $('#caption').textContent=d.caption;$('#scale').textContent='قطر الصحن '+d.scale;
+  $('#featImg').src=IMG+k+'.webp';$('#featTitle').textContent=d.feat[0];$('#featText').textContent=d.feat[1];
+  $('#card').scrollTop=0;detail.classList.remove('leaving');
+  $('#closeup').onclick=()=>{touched();setZoom(zoomGoal>2?1:2.6)};
+  $('#add').onclick=()=>{cart++;$('#cartN').textContent=cart;$('#cart').classList.add('has');$('#add').lastChild.textContent='انضاف للطلب ✓';setTimeout(()=>{const a=$('#add');if(a)a.lastChild.textContent='أضف للطلب على واتساب'},1400)};
+  syncZoomUi()};
+ if(instant)fill();else{detail.classList.add('leaving');setTimeout(fill,200)}}
+
+/* motion state */
+let rx=0,ry=0,rz=0,vx=0,vy=0,zoom=1,zoomGoal=1,zq=0,homing=false,lastTouch=-1e9,swap=null;
+const f=(dt,r)=>1-Math.exp(-dt*r);
+const inC=t=>t*t*t,outC=t=>1-(1-t)**3,outB=t=>1+2.2*(t-1)**3+1.2*(t-1)**2;
+function touched(){lastTouch=performance.now();homing=false;hero.classList.add('touched')}
+function setZoom(z){zoomGoal=Math.min(3.2,Math.max(.6,z));syncZoomUi()}
+function syncZoomUi(){$('#zoomIn').classList.toggle('on',zoomGoal>=1);$('#zoomOut').classList.toggle('on',zoomGoal<1);const c=$('#closeup');if(c)c.setAttribute('aria-pressed',zoomGoal>2.2)}
+
+function select(j,first){if(j===cur)return;const dir=cur<0?1:Math.sign(j-cur);const from=cur;cur=j;
+ [...tabsEl.children].forEach((t,i)=>{t.setAttribute('aria-selected',i===j);t.tabIndex=i===j?0:-1});
+ const k=SECTIONS[sec].items[j];paint(k,first);stage.classList.add('switching');vx=vy=0;zq=0;setZoom(1);
+ swap={phase:'out',dir,t0:performance.now(),k,skipOut:first||from<0}}
+
+/* drag, wheel, pinch */
+const pts=new Map();let pinch0=0,zoom0=1;
+stage.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;stage.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(pts.size===2){const[a,b]=[...pts.values()];pinch0=Math.hypot(a.x-b.x,a.y-b.y);zoom0=zoomGoal}stage.classList.add('dragging');touched();zq=0});
+stage.addEventListener('pointermove',e=>{const p=pts.get(e.pointerId);if(!p)return;const dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;
+ if(pts.size===2){const[a,b]=[...pts.values()];setZoom(zoom0*Math.hypot(a.x-b.x,a.y-b.y)/pinch0);return}
+ vy=dx*.32;vx=-dy*.26;ry+=vy;rx+=vx;touched()});
+const up=e=>{pts.delete(e.pointerId);if(!pts.size)stage.classList.remove('dragging')};
+stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
+stage.addEventListener('wheel',e=>{e.preventDefault();touched();setZoom(zoomGoal*Math.exp(-e.deltaY*(e.ctrlKey?.01:.0016)))},{passive:false});
+stage.addEventListener('dblclick',()=>{touched();homing=true;setZoom(1)});
+stage.addEventListener('keydown',e=>{const m={ArrowLeft:[0,-10],ArrowRight:[0,10],ArrowUp:[8,0],ArrowDown:[-8,0]}[e.key];
+ if(m){e.preventDefault();touched();rx+=m[0];ry+=m[1]}else if(e.key==='+'||e.key==='='){touched();setZoom(zoomGoal*1.2)}else if(e.key==='-'){touched();setZoom(zoomGoal/1.2)}else if(e.key==='0'){touched();homing=true;setZoom(1)}});
+$('#zoomIn').onclick=()=>{touched();setZoom(zoomGoal*1.35)};$('#zoomOut').onclick=()=>{touched();setZoom(zoomGoal/1.35)};
+$('#turnL').onclick=()=>{touched();zq-=Math.PI/2};$('#turnR').onclick=()=>{touched();zq+=Math.PI/2};$('#turnFull').onclick=()=>{touched();zq+=Math.PI*2};
+$('#expand').onclick=()=>{const on=hero.classList.toggle('focus');const b=$('#expand');b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.setAttribute('aria-label',on?'إغلاق العرض المكبّر':'تكبير العرض')};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&hero.classList.contains('focus'))$('#expand').click()});
+$('#light').onclick=()=>{const dusk=hero.dataset.light!=='dusk';hero.dataset.light=dusk?'dusk':'day';document.body.style.background=dusk?'#17120d':'';
+ const b=$('#light');b.classList.toggle('on',dusk);b.setAttribute('aria-pressed',dusk);b.setAttribute('aria-label',dusk?'وضع الغداء':'وضع العشاء');$('#lightIco').setAttribute('href',dusk?'#i-sun':'#i-moon')};
+
+/* loop */
+let last=performance.now();
+function frame(now){const dt=Math.min(.05,(now-last)/1000);last=now;const s=now/1000;
+ if(!pts.size){rx+=vx;ry+=vy;const d=Math.exp(-dt*4.5);vx*=d;vy*=d}
+ rx=Math.max(-38,Math.min(38,rx));ry=Math.max(-50,Math.min(50,ry));
+ const idle=Math.min(1,Math.max(0,(now-lastTouch-1800)/1500));
+ if(homing||idle>0){const k=f(dt,homing?6:1.6*idle);rx-=rx*k;ry-=ry*k}
+ if(homing&&Math.abs(rx)<.05&&Math.abs(ry)<.05)homing=false;
+ const step=zq*f(dt,4.2);zq-=step;rz+=step;if(homing)rz-=rz*f(dt,6);
+ zoom+=(zoomGoal-zoom)*f(dt,6);
+ let k=1,x=0,tw=0;
+ if(swap){const W=stage.clientWidth;
+  if(swap.phase==='out'){const t=swap.skipOut?1:Math.min(1,(now-swap.t0)/(DUR*.6)),e=inC(t);k=1-e;x=-swap.dir*e*W*.9;tw=-swap.dir*e*80;
+   if(t>=1){specImg.src=IMG+swap.k+'.webp';specImg.alt=DISH[swap.k].ar;rx=ry=rz=0;swap.phase='in';swap.t1=now;stage.classList.remove('switching')}}
+  else{const t=Math.min(1,(now-swap.t1)/DUR),e=outC(t);k=Math.max(.0001,outB(t))*(.25+.75*e);x=swap.dir*(1-e)*W*.9;tw=swap.dir*(1-e)*90;if(t>=1)swap=null}}
+ const hov=Math.sin(s*1.3)*6,swayY=Math.sin(s*.55)*9*idle,swayX=Math.sin(s*.9)*2*idle;
+ spec.style.transform=`translate3d(${-x}px,${hov}px,0) rotateX(${rx+swayX+12}deg) rotateY(${ry+swayY+tw}deg) rotateZ(${rz*57.2958}deg) scale(${k*zoom})`;
+ requestAnimationFrame(frame)}
+openSection(0);requestAnimationFrame(frame);
+</script>
+</body>
+</html>
