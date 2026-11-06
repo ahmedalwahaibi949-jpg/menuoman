@@ -80,8 +80,8 @@ function mount(root, cfg, opt = {}) {
 /* ---------- cover + reveal ---------- */
 function coverHTML(ctx) {
   const r = ctx.cfg.reveal, peek = ctx.cu.cats[0].items[0], two = ['doors', 'puzzle'].includes(r);
-  const inner = `<div class="tex"></div><div class="frame"></div><span class="lbl">${esc(ctx.cu.en)}</span><b class="word">${UI.ar.menu}</b><span class="sub">${esc(ctx.cu.ar)} · ${esc(ctx.cfg.name.ar)}</span><img class="peek" src="${ctx.img(peek)}" alt=""><span class="tap">${UI.ar.tap}</span>`;
-  return `<div class="mx-cover" data-r="${r}" data-act="cover" role="button" tabindex="0" aria-label="${UI.ar.tap}"><div class="mx-cv a">${inner}</div>${two ? `<div class="mx-cv b">${inner}</div>` : ''}</div>`;
+  const inner = `<div class="tex"></div><div class="frame"></div><span class="lbl">${esc(ctx.cu.en)}</span><b class="word">${UI.ar.menu}</b><span class="sub">${ctx.lang === "en" ? esc(ctx.cfg.name.en) : esc(ctx.cu.ar) + " · " + esc(ctx.cfg.name.ar)}</span><img class="peek" src="${ctx.img(peek)}" alt=""><span class="tap">${ctx.u().tap}</span>`;
+  return `<div class="mx-cover" data-r="${r}" data-act="cover" role="button" tabindex="0" aria-label="${ctx.u().tap}"><div class="mx-cv a">${inner}</div>${two ? `<div class="mx-cv b">${inner}</div>` : ''}</div>`;
 }
 async function openCover(ctx, e) {
   const el = ctx.el, cv = ctx.$('.mx-cover'), parts = [...cv.querySelectorAll('.mx-cv')], r = cv.dataset.r, R = el.getBoundingClientRect();

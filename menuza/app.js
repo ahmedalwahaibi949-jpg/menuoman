@@ -129,6 +129,7 @@ function applyLang() {
   $$('[data-t]').forEach(e => { e.innerHTML = T(e.dataset.t) });
   $$('[data-ph]').forEach(e => { e.placeholder = T(e.dataset.ph) });
   $('#lang').lang = L === 'ar' ? 'en' : 'ar';
+  document.dispatchEvent(new Event('menuza:lang'));
   document.title = L === 'ar' ? 'منيوزا · قوائم رقمية تفاعلية للمطاعم في عُمان' : 'Menuza · Interactive Digital Menus for Restaurants in Oman';
   renderServices(); textDemoCards(); renderPlans(); renderSteps(); renderWork(); renderPackSelect(); setWa();
   apps.forEach(a => a.setLang(L)); $$('.field').forEach(f => { delete f.dataset.err; $('.err', f) && ($('.err', f).textContent = '') });
@@ -180,7 +181,21 @@ $('#lang').onclick = () => { L = L === 'ar' ? 'en' : 'ar'; applyLang() };
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), { threshold: .12 });
 const watch = () => $$('.rv:not(.in)').forEach(el => io.observe(el));
 new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.style.setProperty('--prog', 1)), { threshold: .3 }).observe($('#steps'));
-$('#heroQR').innerHTML = qrSVG(C.siteUrl + '#demos');
 $('#yr').textContent = new Date().getFullYear();
-buildDemoCards(); applyLang(); watch();
+buildDemoCards(); applyLang(); watch(); initLive();
+/* ---------- live menu on the first screen (designs from ../menus) ---------- */
+function initLive() {
+  const fr = $('#liveFrame'); let list = [], i = 0, shown = '';
+  const load = () => { const d = list[i]; if (!d) return; const src = `../menus/view.html?id=${d.id}&lang=${L}`;
+    if (src !== shown) { shown = src; fr.src = src }
+    $('#lvName').textContent = d.name[L]; $('#lvCount').textContent = `${d.id} · ${num(i + 1)} ${T('live.of')} ${num(list.length)}`;
+    $('#lvWant').href = wa(T('live.msg') + d.id + ' (' + d.name[L] + ')') };
+  const go = s => { i = (i + s + list.length) % list.length; load() };
+  $('#lvPrev').onclick = () => go(L === 'ar' ? 1 : -1); $('#lvNext').onclick = () => go(L === 'ar' ? -1 : 1);
+  document.addEventListener('menuza:lang', load);
+  fetch('../menus/designs/index.json').then(r => r.json()).then(all => {
+    const pick = ['A-001', 'A-026', 'A-016', 'A-029', 'A-011', 'A-032', 'A-021', 'A-035', 'A-006', 'A-013'];
+    const rest = all.filter(d => d.set === 'interactive' && !pick.includes(d.id));
+    list = [...pick.map(id => all.find(d => d.id === id)).filter(Boolean), ...rest]; load() }).catch(() => {});
+}
 })();

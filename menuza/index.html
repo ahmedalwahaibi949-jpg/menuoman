@@ -38,21 +38,30 @@
 </div></header>
 
 <main id="top">
+<section class="live" id="live" aria-label="Live menu">
+ <div class="live-side">
+  <p class="live-kicker" data-t="live.kicker"></p>
+  <h1 data-t="hero.title"></h1>
+  <p class="lead" data-t="live.lead"></p>
+ </div>
+ <div class="live-dev"><iframe id="liveFrame" title="Live interactive menu" allow="autoplay"></iframe></div>
+ <div class="live-bar">
+  <button class="lv-arr" id="lvPrev" aria-label="Previous design"><svg><use href="#i-back"/></svg></button>
+  <div class="lv-name"><b id="lvName"></b><span id="lvCount"></span></div>
+  <button class="lv-arr" id="lvNext" aria-label="Next design"><svg><use href="#i-back"/></svg></button>
+  <a class="btn btn-gold lv-cta" id="lvWant" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span data-t="live.want"></span></a>
+ </div>
+</section>
 <section class="hero">
  <div class="wrap">
   <div>
-   <h1 class="rv" data-t="hero.title"></h1>
+   <h2 class="rv" data-t="hero.title"></h2>
    <p class="lead rv" data-t="hero.sub"></p>
    <div class="cta rv">
     <a class="btn btn-gold" href="#contact"><span data-t="hero.cta2"></span><svg class="arr"><use href="#i-arrow"/></svg></a>
     <a class="txtlink" href="#demos" data-t="hero.cta1"></a>
    </div>
    <p class="facts rv" data-t="hero.facts"></p>
-  </div>
-  <div class="stage rv">
-   <div class="phone" data-demo="lux" data-auto="1"></div>
-   <div class="qrcard"><div id="heroQR"></div><span data-t="hero.qr"></span></div>
-   <p class="tryhint" data-t="hero.try"></p>
   </div>
  </div>
 </section>
