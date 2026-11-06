@@ -30,7 +30,7 @@
 <header class="hd" id="hd"><div class="wrap">
  <a class="logo" href="#top" aria-label="Menuza"><i>M</i><b>MENUZA</b></a>
  <nav class="nav" id="nav" aria-label="Main">
-  <a href="#demos" data-t="nav.demos"></a><a href="#services" data-t="nav.services"></a><a href="#pricing" data-t="nav.pricing"></a><a href="#process" data-t="nav.process"></a><a href="#work" data-t="nav.work"></a><a href="#contact" data-t="nav.contact"></a>
+  <a href="#demos" data-t="nav.demos"></a><a href="#pricing" data-t="nav.pricing"></a><a href="#contact" data-t="nav.contact"></a>
  </nav>
  <button class="lang" id="lang" data-t="lang" lang="ar"></button>
  <a class="btn btn-gold" href="#contact" data-t="nav.cta"></a>
@@ -44,8 +44,8 @@
    <h1 class="rv" data-t="hero.title"></h1>
    <p class="lead rv" data-t="hero.sub"></p>
    <div class="cta rv">
-    <a class="btn btn-gold" href="#demos"><span data-t="hero.cta1"></span><svg class="arr"><use href="#i-arrow"/></svg></a>
-    <a class="btn btn-line" href="#contact" data-t="hero.cta2"></a>
+    <a class="btn btn-gold" href="#contact"><span data-t="hero.cta2"></span><svg class="arr"><use href="#i-arrow"/></svg></a>
+    <a class="txtlink" href="#demos" data-t="hero.cta1"></a>
    </div>
    <p class="facts rv" data-t="hero.facts"></p>
   </div>
@@ -67,14 +67,14 @@
 <section class="sec dark" id="demos"><div class="wrap">
  <h2 class="rv" data-t="demo.title"></h2>
  <p class="lead rv" data-t="demo.lead"></p>
- <div class="demos-grid" id="demoGrid"></div>
+ <div class="work-grid" id="workGrid"></div>
 </div></section>
 
 <section class="sec" id="pricing"><div class="wrap">
  <h2 class="rv" data-t="price.title"></h2>
  <p class="lead rv" data-t="price.lead"></p>
  <div class="plans" id="plans"></div>
- <div class="subs rv"><div><h3 data-t="sub.title"></h3><p class="lead" data-t="sub.lead"></p></div><div class="subs-grid" id="subs"></div></div>
+ <details class="subs rv"><summary><h3 data-t="sub.title"></h3><p class="lead" data-t="sub.lead"></p></summary><div class="subs-grid" id="subs"></div></details>
 </div></section>
 
 <section class="sec" id="process" style="background:var(--sand)"><div class="wrap">
@@ -82,17 +82,11 @@
  <ol class="steps" id="steps"></ol>
 </div></section>
 
-<section class="sec dark" id="work"><div class="wrap">
- <h2 class="rv" data-t="work.title"></h2>
- <p class="lead rv" data-t="work.lead"></p>
- <div class="work-grid" id="workGrid"></div>
-</div></section>
 
 <section class="sec" id="contact"><div class="wrap contact">
  <div class="rv">
   <h2 data-t="contact.title"></h2>
   <p class="lead" data-t="contact.lead"></p>
-  <a class="btn btn-dark wa-big" id="waBtn" href="#"><svg><use href="#i-wa"/></svg><span data-t="contact.wa"></span></a>
  </div>
  <form class="form rv" id="form" novalidate autocomplete="on">
   <div class="field"><label for="f-rest" data-t="f.restaurant"></label><input id="f-rest" name="restaurant" required maxlength="80" autocomplete="organization"><span class="err" aria-live="polite"></span></div>

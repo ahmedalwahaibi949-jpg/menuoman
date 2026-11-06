@@ -22,8 +22,8 @@ window.MENUZA = {
       'for.title': 'Made for', 'for.list': 'Restaurants · Cafés · Coffee shops · Bakeries · Dessert shops · Hotels',
       'svc.title': 'Everything your menu needs, <em>designed as one experience.</em>',
       'svc.lead': 'We design the menu, the QR codes your guests scan and the brand details that tie them to your restaurant, then keep it all up to date.',
-      'demo.title': 'Three menus. <em>Fully working.</em>',
-      'demo.lead': 'These are not screenshots. Switch categories, open a dish, change the language, add to an order. This is exactly what your guests will use.',
+      'demo.title': 'Tap a menu. <em>Try it live.</em>',
+      'demo.lead': 'Each one works like the real thing: switch categories, open a dish, add to an order.',
       'demo.view': 'View Live Demo', 'demo.close': 'Close demo',
       'price.title': 'Clear pricing, <em>in Omani rials.</em>',
       'price.lead': 'One payment for the design. An optional monthly plan if you want us to keep your menu updated for you.',
@@ -33,7 +33,7 @@ window.MENUZA = {
       'how.title': 'From paper to live <em>in five steps.</em>',
       'work.title': 'Selected menu designs',
       'work.lead': 'A real client and three design concepts, each built around a different kind of restaurant.',
-      'work.real': 'Client project', 'work.concept': 'Design concept', 'work.open': 'Open this demo',
+      'work.real': 'Client project', 'work.concept': 'Design concept', 'work.open': 'Try it live',
       'contact.title': 'Request your <em>quotation.</em>',
       'contact.lead': 'Tell us about your restaurant. Your request opens in WhatsApp, ready to send. We reply with a quotation and a design direction.',
       'contact.wa': 'Chat on WhatsApp',
@@ -58,8 +58,8 @@ window.MENUZA = {
       'for.title': 'مصمَّمة لـ', 'for.list': 'المطاعم · المقاهي · محامص القهوة · المخابز · محلات الحلويات · الفنادق',
       'svc.title': 'كل ما تحتاجه قائمتك، <em>في تجربة واحدة متكاملة.</em>',
       'svc.lead': 'نصمّم القائمة، ورموز QR التي يمسحها ضيوفك، وتفاصيل الهوية التي تربطها بمطعمك، ثم نُبقيها محدَّثة دائمًا.',
-      'demo.title': 'ثلاث قوائم. <em>تعمل بالكامل.</em>',
-      'demo.lead': 'ليست صورًا. تنقّل بين الأقسام، وافتح أي طبق، وغيّر اللغة، وأضف إلى الطلب. هذا تمامًا ما سيستخدمه ضيوفك.',
+      'demo.title': 'المس أي قائمة. <em>وجرّبها حيّة.</em>',
+      'demo.lead': 'كل قائمة تعمل كما ستعمل في مطعمك: تنقّل بين الأقسام، وافتح طبقًا، وأضف إلى الطلب.',
       'demo.view': 'شاهد العرض الحي', 'demo.close': 'إغلاق العرض',
       'price.title': 'أسعار واضحة <em>بالريال العُماني.</em>',
       'price.lead': 'دفعة واحدة للتصميم، واشتراك شهري اختياري إن أردت أن نتولّى تحديث قائمتك عنك.',
@@ -69,7 +69,7 @@ window.MENUZA = {
       'how.title': 'من الورق إلى قائمة حيّة <em>في خمس خطوات.</em>',
       'work.title': 'مختارات من تصاميمنا',
       'work.lead': 'عميل حقيقي وثلاثة مفاهيم تصميم، صُمّم كلٌّ منها لنوع مختلف من المطاعم.',
-      'work.real': 'مشروع لعميل', 'work.concept': 'مفهوم تصميم', 'work.open': 'افتح هذا العرض',
+      'work.real': 'مشروع لعميل', 'work.concept': 'مفهوم تصميم', 'work.open': 'جرّبها الآن',
       'contact.title': 'اطلب <em>عرض السعر.</em>',
       'contact.lead': 'أخبرنا عن مطعمك، وسيُفتح طلبك في واتساب جاهزًا للإرسال. نردّ عليك بعرض سعر واتجاه مقترح للتصميم.',
       'contact.wa': 'تحدّث معنا عبر واتساب',
@@ -132,7 +132,7 @@ window.MENUZA = {
 
   /* ---------- portfolio ---------- */
   portfolio: [
-    { kind: 'real', video: '../videos/scircle-nana.mp4', poster: '../assets/img/nana-frame.webp',
+    { kind: 'real', video: '../videos/sband-nana.mp4', poster: '../assets/img/nana-frame.webp',
       en: ['Nana Tea House', 'QR menu and in-store screen for a tea and dessert café: large photography, gentle motion, the café’s own colours.'],
       ar: ['مقهى نعنع', 'قائمة QR وشاشة عرض لمقهى شاي وحلويات: صور كبيرة وحركة هادئة وألوان المقهى نفسه.'] },
     { kind: 'concept', demo: 'lux', dish: 'food/steak', bg: 'radial-gradient(80% 80% at 70% 20%,#3a2f1e,#0E0D0B 70%)',
@@ -140,9 +140,7 @@ window.MENUZA = {
     { kind: 'concept', demo: 'cafe', dish: 'karam', bg: 'radial-gradient(80% 80% at 70% 20%,#e9d9bf,#b9905e 85%)',
       en: ['Haven Coffee', 'A warm, quick café menu built for the morning rush.'], ar: ['مقهى الملاذ', 'قائمة مقهى دافئة وسريعة تناسب زحمة الصباح.'] },
     { kind: 'concept', demo: 'burger', dish: 'food/smash', bg: 'radial-gradient(80% 80% at 70% 20%,#4a3a12,#121212 70%)',
-      en: ['STACKED', 'A loud burger bar menu with one-tap ordering.'], ar: ['ستاكد', 'قائمة برغر جريئة بطلب من لمسة واحدة.'] },
-    { kind: 'concept', shot: '../assets/img/atlas-shot.webp',
-      en: ['Atlas', 'A museum-plate menu where every dish has its own page.'], ar: ['أطلس', 'قائمة على هيئة لوحات متحف، لكل طبق صفحته.'] }
+      en: ['STACKED', 'A loud burger bar menu with one-tap ordering.'], ar: ['ستاكد', 'قائمة برغر جريئة بطلب من لمسة واحدة.'] }
   ],
 
   /* ---------- dishes (shared by the demos) ---------- */

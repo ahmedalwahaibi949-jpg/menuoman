@@ -94,9 +94,6 @@ function renderServices() {
     <div><h3>${esc(x.name)}</h3><ul>${x.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div></article>` }).join('');
 }
 function buildDemoCards() {
-  const g = $('#demoGrid');
-  g.innerHTML = C.demos.map(d => `<article class="demo-card rv" data-id="${d.id}"><div class="phone"></div><span class="type"></span><h3></h3><p></p><button class="btn btn-line" data-open="${d.id}">${icon('i-arrow')}<span></span></button></article>`).join('');
-  $$('.demo-card', g).forEach(c => apps.push(MenuApp($('.phone', c), C.demos.find(d => d.id === c.dataset.id))));
   $$('.phone[data-demo]').forEach(p => apps.push(MenuApp(p, C.demos.find(d => d.id === p.dataset.demo))));
 }
 function textDemoCards() {
@@ -115,7 +112,7 @@ function renderSteps() {
 function renderWork() {
   $('#workGrid').innerHTML = C.portfolio.map(w => { const [h, p] = w[L];
     const media = w.video ? `<video src="${w.video}" poster="${w.poster}" muted loop playsinline preload="none" aria-hidden="true"></video>` : w.shot ? `<img class="shot" src="${w.shot}" alt="" loading="lazy">` : `<div class="bg" style="background:${w.bg}"></div><img class="dish" src="${C.img + w.dish}.webp" alt="" loading="lazy">`;
-    return `<article class="work rv in">${media}<span class="tag">${T(w.kind === 'real' ? 'work.real' : 'work.concept')}</span><h3>${esc(h)}</h3><p>${esc(p)}</p>${w.demo ? `<button class="btn btn-gold" data-open="${w.demo}">${T('work.open')}</button>` : ''}</article>` }).join('');
+    return `<article class="work rv in">${media}<span class="tag">${T(w.kind === 'real' ? 'work.real' : 'work.concept')}</span><h3>${esc(h)}</h3><p>${esc(p)}</p>${w.demo ? `<button class="btn btn-gold" data-open="${w.demo}">${T('work.open')}<svg class="arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>` : ''}</article>` }).join('');
   const v = $('#workGrid video'); if (v && !RM) new IntersectionObserver(e => e[0].isIntersecting ? v.play().catch(() => {}) : v.pause(), { threshold: .3 }).observe(v);
 }
 function renderPackSelect() {
@@ -125,7 +122,7 @@ function renderPackSelect() {
 }
 function setWa() {
   const msg = L === 'ar' ? 'السلام عليكم، شاهدت موقع منيوزا وأرغب في قائمة رقمية لمطعمي.' : 'Hello Menuza, I saw your website and I would like a digital menu for my restaurant.';
-  [$('#waBtn'), $('#ftWa')].forEach(a => { a.href = wa(msg); a.target = '_blank'; a.rel = 'noopener' });
+  [$('#ftWa')].forEach(a => { a.href = wa(msg); a.target = '_blank'; a.rel = 'noopener' });
 }
 function applyLang() {
   const h = document.documentElement; h.lang = L; h.dir = L === 'ar' ? 'rtl' : 'ltr';
