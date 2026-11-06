@@ -1,0 +1,20 @@
+{
+ "id": "A-029",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الطماطم",
+  "en": "Tomato Type"
+ },
+ "palette": "tomato",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "burger",
+ "reveal": "mask"
+}

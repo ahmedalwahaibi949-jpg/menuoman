@@ -1,0 +1,20 @@
+{
+ "id": "A-036",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الكاكاو",
+  "en": "Cocoa Bento"
+ },
+ "palette": "paper-cocoa",
+ "fonts": [
+  "markazi",
+  "iserif"
+ ],
+ "cuisine": "cafe",
+ "reveal": "page"
+}

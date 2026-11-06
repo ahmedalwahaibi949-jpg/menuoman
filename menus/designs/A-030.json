@@ -1,0 +1,20 @@
+{
+ "id": "A-030",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الجمر",
+  "en": "Ember Type"
+ },
+ "palette": "black-orange",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "grill",
+ "reveal": "dive"
+}

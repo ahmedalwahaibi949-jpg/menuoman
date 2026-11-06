@@ -86,6 +86,14 @@ function coverHTML(ctx) {
 async function openCover(ctx, e) {
   const el = ctx.el, cv = ctx.$('.mx-cover'), parts = [...cv.querySelectorAll('.mx-cv')], r = cv.dataset.r, R = el.getBoundingClientRect();
   const px = e && e.clientX ? (e.clientX - R.left) / R.width * 100 : 50, py = e && e.clientY ? (e.clientY - R.top) / R.height * 100 : 50;
+  if (r === 'mask') { /* the dish fills the letters of «منيو», then we dive through them */
+    const cvA = parts[0], w = cvA.querySelector('.word'), others = [...cvA.querySelectorAll('.frame,.lbl,.sub,.peek,.tap,.tex')], peek = ctx.cu.cats[0].items[0];
+    Object.assign(w.style, { backgroundImage: `url(${ctx.img(peek)})`, backgroundSize: '70% auto', backgroundPosition: '50% 60%', webkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', transformOrigin: '50% 62%' });
+    await Promise.all(others.map(o => A(o, [{ opacity: 1 }, { opacity: 0 }], { duration: 320 })).concat(A(w, [{ transform: 'none' }, { transform: 'scale(1.18)' }], { duration: 520, easing: EZ.back })));
+    setTimeout(() => { ctx.screen = 'hub'; el.dataset.screen = 'hub'; ctx.fam.hub(ctx, { arrive: true }) }, RM ? 0 : 520);
+    await Promise.all([A(w, [{ transform: 'scale(1.18)' }, { transform: 'scale(16)' }], { duration: 1000, easing: 'cubic-bezier(.7,0,.3,1)' }), A(cv, [{ opacity: 1 }, { opacity: 1, offset: .55 }, { opacity: 0 }], { duration: 1000 })]);
+    const tgt = ctx.$('.mx-bw'); A(tgt, [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: EZ.back }); tgt.style.opacity = 1; cv.remove(); return;
+  }
   // Match & Move: the cover word travels into the header
   const w = parts[0].querySelector('.word'), wr = w.getBoundingClientRect(), tgt = ctx.$('.mx-bw'), tr = tgt.getBoundingClientRect();
   const fly = document.createElement('b'); fly.className = 'mx-ab mx-d'; fly.textContent = w.textContent;
@@ -308,6 +316,93 @@ FAM['doors'] = {
     const [a, b] = ctx.$$('.mx-panels i'); await Promise.all([A(a, [{ transform: 'translateX(-101%)' }, { transform: 'none' }], { duration: 480, easing: EZ.io }), A(b, [{ transform: 'translateX(101%)' }, { transform: 'none' }], { duration: 480, easing: EZ.io })]);
     g.innerHTML = this.roomHTML(ctx, i); await sleep(120); await decodeAll(ctx.$$('.mx-grid img'));
     await Promise.all([A(a, [{ transform: 'none' }, { transform: 'translateX(-101%)' }], { duration: 560, easing: EZ.io }), A(b, [{ transform: 'none' }, { transform: 'translateX(101%)' }], { duration: 560, easing: EZ.io }), arrive(ctx.$$('.mx-grid .th img'), [], 60)]) }
+};
+
+/* ---------- 2026 style families ---------- */
+const blurIn = els => Promise.all(els.map((e, j) => A(e, [{ opacity: 0, filter: 'blur(12px)', transform: 'translateY(4cqmin) scale(.96)' }, { opacity: 1, filter: 'blur(0)', transform: 'none' }], { duration: 700, delay: j * 70, easing: EZ.in })));
+
+/* 6 — Liquid Glass: frosted cards over moving colour; a glass lens sweeps the content away */
+FAM['glass'] = {
+  setup(ctx) { ctx.stage.innerHTML = `<div class="gl-blobs"><i></i><i></i><i></i></div><div class="gl-wrap"><div class="gl-title"></div><div class="gl-list"></div></div><div class="gl-lens"></div>` },
+  layout() {},
+  hubHTML(ctx) { return `<div class="gl-grid">${ctx.cu.cats.map((c, i) => `<button class="gl-card" data-act="cat" data-i="${i}"><span class="th mx-dish"><img src="${ctx.img(c.items[0])}" alt=""></span><b class="mx-nm">${esc(c[ctx.lang])}</b><span class="mx-ds">${ctx.u().items(c.items.length)}</span></button>`).join('')}</div>` },
+  catHTML(ctx, i) { return ctx.cu.cats[i].items.map(k => `<button class="gl-row" data-act="dish" data-k="${k}"><span class="th mx-dish"><img src="${ctx.img(k)}" alt="${esc(ctx.nm(k))}"></span><span class="tx"><b class="mx-nm">${esc(ctx.nm(k))}</b><span class="mx-ds">${esc(ctx.ds(k))}</span>${ctx.pr(k)}</span></button>`).join('') },
+  async sweep(ctx, fill) { if (RM) return fill(); const lens = ctx.$('.gl-lens'), d = ctx.el.dir === 'rtl' ? 1 : -1;
+    const a = A(lens, [{ transform: `translateX(${d * 130}%)` }, { transform: `translateX(${-d * 130}%)` }], { duration: 1150, easing: EZ.io });
+    await sleep(480); fill(); await decodeAll(ctx.$$('.gl-list img')); blurIn(ctx.$$('.gl-list .gl-card, .gl-list .gl-row')); await a },
+  async hub(ctx, o = {}) { const fill = () => { ctx.$('.gl-title').textContent = ctx.u().pick; ctx.$('.gl-list').innerHTML = this.hubHTML(ctx); ctx.$('.gl-wrap').scrollTop = 0 };
+    if (o.instant) return fill(); if (o.arrive) { fill(); return blurIn(ctx.$$('.gl-card')) } await this.sweep(ctx, fill) },
+  async cat(ctx, i, o = {}) { const fill = () => { ctx.$('.gl-title').textContent = ctx.cn(i); ctx.$('.gl-list').innerHTML = this.catHTML(ctx, i); ctx.$('.gl-wrap').scrollTop = 0 };
+    if (o.instant) return fill(); await this.sweep(ctx, fill) }
+};
+
+/* 7 — Kinetic Type: giant section words stretch, squash and re-form */
+FAM['kinetic'] = {
+  setup(ctx) { ctx.stage.innerHTML = `<div class="kn-words"></div><div class="kn-strip"></div>` },
+  layout() {},
+  fs(txt, max) { return Math.min(max, 88 / Math.max(3, txt.length * .58)) },
+  listHTML(ctx) { return ctx.cu.cats.map((c, i) => `<button class="kn-w${i % 2 ? ' o' : ''}" data-act="cat" data-i="${i}" style="font-size:${this.fs(c[ctx.lang], 17)}cqw"><span>${esc(c[ctx.lang])}</span><img src="${ctx.img(c.items[0])}" alt=""></button>`).join('') },
+  stripHTML(ctx, i) { return ctx.cu.cats[i].items.map(k => `<button class="kn-card" data-act="dish" data-k="${k}"><span class="th mx-dish"><img src="${ctx.img(k)}" alt="${esc(ctx.nm(k))}"></span><b class="mx-nm">${esc(ctx.nm(k))}</b><span class="mx-ds">${esc(ctx.ds(k))}</span>${ctx.pr(k)}</button>`).join('') },
+  stretchIn: (els, d = 0) => Promise.all(els.map((e, j) => A(e, [{ transform: 'scale(1.7,.15)', opacity: 0 }, { transform: 'scale(.88,1.18)', opacity: 1, offset: .55 }, { transform: 'scale(1.04,.97)', offset: .8 }, { transform: 'none', opacity: 1 }], { duration: 760, delay: d + j * 90, easing: 'ease-out' }))),
+  async hub(ctx, o = {}) { const w = ctx.$('.kn-words'), s = ctx.$('.kn-strip');
+    if (!o.instant && !o.arrive) await Promise.all([A(w.firstElementChild, [{ transform: 'none', opacity: 1 }, { transform: 'scale(.6,1.6) translateY(-20%)', opacity: 0 }], { duration: 320, easing: EZ.out }), A(s, [{ transform: 'none', opacity: 1 }, { transform: 'translateY(20%)', opacity: 0 }], { duration: 320 })]);
+    w.className = 'kn-words list'; w.innerHTML = this.listHTML(ctx); s.innerHTML = ''; s.style.opacity = '';
+    if (!o.instant) await this.stretchIn([...w.children], o.arrive ? 250 : 0) },
+  async cat(ctx, i, o = {}) { const w = ctx.$('.kn-words'), s = ctx.$('.kn-strip'), name = ctx.cn(i);
+    const set = () => { w.className = 'kn-words one'; w.innerHTML = `<div class="kn-w big" style="font-size:${this.fs(name, 24)}cqw"><span>${esc(name)}</span></div>`; s.innerHTML = this.stripHTML(ctx, i); s.scrollLeft = 0 };
+    if (o.instant) return set();
+    const lines = [...w.children], tap = o.from === 'hub' ? lines[i] : null, side = ctx.el.dir === 'rtl' ? -1 : 1;
+    await Promise.all([...lines.map((l, j) => l === tap ? A(l, [{ transform: 'none' }, { transform: 'scale(1.25,.8)' }, { transform: 'scale(.4,1.8) translateY(-30%)', opacity: 0 }], { duration: 420, easing: EZ.out }) : A(l, [{ transform: 'none', opacity: 1 }, { transform: `translateX(${(j % 2 ? 1 : -1) * 120}%)`, opacity: 0 }], { duration: 380, delay: j * 40, easing: EZ.out })),
+      ...[...s.children].map((c, j) => A(c, [{ transform: 'none', opacity: 1 }, { transform: `translateX(${side * 60}%)`, opacity: 0 }], { duration: 300, delay: j * 40, easing: EZ.out }))]);
+    set(); await decodeAll(ctx.$$('.kn-strip img'));
+    await Promise.all([this.stretchIn([w.firstElementChild]), ...[...s.children].map((c, j) => A(c, [{ transform: `translateX(${-side * 70}%) rotate(${-side * 6}deg)`, opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 650, delay: 250 + j * 90, easing: EZ.back }))]) }
+};
+
+/* 8 — Curved Carousel: dishes ride the inside of a cylinder; drag, snap, tap the centre */
+FAM['reel'] = {
+  setup(ctx) { ctx.pos = 0; ctx.stage.innerHTML = `<div class="mx-big-cat"></div><div class="rl-track"></div><div class="mx-info rl-info"></div>`;
+    const tr = ctx.$('.rl-track'); let d = null;
+    tr.addEventListener('pointerdown', e => { d = { x: e.clientX, p: ctx.pos, t: performance.now(), v: 0, m: 0, id: e.pointerId } });
+    tr.addEventListener('pointermove', e => { if (!d) return; if (!d.cap && Math.abs(e.clientX - d.x) > 8) { d.cap = true; tr.setPointerCapture(d.id) } if (!d.cap) return; const pitch = this.pitch(ctx), dx = (e.clientX - d.x) * (ctx.el.dir === 'rtl' ? -1 : 1); const np = d.p - dx / pitch, now = performance.now(); d.v = (np - ctx.pos) / Math.max(8, now - d.t); d.t = now; d.m = Math.max(d.m, Math.abs(e.clientX - d.x)); ctx.pos = Math.max(-.4, Math.min(ctx.list.length - .6, np)); this.pos(ctx) });
+    tr.addEventListener('pointerup', e => { if (!d) return; const moved = d.m > 8, v = d.v; d = null; ctx.dragged = moved; if (moved) this.snap(ctx, Math.round(ctx.pos + v * 220)) }) },
+  pitch(ctx) { return ctx.wide() ? ctx.H() * .42 : ctx.W() * .36 },
+  layout(ctx) { this.pos(ctx) },
+  pos(ctx) { if (!ctx.list) return; const W = ctx.W(), H = ctx.H(), wide = ctx.wide(), cx = W / 2, cy = wide ? H * .48 : H * .44, cw = wide ? H * .36 : W * .42, ch = cw * 1.32, R = W * .5, pitch = this.pitch(ctx), s = ctx.el.dir === 'rtl' ? -1 : 1;
+    ctx.$$('.rl-card').forEach((c, j) => { const t = (j - ctx.pos) * pitch * s, x = cx + t * (1 + .08 * (t / R) ** 2), d = Math.min(1.6, Math.abs(t) / R);
+      c.style.width = cw + 'px'; c.style.height = ch + 'px'; c.style.transform = `translate(${x - cw / 2}px,${cy - ch / 2 - d * d * ch * .04}px) perspective(${W * 1.4}px) rotateY(${-Math.sign(t) * Math.min(42, d * 30)}deg) scale(${1 + .16 * d * d})`; c.style.zIndex = 20 - Math.round(d * 10); c.style.opacity = Math.max(0, 1 - .28 * d) });
+    const ci = Math.round(ctx.pos); if (ci !== ctx.ci) { ctx.ci = ci; this.info(ctx) } },
+  info(ctx) { const it = ctx.list[Math.max(0, Math.min(ctx.list.length - 1, ctx.ci))], inf = ctx.$('.rl-info');
+    inf.innerHTML = ctx.hubMode ? `<b class="mx-nm">${esc(ctx.cn(it))}</b><span class="mx-ds">${ctx.u().items(ctx.cu.cats[it].items.length)} · ${ctx.u().enter}</span>` : `<b class="mx-nm">${esc(ctx.nm(it))}</b><span class="mx-ds">${esc(ctx.ds(it))}</span>${ctx.pr(it)}`;
+    if (!RM) A(inf, [{ opacity: 0, transform: 'translateY(2cqmin)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: EZ.in }) },
+  async snap(ctx, j) { j = Math.max(0, Math.min(ctx.list.length - 1, j)); const p0 = ctx.pos; await tween(Math.min(700, 260 + Math.abs(j - p0) * 160), t => { ctx.pos = p0 + (j - p0) * t; this.pos(ctx) }, ease.out) },
+  set(ctx, list, hub) { ctx.list = list; ctx.hubMode = hub; ctx.ci = null; const tr = ctx.$('.rl-track');
+    tr.innerHTML = list.map((it, j) => `<button class="rl-card" data-act="rl" data-j="${j}"><span class="mx-dish"><img src="${ctx.img(hub ? ctx.cu.cats[it].items[0] : it)}" alt="${esc(hub ? ctx.cn(it) : ctx.nm(it))}"></span>${hub ? `<b>${esc(ctx.cn(it))}</b>` : ''}</button>`).join(''); ctx.pos = 0; this.pos(ctx) },
+  async swapTo(ctx, list, hub, first) { const imgs = () => ctx.$$('.rl-card'), bc = ctx.$('.mx-big-cat');
+    if (!first) await Promise.all(imgs().map((c, j) => A(c.firstElementChild, [{ transform: 'none', opacity: 1 }, { transform: 'translateY(60%) rotate(12deg)', opacity: 0 }], { duration: 320, delay: j * 40, easing: EZ.out })));
+    this.set(ctx, list, hub); bc.textContent = hub ? ctx.u().pick : ''; await decodeAll(ctx.$$('.rl-card img'));
+    await Promise.all(imgs().map((c, j) => A(c.firstElementChild, [{ transform: 'translateY(-70%) rotate(-14deg)', opacity: 0 }, { transform: 'translateY(4%)', opacity: 1, offset: .7 }, { transform: 'none', opacity: 1 }], { duration: 700, delay: j * 80, easing: EZ.in }))) },
+  async hub(ctx, o = {}) { const cats = ctx.cu.cats.map((c, i) => i); if (o.instant) { this.set(ctx, cats, true); ctx.$('.mx-big-cat').textContent = ctx.u().pick; return } await this.swapTo(ctx, cats, true, o.arrive) },
+  async cat(ctx, i, o = {}) { if (o.instant) return this.set(ctx, ctx.cu.cats[i].items, false); await this.swapTo(ctx, ctx.cu.cats[i].items, false) },
+  act(ctx, a, b) { if (a !== 'rl' || ctx.busy) return; if (ctx.dragged) { ctx.dragged = false; return } const j = +b.dataset.j;
+    if (j !== Math.round(ctx.pos)) { this.snap(ctx, j); return } const it = ctx.list[j]; if (ctx.hubMode) ctx.toCat(it); else openDetail(ctx, it, b.querySelector('img')) },
+  swipe() { return true }
+};
+
+/* 9 — Bento: a tile grid that flips in a wave between sections */
+FAM['bento'] = {
+  setup(ctx) { ctx.stage.innerHTML = `<div class="mx-big-cat"></div><div class="bn-grid"></div>` },
+  layout() {},
+  tiles(ctx, list, hub) { const n = list.length; return list.map((it, j) => { const big = j === 0, wide = !big && j === n - 1 && (n - 1) % 2 === 1, k = hub ? ctx.cu.cats[it].items[0] : it;
+    const body = hub ? `<b class="mx-nm">${esc(ctx.cn(it))}</b><span class="mx-ds">${ctx.u().items(ctx.cu.cats[it].items.length)}</span>` : `<b class="mx-nm">${esc(ctx.nm(k))}</b>${big ? `<span class="mx-ds">${esc(ctx.ds(k))}</span>` : ''}${ctx.pr(k)}`;
+    return `<button class="bn-t${big ? ' big' : ''}${wide ? ' wide' : ''}" ${hub ? `data-act="cat" data-i="${it}"` : `data-act="dish" data-k="${k}"`}><span class="th mx-dish"><img src="${ctx.img(k)}" alt="${esc(ctx.nm(k))}"></span><span class="tx">${body}</span></button>` }).join('') },
+  async flip(ctx, html, first) { const g = ctx.$('.bn-grid'), P = 'perspective(140cqmin) ';
+    if (!first) await Promise.all([...g.children].map((t, j) => A(t, [{ transform: P + 'rotateY(0)' }, { transform: P + 'rotateY(90deg)', opacity: .4 }], { duration: 260, delay: j * 70, easing: EZ.out })));
+    g.innerHTML = html; await decodeAll(ctx.$$('.bn-grid img'));
+    await Promise.all([...g.children].map((t, j) => A(t, [{ transform: P + 'rotateY(-90deg)', opacity: .4 }, { transform: P + 'rotateY(8deg)', opacity: 1, offset: .75 }, { transform: 'none', opacity: 1 }], { duration: 560, delay: j * 80, easing: EZ.in }))) },
+  async hub(ctx, o = {}) { const bc = ctx.$('.mx-big-cat'); bc.textContent = ctx.u().pick; const html = this.tiles(ctx, ctx.cu.cats.map((c, i) => i), true);
+    if (o.instant) { ctx.$('.bn-grid').innerHTML = html; return } await this.flip(ctx, html, o.arrive) },
+  async cat(ctx, i, o = {}) { ctx.$('.mx-big-cat').textContent = ''; const html = this.tiles(ctx, ctx.cu.cats[i].items.slice(0, 5), false);
+    if (o.instant) { ctx.$('.bn-grid').innerHTML = html; return } await this.flip(ctx, html) }
 };
 
 /* ================= display loops ================= */

@@ -27,6 +27,18 @@
 | A-023 | أبواب الورد | الأبواب المنزلقة | rose-copper | cafe | circle |
 | A-024 | أبواب الفيروز | الأبواب المنزلقة | deep-teal | grill | iris |
 | A-025 | أبواب الخردل | الأبواب المنزلقة | mustard | burger | puzzle |
+| A-026 | زجاج الشفق | الزجاج السائل | glass-aurora | cafe | mask |
+| A-027 | زجاج الغروب | الزجاج السائل | glass-sunset | burger | circle |
+| A-028 | زجاج البحيرة | الزجاج السائل | glass-lagoon | italian | blinds |
+| A-029 | كلمة الطماطم | الكلمة المتحركة | tomato | burger | mask |
+| A-030 | كلمة الجمر | الكلمة المتحركة | black-orange | grill | dive |
+| A-031 | كلمة الزعفران | الكلمة المتحركة | saffron | cafe | puzzle |
+| A-032 | شريط الغابة | الشريط المنحني | forest | italian | mask |
+| A-033 | شريط النبيذي | الشريط المنحني | oxblood | burger | doors |
+| A-034 | شريط رمضان | الشريط المنحني | lantern-indigo | ramadan | curtain |
+| A-035 | بينتو الحجر | شبكة البينتو | stone | grill | blinds |
+| A-036 | بينتو الكاكاو | شبكة البينتو | paper-cocoa | cafe | page |
+| A-037 | بينتو كحلي | شبكة البينتو | navy-cream | italian | mask |
 | B-001 | موكب السبورة | موكب العمود | chalk-green | italian | Spine Parade loop |
 | B-002 | موكب الطماطم | موكب العمود | tomato | burger | Spine Parade loop |
 | B-003 | موكب الإسبريسو | موكب العمود | espresso | cafe | Spine Parade loop |

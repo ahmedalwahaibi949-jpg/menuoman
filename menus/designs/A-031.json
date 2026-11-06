@@ -1,0 +1,20 @@
+{
+ "id": "A-031",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الزعفران",
+  "en": "Saffron Type"
+ },
+ "palette": "saffron",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "cafe",
+ "reveal": "puzzle"
+}

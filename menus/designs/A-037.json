@@ -1,0 +1,20 @@
+{
+ "id": "A-037",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو كحلي",
+  "en": "Navy Bento"
+ },
+ "palette": "navy-cream",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "italian",
+ "reveal": "mask"
+}

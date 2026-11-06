@@ -1,0 +1,20 @@
+{
+ "id": "A-027",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج الغروب",
+  "en": "Sunset Glass"
+ },
+ "palette": "glass-sunset",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "burger",
+ "reveal": "circle"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "A-034",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط رمضان",
+  "en": "Ramadan Reel"
+ },
+ "palette": "lantern-indigo",
+ "fonts": [
+  "ruqaa",
+  "bodoni"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "curtain"
+}

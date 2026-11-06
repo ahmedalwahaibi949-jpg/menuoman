@@ -1,0 +1,20 @@
+{
+ "id": "A-032",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الغابة",
+  "en": "Forest Reel"
+ },
+ "palette": "forest",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "italian",
+ "reveal": "mask"
+}

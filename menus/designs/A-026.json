@@ -1,0 +1,20 @@
+{
+ "id": "A-026",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج الشفق",
+  "en": "Aurora Glass"
+ },
+ "palette": "glass-aurora",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "cafe",
+ "reveal": "mask"
+}

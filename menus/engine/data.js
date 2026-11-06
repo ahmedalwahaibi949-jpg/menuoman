@@ -90,7 +90,10 @@ window.MENU_DATA = {
     'stone':          ['#E7E2D9', '#24221F', '#F6F3EE', '#3E6B52', 'paper', 'light'],
     'tomato':         ['#C9352A', '#FFF2E4', '#FFF8EE', '#1E1E1E', 'grain', 'warm'],
     'ice':            ['#E4F3FB', '#0E3050', '#FFFFFF', '#2F8FD0', 'frost', 'light'],
-    'espresso':       ['#231A15', '#F2E7DA', '#2F241D', '#C88E5A', 'grain', 'dark']
+    'espresso':       ['#231A15', '#F2E7DA', '#2F241D', '#C88E5A', 'grain', 'dark'],
+    'glass-aurora':   ['#0F1530', '#F4F1FF', '#7C5CFF', '#FF7A59', 'grain', 'dark'],
+    'glass-sunset':   ['#2A1238', '#FFF1EA', '#FF4D8D', '#FFB347', 'grain', 'dark'],
+    'glass-lagoon':   ['#06283D', '#EAF8FF', '#1CC5DC', '#F9A826', 'grain', 'dark']
   },
   textures: {
     chalk: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E\")",

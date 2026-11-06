@@ -1,0 +1,20 @@
+{
+ "id": "A-035",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الحجر",
+  "en": "Stone Bento"
+ },
+ "palette": "stone",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "grill",
+ "reveal": "blinds"
+}
