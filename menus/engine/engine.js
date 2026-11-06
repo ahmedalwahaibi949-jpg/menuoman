@@ -102,6 +102,7 @@ async function openCover(ctx, e) {
   const s = tr.height / wr.height, dx = tr.left - wr.left + (tr.width - wr.width * s) / 2, dy = tr.top - wr.top;
   const o = { duration: 950, easing: EZ.io };
   let an;
+  cv.classList.add('go');
   if (r === 'doors') an = [A(parts[0], [{ transform: 'none' }, { transform: 'translateX(-104%)' }], o), A(parts[1], [{ transform: 'none' }, { transform: 'translateX(104%)' }], o)];
   else if (r === 'puzzle') an = [A(parts[0], [{ transform: 'none' }, { transform: 'translateY(-104%)' }], o), A(parts[1], [{ transform: 'none' }, { transform: 'translateY(104%)' }], o)];
   else if (r === 'circle') an = [A(cv, [{ clipPath: `circle(150% at ${px}% ${py}%)` }, { clipPath: `circle(0% at ${px}% ${py}%)` }], { ...o, duration: 850 })];

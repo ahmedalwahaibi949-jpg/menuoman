@@ -226,3 +226,5 @@
 .bn-t .tx{position:relative;display:flex;flex-direction:column;gap:.6cqmin}
 .bn-t .mx-nm{font-size:4cqmin}.bn-t.big .mx-nm{font-size:6.4cqmin}
 .mx[data-fam=reel] .mx-big-cat,.mx[data-fam=bento] .mx-big-cat{top:15cqmin!important;bottom:auto!important}
+/* no seam while closed: lower piece stays whole until the cover starts opening */
+.mx-cover .mx-cv.a{z-index:1}.mx-cover:not(.go) .mx-cv.b{clip-path:none!important}
