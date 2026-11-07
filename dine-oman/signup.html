@@ -1,64 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Create Your Account · Dine Oman</title>
-<meta name="description" content="Discover your next favourite restaurant in Oman. Save favourites, keep track of places you've seen and share reviews.">
-<meta name="theme-color" content="#0C3B3A">
+<title data-en="Create your account · Dine Oman">إنشاء حساب · داين عُمان</title>
+<meta name="description" content="اكتشف مطعمك المفضّل القادم في عُمان.">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="app-icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/site-fonts.css">
+<script src="js/lang.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
 <link rel="stylesheet" href="css/do.css">
 </head>
 <body>
-<header class="topbar"></header>
-<main class="auth">
-  <section class="auth-art">
-    <div>
-      <p class="eyebrow" style="color:var(--saffron)">For diners · للزباين</p>
-      <h1 style="margin-top:18px">Discover Your Next <em>Favourite Restaurant.</em></h1>
-      <p class="sub">From a karak stop in Ruwi to a family dinner in Salalah, find it, save it and tell others what you thought.</p>
-      <p class="ar-d">اكتشف مطعمك المفضّل الجاي.</p>
-    </div>
-    <ul>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0112 6a5.5 5.5 0 019.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg><span>Save favourite restaurants to find them fast</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Pick up where you left off with recently viewed</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z" stroke-linejoin="round"/></svg><span>Write reviews that help other diners choose</span></li>
-    </ul>
-  </section>
+<header class="top"></header>
+<main class="wrap page">
+  <div class="narrow form" id="formCard">
+    <div><h1 class="title" data-en="Discover Your Next Favourite Restaurant.">اكتشف مطعمك المفضّل القادم.</h1><p class="lead" data-en="Save favourites, keep track of places you've visited and share your reviews.">احفظ مطاعمك المفضّلة، وتابع ما زرته، وشارك تقييماتك.</p></div>
+    <button class="google" type="button" id="google"></button>
+    <div class="or" data-en="or with email">أو بالبريد الإلكتروني</div>
+    <form id="form" class="form" novalidate>
+      <div class="field"><label for="full_name" data-en="Full name">الاسم الكامل</label><input class="input" id="full_name" autocomplete="name" maxlength="80"><span class="err" data-en="Enter your full name.">أدخل اسمك الكامل.</span></div>
+      <div class="field"><label for="email" data-en="Email">البريد الإلكتروني</label><input class="input ltr" id="email" type="email" autocomplete="email" inputmode="email"><span class="err" data-en="Enter a valid email address.">أدخل بريدًا إلكترونيًا صحيحًا.</span></div>
+      <div class="field"><label for="mobile" data-en="Mobile number">رقم الهاتف</label><div class="affix"><span>+968</span><input class="input" id="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="9"></div><span class="err" data-en="8-digit Omani mobile starting with 7 or 9.">رقم عُماني من 8 أرقام يبدأ بـ 7 أو 9.</span></div>
+      <div class="field"><label for="password" data-en="Password">كلمة المرور</label><div class="pw"><input class="input" id="password" type="password" autocomplete="new-password"></div><div class="meter" id="meter" data-s="0"><i></i><i></i><i></i><i></i></div><span class="hint" data-en="At least 8 characters with letters and numbers.">8 أحرف على الأقل، تحتوي على حروف وأرقام.</span><span class="err" data-en="At least 8 characters with letters and numbers.">8 أحرف على الأقل، تحتوي على حروف وأرقام.</span></div>
+      <div class="field"><label for="confirm" data-en="Confirm password">تأكيد كلمة المرور</label><div class="pw"><input class="input" id="confirm" type="password" autocomplete="new-password"></div><span class="err" data-en="The passwords don't match.">كلمتا المرور غير متطابقتين.</span></div>
+      <label class="check"><input type="checkbox" id="terms"> <span data-en="I agree to the terms of use and privacy policy.">أوافق على شروط الاستخدام وسياسة الخصوصية.</span></label>
+      <div class="notice bad" id="err" role="alert" hidden></div>
+      <button class="btn block" type="submit" id="submit" data-en="Create account">إنشاء الحساب</button>
+    </form>
+    <p class="alt"><span data-en="Already have an account?">لديك حساب؟</span> <a href="login.html" data-en="Log in">سجّل الدخول</a></p>
+  </div>
 
-  <section class="auth-form">
-    <div class="auth-card" id="formCard">
-      <div><h2>Create your account</h2><p class="lead">Free, and it takes a minute.</p></div>
-      <button class="oauth" type="button" id="google"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.2-.1-2.3-.4-3.5z"/></svg>Sign up with Google</button>
-      <div class="or">or with email</div>
-      <form id="form" novalidate class="stack">
-        <div class="field"><label for="full_name">Full name <span class="ar">الاسم الكامل</span></label><input class="control" id="full_name" autocomplete="name" maxlength="80"><span class="err">Enter your full name.</span></div>
-        <div class="field"><label for="email">Email address <span class="ar">البريد الإلكتروني</span></label><input class="control" id="email" type="email" autocomplete="email" inputmode="email"><span class="err">Enter a valid email address.</span></div>
-        <div class="field"><label for="mobile">Mobile number <span class="ar">رقم الهاتف</span></label><div class="affix"><span>+968</span><input class="control" id="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="9" placeholder="9123 4567"></div><span class="err">Enter an 8-digit Omani mobile number starting with 7 or 9.</span></div>
-        <div class="field">
-          <label for="password">Password <span class="ar">كلمة المرور</span></label>
-          <div class="pw"><input class="control" id="password" type="password" autocomplete="new-password"></div>
-          <div class="meter" id="meter" data-s="0"><div class="bars"><i></i><i></i><i></i><i></i></div><span class="lbl">Use 8+ characters with letters and numbers</span></div>
-          <span class="err">Use at least 8 characters, including letters and numbers.</span>
-        </div>
-        <div class="field"><label for="confirm">Confirm password <span class="ar">تأكيد كلمة المرور</span></label><div class="pw"><input class="control" id="confirm" type="password" autocomplete="new-password"></div><span class="err">The passwords don't match.</span></div>
-        <label class="check small"><input type="checkbox" id="terms"> <span>I agree to the Dine Oman terms of use and privacy policy.</span></label>
-        <div class="alert bad" id="err" role="alert" hidden></div>
-        <button class="btn btn-dark" type="submit" id="submit">Create account</button>
-      </form>
-      <p class="alt">Already have an account? <a href="login.html">Log in</a><br>Own a restaurant? <a href="owner-signup.html">Register it here</a></p>
-    </div>
-
-    <div class="auth-card" id="doneCard" hidden tabindex="-1">
-      <div class="avatar" style="width:64px;height:64px;background:var(--ok-bg);color:var(--ok)"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></div>
-      <div><h2>Check your email</h2><p class="lead" id="doneMsg"></p></div>
-      <div class="alert info small">Didn't get it? Check spam, or <button class="linkbtn" type="button" id="resend">send it again</button>.</div>
-      <a class="btn btn-line" href="login.html" style="justify-self:start">Go to log in</a>
-    </div>
-  </section>
+  <div class="narrow form" id="doneCard" hidden tabindex="-1">
+    <h1 class="title" data-en="Check your email">تحقق من بريدك</h1>
+    <p class="lead" id="doneMsg"></p>
+    <p class="muted"><span data-en="Didn't get it?">لم تصلك الرسالة؟</span> <button class="link" type="button" id="resend" data-en="Send it again">أرسلها مرة أخرى</button></p>
+  </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
@@ -67,6 +45,7 @@
   const api = DineAPI, U = DineUI, $ = U.$;
   const me = await U.chrome();
   if (me) { location.replace(U.homeFor(me)); return; }
+  $("#google").innerHTML = U.GOOGLE + t("التسجيل باستخدام Google", "Sign up with Google");
   U.bindPassword($("#password"), $("#meter")); U.bindPassword($("#confirm"));
   $("#google").onclick = async () => { try { await api.signInGoogle(); } catch (e) { $("#err").hidden = false; $("#err").textContent = e.message; } };
 
@@ -86,19 +65,19 @@
   let email = "";
   $("#form").addEventListener("submit", async e => {
     e.preventDefault(); $("#err").hidden = true;
-    const ok = Object.values(checks).map(c => c()).every(Boolean);
-    if (!ok) return U.firstInvalid($("#form"));
-    if (!$("#terms").checked) { $("#err").hidden = false; $("#err").textContent = "Please agree to the terms to continue."; return; }
-    const btn = $("#submit"); U.busy(btn, true, "Creating your account…");
+    if (!Object.values(checks).map(c => c()).every(Boolean)) return U.firstInvalid($("#form"));
+    if (!$("#terms").checked) { $("#err").hidden = false; $("#err").textContent = t("وافق على الشروط للمتابعة.", "Please agree to the terms to continue."); return; }
+    const btn = $("#submit"); U.busy(btn, true);
     email = $("#email").value.trim().toLowerCase();
     try {
       const r = await api.signUpCustomer({ full_name: $("#full_name").value.trim(), email, mobile: U.omani($("#mobile").value), password: $("#password").value });
       if (!r.needsVerification) { location.replace("customer.html?welcome=1"); return; }
       $("#formCard").hidden = true; $("#doneCard").hidden = false; $("#doneCard").focus();
-      $("#doneMsg").innerHTML = `We sent a confirmation link to <b>${U.esc(email)}</b>. Open it to activate your account and you'll go straight to your dashboard.` + (api.mode === "demo" ? ` <br><br><a href="demo-inbox.html">Open the demo inbox →</a>` : "");
+      $("#doneMsg").innerHTML = t(`أرسلنا رابط التأكيد إلى <b class="ltr">${U.esc(email)}</b>. افتحه لتفعيل حسابك.`, `We sent a confirmation link to <b>${U.esc(email)}</b>. Open it to activate your account.`)
+        + (api.mode === "demo" ? ` <a href="demo-inbox.html">${t("افتح صندوق العرض", "Open the demo inbox")}</a>` : "");
     } catch (err) { U.busy(btn, false); $("#err").hidden = false; $("#err").textContent = err.message; }
   });
-  $("#resend").onclick = async () => { await api.resendVerification(email).catch(() => {}); U.toast("Confirmation email sent again."); };
+  $("#resend").onclick = async () => { await api.resendVerification(email).catch(() => {}); U.toast(t("أرسلنا الرابط مرة أخرى.", "Sent again.")); };
 })();
 </script>
 </body>

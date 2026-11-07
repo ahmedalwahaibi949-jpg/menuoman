@@ -1,53 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Discover Restaurants · Dine Oman</title>
-<meta name="description" content="Every restaurant. One destination. Find restaurants, cafés and bakeries across Oman.">
-<meta name="theme-color" content="#0C3B3A">
+<title data-en="Dine Oman · Every restaurant. One destination.">داين عُمان · كل المطاعم في وجهة واحدة</title>
+<meta name="description" content="كل المطاعم في وجهة واحدة. ابحث عن المطاعم والمقاهي والمخابز في عُمان.">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="app-icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/site-fonts.css">
+<script src="js/lang.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
 <link rel="stylesheet" href="css/do.css">
 </head>
 <body>
-<header class="topbar"></header>
-<section class="disc-hero"><div class="container">
-  <p class="eyebrow" style="color:var(--saffron)">Every restaurant. One destination.</p>
-  <h1>Where shall we eat?</h1>
-  <p class="ar-d" style="font-size:20px;color:#A9C0B8;text-align:left">وين ناكل اليوم؟</p>
-  <div class="filters">
-    <input class="control" id="q" type="search" placeholder="Search by name, cuisine or area" aria-label="Search">
-    <select class="control" id="gov" aria-label="Governorate"><option value="">All governorates</option></select>
-    <select class="control" id="cat" aria-label="Category"><option value="">All categories</option></select>
-    <select class="control" id="cui" aria-label="Cuisine"><option value="">All cuisines</option></select>
+<header class="top"></header>
+<main class="wrap page">
+  <h1 class="title" data-en="Where shall we eat?">وين ناكل اليوم؟</h1>
+  <p class="lead" data-en="Every restaurant. One destination.">كل المطاعم في وجهة واحدة.</p>
+  <div class="search">
+    <input class="input" id="q" type="search" placeholder="ابحث باسم المطعم أو المنطقة" data-en-ph="Search by name or area" aria-label="Search">
+    <select class="input" id="gov" aria-label="Governorate"></select>
+    <select class="input" id="cat" aria-label="Category"></select>
+    <select class="input" id="cui" aria-label="Cuisine"></select>
   </div>
-</div></section>
-<main class="container" style="padding-block:32px 88px;display:grid;gap:18px">
-  <p class="muted" id="count"></p>
-  <div class="rgrid" id="grid"></div>
+  <div class="grid" id="grid"></div>
 </main>
+<footer class="foot"><div class="wrap"><span>© 2026 <span data-en="Dine Oman">داين عُمان</span></span><a href="owner-signup.html" data-en="Own a restaurant? Register it">صاحب مطعم؟ سجّل مطعمك</a></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
 <script>
 (async function () {
-  const api = DineAPI, U = DineUI, D = DINE_DATA, $ = U.$;
+  const api = DineAPI, U = DineUI, D = DINE_DATA, $ = U.$, L = U.L;
   await U.chrome();
-  D.governorates.forEach(g => $("#gov").add(new Option(g.en, g.en)));
-  D.categories.forEach(c => $("#cat").add(new Option(c, c)));
-  D.cuisines.forEach(c => $("#cui").add(new Option(c, c)));
+  const fill = (sel, all, items) => { $(sel).add(new Option(all, "")); items.forEach(v => $(sel).add(new Option(L(v), v))); };
+  fill("#gov", t("كل المحافظات", "All governorates"), D.governorates.map(g => g.en));
+  fill("#cat", t("كل التصنيفات", "All categories"), D.categories);
+  fill("#cui", t("كل المطابخ", "All cuisines"), D.cuisines);
   const all = await api.liveRestaurants().catch(() => []);
   function draw() {
     const q = $("#q").value.trim().toLowerCase(), g = $("#gov").value, c = $("#cat").value, k = $("#cui").value;
     const rows = all.filter(r => (!g || r.governorate === g) && (!c || r.category === c) && (!k || r.cuisine === k) &&
-      (!q || [r.name, r.name_ar, r.cuisine, r.area, r.city, r.category].join(" ").toLowerCase().includes(q)));
-    $("#count").textContent = `${rows.length} restaurant${rows.length === 1 ? "" : "s"}`;
+      (!q || [r.name, r.name_ar, L(r.cuisine), r.cuisine, r.area, r.city, L(r.city)].join(" ").toLowerCase().includes(q)));
     $("#grid").innerHTML = rows.length ? rows.map(r => U.rcard(r)).join("")
-      : `<div class="card empty" style="grid-column:1/-1"><b>${all.length ? "No restaurants match" : "Restaurants are joining now"}</b><span>${all.length ? "Try a different area or cuisine." : "Own one? Be among the first listed."}</span>${all.length ? "" : '<a class="btn btn-dark" href="owner-signup.html">Register your restaurant</a>'}</div>`;
+      : `<div class="empty" style="grid-column:1/-1"><b>${all.length ? t("لا توجد نتائج", "No matches") : t("المطاعم تنضم الآن", "Restaurants are joining now")}</b><span>${all.length ? t("جرّب منطقة أو مطبخًا آخر.", "Try another area or cuisine.") : t("صاحب مطعم؟ كن من أوائل المسجّلين.", "Own a restaurant? Be among the first listed.")}</span>${all.length ? "" : `<a class="link" href="owner-signup.html">${t("سجّل مطعمك", "Register your restaurant")}</a>`}</div>`;
   }
-  ["input", "change"].forEach(e => document.querySelector(".filters").addEventListener(e, draw));
+  ["input", "change"].forEach(e => document.querySelector(".search").addEventListener(e, draw));
   draw();
 })();
 </script>

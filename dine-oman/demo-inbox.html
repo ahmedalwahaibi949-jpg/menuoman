@@ -1,32 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Demo Inbox · Dine Oman</title>
-<meta name="theme-color" content="#0C3B3A">
+<title data-en="Demo inbox · Dine Oman">صندوق العرض · داين عُمان</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="app-icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/site-fonts.css">
+<script src="js/lang.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
 <link rel="stylesheet" href="css/do.css">
-<style>
-.mail{display:grid;gap:10px}
-.msg{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:6px}
-.msg.unread{border-left:4px solid var(--saffron)}
-.msg .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}
-.msg b{font-size:16.5px}
-.msg .btn{justify-self:start;margin-top:6px;padding:10px 18px;font-size:14px}
-</style>
+<style>.msg{padding-block:22px;border-bottom:1px solid var(--line);display:grid;gap:6px}.msg.unread b::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#D9932B;margin-inline-start:8px;vertical-align:middle}</style>
 </head>
 <body>
-<header class="topbar"></header>
-<main class="container" style="padding-block:40px 80px;max-width:820px">
-  <p class="eyebrow" style="color:var(--teal-2)">Demo only</p>
-  <h1 style="font-size:36px;font-weight:750;margin:8px 0 6px">Demo inbox</h1>
-  <p class="muted" style="margin-bottom:24px">In live mode these emails are sent for real (by Supabase Auth and the notifications function). Here they're collected so you can click through every flow.</p>
-  <div class="mail" id="mail"></div>
+<header class="top"></header>
+<main class="wrap page" style="max-width:760px">
+  <h1 class="title" data-en="Demo inbox">صندوق العرض</h1>
+  <p class="lead" data-en="Emails the live site would send. Use them to try each step.">الرسائل التي سيرسلها الموقع عند الإطلاق. استخدمها لتجربة كل خطوة.</p>
+  <div id="mail" style="margin-top:28px;border-top:1px solid var(--line)"></div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
@@ -36,13 +28,16 @@
   if (api.mode !== "demo") { location.replace("login.html"); return; }
   const list = api.inbox();
   await U.chrome();
-  const box = U.$("#mail");
-  box.innerHTML = list.length ? list.map(m => `<article class="msg ${m.read ? "" : "unread"}">
-    <div class="top"><span>To: ${U.esc(m.to.join(", "))}</span><span>${U.dateTime(m.at)}</span></div>
-    <b>${U.esc(m.subject)}</b><p>${U.esc(m.body)}</p>
-    ${m.link ? `<a class="btn btn-primary" href="${U.esc(m.link)}">${U.esc(m.linkLabel || "Open")}</a>` : ""}</article>`).join("")
-    : `<div class="card empty"><b>No emails yet</b><span>Sign up as a customer or an owner and the confirmation email appears here.</span></div>`;
+  U.$("#mail").innerHTML = list.length ? list.map(m => `<article class="msg ${m.read ? "" : "unread"}">
+    <span class="hint ltr" style="display:block">${U.esc(m.to.join(", "))} · ${U.dateTime(m.at)}</span>
+    <b>${U.esc(m.subject)}</b><p class="muted">${U.esc(m.body)}</p>
+    ${m.link ? `<p><a class="link" href="${U.esc(m.link)}">${U.esc(m.linkLabel || t("فتح", "Open"))}</a></p>` : ""}</article>`).join("")
+    : `<div class="empty"><b>${t("لا توجد رسائل", "No emails yet")}</b><span>${t("أنشئ حسابًا وستظهر رسالة التأكيد هنا.", "Sign up and the confirmation email appears here.")}</span></div>`;
   api.markRead();
+  const reset = document.createElement("p"); reset.style.marginTop = "28px";
+  reset.innerHTML = `<button class="link plain" type="button">${t("مسح بيانات العرض التجريبي", "Reset demo data")}</button>`;
+  reset.querySelector("button").onclick = () => { api.reset(); location.href = "login.html"; };
+  U.$("main").appendChild(reset);
 })();
 </script>
 </body>

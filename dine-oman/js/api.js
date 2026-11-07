@@ -13,13 +13,14 @@
   const ext = f => ((/\.([a-z0-9]{2,5})$/i.exec(f.name || "") || [])[1] || (f.type.split("/")[1] || "bin").replace("jpeg", "jpg").replace("svg+xml", "svg")).toLowerCase();
   const pick = (o, keys) => Object.fromEntries(keys.filter(k => o[k] !== undefined).map(k => [k, o[k]]));
   const slugify = t => (t || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  const T = (ar, en) => (window.t ? window.t(ar, en) : en);
   function friendly(msg) {
     const m = String(msg || "");
-    if (/Invalid login credentials/i.test(m)) return "That email and password don't match. Check them, or reset your password.";
+    if (/Invalid login credentials/i.test(m)) return T("البريد الإلكتروني أو كلمة المرور غير صحيحة.", "That email and password don't match.");
     if (/Email not confirmed/i.test(m)) return "EMAIL_NOT_CONFIRMED";
-    if (/already registered|already been registered/i.test(m)) return "An account with this email already exists. Log in instead, or reset your password.";
-    if (/Password should be|weak/i.test(m)) return "Choose a stronger password: at least 8 characters with letters and numbers.";
-    if (/rate limit|too many/i.test(m)) return "Too many attempts. Please wait a minute and try again.";
+    if (/already registered|already been registered/i.test(m)) return T("يوجد حساب بهذا البريد الإلكتروني. سجّل الدخول أو أعد تعيين كلمة المرور.", "An account with this email already exists. Log in, or reset your password.");
+    if (/Password should be|weak/i.test(m)) return T("اختر كلمة مرور أقوى: 8 أحرف على الأقل تحتوي على حروف وأرقام.", "Choose a stronger password: at least 8 characters with letters and numbers.");
+    if (/rate limit|too many/i.test(m)) return T("محاولات كثيرة. انتظر دقيقة ثم حاول مرة أخرى.", "Too many attempts. Please wait a minute and try again.");
     return m;
   }
   const fail = e => { throw new Error(friendly(e && e.message ? e.message : e)); };
@@ -31,7 +32,7 @@
     const sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
     async function upload(path, file) {
       const { error } = await sb.storage.from(BUCKET).upload(path, file, { upsert: false, contentType: file.type, cacheControl: "31536000" });
-      if (error) fail("Upload failed: " + error.message);
+      if (error) fail(T("تعذّر رفع الملف: ", "Upload failed: ") + error.message);
       return sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
     }
     async function uid() { const { data } = await sb.auth.getSession(); return data.session ? data.session.user.id : null; }
@@ -79,9 +80,9 @@
       async setNewPassword(password) { const { error } = await sb.auth.updateUser({ password }); if (error) fail(error); },
       async changePassword(current, next) {
         const { data } = await sb.auth.getSession();
-        if (!data.session) fail("Please log in again.");
+        if (!data.session) fail(T("سجّل الدخول مرة أخرى.", "Please log in again."));
         const check = await sb.auth.signInWithPassword({ email: data.session.user.email, password: current });
-        if (check.error) fail("Your current password is incorrect.");
+        if (check.error) fail(T("كلمة المرور الحالية غير صحيحة.", "Your current password is incorrect."));
         const { error } = await sb.auth.updateUser({ password: next }); if (error) fail(error);
       },
       async changeEmail(email) { const { error } = await sb.auth.updateUser({ email }, { emailRedirectTo: `${SITE}/auth-callback.html` }); if (error) fail(error); return { needsConfirmation: true }; },
@@ -165,7 +166,7 @@
     const now = () => new Date().toISOString();
     const empty = () => ({ users: [], restaurants: [], favourites: [], views: [], reviews: [], mail: [], tokens: [], session: null });
     function load() { try { return JSON.parse(localStorage.getItem(KEY)) || empty(); } catch (e) { return empty(); } }
-    function save(db) { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) { fail("Demo storage is full. Use 'Reset demo' in the yellow bar, or smaller images."); } }
+    function save(db) { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) { fail(T("مساحة العرض التجريبي ممتلئة. أعد ضبط العرض أو استخدم صورًا أصغر.", "Demo storage is full. Reset the demo or use smaller images.")); } }
     async function hash(pw) {
       const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("dine-demo:" + pw));
       return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
@@ -203,14 +204,14 @@
       if (!u || !(u.sessions || []).includes(db.session.sid)) { db.session = null; return null; }
       return u;
     }
-    function requireUser(db, roles) { const u = current(db); if (!u) fail("Please log in again."); if (roles && !roles.includes(u.role)) fail("You don't have permission to do that."); return u; }
+    function requireUser(db, roles) { const u = current(db); if (!u) fail(T("سجّل الدخول مرة أخرى.", "Please log in again.")); if (roles && !roles.includes(u.role)) fail(T("ليس لديك صلاحية لهذا الإجراء.", "You don't have permission to do that.")); return u; }
     function startSession(db, u) { const sid = uuid(); u.sessions = (u.sessions || []).concat(sid).slice(-10); db.session = { user_id: u.id, sid }; }
     const adminsOf = db => db.users.filter(u => u.role === "admin").map(u => u.email);
-    const PLAN = id => (cfg.PLANS.find(p => p.id === id) || { name: id }).name;
+    const PLAN = id => { const p = cfg.PLANS.find(x => x.id === id) || { name: id, ar: id }; return T(p.ar, p.name); };
     function notifyPending(db, r) {
       const o = db.users.find(u => u.id === r.owner_id);
-      mail(db, o.email, `Application received · ${r.reference}`, `Thank you for registering ${r.name}. Your application is now pending approval. Plan: ${PLAN(r.plan)}.`, `owner.html#r-${r.id}`, "View application status");
-      mail(db, adminsOf(db), `New restaurant application: ${r.name}`, `${r.name} · ${r.category} · ${r.cuisine}, ${r.area}, ${r.city}. Owner: ${o.full_name} (${o.email}). Plan: ${PLAN(r.plan)}.`, "admin.html#applications", "Review application");
+      mail(db, o.email, T(`استلمنا طلبك · ${r.reference}`, `Application received · ${r.reference}`), T(`شكرًا لتسجيل ${r.name}. طلبك الآن قيد المراجعة.`, `Thank you for registering ${r.name}. Your application is now pending approval.`), `owner.html#r-${r.id}`, T("عرض حالة الطلب", "View application status"));
+      mail(db, adminsOf(db), T(`طلب مطعم جديد: ${r.name}`, `New restaurant application: ${r.name}`), `${r.name} · ${r.area}, ${r.city} · ${o.full_name} (${o.email}) · ${PLAN(r.plan)}`, "admin.html#applications", T("مراجعة الطلب", "Review application"));
     }
     function newRestaurant(db, owner_id, r, files, status) {
       const row = { id: uuid(), owner_id, reference: "DO-" + uuid().replace(/-/g, "").slice(0, 6).toUpperCase(), status, slug: null, published: false,
@@ -242,7 +243,7 @@
         if (db.users.some(u => u.email === email)) fail("already registered");
         const u = { id: uuid(), email, pw: await hash(password), role: "customer", full_name, mobile, whatsapp: null, email_confirmed: false, providers: ["email"], sessions: [], created_at: now() };
         db.users.push(u);
-        mail(db, email, "Confirm your Dine Oman account", `Hello ${full_name.split(" ")[0]}, confirm your email to finish creating your account.`, `auth-callback.html?demo=verify&t=${token(db, "verify", u.id)}`, "Confirm my email");
+        mail(db, email, T("أكّد حسابك في داين عُمان", "Confirm your Dine Oman account"), T(`مرحبًا ${full_name.split(" ")[0]}، أكّد بريدك الإلكتروني لإكمال إنشاء حسابك.`, `Hello ${full_name.split(" ")[0]}, confirm your email to finish creating your account.`), `auth-callback.html?demo=verify&t=${token(db, "verify", u.id)}`, T("تأكيد البريد", "Confirm my email"));
         save(db); return { needsVerification: true };
       },
       async signUpOwner(owner, restaurant, files) {
@@ -253,13 +254,13 @@
         const u = { id: uuid(), email, pw: await hash(owner.password), role: "owner", full_name: owner.full_name, mobile: owner.mobile, whatsapp: owner.whatsapp, email_confirmed: false, providers: ["email"], sessions: [], created_at: now() };
         db.users.push(u);
         newRestaurant(db, u.id, restaurant, stored, "awaiting_verification");
-        mail(db, email, "Confirm your email to submit your restaurant", `Hello ${owner.full_name.split(" ")[0]}, confirm your email and your application for ${restaurant.name} goes to our team for approval.`, `auth-callback.html?demo=verify&t=${token(db, "verify", u.id)}`, "Confirm my email");
+        mail(db, email, T("أكّد بريدك لإرسال طلب مطعمك", "Confirm your email to submit your restaurant"), T(`مرحبًا ${owner.full_name.split(" ")[0]}، بعد تأكيد بريدك يُرسل طلب ${restaurant.name} لفريقنا للمراجعة.`, `Hello ${owner.full_name.split(" ")[0]}, confirm your email and your application for ${restaurant.name} goes to our team.`), `auth-callback.html?demo=verify&t=${token(db, "verify", u.id)}`, T("تأكيد البريد", "Confirm my email"));
         save(db); return { needsVerification: true };
       },
       async demoConsumeToken(t) {
         const db = load(); const tok = db.tokens.find(x => x.t === t);
-        if (!tok) fail("This link has expired or was already used.");
-        const u = db.users.find(x => x.id === tok.user_id); if (!u) fail("Account not found.");
+        if (!tok) fail(T("انتهت صلاحية الرابط أو تم استخدامه.", "This link has expired or was already used."));
+        const u = db.users.find(x => x.id === tok.user_id); if (!u) fail(T("الحساب غير موجود.", "Account not found."));
         db.tokens = db.tokens.filter(x => x !== tok);
         if (tok.type === "verify") {
           if (!u.email_confirmed) {
@@ -277,22 +278,22 @@
         if (!u.email_confirmed) fail("Email not confirmed");
         startSession(db, u); save(db); listeners.forEach(cb => cb("SIGNED_IN"));
       },
-      async signInGoogle() { fail("Google sign-in needs the live setup (Supabase + Google OAuth). In demo mode, sign up with email."); },
+      async signInGoogle() { fail(T("الدخول عبر Google يعمل بعد الإطلاق الفعلي. في العرض التجريبي استخدم البريد الإلكتروني.", "Google sign-in works once the site is live. In the demo, use email.")); },
       async resendVerification(email) {
         const db = load(); const u = db.users.find(x => x.email === email.toLowerCase());
-        if (u && !u.email_confirmed) { mail(db, u.email, "Confirm your Dine Oman account", "Here's a new confirmation link.", `auth-callback.html?demo=verify&t=${token(db, "verify", u.id)}`, "Confirm my email"); save(db); }
+        if (u && !u.email_confirmed) { mail(db, u.email, T("أكّد حسابك في داين عُمان", "Confirm your Dine Oman account"), T("هذا رابط تأكيد جديد.", "Here's a new confirmation link."), `auth-callback.html?demo=verify&t=${token(db, "verify", u.id)}`, T("تأكيد البريد", "Confirm my email")); save(db); }
       },
       async sendPasswordReset(email) {
         await ready; const db = load(); const u = db.users.find(x => x.email === email.toLowerCase());
-        if (u) { mail(db, u.email, "Reset your Dine Oman password", "Someone asked to reset your password. If it was you, use the link below. If not, ignore this email.", `auth-callback.html?demo=recovery&t=${token(db, "recovery", u.id)}`, "Reset password"); save(db); }
+        if (u) { mail(db, u.email, T("إعادة تعيين كلمة المرور", "Reset your Dine Oman password"), T("طلب أحدهم إعادة تعيين كلمة المرور. إن كنت أنت فاستخدم الرابط، وإلا فتجاهل الرسالة.", "Someone asked to reset your password. If it was you, use the link below. If not, ignore this email."), `auth-callback.html?demo=recovery&t=${token(db, "recovery", u.id)}`, T("تعيين كلمة مرور جديدة", "Reset password")); save(db); }
       },
       async setNewPassword(password) { const db = load(); const u = requireUser(db); u.pw = await hash(password); if (!u.providers.includes("email")) u.providers.push("email"); db.session.recovery = false; save(db); },
-      async changePassword(cur, next) { const db = load(); const u = requireUser(db); if (u.pw !== await hash(cur)) fail("Your current password is incorrect."); u.pw = await hash(next); save(db); },
+      async changePassword(cur, next) { const db = load(); const u = requireUser(db); if (u.pw !== await hash(cur)) fail(T("كلمة المرور الحالية غير صحيحة.", "Your current password is incorrect.")); u.pw = await hash(next); save(db); },
       async changeEmail(email) {
         const db = load(); const u = requireUser(db); email = email.toLowerCase();
         if (db.users.some(x => x.email === email)) fail("already registered");
         u.pending_email = email;
-        mail(db, email, "Confirm your new email address", `Confirm ${email} as the new email for your Dine Oman account.`, `auth-callback.html?demo=email&t=${token(db, "email_change", u.id, email)}`, "Confirm new email");
+        mail(db, email, T("أكّد بريدك الإلكتروني الجديد", "Confirm your new email address"), T(`أكّد ${email} كبريد جديد لحسابك.`, `Confirm ${email} as the new email for your account.`), `auth-callback.html?demo=email&t=${token(db, "email_change", u.id, email)}`, T("تأكيد البريد الجديد", "Confirm new email"));
         save(db); return { needsConfirmation: true };
       },
       async signOut(everywhere) {
@@ -306,16 +307,16 @@
         const { pw, sessions, ...rest } = u; return { ...rest, has_password: !!pw, session_count: (sessions || []).length };
       },
       async updateMe(f) { const db = load(); const u = requireUser(db); Object.assign(u, pick(f, ["full_name", "mobile", "whatsapp"])); save(db); },
-      async requestDeletion(reason) { const db = load(); const u = requireUser(db); u.deletion_requested_at = now(); u.deletion_reason = reason || null; mail(db, adminsOf(db), "Account deletion request", `${u.full_name || u.email} (${u.role}) asked to delete their account.${reason ? " Reason: " + reason : ""}`, "admin.html#users", "Open users"); save(db); },
+      async requestDeletion(reason) { const db = load(); const u = requireUser(db); u.deletion_requested_at = now(); u.deletion_reason = reason || null; mail(db, adminsOf(db), T("طلب حذف حساب", "Account deletion request"), `${u.full_name || u.email} (${u.role})${reason ? " · " + reason : ""}`, "admin.html#users", T("المستخدمون", "Open users")); save(db); },
       async cancelDeletion() { const db = load(); const u = requireUser(db); u.deletion_requested_at = null; u.deletion_reason = null; save(db); },
 
       async myRestaurants() { const db = load(); const u = requireUser(db, ["owner", "admin"]); return db.restaurants.filter(r => r.owner_id === u.id); },
       async addBranch(r, files) { const stored = await storeFiles(files); const db = load(); const u = requireUser(db, ["owner"]); const row = newRestaurant(db, u.id, r, stored, "pending"); notifyPending(db, row); save(db); return { id: row.id }; },
-      async resubmit(id) { const db = load(); const u = requireUser(db, ["owner"]); const r = db.restaurants.find(x => x.id === id && x.owner_id === u.id && x.status === "rejected"); if (!r) fail("Only a rejected application can be resubmitted."); r.status = "pending"; r.submitted_at = now(); notifyPending(db, r); save(db); },
+      async resubmit(id) { const db = load(); const u = requireUser(db, ["owner"]); const r = db.restaurants.find(x => x.id === id && x.owner_id === u.id && x.status === "rejected"); if (!r) fail(T("يمكن إعادة إرسال الطلب المرفوض فقط.", "Only a rejected application can be resubmitted.")); r.status = "pending"; r.submitted_at = now(); notifyPending(db, r); save(db); },
       async updateRestaurant(id, fields, files, keepPhotos) {
         const stored = await storeFiles(files || {});
         const db = load(); const u = requireUser(db, ["owner", "admin"]);
-        const r = db.restaurants.find(x => x.id === id && (x.owner_id === u.id || u.role === "admin")); if (!r) fail("Restaurant not found.");
+        const r = db.restaurants.find(x => x.id === id && (x.owner_id === u.id || u.role === "admin")); if (!r) fail(T("المطعم غير موجود.", "Restaurant not found."));
         const f = pick(fields, RESTAURANT_FIELDS);
         if (!["awaiting_verification", "pending", "rejected"].includes(r.status) && u.role !== "admin") delete f.plan;
         Object.assign(r, f, stored.logo_url ? { logo_url: stored.logo_url } : {}, stored.cover_url ? { cover_url: stored.cover_url } : {}, stored.menu_url ? { menu_url: stored.menu_url } : {});
@@ -350,8 +351,8 @@
           r.status = status; r.admin_note = note || null; r.reviewed_at = now();
           if (status === "approved") approve(db, r); else r.published = false;
           const o = db.users.find(u => u.id === r.owner_id);
-          if (status === "approved") mail(db, o.email, `${r.name} is approved and live`, `Your restaurant is approved. Public page: /restaurant/${r.slug}${note ? ". Note: " + note : ""}`, `restaurant.html?slug=${r.slug}`, "View public page");
-          else mail(db, o.email, "Update on your Dine Oman application", `We couldn't approve ${r.name} yet.${note ? " Reason: " + note : ""}`, `owner.html#r-${r.id}`, "View application");
+          if (status === "approved") mail(db, o.email, T(`تمت الموافقة على ${r.name}`, `${r.name} is approved and live`), T(`صفحة مطعمك منشورة الآن: /restaurant/${r.slug}`, `Your public page is live: /restaurant/${r.slug}`) + (note ? " · " + note : ""), `restaurant.html?slug=${r.slug}`, T("عرض الصفحة", "View public page"));
+          else mail(db, o.email, T("تحديث على طلبك", "Update on your Dine Oman application"), T(`لم نتمكن من الموافقة على ${r.name} بعد.`, `We couldn't approve ${r.name} yet.`) + (note ? " · " + note : ""), `owner.html#r-${r.id}`, T("عرض الطلب", "View application"));
           save(db);
         },
         async setPublished(id, p) { const db = load(); requireUser(db, ["admin"]); const r = db.restaurants.find(x => x.id === id); if (r.status === "approved") r.published = p; save(db); },
@@ -359,7 +360,7 @@
         async clearDeletion(id) { const db = load(); requireUser(db, ["admin"]); const u = db.users.find(x => x.id === id); u.deletion_requested_at = null; u.deletion_reason = null; save(db); },
         async deleteUser(id) {
           const db = load(); requireUser(db, ["admin"]); const u = db.users.find(x => x.id === id);
-          if (!u) fail("User not found."); if (u.role === "admin") fail("Admin accounts can't be deleted here.");
+          if (!u) fail(T("المستخدم غير موجود.", "User not found.")); if (u.role === "admin") fail(T("لا يمكن حذف حساب مدير من هنا.", "Admin accounts can't be deleted here."));
           const rids = db.restaurants.filter(r => r.owner_id === id).map(r => r.id);
           db.users = db.users.filter(x => x.id !== id);
           db.restaurants = db.restaurants.filter(r => r.owner_id !== id);

@@ -14,13 +14,13 @@ window.DINE_CONFIG = {
   SUPPORT_WHATSAPP: "+968 95989547",
 
   PLANS: [
-    { id: "free", name: "Free", ar: "مجاني", price: "OMR 0", period: "", blurb: "Get listed and found.",
-      features: ["Public restaurant page", "Logo, cover and 4 food photos", "Search and map listing", "Instagram and website links"] },
-    { id: "standard", name: "Standard", ar: "قياسي", price: "OMR 5", period: "/ month", blurb: "A complete profile.",
-      features: ["Everything in Free", "Gallery up to 12 photos", "Menu upload", "Opening hours and features"] },
-    { id: "premium", name: "Premium", ar: "بريميوم", price: "OMR 10", period: "/ month", popular: true, blurb: "Rank higher in your area.",
-      features: ["Everything in Standard", "Higher placement in area results", "Gallery up to 24 photos", "Monthly views report"] },
-    { id: "featured", name: "Featured", ar: "مميّز", price: "OMR 15", period: "/ month", blurb: "Top of Dine Oman.",
-      features: ["Everything in Premium", "Featured badge", "Homepage and category spotlight", "One Instagram feature per month"] }
+    { id: "free", name: "Free", ar: "مجاني", price: "OMR 0", price_ar: "مجانًا",
+      line: "Public page, logo, cover and 4 photos", line_ar: "صفحة عامة، شعار، غلاف و4 صور" },
+    { id: "standard", name: "Standard", ar: "قياسي", price: "OMR 5 / month", price_ar: "5 ر.ع. / شهريًا",
+      line: "12 photos, menu, opening hours and features", line_ar: "12 صورة، المنيو، أوقات العمل والمميزات" },
+    { id: "premium", name: "Premium", ar: "بريميوم", price: "OMR 10 / month", price_ar: "10 ر.ع. / شهريًا",
+      line: "Higher placement in your area, 24 photos, monthly report", line_ar: "ظهور أعلى في منطقتك، 24 صورة، تقرير شهري" },
+    { id: "featured", name: "Featured", ar: "مميّز", price: "OMR 15 / month", price_ar: "15 ر.ع. / شهريًا",
+      line: "Featured badge and homepage spotlight", line_ar: "شارة مميّز وظهور في الصفحة الرئيسية" }
   ]
 };
