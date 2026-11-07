@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dine Oman Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Readex+Pro:wght@300..700&family=Reem+Kufi:wght@400..700&display=swap">
+<style>
+/* Layout: a bound brand book. Sticky chapter rail on the left, one wide reading column; specimens (logos, posts, phones) sit on full-bleed brand-coloured plates. */
+:root{
+  /* Brand colours: fixed in both themes, they are the product */
+  --b-teal:#0C3B3A;      /* Wadi Teal */
+  --b-teal-2:#17605B;    /* Falaj Green */
+  --b-saffron:#E2A238;   /* Kahwa Saffron */
+  --b-rose:#C2456A;      /* Jebel Akhdar Rose */
+  --b-sand:#EFE6D6;      /* Frankincense */
+  --b-ink:#121D1C;       /* Khanjar Ink */
+  --b-white:#FFFFFF;
+
+  /* Page neutrals, tinted toward teal */
+  --bg:#F4F6F3; --surface:#FFFFFF; --fg:#121D1C; --muted:#56655F; --line:#D8E0DB; --soft:#E9EEEA;
+  --accent:#17605B; --accent-fg:#FFFFFF; --mark:#B4352F;
+
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-ar-display:"Reem Kufi", "Geeza Pro", "Noto Kufi Arabic", sans-serif;
+  --f-body:"Readex Pro", "Segoe UI", "Geeza Pro", system-ui, sans-serif;
+
+  --r-sm:6px; --r-md:14px; --r-lg:22px;
+  --star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.13' stroke-width='1'%3E%3Crect x='13' y='13' width='18' height='18'/%3E%3Crect x='13' y='13' width='18' height='18' transform='rotate(45 22 22)'/%3E%3C/g%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1514; --surface:#112120; --fg:#E7EEEA; --muted:#9BAEA8; --line:#22342F; --soft:#152826;
+  --accent:#6FC2B7; --accent-fg:#0B1514; --mark:#F08B7E; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B1514; --surface:#112120; --fg:#E7EEEA; --muted:#9BAEA8; --line:#22342F; --soft:#152826;
+  --accent:#6FC2B7; --accent-fg:#0B1514; --mark:#F08B7E; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;font-weight:350;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+.ar{font-family:var(--f-body);direction:rtl;unicode-bidi:isolate}
+.ar-d{font-family:var(--f-ar-display);direction:rtl;unicode-bidi:isolate;letter-spacing:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;max-width:1320px;margin:0 auto;padding-left:max(24px, env(safe-area-inset-left, 0px));padding-right:max(24px, env(safe-area-inset-right, 0px));padding-block:40px 96px}
+nav.rail{position:sticky;top:calc(24px + env(safe-area-inset-top, 0px));align-self:start;font-size:13.5px}
+nav.rail .brand{display:flex;align-items:center;gap:10px;margin-bottom:28px;font-family:var(--f-display);font-weight:700;font-size:17px}
+nav.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:2px;counter-reset:ch}
+nav.rail li a{display:grid;grid-template-columns:28px 1fr;padding:6px 8px;border-radius:var(--r-sm);color:var(--muted);text-decoration:none}
+nav.rail li a:hover{background:var(--soft);color:var(--fg)}
+nav.rail li a span{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:500}
+main{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:112px}
+
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.lede{font-size:19px;color:var(--muted);max-width:62ch;line-height:1.55}
+.sec-head{display:grid;gap:14px;margin-bottom:36px;max-width:780px}
+.sec-head h2{font-size:clamp(34px,4.4vw,52px);font-weight:700}
+.sec-head .num{font-family:var(--f-display);font-size:14px;color:var(--accent);font-weight:600;letter-spacing:.04em}
+h3{font-size:22px;font-weight:650}
+.small{font-size:13.5px;color:var(--muted)}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:24px;min-width:0}
+.card h3+p,.card h4+p{margin-top:8px}
+.tag{display:inline-block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--muted)}
+.tag.rec{background:var(--b-saffron);color:var(--b-ink)}
+ul.clean{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+ul.clean li{padding-left:18px;position:relative}
+ul.clean li::before{content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;transform:rotate(45deg);background:var(--b-saffron)}
+dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:8px 18px;margin:0;font-size:14.5px}
+dl.kv dt{color:var(--muted)}
+dl.kv dd{margin:0;min-width:0}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:stretch}
+.hero h1{font-size:clamp(56px,9vw,128px);font-weight:800;letter-spacing:-.045em;line-height:.9}
+.hero h1 em{font-style:normal;color:var(--b-saffron)}
+.hero .ar-name{font-family:var(--f-ar-display);font-size:clamp(34px,4.5vw,56px);color:var(--accent);margin-top:12px;direction:rtl;text-align:left}
+.hero .thesis{margin-top:36px;display:grid;gap:6px;border-left:3px solid var(--b-saffron);padding-left:18px}
+.hero .thesis b{font-family:var(--f-display);font-size:26px;font-weight:650;letter-spacing:-.01em}
+.hero .thesis .ar{font-size:22px;text-align:left;font-weight:500}
+.plate{border-radius:var(--r-lg);background:var(--b-teal) var(--star);color:var(--b-sand);padding:32px;position:relative;overflow:hidden;min-width:0}
+.hero .plate{display:grid;place-items:center;min-height:380px}
+.hero .plate svg{width:min(260px,70%);height:auto}
+.hero .plate .cap{position:absolute;left:24px;bottom:20px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+
+/* Foundation */
+.trait{display:grid;gap:6px}
+.trait b{font-family:var(--f-display);font-size:20px;font-weight:650}
+.voice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--surface)}
+.voice>div{padding:22px}
+.voice>div+div{border-left:1px solid var(--line)}
+.voice h4{font-size:15px;font-family:var(--f-body);font-weight:600;letter-spacing:0;margin-bottom:12px}
+.voice .no{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--mark)}
+
+/* Logos */
+.logo-card{display:grid;grid-template-rows:auto 1fr;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--surface);min-width:0}
+.logo-card .stage{aspect-ratio:1/1;display:grid;place-items:center;background:var(--b-sand)}
+.logo-card .stage svg{width:46%;height:auto}
+.logo-card .body{padding:22px;display:grid;gap:10px;align-content:start}
+.logo-card .body .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lockups{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:20px}
+.lock{border-radius:var(--r-md);padding:28px;display:flex;align-items:center;justify-content:center;min-height:170px;min-width:0}
+.lock.wide{grid-column:span 3}
+.lock.mid{grid-column:span 2}
+.lock.teal{background:var(--b-teal)}
+.lock.sand{background:var(--b-sand)}
+.lock.white{background:#fff;border:1px solid var(--line)}
+.lock.saffron{background:var(--b-saffron)}
+.lock.ink{background:var(--b-ink)}
+.lock.rose{background:var(--b-rose)}
+.wm{display:flex;align-items:center;gap:14px}
+.wm .t{display:grid;line-height:1}
+.wm .en{font-family:var(--f-display);font-weight:750;font-size:34px;letter-spacing:-.035em}
+.wm .arw{font-family:var(--f-ar-display);font-size:22px;direction:rtl;margin-top:6px;font-weight:500}
+.wm.stack{flex-direction:column;text-align:center;gap:12px}
+.wm.stack .t{justify-items:center}
+.appicon{width:96px;height:96px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.rules{margin-top:20px}
+
+/* Colours */
+.swatches{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.sw{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--surface);min-width:0}
+.sw .chip{aspect-ratio:4/5;padding:14px;display:flex;align-items:flex-end;font-family:var(--f-display);font-weight:650;font-size:15px}
+.sw .meta{padding:12px 14px;font-size:12.5px;display:grid;gap:2px}
+.sw .meta b{font-size:14px;font-weight:600}
+.sw .meta code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted)}
+.ratio{display:flex;height:42px;border-radius:var(--r-sm);overflow:hidden;margin-top:20px}
+.ratio div{display:flex;align-items:center;padding-left:12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden}
+.pairs{margin-top:20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pair{border-radius:var(--r-md);padding:18px;min-height:110px;display:grid;align-content:space-between;gap:10px;font-size:13px;min-width:0}
+.pair b{font-family:var(--f-display);font-size:22px;font-weight:700;letter-spacing:-.02em}
+
+/* Type */
+.spec{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:24px;align-items:end;padding:28px 0;border-top:1px solid var(--line)}
+.spec:last-of-type{border-bottom:1px solid var(--line)}
+.spec .big{font-size:clamp(40px,6vw,76px);line-height:1;overflow-wrap:anywhere}
+.spec .info{font-size:13.5px;color:var(--muted);display:grid;gap:4px}
+.spec .info b{color:var(--fg);font-size:15px;font-weight:600}
+.scale{overflow-x:auto;margin-top:28px}
+.scale table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+.scale th,.scale td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:baseline}
+.scale th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.scale td.n{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+
+/* Phone */
+.phone-row{display:grid;grid-template-columns:340px minmax(0,1fr);gap:40px;align-items:start}
+.phone{width:100%;max-width:340px;border-radius:44px;background:var(--b-ink);padding:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.35)}
+.screen{border-radius:34px;background:#fff;color:#111;overflow:hidden;font-family:var(--f-body);font-size:12px;line-height:1.35}
+.ig-top{display:flex;justify-content:space-between;align-items:center;padding:16px 16px 6px;font-weight:600;font-size:14px}
+.ig-head{display:grid;grid-template-columns:78px 1fr;gap:16px;align-items:center;padding:8px 16px}
+.ig-av{width:78px;height:78px;border-radius:50%;padding:3px;background:conic-gradient(var(--b-saffron),var(--b-rose),var(--b-saffron))}
+.ig-av svg{width:100%;height:100%;border-radius:50%;display:block;border:2px solid #fff}
+.ig-stats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center}
+.ig-stats b{display:block;font-size:14px}
+.ig-bio{padding:4px 16px 10px;display:grid;gap:2px}
+.ig-bio .ar{text-align:left}
+.ig-bio a{color:#00376b;text-decoration:none;font-weight:500}
+.ig-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:0 16px 12px}
+.ig-btns span{background:#efefef;border-radius:8px;text-align:center;padding:7px 0;font-weight:600}
+.ig-btns span.p{background:var(--b-teal);color:#fff}
+.ig-hl{display:flex;gap:12px;padding:4px 16px 14px;overflow:hidden}
+.ig-hl div{display:grid;justify-items:center;gap:4px;font-size:10.5px;flex:0 0 auto}
+.ig-hl i{width:52px;height:52px;border-radius:50%;border:1px solid #ddd;display:grid;place-items:center;font-style:normal;font-family:var(--f-ar-display);font-size:15px}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ig-grid>div{aspect-ratio:4/5;display:grid;place-items:center;text-align:center;padding:6px;font-family:var(--f-display);font-weight:700;font-size:13px;line-height:1.05;color:#fff;overflow:hidden}
+
+/* Photo stand-in: a plate seen from above */
+.photo{background:radial-gradient(circle at 50% 48%, #d98b3a 0 16%, #f3e3c3 16.5% 30%, #ffffff 30.5% 33%, transparent 33.5%), radial-gradient(circle at 80% 15%, rgba(255,255,255,.12) 0 10%, transparent 11%), linear-gradient(135deg,#2a3a33,#1a2523)}
+.photo.b{background:radial-gradient(circle at 46% 52%, #8e3b22 0 12%, #e2b25b 12.5% 22%, #fbf6ea 22.5% 34%, transparent 34.5%), linear-gradient(160deg,#3b2a20,#1c1512)}
+
+/* Post templates */
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.post-wrap{display:grid;gap:12px;min-width:0}
+.post{aspect-ratio:1/1;border-radius:10px;overflow:hidden;position:relative;container-type:inline-size;max-width:100%}
+.post .in{position:absolute;inset:0;padding:7cqw;display:flex;flex-direction:column;justify-content:space-between}
+.post .lbl{font-size:3.4cqw;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.post .h{font-family:var(--f-display);font-weight:750;letter-spacing:-.03em;line-height:.95}
+.post .foot{display:flex;justify-content:space-between;align-items:center;font-size:3.6cqw;font-weight:500}
+.post .foot svg{width:9cqw;height:9cqw}
+.p1{background:var(--b-teal);color:var(--b-sand)}
+.p1 .ph{position:absolute;right:0;top:0;bottom:0;width:52%;border-left:1.2cqw solid var(--b-saffron)}
+.p1 .in{right:52%;padding-right:5cqw}
+.p1 .h{font-size:11cqw}
+.p2{background:var(--b-sand);color:var(--b-ink)}
+.p2 ol{margin:0;padding:0;list-style:none;display:grid;gap:2.2cqw;counter-reset:t}
+.p2 li{display:grid;grid-template-columns:9cqw 1fr auto;align-items:baseline;font-size:5cqw;font-weight:500;border-bottom:.3cqw solid rgba(18,29,28,.18);padding-bottom:1.6cqw;counter-increment:t}
+.p2 li::before{content:counter(t);font-family:var(--f-display);font-weight:800;color:var(--b-rose);font-size:6cqw}
+.p2 li small{font-size:3.4cqw;opacity:.6}
+.p2 .h{font-size:10cqw}
+.p3{background:var(--b-rose) var(--star);color:#fff}
+.p3 .h{font-size:17cqw}
+.p3 .ar-d{font-size:9cqw;text-align:left}
+.p4 .in{justify-content:flex-end;gap:3cqw;background:linear-gradient(to top, rgba(10,16,15,.92) 0, rgba(10,16,15,.0) 62%);color:#fff}
+.p4 .ar-d{font-size:9cqw;line-height:1.2}
+.p4 .meta{display:flex;gap:2cqw;flex-wrap:wrap;direction:rtl}
+.p4 .meta span{font-size:3.4cqw;background:rgba(255,255,255,.16);padding:1cqw 2.6cqw;border-radius:99px;font-family:var(--f-body)}
+.p5{background:var(--b-saffron);color:var(--b-ink)}
+.p5 .ar-d{font-size:15cqw;line-height:1.15;text-align:center}
+.p5 .opts{display:grid;grid-template-columns:1fr 1fr;gap:2.4cqw;direction:rtl}
+.p5 .opts span{background:var(--b-ink);color:var(--b-sand);text-align:center;padding:2.6cqw;border-radius:2cqw;font-size:4.2cqw;font-weight:500}
+.p6{background:var(--b-ink);color:var(--b-sand)}
+.p6 .h{font-size:12cqw}
+.p6 .h em{font-style:normal;color:var(--b-saffron)}
+.p6 .cta{align-self:flex-start;background:var(--b-saffron);color:var(--b-ink);padding:2.4cqw 4cqw;border-radius:99px;font-size:4cqw;font-weight:600}
+
+/* TikTok */
+.tt{display:grid;grid-template-columns:150px minmax(0,1fr);gap:22px;align-items:start}
+.vframe{aspect-ratio:9/16;border-radius:14px;overflow:hidden;position:relative;color:#fff;container-type:inline-size;max-width:100%}
+.vframe .ov{position:absolute;inset:0;padding:9cqw 8cqw;display:flex;flex-direction:column;justify-content:space-between}
+.vframe .hook{font-family:var(--f-display);font-weight:750;font-size:12cqw;line-height:1;letter-spacing:-.02em;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.vframe .hook.ar-d{font-family:var(--f-ar-display);font-size:13cqw;line-height:1.25;text-align:right}
+.vframe .rail{position:absolute;right:5cqw;bottom:22cqw;display:grid;gap:6cqw}
+.vframe .rail i{width:11cqw;height:11cqw;border-radius:50%;background:rgba(255,255,255,.85);display:block}
+.vframe .h2{font-size:7cqw;opacity:.9}
+.beats{margin:10px 0 0;padding-left:20px;display:grid;gap:4px;font-size:14.5px}
+.tt dl.kv{margin-top:12px}
+
+/* Ads */
+.ads{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.ad{border-radius:14px;overflow:hidden;position:relative;container-type:inline-size;max-width:100%}
+.ad .in{position:absolute;inset:0;padding:8cqw;display:flex;flex-direction:column;justify-content:space-between;gap:4cqw}
+.ad-story{aspect-ratio:9/16;background:var(--b-teal) var(--star);color:var(--b-sand)}
+.ad-story .ar-d{font-size:12cqw;line-height:1.3;text-align:right}
+.ad-story .en{font-family:var(--f-display);font-size:6.4cqw;font-weight:600;line-height:1.15}
+.ad-story .ticks{display:grid;gap:2.6cqw;font-size:5cqw;direction:rtl}
+.ad-story .ticks span::before{content:"◆ ";color:var(--b-saffron)}
+.ad-story .btn{background:var(--b-saffron);color:var(--b-ink);text-align:center;padding:4cqw;border-radius:99px;font-weight:600;font-size:5.4cqw}
+.ad-feed{aspect-ratio:4/5;background:var(--b-sand);color:var(--b-ink)}
+.ad-feed .h{font-family:var(--f-display);font-weight:800;font-size:11cqw;line-height:.95;letter-spacing:-.035em}
+.ad-feed .h em{font-style:normal;color:var(--b-rose)}
+.ad-feed .ar-d{font-size:7cqw;text-align:right;color:var(--b-teal-2);line-height:1.3}
+.ad-feed .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2cqw}
+.ad-feed .strip span{aspect-ratio:1;border-radius:2cqw;display:grid;place-items:end start;padding:2cqw;font-size:3.2cqw;color:#fff;font-weight:600}
+.ad-feed .bar{display:flex;justify-content:space-between;align-items:center;font-size:4cqw;font-weight:600}
+.ad-feed .bar b{background:var(--b-teal);color:#fff;padding:2.4cqw 4cqw;border-radius:99px;font-weight:600}
+.ad-tent{aspect-ratio:3/4;background:#fff;color:var(--b-ink);border:1px solid var(--line)}
+.ad-tent .qr{width:34cqw;aspect-ratio:1;border-radius:3cqw;background:
+  conic-gradient(from 90deg at 30% 30%, var(--b-ink) 25%, transparent 0) 0 0/20% 20%,
+  repeating-linear-gradient(90deg,var(--b-ink) 0 6%,transparent 6% 11%),#fff;border:2.4cqw solid #fff;outline:.6cqw solid var(--b-ink);margin-inline:auto;opacity:.9}
+.ad-tent .ar-d{font-size:8.6cqw;text-align:center;line-height:1.3;color:var(--b-teal)}
+.ad-tent .en{font-family:var(--f-display);font-weight:700;font-size:6cqw;text-align:center;line-height:1.1}
+.ad-tent .sm{font-size:3.8cqw;text-align:center;color:#56655F}
+.copyblock{display:grid;gap:10px}
+.copyblock .ar{text-align:right;font-size:15.5px}
+.wa{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:20px;display:grid;gap:14px}
+.wa .bubble{background:#DCF8C6;color:#111;border-radius:12px 12px 4px 12px;padding:14px 16px;font-size:14.5px;line-height:1.55;max-width:560px;justify-self:end}
+.wa .bubble.ar{text-align:right}
+
+/* Campaigns */
+.camp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px;padding:28px 0;border-top:1px solid var(--line)}
+.camp:last-child{border-bottom:1px solid var(--line)}
+.camp .t{display:grid;gap:10px;align-content:start}
+.camp .t .ar-d{font-size:26px;color:var(--accent);text-align:left}
+.camp h3{font-size:26px}
+
+/* Launch */
+.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:8px}
+.phase{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;padding:0 0 40px 28px;position:relative}
+.phase::before{content:"";position:absolute;left:-9px;top:4px;width:16px;height:16px;transform:rotate(45deg);background:var(--bg);border:2px solid var(--accent)}
+.phase.key::before{background:var(--b-saffron);border-color:var(--b-saffron)}
+.phase .when{font-family:var(--f-display);font-weight:650;font-size:20px;line-height:1.2}
+.phase .when small{display:block;font-family:var(--f-body);font-size:13px;color:var(--muted);font-weight:400;margin-top:4px}
+.split{display:flex;height:48px;border-radius:var(--r-sm);overflow:hidden;margin-top:12px}
+.split div{display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden}
+
+/* Slogans */
+.slogans{display:grid;gap:0;border-top:1px solid var(--line)}
+.slogan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 150px;gap:24px;padding:20px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.slogan .en{font-family:var(--f-display);font-size:23px;font-weight:650;letter-spacing:-.015em;line-height:1.2}
+.slogan .ar-d{font-size:24px;text-align:right;line-height:1.45}
+.slogan .use{font-size:12.5px;color:var(--muted);text-align:right}
+.slogan.hero-s .en{font-size:34px}
+.slogan.hero-s .ar-d{font-size:34px;color:var(--accent)}
+
+.note{background:var(--soft);border-radius:var(--r-md);padding:20px 22px;font-size:14.5px}
+.note b{font-weight:600}
+
+@media (max-width:1080px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:24px}
+  nav.rail{position:static}
+  nav.rail ol{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+  .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ads{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:820px){
+  main{gap:80px}
+  .hero,.g2,.g3,.phone-row,.camp,.voice{grid-template-columns:minmax(0,1fr)}
+  .voice>div+div{border-left:0;border-top:1px solid var(--line)}
+  .g4,.pairs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lockups{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lock.wide,.lock.mid{grid-column:span 2}
+  .lock.sm{grid-column:span 1}
+  .spec{grid-template-columns:minmax(0,1fr)}
+  .phase{grid-template-columns:minmax(0,1fr);gap:10px}
+  .slogan{grid-template-columns:minmax(0,1fr);gap:6px}
+  .slogan .ar-d,.slogan .use{text-align:left}
+  .phone{margin-inline:auto}
+}
+@media (max-width:520px){
+  .wrap{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+  .posts,.ads,.g4,.pairs{grid-template-columns:minmax(0,1fr)}
+  .swatches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tt{grid-template-columns:110px minmax(0,1fr);gap:14px}
+  .wm .en{font-size:28px}
+  .ad-story{max-width:300px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .logo-card .stage svg{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .logo-card:hover .stage svg{transform:scale(1.06)}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Concept A: the Arch D. The counter of the D is an Omani pointed arch; the saffron dot is the destination. -->
+    <symbol id="archD" viewBox="0 0 100 100">
+      <path fill-rule="evenodd" d="M22 16H50C71 16 84 32 84 50C84 68 71 84 50 84H22Z M38 70V49C38 38 44 30 53 25C62 30 68 38 68 49V70Z"/>
+      <circle cx="53" cy="58" r="5.5" fill="#E2A238"/>
+    </symbol>
+    <!-- Concept B: Pin & Plate -->
+    <symbol id="pinPlate" viewBox="0 0 100 100">
+      <path d="M50 8C32 8 19 22 19 39C19 61 50 92 50 92S81 61 81 39C81 22 68 8 50 8Z"/>
+      <circle cx="50" cy="39" r="17" fill="none" stroke="#EFE6D6" stroke-width="4"/>
+      <circle cx="50" cy="39" r="6" fill="#E2A238"/>
+    </symbol>
+    <!-- Concept C: the Eight-Point Star (khatam) -->
+    <symbol id="star8" viewBox="0 0 100 100">
+      <rect x="22" y="22" width="56" height="56"/>
+      <rect x="22" y="22" width="56" height="56" transform="rotate(45 50 50)"/>
+      <circle cx="50" cy="50" r="13" fill="#EFE6D6"/>
+      <circle cx="50" cy="50" r="5" fill="#E2A238"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <nav class="rail" aria-label="Chapters">
+    <div class="brand"><svg width="30" height="30" style="color:var(--accent)" fill="currentColor"><use href="#archD"/></svg>Dine Oman</div>
+    <ol>
+      <li><a href="#foundation"><span>00</span>Brand foundation</a></li>
+      <li><a href="#logo"><span>01</span>Logo concepts</a></li>
+      <li><a href="#colour"><span>02</span>Brand colours</a></li>
+      <li><a href="#type"><span>03</span>Typography</a></li>
+      <li><a href="#instagram"><span>04</span>Instagram profile</a></li>
+      <li><a href="#posts"><span>05</span>Post templates</a></li>
+      <li><a href="#tiktok"><span>06</span>TikTok concepts</a></li>
+      <li><a href="#owners"><span>07</span>Restaurant ads</a></li>
+      <li><a href="#acquisition"><span>08</span>Customer campaigns</a></li>
+      <li><a href="#launch"><span>09</span>Launch campaign</a></li>
+      <li><a href="#slogans"><span>10</span>Slogans</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Brand identity &amp; marketing strategy · Version 1 · November 2026</p>
+        <h1 style="margin-top:22px">Dine<br><em>Oman</em></h1>
+        <p class="ar-name">داين عُمان</p>
+        <div class="thesis">
+          <b>Every restaurant. One destination.</b>
+          <span class="ar">كل المطاعم. وجهة وحدة.</span>
+        </div>
+        <p class="lede" style="margin-top:28px">Dine Oman is where people in Oman, and the people visiting, decide where to eat. This book sets out how the brand looks, how it speaks, and how it launches to diners and to restaurant owners.</p>
+      </div>
+      <div class="plate">
+        <svg fill="#EFE6D6" aria-label="Dine Oman Arch D mark"><use href="#archD"/></svg>
+        <span class="cap">Recommended mark · The Arch D</span>
+      </div>
+    </header>
+
+    <!-- 00 FOUNDATION -->
+    <section id="foundation">
+      <div class="sec-head">
+        <span class="num">00 · Brand foundation</span>
+        <h2>One place to answer “where shall we eat?”</h2>
+        <p class="lede">Oman's food scene is spread across Instagram accounts, WhatsApp forwards, map pins and word of mouth. Dine Oman pulls it into one trusted place: every restaurant, café, bakery and food business, from Muscat to Salalah.</p>
+      </div>
+
+      <div class="grid g2">
+        <div class="card">
+          <span class="tag">Positioning statement</span>
+          <p style="margin-top:14px;font-size:17.5px;line-height:1.55">For residents and visitors in Oman who want to find a good place to eat, <b>Dine Oman</b> is the restaurant discovery platform that lists every restaurant in one destination, with honest information, real menus and local knowledge, so choosing is quick and confident.</p>
+          <p class="ar" style="margin-top:14px;text-align:right;font-size:16.5px;color:var(--muted)">داين عُمان هو المكان اللي يجمع كل مطاعم وكافيهات ومخابز عُمان في وجهة وحدة، بمعلومات واضحة ومنيوهات حقيقية، عشان تختار وين تاكل بسرعة وبثقة.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Two audiences, one promise</span>
+          <dl class="kv" style="margin-top:16px">
+            <dt>Diners</dt><dd>Residents, families, students, office workers and tourists. Promise: <b>find the right place fast.</b></dd>
+            <dt>Owners</dt><dd>Restaurants, cafés, bakeries, home kitchens, food trucks. Promise: <b>be found by people already deciding.</b></dd>
+            <dt>Shared</dt><dd>Trust. Accurate hours, prices, menus and locations, kept current.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <h3 style="margin:44px 0 18px">Personality</h3>
+      <div class="grid g4">
+        <div class="trait card"><b>Generous</b><p class="small">Like an Omani host. Shows the full table, never just the paid seats.</p></div>
+        <div class="trait card"><b>Trustworthy</b><p class="small">Accurate details, clear labels on anything sponsored, no inflated claims.</p></div>
+        <div class="trait card"><b>Local</b><p class="small">Knows the difference between Al Khuwair and Al Khoud, and says shuwa, not “slow-roast lamb”.</p></div>
+        <div class="trait card"><b>Modern</b><p class="small">Clean, quick, phone-first. Premium through restraint, not gold foil.</p></div>
+      </div>
+
+      <h3 style="margin:44px 0 18px">Voice</h3>
+      <div class="voice">
+        <div>
+          <h4>We say</h4>
+          <ul class="clean">
+            <li>“Open now in Ruwi: 14 places, 3 serve breakfast till noon.”</li>
+            <li class="ar" style="text-align:right;padding-left:0;padding-right:18px">جوعان؟ شوف إيش مفتوح قريب منك.</li>
+            <li>“List your café free. It takes ten minutes.”</li>
+          </ul>
+        </div>
+        <div>
+          <h4>We avoid</h4>
+          <ul class="clean">
+            <li class="no">“The ultimate world-class culinary experience awaits!”</li>
+            <li class="no">“Oman's #1 platform” (until we can prove it)</li>
+            <li class="no">Formal MSA in social captions; Gulf slang that excludes visitors</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" style="margin-top:14px">Arabic: Omani-friendly colloquial for social and ads, clear Modern Standard Arabic for the app interface and legal text. English: plain, warm, short sentences. Every key asset ships in both.</p>
+    </section>
+
+    <!-- 01 LOGO -->
+    <section id="logo">
+      <div class="sec-head">
+        <span class="num">01 · Logo concepts</span>
+        <h2>Three marks, one recommendation</h2>
+        <p class="lede">Each concept turns the idea of “one destination” into a shape that works at app-icon size and on a shop window sticker.</p>
+      </div>
+
+      <div class="grid g3">
+        <article class="logo-card">
+          <div class="stage" style="background:var(--b-teal)"><svg fill="#EFE6D6"><use href="#archD"/></svg></div>
+          <div class="body">
+            <div class="row"><h3>A · The Arch D</h3><span class="tag rec">Recommended</span></div>
+            <p>A bold “D” whose counter is the pointed arch found on Omani forts, doors and mosque windows. The saffron dot is the lamp in the doorway: the destination.</p>
+            <p class="small">Ownable, local without cliché, reads as a doorway you walk through to eat. Strong as an app icon and favicon.</p>
+          </div>
+        </article>
+        <article class="logo-card">
+          <div class="stage"><svg fill="#0C3B3A"><use href="#pinPlate"/></svg></div>
+          <div class="body">
+            <div class="row"><h3>B · Pin &amp; Plate</h3><span class="tag">Alternative</span></div>
+            <p>A map pin whose head is a plate seen from above. Says “restaurant discovery” in one glance.</p>
+            <p class="small">Instantly understood, but pins are common in maps and delivery apps, so it is harder to protect and to stand apart.</p>
+          </div>
+        </article>
+        <article class="logo-card">
+          <div class="stage" style="background:var(--b-rose)"><svg fill="#121D1C"><use href="#star8"/></svg></div>
+          <div class="body">
+            <div class="row"><h3>C · Eight-Point Star</h3><span class="tag">Alternative</span></div>
+            <p>The khatam star from Omani carving and silverwork. Eight points for every direction across the country, meeting at one centre.</p>
+            <p class="small">Rich and heritage-led. Works best as a secondary pattern, which is how the system uses it.</p>
+          </div>
+        </article>
+      </div>
+
+      <h3 style="margin:48px 0 4px">Arch D lockups</h3>
+      <p class="small">Horizontal for headers and ads, stacked for profile images and posters, icon alone for the app.</p>
+      <div class="lockups">
+        <div class="lock teal wide">
+          <div class="wm" style="color:var(--b-sand)"><svg width="64" height="64" fill="currentColor"><use href="#archD"/></svg><div class="t"><span class="en">Dine Oman</span><span class="arw">داين عُمان</span></div></div>
+        </div>
+        <div class="lock white wide">
+          <div class="wm" style="color:var(--b-teal)"><svg width="64" height="64" fill="currentColor"><use href="#archD"/></svg><div class="t"><span class="en">Dine Oman</span><span class="arw" style="color:var(--b-teal-2)">داين عُمان</span></div></div>
+        </div>
+        <div class="lock sand mid">
+          <div class="wm stack" style="color:var(--b-ink)"><svg width="70" height="70" fill="currentColor"><use href="#archD"/></svg><div class="t"><span class="en" style="font-size:28px">Dine Oman</span><span class="arw">داين عُمان</span></div></div>
+        </div>
+        <div class="lock ink mid sm">
+          <svg class="appicon" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0C3B3A"/><g transform="translate(14 14) scale(.72)" fill="#EFE6D6"><use href="#archD"/></g></svg>
+        </div>
+        <div class="lock saffron mid sm">
+          <svg class="appicon" viewBox="0 0 100 100"><rect width="100" height="100" fill="#EFE6D6"/><g transform="translate(14 14) scale(.72)" fill="#0C3B3A"><use href="#archD"/></g></svg>
+        </div>
+      </div>
+
+      <div class="grid g3 rules">
+        <div class="card"><h4>Clear space</h4><p class="small">Keep space equal to the height of the arch's saffron dot ×2 on every side.</p></div>
+        <div class="card"><h4>Minimum size</h4><p class="small">Icon 16 px digital / 6 mm print. Horizontal lockup 96 px / 25 mm wide.</p></div>
+        <div class="card"><h4>Don't</h4><p class="small">Recolour the dot, outline the mark, stretch it, or set the Arabic name in a different face from Reem Kufi.</p></div>
+      </div>
+      <p class="note" style="margin-top:16px"><b>Arabic name.</b> “داين عُمان” is a direct transliteration, which keeps search and word of mouth consistent across both languages. If a fully Arabic name is preferred, “مائدة عُمان” (Oman's table) is a strong alternative. Check trademark availability and the dineoman domain and handles before final artwork.</p>
+    </section>
+
+    <!-- 02 COLOUR -->
+    <section id="colour">
+      <div class="sec-head">
+        <span class="num">02 · Brand colours</span>
+        <h2>Colours taken from the country's kitchen and landscape</h2>
+        <p class="lede">A deep teal base reads premium and calm. Saffron from kahwa and halwa is the signal colour. Rose from Jebel Akhdar adds warmth for campaigns.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#0C3B3A;color:#EFE6D6">Primary</div><div class="meta"><b>Wadi Teal</b><code>#0C3B3A</code><code>RGB 12 59 58</code><span class="small">Backgrounds, logo, headers</span></div></div>
+        <div class="sw"><div class="chip" style="background:#17605B;color:#fff">Support</div><div class="meta"><b>Falaj Green</b><code>#17605B</code><code>RGB 23 96 91</code><span class="small">Buttons, links, map UI</span></div></div>
+        <div class="sw"><div class="chip" style="background:#E2A238;color:#121D1C">Signal</div><div class="meta"><b>Kahwa Saffron</b><code>#E2A238</code><code>RGB 226 162 56</code><span class="small">The dot, CTAs, highlights</span></div></div>
+        <div class="sw"><div class="chip" style="background:#C2456A;color:#fff">Campaign</div><div class="meta"><b>Jebel Rose</b><code>#C2456A</code><code>RGB 194 69 106</code><span class="small">Launches, “new”, seasonal</span></div></div>
+        <div class="sw"><div class="chip" style="background:#EFE6D6;color:#121D1C">Neutral</div><div class="meta"><b>Frankincense</b><code>#EFE6D6</code><code>RGB 239 230 214</code><span class="small">Light backgrounds, print</span></div></div>
+        <div class="sw"><div class="chip" style="background:#121D1C;color:#EFE6D6">Text</div><div class="meta"><b>Khanjar Ink</b><code>#121D1C</code><code>RGB 18 29 28</code><span class="small">Body text, dark mode</span></div></div>
+      </div>
+      <div class="ratio" aria-label="Colour usage ratio">
+        <div style="flex:55;background:#0C3B3A;color:#EFE6D6">Teal 55%</div>
+        <div style="flex:25;background:#EFE6D6;color:#121D1C">Frankincense 25%</div>
+        <div style="flex:10;background:#E2A238;color:#121D1C">Saffron 10%</div>
+        <div style="flex:6;background:#C2456A;color:#fff">Rose 6%</div>
+        <div style="flex:4;background:#121D1C;color:#fff">4%</div>
+      </div>
+      <div class="pairs">
+        <div class="pair" style="background:#0C3B3A;color:#EFE6D6"><b>Aa</b>Frankincense on Teal · AAA</div>
+        <div class="pair" style="background:#EFE6D6;color:#0C3B3A"><b>Aa</b>Teal on Frankincense · AAA</div>
+        <div class="pair" style="background:#E2A238;color:#121D1C"><b>Aa</b>Ink on Saffron · AAA</div>
+        <div class="pair" style="background:#C2456A;color:#fff"><b>Aa</b>White on Rose · AA large</div>
+      </div>
+      <p class="small" style="margin-top:12px">Never put saffron text on white or frankincense: it fails contrast. Use saffron as a fill, a dot, or a button.</p>
+    </section>
+
+    <!-- 03 TYPE -->
+    <section id="type">
+      <div class="sec-head">
+        <span class="num">03 · Typography</span>
+        <h2>A confident Latin display, a Kufi Arabic, one face for reading</h2>
+        <p class="lede">All three are free Google Fonts, so the app, website, social team and print shops use exactly the same files.</p>
+      </div>
+      <div class="spec">
+        <div class="big" style="font-family:var(--f-display);font-weight:750;letter-spacing:-.035em">Where Muscat eats</div>
+        <div class="info"><b>Bricolage Grotesque</b>Latin display · 600–800<span>Headlines, campaign lines, numbers on posts. Tight tracking (−2% to −4%).</span></div>
+      </div>
+      <div class="spec">
+        <div class="big ar-d" style="text-align:left;font-weight:600">وين ناكل اليوم؟</div>
+        <div class="info"><b>Reem Kufi</b>Arabic display · 500–700<span>Arabic headlines and the logotype. Geometric Kufi echoes Omani inscription and tilework.</span></div>
+      </div>
+      <div class="spec">
+        <div class="big" style="font-family:var(--f-body);font-weight:400;font-size:clamp(28px,3.6vw,42px);line-height:1.3">Open now · 4.6 km · Omani, Grills<br><span class="ar" style="display:block;text-align:left">مفتوح الحين · ٤٫٦ كم · عُماني، مشويات</span></div>
+        <div class="info"><b>Readex Pro</b>Body &amp; UI, Arabic + Latin · 300–600<span>One family for both scripts keeps bilingual screens aligned in weight and height.</span></div>
+      </div>
+      <div class="scale">
+        <table>
+          <thead><tr><th>Role</th><th>Face</th><th>Size / line</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td>Display</td><td>Bricolage 800 / Reem Kufi 700</td><td class="n">64 / 60</td><td>Campaign posters, launch films</td></tr>
+            <tr><td>H1</td><td>Bricolage 700 / Reem Kufi 600</td><td class="n">40 / 44</td><td>Post headlines, app screen titles</td></tr>
+            <tr><td>H2</td><td>Bricolage 650 / Reem Kufi 600</td><td class="n">28 / 32</td><td>Restaurant names, section titles</td></tr>
+            <tr><td>Body</td><td>Readex Pro 350</td><td class="n">16 / 26</td><td>Descriptions, captions, website</td></tr>
+            <tr><td>Label</td><td>Readex Pro 500, +12% tracking</td><td class="n">12 / 16</td><td>Tags, “Open now”, categories</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 04 INSTAGRAM -->
+    <section id="instagram">
+      <div class="sec-head">
+        <span class="num">04 · Instagram profile identity</span>
+        <h2>A profile that works like a guide</h2>
+        <p class="lede">The grid alternates three tile types so the feed looks curated from a distance: food photography, Arabic type tiles, and bold list tiles.</p>
+      </div>
+      <div class="phone-row">
+        <div class="phone" aria-label="Instagram profile mockup">
+          <div class="screen">
+            <div class="ig-top"><span>dineoman ✓</span><span>☰</span></div>
+            <div class="ig-head">
+              <div class="ig-av"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#0C3B3A"/><g transform="translate(20 20) scale(.6)" fill="#EFE6D6"><use href="#archD"/></g></svg></div>
+              <div class="ig-stats"><div><b>48</b>posts</div><div><b>—</b>followers</div><div><b>312</b>following</div></div>
+            </div>
+            <div class="ig-bio">
+              <b>Dine Oman | داين عُمان</b>
+              <span style="color:#737373">Food &amp; Beverage</span>
+              <span>Every restaurant. One destination.</span>
+              <span class="ar">كل المطاعم. وجهة وحدة.</span>
+              <span>Restaurants, cafés &amp; bakeries across Oman</span>
+              <span>Own a restaurant? List it free ↓</span>
+              <a>dineoman.com/join</a>
+            </div>
+            <div class="ig-btns"><span class="p">Follow</span><span>Message</span><span>Search</span></div>
+            <div class="ig-hl">
+              <div><i style="background:#0C3B3A;color:#EFE6D6">جديد</i>New</div>
+              <div><i style="background:#E2A238">٥</i>Top 5</div>
+              <div><i style="background:#EFE6D6">☕</i>Cafés</div>
+              <div><i style="background:#C2456A;color:#fff">فطور</i>Iftar</div>
+              <div><i style="background:#17605B;color:#fff">+</i>Join</div>
+            </div>
+            <div class="ig-grid">
+              <div class="photo"></div>
+              <div style="background:#E2A238;color:#121D1C;font-family:var(--f-ar-display);font-size:16px">وين ناكل<br>اليوم؟</div>
+              <div style="background:#0C3B3A">Top 5<br>shuwa<br>in Muscat</div>
+              <div style="background:#C2456A var(--star)">NEW<br>this week</div>
+              <div class="photo b"></div>
+              <div style="background:#EFE6D6;color:#0C3B3A;font-family:var(--f-ar-display);font-size:15px">قهوة<br>الصباح</div>
+              <div style="background:#121D1C;color:#E2A238">List your<br>restaurant</div>
+              <div class="photo"></div>
+              <div style="background:#17605B">Salalah<br>Khareef<br>guide</div>
+            </div>
+          </div>
+        </div>
+        <div class="grid" style="gap:16px">
+          <div class="card">
+            <h3>Profile setup</h3>
+            <dl class="kv" style="margin-top:14px">
+              <dt>Handle</dt><dd>@dineoman (reserve the same on TikTok, Snapchat, X, Threads, YouTube)</dd>
+              <dt>Name field</dt><dd>Dine Oman | داين عُمان (both names are searchable)</dd>
+              <dt>Profile image</dt><dd>Arch D in frankincense on teal, centred, no wordmark</dd>
+              <dt>Category</dt><dd>Food &amp; Beverage, or Restaurant Guide</dd>
+              <dt>Link</dt><dd>One link page: Download app · Find a restaurant · List your restaurant · WhatsApp</dd>
+              <dt>Contact</dt><dd>WhatsApp Business button for owners</dd>
+            </dl>
+          </div>
+          <div class="card">
+            <h3>Highlights</h3>
+            <p class="small" style="margin-top:6px">Round covers in brand colours with one Arabic word or a numeral. Order: New · Top 5 · Cafés · Breakfast · Iftar (seasonal) · Khareef (seasonal) · By wilayat · How it works · Join.</p>
+          </div>
+          <div class="card">
+            <h3>Pinned posts</h3>
+            <ul class="clean" style="margin-top:10px">
+              <li>Launch film: “Every restaurant. One destination.”</li>
+              <li>How to use Dine Oman, 3 steps, Arabic voiceover</li>
+              <li>For owners: “List your restaurant free”</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Content pillars &amp; weekly rhythm</h3>
+            <dl class="kv" style="margin-top:12px">
+              <dt>Discover · 40%</dt><dd>Top 5 lists, area guides, open-late, new openings</dd>
+              <dt>Taste · 25%</dt><dd>Dish close-ups, kitchen moments, Omani classics</dd>
+              <dt>Ask · 15%</dt><dd>“Where should we eat?” polls, comment-to-recommend</dd>
+              <dt>Owners · 20%</dt><dd>Owner stories, how-to-list, platform features</dd>
+            </dl>
+            <p class="small" style="margin-top:10px">4 feed posts, 3 Reels and daily Stories per week. Post at 12:00–13:30 and 19:30–22:00 Gulf time; shift later during Ramadan.</p>
+          </div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:14px">Follower count left blank in the mockup on purpose. Use real numbers only once the account is live.</p>
+    </section>
+
+    <!-- 05 POSTS -->
+    <section id="posts">
+      <div class="sec-head">
+        <span class="num">05 · Instagram post templates</span>
+        <h2>Six reusable templates</h2>
+        <p class="lede">Built at 1080×1080 (and 1080×1350 for feed). Plate graphics mark where real restaurant photography goes; always shoot or source real dishes from the listed restaurant, with permission.</p>
+      </div>
+      <div class="posts">
+        <div class="post-wrap">
+          <div class="post p1"><div class="ph photo"></div><div class="in">
+            <span class="lbl" style="color:var(--b-saffron)">Restaurant of the week</span>
+            <div><div class="h">Restaurant name</div><p style="font-size:4cqw;margin-top:2cqw;opacity:.85">Al Mouj, Muscat · Seafood</p></div>
+            <div class="foot"><svg fill="#EFE6D6"><use href="#archD"/></svg><span>Find it on Dine Oman</span></div>
+          </div></div>
+          <p class="small"><b>Restaurant of the Week.</b> Weekly, every Thursday. Photo right, name left. Rewards listed partners.</p>
+        </div>
+        <div class="post-wrap">
+          <div class="post p2"><div class="in">
+            <div><span class="lbl" style="color:var(--b-teal-2)">Top 5 · Al Khuwair</span><div class="h" style="margin-top:2cqw">Breakfast spots</div></div>
+            <ol><li>Restaurant one<small>Omani</small></li><li>Restaurant two<small>Café</small></li><li>Restaurant three<small>Bakery</small></li><li>Restaurant four<small>Indian</small></li><li>Restaurant five<small>Turkish</small></li></ol>
+            <div class="foot"><span>Save for the weekend</span><svg fill="#0C3B3A"><use href="#archD"/></svg></div>
+          </div></div>
+          <p class="small"><b>Top 5 list.</b> The highest-saving format. Carousel: cover, then one slide per place with hours and area.</p>
+        </div>
+        <div class="post-wrap">
+          <div class="post p3"><div class="in">
+            <span class="lbl">Just joined</span>
+            <div><div class="h">New on<br>Dine Oman</div><div class="ar-d" style="margin-top:2cqw">جديد في داين عُمان</div></div>
+            <div class="foot"><span>Café name · Nizwa</span><svg fill="#fff"><use href="#archD"/></svg></div>
+          </div></div>
+          <p class="small"><b>New listing.</b> Welcome post that the restaurant can reshare. Builds owner goodwill and social proof.</p>
+        </div>
+        <div class="post-wrap">
+          <div class="post p4 photo b"><div class="in">
+            <div class="ar-d">شُوا عُماني على الأصول</div>
+            <div class="meta"><span>اسم المطعم</span><span>بركاء</span><span>مفتوح الحين</span></div>
+            <div class="foot"><span style="font-family:var(--f-display);font-weight:600">Dish spotlight</span><svg fill="#EFE6D6"><use href="#archD"/></svg></div>
+          </div></div>
+          <p class="small"><b>Dish spotlight.</b> Full-bleed photo, Arabic headline, chips for restaurant, wilayat and status.</p>
+        </div>
+        <div class="post-wrap">
+          <div class="post p5"><div class="in">
+            <span class="lbl" style="text-align:center">Tonight's question</span>
+            <div class="ar-d">وين ناكل<br>اليوم؟</div>
+            <div class="opts"><span>مشاوي</span><span>بحري</span><span>كافيه</span><span>حلويات</span></div>
+          </div></div>
+          <p class="small"><b>Ask the audience.</b> Pairs with a Story poll. Reply in the comments with a matching list.</p>
+        </div>
+        <div class="post-wrap">
+          <div class="post p6"><div class="in">
+            <span class="lbl" style="color:var(--b-saffron)">For restaurant owners</span>
+            <div class="h">They're deciding<br>where to eat.<br><em>Be the answer.</em></div>
+            <span class="cta">List your restaurant free →</span>
+          </div></div>
+          <p class="small"><b>Owner call-to-action.</b> 1 in 5 posts. Same design runs as a paid ad to business audiences.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 TIKTOK -->
+    <section id="tiktok">
+      <div class="sec-head">
+        <span class="num">06 · TikTok video concepts</span>
+        <h2>Six repeatable series</h2>
+        <p class="lede">Series beat one-off videos: people follow for the next episode. Each runs 15–35 seconds, vertical, with Arabic captions burned in and English subtitles.</p>
+      </div>
+      <div class="grid g2" style="gap:36px 28px">
+        <article class="tt">
+          <div class="vframe photo"><div class="ov"><span class="hook ar-d">عندك ٥ ريال في مسقط…</span><span class="h2">Ep. 4 · Ruwi</span></div><div class="rail"><i></i><i></i><i></i></div></div>
+          <div><h3>“5 Rials in…”</h3>
+            <ol class="beats"><li>Hook: a 5 OMR note on the table, “What can it buy in Ruwi?”</li><li>Three stops, one dish each, price on screen</li><li>Final verdict and a map of the three places</li></ol>
+            <dl class="kv"><dt>Why</dt><dd>Value and curiosity travel well; each wilayat is a new episode</dd><dt>CTA</dt><dd>“All three are on Dine Oman”</dd></dl>
+          </div>
+        </article>
+        <article class="tt">
+          <div class="vframe" style="background:#121D1C"><div class="ov"><span class="hook">Where Muscat eats at 1am</span><span class="h2" style="color:var(--b-saffron)">Open now ●</span></div><div class="rail"><i></i><i></i><i></i></div></div>
+          <div><h3>Open Late</h3>
+            <ol class="beats"><li>Night drive POV, phone shows the “Open now” filter</li><li>Quick cuts: karak, shawarma, mandi, late café</li><li>End card: app screen with the filter on</li></ol>
+            <dl class="kv"><dt>Why</dt><dd>Shows the product doing its job in a real moment of need</dd><dt>CTA</dt><dd>“Search ‘open now’ on Dine Oman”</dd></dl>
+          </div>
+        </article>
+        <article class="tt">
+          <div class="vframe" style="background:#E2A238;color:#121D1C"><div class="ov"><span class="hook ar-d" style="text-shadow:none">من أي ولاية هذا الطبق؟</span><span class="h2">Guess the wilayat</span></div><div class="rail"><i style="background:#121D1C"></i><i style="background:#121D1C"></i><i style="background:#121D1C"></i></div></div>
+          <div><h3>Guess the Wilayat</h3>
+            <ol class="beats"><li>Close-up of a dish, a 3-second countdown</li><li>Reveal the wilayat and the restaurant</li><li>“Comment the next dish we should find”</li></ol>
+            <dl class="kv"><dt>Why</dt><dd>Comment bait with regional pride; drives replies and duets</dd><dt>CTA</dt><dd>“Find it near you on Dine Oman”</dd></dl>
+          </div>
+        </article>
+        <article class="tt">
+          <div class="vframe photo b"><div class="ov"><span class="hook">15 seconds in this kitchen</span><span class="h2">Kitchen to table</span></div><div class="rail"><i></i><i></i><i></i></div></div>
+          <div><h3>Kitchen to Table</h3>
+            <ol class="beats"><li>Raw ingredients hit the grill, no talking, ASMR sound</li><li>Plating, steam, first bite</li><li>Name, area and hours on screen</li></ol>
+            <dl class="kv"><dt>Why</dt><dd>A free gift to listed restaurants, so owners share it</dd><dt>CTA</dt><dd>“Book it through Dine Oman”</dd></dl>
+          </div>
+        </article>
+        <article class="tt">
+          <div class="vframe" style="background:#0C3B3A"><div class="ov"><span class="hook">POV: you own a café and nobody can find it</span><span class="h2" style="color:var(--b-saffron)">For owners</span></div><div class="rail"><i></i><i></i><i></i></div></div>
+          <div><h3>Owner POV</h3>
+            <ol class="beats"><li>Owner wipes an empty table, looks at the door</li><li>Picks up the phone, lists the café in under a minute (sped up)</li><li>Cut to a full table; text: “Be where they're searching”</li></ol>
+            <dl class="kv"><dt>Why</dt><dd>Speaks to the owner's pain without claiming results we can't prove</dd><dt>CTA</dt><dd>“List free: link in bio”</dd></dl>
+          </div>
+        </article>
+        <article class="tt">
+          <div class="vframe" style="background:#C2456A var(--star)"><div class="ov"><span class="hook">First time in Oman? Eat this first.</span><span class="h2">Visitor's first bite</span></div><div class="rail"><i></i><i></i><i></i></div></div>
+          <div><h3>First Bite</h3>
+            <ol class="beats"><li>A visitor at Muttrah or the airport: “What should I eat first?”</li><li>A local host picks the place and the dish</li><li>The reaction, then the restaurant card</li></ol>
+            <dl class="kv"><dt>Why</dt><dd>Reaches tourists and expats; English-led with Arabic subtitles</dd><dt>CTA</dt><dd>“Your Oman food guide: Dine Oman”</dd></dl>
+          </div>
+        </article>
+      </div>
+      <p class="note" style="margin-top:28px"><b>Production rules.</b> Hook in the first 1.5 seconds. Text inside the centre 70% of the frame. Logo only on the end card. Use trending audio under voiceover, never instead of it. Always tag the restaurant and get its permission before filming.</p>
+    </section>
+
+    <!-- 07 OWNERS -->
+    <section id="owners">
+      <div class="sec-head">
+        <span class="num">07 · Restaurant registration advertisements</span>
+        <h2>Ads that get owners to list</h2>
+        <p class="lede">Owners are busy and wary of platforms that take a cut. The message is simple: free to list, fast to set up, you stay in control of your page.</p>
+      </div>
+      <div class="ads">
+        <div class="ad ad-story"><div class="in">
+          <svg width="44" height="44" fill="#EFE6D6"><use href="#archD"/></svg>
+          <div style="display:grid;gap:4cqw">
+            <div class="ar-d">مطعمك يستاهل<br>الناس تلقاه.</div>
+            <div class="en">Your restaurant deserves to be found.</div>
+          </div>
+          <div class="ticks"><span>التسجيل مجاني</span><span>صفحتك جاهزة في ١٠ دقايق</span><span>منيو وصور وموقع وأوقات</span></div>
+          <div class="btn">سجّل مطعمك · List free</div>
+        </div></div>
+        <div class="ad ad-feed"><div class="in">
+          <div class="h">Every restaurant.<br>One destination.<br><em>Is yours there?</em></div>
+          <div class="ar-d">كل المطاعم في وجهة وحدة. مطعمك موجود؟</div>
+          <div class="strip"><span class="photo">Café</span><span style="background:#0C3B3A">Grill</span><span class="photo b">Bakery</span><span style="background:#C2456A">Sweets</span></div>
+          <div class="bar"><span>dineoman.com/join</span><b>List your restaurant</b></div>
+        </div></div>
+        <div class="ad ad-tent"><div class="in">
+          <div class="ar-d">تبي مطعمك في<br>داين عُمان؟</div>
+          <div class="qr" aria-label="QR code placeholder"></div>
+          <div class="en">Scan to list your restaurant free</div>
+          <div class="sm">A4 flyer &amp; counter card for sales visits</div>
+        </div></div>
+      </div>
+
+      <div class="grid g2" style="margin-top:28px">
+        <div class="wa">
+          <span class="tag">WhatsApp outreach message</span>
+          <div class="bubble ar">السلام عليكم، معك [الاسم] من داين عُمان. نجمع كل مطاعم عُمان في مكان واحد عشان الناس تلقاكم بسهولة. إضافة [اسم المطعم] مجانية وتاخذ ١٠ دقايق. تحب نرسل لك الرابط؟</div>
+          <div class="bubble">Hello, this is [name] from Dine Oman. We're bringing every restaurant in Oman into one place so people can find you easily. Adding [restaurant] is free and takes 10 minutes. Shall I send you the link?</div>
+        </div>
+        <div class="card copyblock">
+          <span class="tag">Headline bank for owner ads</span>
+          <p><b>They're already looking for you.</b></p><p class="ar">الناس تدورك، خلهم يلقونك.</p>
+          <p><b>Free to list. Yours to manage.</b></p><p class="ar">التسجيل مجاني، والتحكم بيدك.</p>
+          <p><b>Your menu, hours and location in one link.</b></p><p class="ar">منيوك وأوقاتك وموقعك في رابط واحد.</p>
+          <p><b>Be a founding restaurant.</b></p><p class="ar">كن من أول المطاعم في داين عُمان.</p>
+        </div>
+      </div>
+
+      <h3 style="margin:40px 0 16px">Where these run</h3>
+      <div class="grid g3">
+        <div class="card"><h4>Paid social</h4><p class="small">Meta ads targeting page admins and “small business owner” interests in Muscat, Sohar, Nizwa, Sur, Salalah. TikTok Spark Ads on Owner POV videos.</p></div>
+        <div class="card"><h4>Direct &amp; field</h4><p class="small">WhatsApp outreach, in-person visits with the A4 flyer, a “Founding Restaurant” window sticker for early partners.</p></div>
+        <div class="card"><h4>Partners</h4><p class="small">Food supplier newsletters, POS and delivery providers, Chambers of Commerce, SME support programmes, home-business groups.</p></div>
+      </div>
+      <p class="note" style="margin-top:16px"><b>Offer to confirm.</b> “Free to list” is the recommended launch offer. Paid tiers (featured placement, analytics, promotions) can follow once there is diner traffic to sell. Confirm the commercial model before ads go live.</p>
+    </section>
+
+    <!-- 08 ACQUISITION -->
+    <section id="acquisition">
+      <div class="sec-head">
+        <span class="num">08 · Customer acquisition campaigns</span>
+        <h2>Campaigns built around real moments of hunger</h2>
+        <p class="lede">Each campaign ties to a moment when people actually ask where to eat, so the ad arrives at the right time.</p>
+      </div>
+      <div>
+        <article class="camp">
+          <div class="t"><span class="ar-d">وين ناكل؟</span><h3>“Where shall we eat?”</h3><span class="tag">Always on · core</span></div>
+          <div><p>Answer the most common question in every Omani group chat. Daily Story polls, comment-to-get-a-list replies and search ads on “restaurants near me”, “best breakfast Muscat”, “مطاعم مسقط”.</p>
+          <dl class="kv" style="margin-top:12px"><dt>Channels</dt><dd>Instagram, TikTok, Google Search, Snapchat</dd><dt>Measure</dt><dd>App installs, restaurant page views, saves</dd></dl></div>
+        </article>
+        <article class="camp">
+          <div class="t"><span class="ar-d">جواز الولايات</span><h3>Wilayat Passport</h3><span class="tag">Gamified · 8 weeks</span></div>
+          <div><p>A digital passport in the app. Check in at restaurants in different wilayat to collect stamps. Complete a region to enter a monthly draw for dinners donated by partner restaurants.</p>
+          <dl class="kv" style="margin-top:12px"><dt>Channels</dt><dd>In-app, Reels, influencer road trips</dd><dt>Measure</dt><dd>Accounts created, check-ins, repeat visits</dd></dl></div>
+        </article>
+        <article class="camp">
+          <div class="t"><span class="ar-d">خريطة الفطور</span><h3>Ramadan Iftar &amp; Suhoor Map</h3><span class="tag">Seasonal</span></div>
+          <div><p>A filter and guide for iftar buffets, suhoor spots and late cafés, with family and group-size details. Launch two weeks before Ramadan; post content after taraweeh when usage peaks.</p>
+          <dl class="kv" style="margin-top:12px"><dt>Channels</dt><dd>Instagram, Snapchat, WhatsApp channel, radio</dd><dt>Measure</dt><dd>Searches with the Ramadan filter, restaurant calls</dd></dl></div>
+        </article>
+        <article class="camp">
+          <div class="t"><span class="ar-d">درب الخريف</span><h3>Khareef Food Trail</h3><span class="tag">Seasonal · Dhofar</span></div>
+          <div><p>A guide for the millions of Khareef visitors to Salalah: roadside coconut stands, mashakik grills, family restaurants. Promoted to GCC travellers before and during the season.</p>
+          <dl class="kv" style="margin-top:12px"><dt>Channels</dt><dd>TikTok, Snapchat geo-filters, airport and hotel QR cards</dd><dt>Measure</dt><dd>Users in Dhofar, visitor sign-ups from GCC</dd></dl></div>
+        </article>
+        <article class="camp">
+          <div class="t"><span class="ar-d">غداء الدوام</span><h3>Office Lunch Muscat</h3><span class="tag">Weekday · B2C</span></div>
+          <div><p>Weekday lunch lists by business district (Al Khuwair, Qurum, Madinat Al Irfan, Ghala). Ads run 11:30–13:00 Sunday to Thursday.</p>
+          <dl class="kv" style="margin-top:12px"><dt>Channels</dt><dd>Instagram, LinkedIn, Google Maps ads</dd><dt>Measure</dt><dd>Weekday lunch-time sessions, directions taps</dd></dl></div>
+        </article>
+        <article class="camp">
+          <div class="t"><span class="ar-d">عزّم ربعك</span><h3>Invite Your Friends</h3><span class="tag">Referral</span></div>
+          <div><p>Share a list or a restaurant with friends; when they join, both unlock a perk funded by partner restaurants (free dessert, karak, priority booking).</p>
+          <dl class="kv" style="margin-top:12px"><dt>Channels</dt><dd>In-app share to WhatsApp, Story stickers</dd><dt>Measure</dt><dd>Invites sent, invite-to-signup rate</dd></dl></div>
+        </article>
+      </div>
+      <p class="note" style="margin-top:24px"><b>Influencers.</b> Favour 10–30 local food creators (5k–100k followers) across regions over one big name. Brief them with the series formats from chapter 06, ask for honest reviews, and mark every paid post as an ad.</p>
+    </section>
+
+    <!-- 09 LAUNCH -->
+    <section id="launch">
+      <div class="sec-head">
+        <span class="num">09 · Launch campaign</span>
+        <h2>“Every restaurant. One destination.”</h2>
+        <p class="lede">Supply comes before demand: launch to restaurants first so diners find a full platform on day one. The phases below run in order.</p>
+      </div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="when">Supply build<small>Weeks −8 to −3</small></div>
+          <div><p>Sign <b>Founding Restaurants</b> through field visits and WhatsApp in Muscat first, then Sohar, Nizwa, Sur and Salalah. Photograph menus and dishes. Give each founder a window sticker and a launch-day feature.</p>
+          <ul class="clean" style="margin-top:10px"><li>Owner ads (chapter 07) and Owner POV TikToks</li><li>Reserve handles, set up WhatsApp Business, landing page with “list free” form</li></ul></div>
+        </div>
+        <div class="phase">
+          <div class="when">Teaser<small>Weeks −2 to −1</small></div>
+          <div><p>Mystery campaign in Arabic: <span class="ar">«وين ناكل؟ قريب، كل الجواب في مكان واحد.»</span> Grid of blurred dishes and a countdown. Waitlist sign-up for early access.</p>
+          <ul class="clean" style="margin-top:10px"><li>Creators post “I can't tell you yet” teasers</li><li>Founding restaurants hint at it in their own Stories</li></ul></div>
+        </div>
+        <div class="phase key">
+          <div class="when">Launch week<small>Week 0</small></div>
+          <div><p>Reveal film (30 s and 15 s): a montage moving across Oman, a mountain café, a Muttrah fish grill, a Salalah coconut stand, a Muscat bakery at dawn, each a door that opens into the next, ending on the Arch D and the line <b>“Every restaurant. One destination.”</b></p>
+          <ul class="clean" style="margin-top:10px"><li>Launch event or food night with founding restaurants, press and creators</li><li>Each founding restaurant gets its “New on Dine Oman” post the same day</li><li>Outdoor in Muscat (Sultan Qaboos Street, malls) if budget allows</li><li>Press release to Times of Oman, Muscat Daily, Oman Observer, Al Watan, Atheer</li></ul></div>
+        </div>
+        <div class="phase">
+          <div class="when">Momentum<small>Weeks 1 to 6</small></div>
+          <div><p>Turn on the always-on “Where shall we eat?” campaign and the TikTok series. Start the Wilayat Passport in week 3. Weekly “Restaurant of the Week” and Top 5 lists.</p></div>
+        </div>
+        <div class="phase">
+          <div class="when">Review &amp; expand<small>Weeks 6 to 12</small></div>
+          <div><p>Check which areas and formats bring installs and restaurant views. Move budget to winners, expand listings in weaker regions, and prepare the next seasonal campaign (Ramadan or Khareef).</p></div>
+        </div>
+      </div>
+
+      <h3 style="margin:24px 0 4px">Suggested launch budget split</h3>
+      <p class="small">Share of whatever launch budget is set. Shift toward diners once supply targets are met.</p>
+      <div class="split" aria-label="Budget split">
+        <div style="flex:30;background:#0C3B3A">Paid social · 30%</div>
+        <div style="flex:20;background:#17605B">Creators · 20%</div>
+        <div style="flex:20;background:#C2456A">Owner acquisition · 20%</div>
+        <div style="flex:15;background:#9A6A1F">Search · 15%</div>
+        <div style="flex:15;background:#121D1C">Event &amp; PR · 15%</div>
+      </div>
+
+      <div class="grid g3" style="margin-top:28px">
+        <div class="card"><h4>Owner-side KPIs</h4><p class="small">Restaurants listed, profiles completed with menu + photos, regions covered, owner response time.</p></div>
+        <div class="card"><h4>Diner-side KPIs</h4><p class="small">Installs, weekly active users, searches per user, restaurant page views, calls and direction taps.</p></div>
+        <div class="card"><h4>Brand KPIs</h4><p class="small">Follower growth, saves and shares per post, branded search for “Dine Oman” and “داين عمان”.</p></div>
+      </div>
+      <p class="small" style="margin-top:10px">Set numeric targets once the commercial model and budget are confirmed; none are invented here.</p>
+    </section>
+
+    <!-- 10 SLOGANS -->
+    <section id="slogans">
+      <div class="sec-head">
+        <span class="num">10 · Marketing slogans</span>
+        <h2>Lines in Arabic and English</h2>
+        <p class="lede">The Arabic lines are written as Arabic, not translated word for word. Where a formal version is needed (print, government partners), use the MSA alternative.</p>
+      </div>
+      <div class="slogans">
+        <div class="slogan hero-s"><span class="en">Every restaurant. One destination.</span><span class="ar-d">كل المطاعم. وجهة وحدة.</span><span class="use">Master line · everywhere</span></div>
+        <div class="slogan"><span class="en"><span class="small" style="font-family:var(--f-body)">Formal Arabic version</span></span><span class="ar-d">كل المطاعم في وجهة واحدة.</span><span class="use">Print, press, partners</span></div>
+        <div class="slogan"><span class="en">Where Oman decides what to eat.</span><span class="ar-d">هنا تقرر عُمان إيش تاكل.</span><span class="use">Brand campaign</span></div>
+        <div class="slogan"><span class="en">Hungry? Oman's ready.</span><span class="ar-d">جوعان؟ عُمان جاهزة.</span><span class="use">Social, app push</span></div>
+        <div class="slogan"><span class="en">From Muscat to Salalah, one search.</span><span class="ar-d">من مسقط لصلالة، بحث واحد.</span><span class="use">Launch, outdoor</span></div>
+        <div class="slogan"><span class="en">Find your next table.</span><span class="ar-d">طاولتك الجاية هنا.</span><span class="use">App store, search ads</span></div>
+        <div class="slogan"><span class="en">Taste every wilayat.</span><span class="ar-d">ذوق كل ولاية.</span><span class="use">Wilayat Passport</span></div>
+        <div class="slogan"><span class="en">Good food is closer than you think.</span><span class="ar-d">الأكل الزين أقرب مما تتوقع.</span><span class="use">Location ads</span></div>
+        <div class="slogan"><span class="en">Your iftar, mapped.</span><span class="ar-d">فطورك على الخريطة.</span><span class="use">Ramadan</span></div>
+        <div class="slogan"><span class="en">Khareef tastes better here.</span><span class="ar-d">الخريف أطيب هنا.</span><span class="use">Khareef, Dhofar</span></div>
+        <div class="slogan"><span class="en">They're already looking for you.</span><span class="ar-d">الناس تدورك، خلهم يلقونك.</span><span class="use">Owners</span></div>
+        <div class="slogan"><span class="en">Get found. Get full.</span><span class="ar-d">خلّ الناس تلقاك، وطاولاتك تمتلي.</span><span class="use">Owners, performance ads</span></div>
+        <div class="slogan"><span class="en">Free to list. Yours to manage.</span><span class="ar-d">التسجيل مجاني، والتحكم بيدك.</span><span class="use">Owners, onboarding</span></div>
+      </div>
+      <p class="small" style="margin-top:16px">Hashtags: #DineOman #داين_عمان #وين_ناكل #مطاعم_عمان #OmanEats</p>
+    </section>
+
+    <section aria-labelledby="next">
+      <div class="note" style="padding:28px">
+        <h3 id="next" style="margin-bottom:12px">Before artwork goes final</h3>
+        <ul class="clean">
+          <li>Confirm the Arabic name (داين عُمان or مائدة عُمان) and run trademark, domain and handle checks.</li>
+          <li>Confirm the commercial model for owners; the ads here assume free listing at launch.</li>
+          <li>Commission real photography of listed restaurants; the plate graphics in this book are placeholders.</li>
+          <li>Hand the Arch D to a vector artist for optical refinement and a full export pack (SVG, PNG, app icon sizes).</li>
+          <li>Use real figures only (restaurant counts, followers, results) once they exist.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
