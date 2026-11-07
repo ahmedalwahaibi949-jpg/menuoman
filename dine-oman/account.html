@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Owner Account · Dine Oman</title>
+<meta name="theme-color" content="#0C3B3A">
+<meta name="robots" content="noindex">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>
+.page{padding-block:48px 88px;display:grid;gap:28px}
+.page h1{font-size:clamp(32px,4.4vw,46px);font-weight:750}
+.signin{max-width:520px;padding:36px;display:grid;gap:18px}
+.signin .ar-d{color:var(--muted);font-size:17px;text-align:left}
+.app-card{padding:0;overflow:hidden}
+.app-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.app-head .logo{width:60px;height:60px;border-radius:14px;border:1px solid var(--line);background:#fff;object-fit:contain}
+.app-head h2{font-size:24px;font-weight:700}
+.app-body{padding:24px;display:grid;gap:22px}
+.track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;padding:0;margin:0}
+.track li{position:relative;padding-top:30px;font-size:14px;display:grid;gap:2px;padding-right:12px}
+.track li::before{content:"";position:absolute;top:6px;left:0;width:14px;height:14px;border-radius:50%;background:var(--line);z-index:1}
+.track li::after{content:"";position:absolute;top:12px;left:14px;right:0;height:2px;background:var(--line)}
+.track li:last-child::after{display:none}
+.track li.on::before,.track li.on::after{background:var(--ok)}
+.track li.now::before{background:var(--saffron);box-shadow:0 0 0 5px rgba(226,162,56,.25)}
+.track li.stop::before{background:var(--bad)}
+.track li span{color:var(--muted);font-size:13px}
+.note{border-radius:12px;padding:14px 16px;font-size:14.5px}
+.note.ok{background:var(--ok-bg);color:#155C39}
+.note.bad{background:var(--bad-bg);color:var(--bad)}
+.note.wait{background:var(--warn-bg);color:#7A5410}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 18px;font-size:14.5px;margin:0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;overflow-wrap:anywhere}
+form.profile{display:grid;gap:22px;border-top:1px solid var(--line);padding-top:24px}
+form.profile h3{font-size:22px;font-weight:700}
+.hours{display:grid;gap:8px}
+.hours .day{display:grid;grid-template-columns:110px minmax(0,1fr) minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14.5px}
+.hours .control{padding:9px 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0}
+.chips span{display:inline-block;padding:8px 14px;border-radius:99px;border:1.5px solid var(--line);font-size:14px;background:var(--surface)}
+.chips input:checked+span{background:var(--teal);border-color:var(--teal);color:var(--sand)}
+.chips input:focus-visible+span{outline:2px solid var(--saffron);outline-offset:2px}
+.dishes{display:grid;gap:8px}
+.dishes .d{display:grid;grid-template-columns:minmax(0,1fr) 140px;gap:10px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.gallery .g{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--soft)}
+.gallery .g img{width:100%;height:100%;object-fit:cover}
+.gallery .g button{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(18,29,28,.8);color:#fff;cursor:pointer;font-size:15px;line-height:1}
+.gallery .drop{min-height:0;aspect-ratio:1;padding:8px}
+.save-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+@media (max-width:640px){
+  .app-head{grid-template-columns:auto minmax(0,1fr)}
+  .app-head .badge{grid-column:1/-1;justify-self:start}
+  .track{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}
+  .track li:nth-child(2)::after{display:none}
+  .hours .day{grid-template-columns:1fr 1fr;}
+  .hours .day b{grid-column:1/-1}
+  .dishes .d{grid-template-columns:minmax(0,1fr) 110px}
+  .signin{padding:24px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="archD" viewBox="0 0 100 100"><path fill-rule="evenodd" d="M22 16H50C71 16 84 32 84 50C84 68 71 84 50 84H22Z M38 70V49C38 38 44 30 53 25C62 30 68 38 68 49V70Z"/><circle cx="53" cy="58" r="5.5" fill="#E2A238"/></symbol>
+</defs></svg>
+<div class="demo-bar" id="demoBar" hidden>Demo mode: sign-in is instant and data stays in this browser. Use the email you applied with.</div>
+<header class="topbar"><div class="container">
+  <a class="brand" href="register.html"><svg fill="#EFE6D6"><use href="#archD"/></svg><span><b>Dine Oman</b><small>داين عُمان</small></span></a>
+  <nav class="topnav"><a href="register.html">List a restaurant</a><a class="pill" id="signOutBtn" href="#" hidden>Sign out</a></nav>
+</div></header>
+
+<main class="container page">
+  <section id="signinView" class="panel signin" hidden>
+    <p class="eyebrow" style="color:var(--teal-2)">Owner account · حساب المالك</p>
+    <h1>Sign in to your restaurant</h1>
+    <p class="muted">Enter the email you used on your application. We'll send you a secure sign-in link, so there's no password to remember.</p>
+    <form id="signinForm" novalidate style="display:grid;gap:14px">
+      <div class="field" id="siField">
+        <label for="siEmail">Email</label>
+        <input class="control" id="siEmail" type="email" autocomplete="email" inputmode="email" placeholder="you@restaurant.com">
+        <span class="err">Enter the email address from your application.</span>
+      </div>
+      <button class="btn btn-dark" type="submit" id="siBtn" style="justify-self:start">Send sign-in link</button>
+    </form>
+    <p class="note ok" id="siSent" hidden></p>
+    <p class="small muted">New to Dine Oman? <a href="register.html#apply">Apply to list your restaurant</a>.</p>
+  </section>
+
+  <section id="homeView" hidden>
+    <div style="display:grid;gap:8px;margin-bottom:24px">
+      <p class="eyebrow" style="color:var(--teal-2)">Owner account</p>
+      <h1>Your restaurants</h1>
+      <p class="muted" id="whoami"></p>
+    </div>
+    <div id="apps" style="display:grid;gap:24px"></div>
+  </section>
+
+  <p id="loading" class="muted">Loading your account…</p>
+</main>
+
+<template id="appTpl">
+  <article class="panel app-card">
+    <div class="app-head">
+      <img class="logo" alt="">
+      <div style="min-width:0"><h2></h2><p class="small muted meta"></p></div>
+      <span class="badge"></span>
+    </div>
+    <div class="app-body">
+      <ol class="track">
+        <li class="on"><b>Submitted</b><span class="t-sub"></span></li>
+        <li><b>Under review</b><span>Our team checks your details</span></li>
+        <li><b>Approved</b><span class="t-dec">We email you the decision</span></li>
+        <li><b>Profile live</b><span class="t-live">Complete your profile</span></li>
+      </ol>
+      <div class="msg"></div>
+      <dl class="kv"></dl>
+      <div class="profile-slot"></div>
+    </div>
+  </article>
+</template>
+
+<template id="profileTpl">
+  <form class="profile" novalidate>
+    <div style="display:grid;gap:6px"><h3>Complete your restaurant profile</h3><p class="small muted">This is what diners see on your Dine Oman page. You can come back and edit it any time.</p></div>
+    <div class="row2">
+      <div class="field"><label>Restaurant name in Arabic <span class="ar">الاسم بالعربي</span></label><input class="control" name="name_ar" dir="rtl" maxlength="80"></div>
+      <div class="field"><label>Booking phone <span class="ar">رقم الحجز</span></label><div class="affix"><span>+968</span><input class="control" name="booking_phone" inputmode="numeric" maxlength="9"></div></div>
+    </div>
+    <div class="field"><label>Description in Arabic <span class="ar">الوصف بالعربي</span></label><textarea class="control" name="description_ar" dir="rtl" maxlength="600"></textarea></div>
+    <div class="field"><span class="label">Opening hours <span class="ar">أوقات العمل</span></span><div class="hours"></div><span class="err">Add opening hours for at least one day.</span></div>
+    <div class="field"><label>Price range <span class="ar">متوسط الأسعار</span></label><select class="control" name="price_range"><option value="">Choose a price range</option></select><span class="err">Choose a price range.</span></div>
+    <div class="field"><span class="label">Features <span class="ar">المميزات</span></span><div class="chips"></div></div>
+    <div class="field"><span class="label">Signature dishes <span class="ar">أطباق مميزة</span></span><div class="dishes"></div><span class="hint">Up to three dishes with prices in OMR.</span></div>
+    <div class="field"><label>Menu <span class="ar">المنيو</span></label>
+      <input class="control" name="menu_url" inputmode="url" placeholder="Link to your online menu (optional if you upload a file)">
+      <label class="check small"><span>Or upload a PDF or image:</span><input type="file" name="menu_file" accept="application/pdf,image/png,image/jpeg,image/webp" style="width:auto"></label>
+      <span class="err">Add a menu link or upload a menu file.</span>
+    </div>
+    <div class="field"><span class="label">Photo gallery <span class="ar">معرض الصور</span></span><div class="gallery"></div><span class="hint">Up to 12 photos, max 5 MB each.</span></div>
+    <p class="note bad form-err" role="alert" hidden></p>
+    <div class="save-row"><button class="btn btn-primary" type="submit">Save and publish profile</button><span class="small muted saved-at"></span></div>
+  </form>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/account.js"></script>
+</body>
+</html>

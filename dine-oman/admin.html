@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Applications · Dine Oman Admin</title>
+<meta name="theme-color" content="#0C3B3A">
+<meta name="robots" content="noindex">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>
+.page{padding-block:36px 80px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:22px}
+.head h1{font-size:clamp(28px,3.6vw,38px);font-weight:750}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;display:grid;gap:2px}
+.stat span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat b{font-family:var(--f-display);font-size:30px;font-weight:750;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat.alert{border-color:var(--saffron);background:#FFFBF2}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:8px 14px;font:500 14px var(--f-body);cursor:pointer;color:var(--fg)}
+.tabs button[aria-pressed=true]{background:var(--teal);color:var(--sand);border-color:var(--teal)}
+.tabs button i{font-style:normal;font-variant-numeric:tabular-nums;opacity:.7;margin-left:4px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:20px;align-items:start}
+.list{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.row:hover{border-color:#B9C7C0}
+.row[aria-current=true]{border-color:var(--teal-2);box-shadow:0 0 0 3px rgba(23,96,91,.12)}
+.row img{width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff;border:1px solid var(--line)}
+.row b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row small{color:var(--muted);font-size:12.5px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .new{width:8px;height:8px;border-radius:50%;background:var(--saffron);display:inline-block;margin-right:6px;vertical-align:middle}
+.detail{position:sticky;top:84px;overflow:hidden}
+.detail .cover{aspect-ratio:16/7;background:var(--soft)}
+.detail .cover img{width:100%;height:100%;object-fit:cover}
+.detail .inner{padding:22px;display:grid;gap:18px}
+.detail .top{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center}
+.detail .top img{width:64px;height:64px;border-radius:14px;object-fit:contain;background:#fff;border:1px solid var(--line);margin-top:-46px;box-shadow:var(--shadow)}
+.detail h2{font-size:24px;font-weight:700}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:7px 18px;font-size:14.5px;margin:0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;overflow-wrap:anywhere}
+.desc{font-size:15px;line-height:1.6;background:var(--soft);border-radius:12px;padding:14px 16px;white-space:pre-wrap}
+.decide{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+.decide .btns{display:flex;gap:10px;flex-wrap:wrap}
+.empty{padding:32px;text-align:center;color:var(--muted)}
+.gate{max-width:520px;padding:32px;display:grid;gap:16px}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}.detail{position:static}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="archD" viewBox="0 0 100 100"><path fill-rule="evenodd" d="M22 16H50C71 16 84 32 84 50C84 68 71 84 50 84H22Z M38 70V49C38 38 44 30 53 25C62 30 68 38 68 49V70Z"/><circle cx="53" cy="58" r="5.5" fill="#E2A238"/></symbol>
+</defs></svg>
+<div class="demo-bar" id="demoBar" hidden>Demo mode: anyone can open this page and data stays in this browser. In live mode only listed admins can sign in.</div>
+<header class="topbar"><div class="container">
+  <a class="brand" href="register.html"><svg fill="#EFE6D6"><use href="#archD"/></svg><span><b>Dine Oman</b><small>Admin · الإدارة</small></span></a>
+  <nav class="topnav"><a href="register.html">Registration page</a><a class="pill" id="outBtn" href="#" hidden>Sign out</a></nav>
+</div></header>
+
+<main class="container page">
+  <section id="gate" class="panel gate" hidden>
+    <h1 style="font-size:30px">Team sign in</h1>
+    <p class="muted">Admins only. Enter your team email and we'll send a sign-in link.</p>
+    <form id="gateForm" novalidate style="display:grid;gap:12px">
+      <input class="control" id="gEmail" type="email" autocomplete="email" placeholder="you@dineoman.com" aria-label="Team email">
+      <button class="btn btn-dark" style="justify-self:start" id="gBtn">Send sign-in link</button>
+    </form>
+    <p class="small" id="gMsg" hidden></p>
+  </section>
+
+  <section id="board" hidden>
+    <div class="head">
+      <div><p class="eyebrow" style="color:var(--teal-2)">Restaurant applications</p><h1>Review queue</h1></div>
+      <button class="btn btn-line" id="refresh" type="button">Refresh</button>
+    </div>
+    <div class="stats">
+      <div class="stat" id="stNew"><span>New since last visit</span><b id="nNew">0</b></div>
+      <div class="stat"><span>Awaiting review</span><b id="nPending">0</b></div>
+      <div class="stat"><span>Approved</span><b id="nApproved">0</b></div>
+      <div class="stat"><span>Live profiles</span><b id="nLive">0</b></div>
+    </div>
+    <div class="tabs" role="group" aria-label="Filter by status">
+      <button data-s="pending" aria-pressed="true">Pending <i id="tPending"></i></button>
+      <button data-s="approved" aria-pressed="false">Approved <i id="tApproved"></i></button>
+      <button data-s="rejected" aria-pressed="false">Rejected <i id="tRejected"></i></button>
+      <button data-s="all" aria-pressed="false">All <i id="tAll"></i></button>
+    </div>
+    <div class="layout">
+      <div class="list" id="list"></div>
+      <div class="panel detail" id="detail"><div class="empty">Select an application to review it.</div></div>
+    </div>
+  </section>
+  <p id="loading" class="muted">Loading…</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script>
+(function () {
+  const cfg = window.DINE_CONFIG, api = window.DineAPI;
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const when = d => new Date(d).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  const pkgName = id => (cfg.PACKAGES.find(p => p.id === id) || { name: id }).name;
+  const SEEN = "dine-admin-last-seen";
+  let apps = [], filter = "pending", current = null, lastSeen = 0;
+  try { lastSeen = +localStorage.getItem(SEEN) || 0; } catch (e) {}
+
+  if (api.mode === "demo") $("demoBar").hidden = false;
+
+  async function start() {
+    $("loading").hidden = true;
+    if (api.mode === "live") {
+      const s = await api.getSession();
+      if (!s || !(await api.isAdmin())) {
+        $("gate").hidden = false;
+        if (s) { $("gMsg").hidden = false; $("gMsg").textContent = s.email + " is not on the admin list. Sign out and use a team email."; $("outBtn").hidden = false; }
+        return;
+      }
+      $("outBtn").hidden = false;
+    }
+    $("board").hidden = false;
+    await load();
+    try { localStorage.setItem(SEEN, Date.now()); } catch (e) {}
+  }
+
+  $("gateForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const email = $("gEmail").value.trim();
+    if (!email) return;
+    try { await api.signIn(email, "admin.html"); $("gMsg").hidden = false; $("gMsg").textContent = "Check your inbox for the sign-in link."; }
+    catch (err) { $("gMsg").hidden = false; $("gMsg").textContent = err.message; }
+  });
+  $("outBtn").addEventListener("click", async e => { e.preventDefault(); await api.signOut(); location.reload(); });
+  $("refresh").addEventListener("click", load);
+  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+    filter = b.dataset.s;
+    document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    drawList();
+  }));
+
+  async function load() {
+    try { apps = await api.listApplications(); }
+    catch (err) { $("list").innerHTML = `<p class="note">Couldn't load applications: ${esc(err.message)}</p>`; return; }
+    const c = s => apps.filter(a => a.status === s).length;
+    const fresh = apps.filter(a => new Date(a.created_at).getTime() > lastSeen).length;
+    $("nNew").textContent = fresh; $("stNew").classList.toggle("alert", fresh > 0);
+    $("nPending").textContent = c("pending"); $("nApproved").textContent = c("approved");
+    $("nLive").textContent = apps.filter(a => a.profile && a.profile.published).length;
+    $("tPending").textContent = c("pending"); $("tApproved").textContent = c("approved"); $("tRejected").textContent = c("rejected"); $("tAll").textContent = apps.length;
+    document.title = (c("pending") ? `(${c("pending")}) ` : "") + "Applications · Dine Oman Admin";
+    drawList();
+    if (current) { const a = apps.find(x => x.id === current); if (a) drawDetail(a); }
+  }
+
+  function drawList() {
+    const rows = apps.filter(a => filter === "all" || a.status === filter);
+    const list = $("list");
+    if (!rows.length) { list.innerHTML = `<div class="panel empty">${filter === "pending" ? "No applications waiting. You're all caught up." : "Nothing here yet."}</div>`; return; }
+    list.innerHTML = "";
+    rows.forEach(a => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "row"; b.setAttribute("aria-current", a.id === current);
+      const isNew = new Date(a.created_at).getTime() > lastSeen;
+      const live = a.profile && a.profile.published;
+      b.innerHTML = `<img src="${esc(a.logo_url)}" alt=""><span style="min-width:0"><b>${isNew ? '<i class="new" title="New"></i>' : ""}${esc(a.restaurant_name)}</b><small>${esc(a.reference)} · ${esc(a.area)}, ${esc(a.governorate)} · ${when(a.created_at)}</small></span><span class="badge ${live ? "live" : a.status}">${live ? "Live" : a.status}</span>`;
+      b.addEventListener("click", () => { current = a.id; drawList(); drawDetail(a); if (innerWidth < 900) $("detail").scrollIntoView({ behavior: "smooth" }); });
+      list.appendChild(b);
+    });
+  }
+
+  function drawDetail(a) {
+    const d = $("detail");
+    const loc = /^https?:/.test(a.location) ? `<a href="${esc(a.location)}" target="_blank" rel="noopener">Open map ↗</a>` : `<a href="https://www.google.com/maps?q=${encodeURIComponent(a.location)}" target="_blank" rel="noopener">${esc(a.location)} ↗</a>`;
+    const site = /^https?:/.test(a.website) ? `<a href="${esc(a.website)}" target="_blank" rel="noopener">${esc(a.website)}</a>` : esc(a.website);
+    d.innerHTML = `
+      <div class="cover"><img src="${esc(a.cover_url)}" alt="Cover photo"></div>
+      <div class="inner">
+        <div class="top"><img src="${esc(a.logo_url)}" alt="Logo"><div style="min-width:0"><h2>${esc(a.restaurant_name)}</h2><p class="small muted">${esc(a.reference)} · submitted ${when(a.created_at)}</p></div><span class="badge ${a.status}">${a.status}</span></div>
+        <p class="desc">${esc(a.description)}</p>
+        <dl class="kv">
+          <dt>Cuisine</dt><dd>${esc(a.cuisine)}</dd>
+          <dt>Package</dt><dd>${esc(pkgName(a.package))}</dd>
+          <dt>Owner</dt><dd>${esc(a.owner_name)}</dd>
+          <dt>Email</dt><dd>${esc(a.email)}</dd>
+          <dt>Phone</dt><dd>${esc(a.phone)}</dd>
+          <dt>WhatsApp</dt><dd><a href="https://wa.me/${esc(a.whatsapp.replace(/\D/g, ""))}" target="_blank" rel="noopener">${esc(a.whatsapp)}</a></dd>
+          <dt>Location</dt><dd>${esc(a.area)}, ${esc(a.governorate)} · ${loc}</dd>
+          <dt>Instagram</dt><dd><a href="https://instagram.com/${esc(a.instagram)}" target="_blank" rel="noopener">@${esc(a.instagram)}</a></dd>
+          <dt>Website</dt><dd>${site}</dd>
+          ${a.reviewed_at ? `<dt>Reviewed</dt><dd>${when(a.reviewed_at)}${a.admin_note ? " · " + esc(a.admin_note) : ""}</dd>` : ""}
+          ${a.profile ? `<dt>Profile</dt><dd>${a.profile.published ? "Published" : "Draft"} · updated ${when(a.profile.updated_at)}</dd>` : ""}
+        </dl>
+        <div class="decide">
+          <div class="field"><label for="note">Note to the owner <span class="ar">ملاحظة للمالك</span></label><textarea class="control" id="note" style="min-height:80px" placeholder="Optional for approval. Required when rejecting: tell the owner what to fix.">${esc(a.admin_note || "")}</textarea><span class="err">Add a reason so the owner knows what to fix.</span></div>
+          <div class="btns">
+            <button class="btn btn-ok" id="approve" ${a.status === "approved" ? "disabled" : ""}>Approve</button>
+            <button class="btn btn-bad" id="reject" ${a.status === "rejected" ? "disabled" : ""}>Reject</button>
+          </div>
+          <p class="small muted">${api.mode === "live" ? "The owner is emailed automatically with your decision and note." : "Demo mode: no email is sent. Open the owner account page to see the result."}</p>
+        </div>
+      </div>`;
+    const act = async status => {
+      const note = $("note").value.trim();
+      if (status === "rejected" && !note) { $("note").closest(".field").classList.add("invalid"); $("note").focus(); return; }
+      d.querySelectorAll(".btns .btn").forEach(b => b.disabled = true);
+      try { await api.decide(a.id, status, note); toast(status === "approved" ? "Approved. The owner can now complete their profile." : "Rejected. The owner has been told why."); await load(); }
+      catch (err) { toast("Couldn't save the decision: " + err.message, true); d.querySelectorAll(".btns .btn").forEach(b => b.disabled = false); }
+    };
+    $("approve").onclick = () => act("approved");
+    $("reject").onclick = () => act("rejected");
+  }
+
+  function toast(msg, bad) {
+    const t = document.createElement("div");
+    t.className = "toast" + (bad ? " bad" : ""); t.textContent = msg; t.setAttribute("role", "status");
+    document.body.appendChild(t); setTimeout(() => t.remove(), 3800);
+  }
+  start();
+})();
+</script>
+</body>
+</html>
