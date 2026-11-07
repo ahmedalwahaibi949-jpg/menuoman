@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Signing You In · Dine Oman</title>
+<meta name="theme-color" content="#0C3B3A">
+<meta name="robots" content="noindex">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="topbar"></header>
+<main class="container" style="padding-block:72px;display:grid;justify-items:center">
+  <div class="card auth-card" style="text-align:center;justify-items:center">
+    <span class="spin" id="spin" style="width:28px;height:28px;border-radius:50%;border:3px solid var(--teal-2);border-right-color:transparent;display:block;animation:spin .8s linear infinite"></span>
+    <h2 id="title" style="font-size:26px">Signing you in…</h2>
+    <p class="muted" id="msg">One moment.</p>
+    <a class="btn btn-dark" id="cta" href="login.html" hidden>Go to log in</a>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$;
+  const qs = new URLSearchParams(location.search), hs = new URLSearchParams(location.hash.slice(1));
+  function stop(title, msg, href, label) {
+    $("#spin").hidden = true; $("#title").textContent = title; $("#msg").textContent = msg;
+    if (href) { $("#cta").hidden = false; $("#cta").href = href; $("#cta").textContent = label || "Continue"; }
+  }
+  const linkError = hs.get("error_description") || qs.get("error_description");
+  if (linkError) { await U.chrome({ me: null }); return stop("That link didn't work", linkError.replace(/\+/g, " ") + ". Links expire after a while, so request a new one.", "login.html", "Back to log in"); }
+
+  let type = hs.get("type") || qs.get("type");
+  try {
+    if (api.mode === "demo" && qs.get("t")) type = await api.demoConsumeToken(qs.get("t"));
+    else if (api.mode === "live") {
+      // supabase-js reads the token from the URL on load; give it a moment.
+      for (let i = 0; i < 20 && !(await api.session()); i++) await new Promise(r => setTimeout(r, 150));
+    }
+  } catch (e) { await U.chrome({ me: null }); return stop("That link didn't work", e.message, "login.html", "Back to log in"); }
+
+  if (type === "recovery") { location.replace("reset-password.html"); return; }
+  const me = await api.me().catch(() => null);
+  await U.chrome({ me });
+  if (!me) return stop("Email confirmed", "Your email is confirmed. Log in to continue.", "login.html?verified=1", "Log in");
+  if (type === "email_change") { location.replace(U.HOME[me.role] + "?emailchanged=1#settings"); return; }
+  location.replace(U.HOME[me.role] + "?welcome=1");
+})();
+</script>
+</body>
+</html>

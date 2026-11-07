@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Log In · Dine Oman</title>
+<meta name="theme-color" content="#0C3B3A">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="topbar"></header>
+<main class="auth">
+  <section class="auth-art">
+    <div>
+      <p class="eyebrow" style="color:var(--saffron)">Welcome back · أهلاً من جديد</p>
+      <h1 style="margin-top:18px">Every restaurant.<br><em>One destination.</em></h1>
+      <p class="sub">One login for diners, restaurant owners and the Dine Oman team. We'll take you straight to the right place.</p>
+      <p class="ar-d">كل المطاعم. وجهة وحدة.</p>
+    </div>
+    <ul>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0112 6a5.5 5.5 0 019.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg><span><b>Diners</b>: your favourites, history and reviews</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6"/></svg><span><b>Owners</b>: your restaurants, branches and approval status</span></li>
+    </ul>
+  </section>
+
+  <section class="auth-form">
+    <div class="auth-card" id="loginCard">
+      <div><h2>Log in</h2><p class="lead">Use your email and password.</p></div>
+      <div class="alert ok" id="notice" hidden></div>
+      <button class="oauth" type="button" id="google"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.2-.1-2.3-.4-3.5z"/></svg>Continue with Google</button>
+      <div class="or">or</div>
+      <form id="loginForm" novalidate class="stack">
+        <div class="field"><label for="email">Email</label><input class="control" id="email" type="email" autocomplete="email" inputmode="email"><span class="err">Enter a valid email address.</span></div>
+        <div class="field">
+          <label for="password">Password <button type="button" class="linkbtn small" id="toForgot">Forgot password?</button></label>
+          <div class="pw"><input class="control" id="password" type="password" autocomplete="current-password"></div>
+          <span class="err">Enter your password.</span>
+        </div>
+        <div class="alert bad" id="err" role="alert" hidden></div>
+        <button class="btn btn-dark" type="submit" id="submit">Log in</button>
+      </form>
+      <p class="alt">New here? <a href="signup.html">Create a customer account</a><br>Own a restaurant? <a href="owner-signup.html">Register your restaurant</a></p>
+      <div class="alert warn small" id="demoHint" hidden></div>
+    </div>
+
+    <div class="auth-card" id="forgotCard" hidden>
+      <div><h2>Reset your password</h2><p class="lead">Enter your account email and we'll send you a link to choose a new password.</p></div>
+      <form id="forgotForm" novalidate class="stack">
+        <div class="field"><label for="fEmail">Email</label><input class="control" id="fEmail" type="email" autocomplete="email" inputmode="email"><span class="err">Enter a valid email address.</span></div>
+        <div class="alert ok" id="fSent" hidden></div>
+        <button class="btn btn-dark" type="submit" id="fSubmit">Send reset link</button>
+      </form>
+      <p class="alt"><button class="linkbtn" type="button" id="toLogin">Back to log in</button></p>
+    </div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$;
+  const params = new URLSearchParams(location.search);
+  const next = params.get("next");
+  const me = await U.chrome();
+  if (me) { location.replace(U.homeFor(me, next)); return; }
+
+  const notes = { verified: "Email confirmed. You can log in now.", reset: "Password updated. Log in with your new password.", deleted: "Your account was deleted.", signedout: "You've been logged out of all devices." };
+  for (const k in notes) if (params.has(k)) { $("#notice").hidden = false; $("#notice").textContent = notes[k]; }
+  if (params.get("email")) $("#email").value = params.get("email");
+  if (api.mode === "demo") { $("#demoHint").hidden = false; $("#demoHint").innerHTML = `<b>Demo admin:</b> ${api.demoAdmin.email} · password ${api.demoAdmin.password}`; }
+  U.bindPassword($("#password"));
+
+  const show = forgot => { $("#loginCard").hidden = forgot; $("#forgotCard").hidden = !forgot; if (forgot) { $("#fEmail").value = $("#email").value; $("#fEmail").focus(); } };
+  $("#toForgot").onclick = () => show(true);
+  $("#toLogin").onclick = () => show(false);
+  if (location.hash === "#forgot") show(true);
+
+  $("#google").onclick = async () => { try { await api.signInGoogle(); } catch (e) { err(e.message); } };
+
+  function err(msg, html) { const e = $("#err"); e.hidden = false; if (html) e.innerHTML = msg; else e.textContent = msg; }
+  $("#loginForm").addEventListener("submit", async ev => {
+    ev.preventDefault(); $("#err").hidden = true;
+    const email = $("#email").value.trim(), pw = $("#password").value;
+    const ok = U.mark($("#email").closest(".field"), U.V.email(email)) & U.mark($("#password").closest(".field"), pw.length > 0);
+    if (!ok) return;
+    const btn = $("#submit"); U.busy(btn, true, "Logging in…");
+    try {
+      await api.signIn(email, pw);
+      const who = await api.me();
+      location.replace(U.homeFor(who, next));
+    } catch (e) {
+      U.busy(btn, false);
+      if (e.message === "EMAIL_NOT_CONFIRMED") {
+        err(`Please confirm your email first. Check your inbox for the link we sent to <b>${U.esc(email)}</b>. <button class="linkbtn" type="button" id="resend">Send it again</button>`, true);
+        $("#resend").onclick = async () => { await api.resendVerification(email).catch(() => {}); U.toast("Confirmation email sent again."); };
+      } else err(e.message);
+    }
+  });
+
+  $("#forgotForm").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const email = $("#fEmail").value.trim();
+    if (!U.mark($("#fEmail").closest(".field"), U.V.email(email))) return;
+    const btn = $("#fSubmit"); U.busy(btn, true, "Sending…");
+    try { await api.sendPasswordReset(email); } catch (e) { /* same message either way, so emails can't be probed */ }
+    U.busy(btn, false);
+    $("#fSent").hidden = false;
+    $("#fSent").textContent = `If an account exists for ${email}, a reset link is on its way. It expires in 1 hour.`;
+  });
+})();
+</script>
+</body>
+</html>

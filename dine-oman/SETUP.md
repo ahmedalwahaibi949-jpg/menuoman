@@ -1,60 +1,85 @@
-# Dine Oman: restaurant registration
+# Dine Oman: accounts, roles and restaurants
 
-Three pages, served by GitHub Pages from this folder:
+## Pages
 
-| Page | Who uses it | What it does |
+| Page | Who | Purpose |
 |---|---|---|
-| `register.html` | Restaurant owners | Application form with live listing preview and package choice |
-| `account.html` | Owners | Email sign-in (no password), application status, profile completion after approval |
-| `admin.html` | Your team | Review queue, approve or reject with a note |
+| `login.html` | Everyone | One login (email + password, or Google). Detects the role and redirects. Includes "Forgot password". |
+| `signup.html` | Customers | "Discover Your Next Favourite Restaurant." Email signup or Google. |
+| `owner-signup.html` | Restaurant owners | 4-step wizard: owner details → restaurant → branding → plan. |
+| `auth-callback.html` | — | Landing page for email verification, Google sign-in and email-change links. |
+| `reset-password.html` | — | Choose a new password from a reset link. |
+| `customer.html` | Customers | My profile · Favourite restaurants · Recently viewed · My reviews · Account settings |
+| `owner.html` | Owners | My restaurants · Application status page per restaurant · Add a branch · Account settings |
+| `admin.html` | Super admin | Overview · Applications (approve/reject) · Restaurants (publish/unpublish) · Users (deletion requests) · Reviews · Settings |
+| `restaurants.html` | Everyone | Discover live restaurants with filters |
+| `restaurant.html?slug=…` and `/restaurant/<slug>` | Everyone | Public restaurant profile, favourites and reviews |
+| `demo-inbox.html` | Demo only | Shows the emails demo mode would send |
 
-## The flow
+`register.html` and `account.html` from the earlier version now redirect.
 
-1. Owner submits the form. Logo and cover are uploaded to storage, and the application is saved with status `pending` and a reference like `DO-3F81A2`.
-2. All fields are saved in the `applications` table.
-3. The owner gets a confirmation email (bilingual) with the reference.
-4. The admin team gets a "New application" email, and the admin page shows a "New since last visit" count.
-5. An admin approves or rejects. The owner is emailed the decision and the admin's note.
-6. After approval the owner signs in with the same email and completes the profile: Arabic name and description, opening hours, price range, features, signature dishes, menu, and up to 12 photos. Publishing sets it live.
+## How security works
 
-Owners can't approve themselves: the database forces every new application to `pending`, and only emails in the `admins` table can change status.
+The pages hide what a role shouldn't see, but **the database is what enforces it** (`supabase/schema.sql`, row-level security). A customer or owner who calls the API directly still can't read or change other people's data.
+
+- **Roles** live in `user_profiles.role`. Sign-up can only create `customer` or `owner`. Even if someone sends `account_type: "admin"`, they get `customer`. Nobody can change their own role.
+- **Admins** are created only in the SQL editor:
+  ```sql
+  update public.user_profiles set role = 'admin' where email = 'you@dineoman.com';
+  ```
+- **Owners** only see and edit their own restaurants. They can't approve, publish, change their slug, or change their plan after approval. The only status change they can make is resubmitting a rejected application.
+- **Customers** only see their own favourites, history and reviews. Only customers can write reviews (one per restaurant), and reviews show a first name and initial.
+- **Uploads**: before email verification, files can only go to `pending/<random-id>/…`. After that, owners upload only into `owners/<their-id>/…`.
+- **Admin pages**: `admin.html` redirects non-admins before rendering, and every admin query is refused by the database for non-admins. Account deletion runs in a server function that checks the caller is an admin and keeps the service key off the browser.
+
+## Owner registration flow
+
+1. **Create the owner account.** The logo, cover and food photos are uploaded, then `auth.signUp` is called with the restaurant details.
+2. **Verify email.** A database trigger creates the `user_profiles` row (role `owner`) and the restaurant with status `awaiting_verification`.
+3. **Create the application.** When the owner clicks the email link, a trigger moves it to `pending`.
+4. **Notify the admin.** The status change fires the `notifications` webhook, which emails every admin and sends the owner an "application received" email.
+5. **Status page.** The owner sees it in `owner.html`, with a 5-step tracker.
+6. **Approve or reject.** The admin does this in `admin.html#applications`, with a note to the owner.
+7. **Public profile.** Approval creates it automatically: a trigger generates a unique slug (`bait-al-luban`, then `bait-al-luban-al-khuwair` for the next one with the same name, and so on) and publishes it at `/restaurant/<slug>`.
+8. **More branches.** Owners add them from "Add a branch". Each is a separate application with its own approval and URL.
 
 ## Demo mode (now)
 
-With `SUPABASE_URL` empty in `js/config.js`, everything runs in the browser: applications, approval and profiles are stored in localStorage and no emails are sent. A yellow bar says so on every page.
+`SUPABASE_URL` is empty in `js/config.js`, so everything runs in the browser and emails go to `demo-inbox.html`.
+- Demo admin login: `admin@dineoman.demo` / `DineAdmin2026`
+- Google sign-in needs the live setup.
+- "Reset demo" in the yellow bar clears everything.
 
-## Going live (about 30 minutes)
+## Going live
 
-### 1. Supabase project
-1. Create a project at supabase.com (choose a region near Oman, such as Mumbai or Frankfurt).
-2. **SQL Editor** → paste and run `supabase/schema.sql`.
-3. Add your admins in SQL Editor:
-   ```sql
-   insert into public.admins (email) values ('you@dineoman.com');
-   ```
-4. **Authentication → URL Configuration**: set Site URL to your site, and add these redirect URLs:
-   `https://ahmedalwahaibi949-jpg.github.io/menuoman/dine-oman/account.html` and `.../admin.html`.
-5. **Project Settings → API**: copy the Project URL and the `anon` public key into `js/config.js`. Update `SITE_URL` if you use your own domain.
+### 1. Supabase
+1. Create a project (region: Mumbai or Frankfurt are closest to Oman).
+2. SQL Editor → run `supabase/schema.sql`.
+3. **Authentication → Providers → Email**: keep "Confirm email" **on**. Set the minimum password length to 8.
+4. **Authentication → URL Configuration**: Site URL = your site. Redirect URLs: `…/dine-oman/auth-callback.html` and `…/dine-oman/reset-password.html`.
+5. **Authentication → Providers → Google**: create an OAuth client in Google Cloud Console (type Web, redirect URI `https://<project-ref>.supabase.co/auth/v1/callback`) and paste the client ID and secret.
+6. **Authentication → SMTP**: use Resend (or similar) so verification and reset emails come from your domain and aren't rate-limited.
+7. Fill `SUPABASE_URL` and `SUPABASE_ANON_KEY` in `js/config.js`.
+8. Sign up yourself, then make yourself admin with the SQL above.
 
-### 2. Emails (Resend)
-1. Create a Resend account, verify your sending domain (for example dineoman.com), and create an API key.
-2. Deploy the function with the Supabase CLI:
-   ```bash
-   supabase functions deploy application-emails --no-verify-jwt
-   supabase secrets set RESEND_API_KEY=re_xxx WEBHOOK_SECRET=<long random string> \
-     ADMIN_EMAIL=you@dineoman.com FROM_EMAIL="Dine Oman <partners@dineoman.com>" \
-     SITE_URL=https://ahmedalwahaibi949-jpg.github.io/menuoman/dine-oman
-   ```
-   `ADMIN_EMAIL` can be several addresses separated by commas.
-3. **Database → Webhooks**: create one webhook on table `applications`, events **Insert** and **Update**, type HTTP POST to
-   `https://<project-ref>.supabase.co/functions/v1/application-emails`, with header `x-webhook-secret: <same random string>`.
-4. Sign-in links are sent by Supabase Auth. For production, set **Authentication → SMTP** to Resend too, so they come from your domain and aren't rate-limited.
+### 2. Functions
+```bash
+supabase functions deploy notifications --no-verify-jwt
+supabase functions deploy admin-delete-user
+supabase secrets set RESEND_API_KEY=re_xxx WEBHOOK_SECRET=<long random string> \
+  FROM_EMAIL="Dine Oman <partners@dineoman.com>" \
+  SITE_URL=https://ahmedalwahaibi949-jpg.github.io/menuoman/dine-oman \
+  PUBLIC_BASE_URL=https://ahmedalwahaibi949-jpg.github.io/menuoman
+```
+Then go to **Database → Webhooks**: table `restaurants`, events Insert and Update, POST to `https://<project-ref>.supabase.co/functions/v1/notifications`, with header `x-webhook-secret: <same string>`.
 
-### 3. Test
-Submit a test application, check both emails arrive, approve it in `admin.html`, open the approval email, sign in and publish the profile.
+### 3. Restaurant URLs
+`/restaurant/<slug>` is served by `404.html` at the repository root (GitHub Pages serves it for any unknown path, and it renders the restaurant page). With the current site the URL is `…github.io/menuoman/restaurant/<slug>`. For `dineoman.com/restaurant/<slug>`, point the domain at GitHub Pages (add a `CNAME` file) and set `PUBLIC_BASE_URL` to `https://dineoman.com` in `js/config.js` and in the function secrets.
 
-## Things to confirm before launch
-- **Package prices** in `js/config.js` (Featured OMR 15, Premium OMR 35) are placeholders. There is no payment step: the form says packages are confirmed after approval.
-- **Instagram and Website are required**, as specified. Many cafés and bakeries have no website, so consider making it optional (remove `website` from `rules` in `js/register.js` and the `not null` in the schema).
-- **Spam**: anyone can submit the form. If spam appears, add Cloudflare Turnstile or hCaptcha (Supabase Auth → Bot protection).
-- Published restaurants are available to future directory pages through `select * from list_live_restaurants()`.
+### 4. Test checklist
+Customer signup → verification email → dashboard · Google signup · wrong password · forgot/reset · owner signup → verify → admin email → approve → owner email with URL → public page works · customer favourite + review · change email/password · log out of all devices · deletion request → admin deletes.
+
+## Known limits
+- Plans are recorded but not billed: there's no payment step yet.
+- Deletion requests aren't emailed to admins in live mode. They show as a badge in `admin.html#users`.
+- Public pages render in the browser. For strong Google ranking of each restaurant, a server-rendered or pre-built page per restaurant is the next step.

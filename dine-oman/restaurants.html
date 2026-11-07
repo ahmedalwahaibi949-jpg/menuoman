@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Discover Restaurants · Dine Oman</title>
+<meta name="description" content="Every restaurant. One destination. Find restaurants, cafés and bakeries across Oman.">
+<meta name="theme-color" content="#0C3B3A">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="topbar"></header>
+<section class="disc-hero"><div class="container">
+  <p class="eyebrow" style="color:var(--saffron)">Every restaurant. One destination.</p>
+  <h1>Where shall we eat?</h1>
+  <p class="ar-d" style="font-size:20px;color:#A9C0B8;text-align:left">وين ناكل اليوم؟</p>
+  <div class="filters">
+    <input class="control" id="q" type="search" placeholder="Search by name, cuisine or area" aria-label="Search">
+    <select class="control" id="gov" aria-label="Governorate"><option value="">All governorates</option></select>
+    <select class="control" id="cat" aria-label="Category"><option value="">All categories</option></select>
+    <select class="control" id="cui" aria-label="Cuisine"><option value="">All cuisines</option></select>
+  </div>
+</div></section>
+<main class="container" style="padding-block:32px 88px;display:grid;gap:18px">
+  <p class="muted" id="count"></p>
+  <div class="rgrid" id="grid"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, D = DINE_DATA, $ = U.$;
+  await U.chrome();
+  D.governorates.forEach(g => $("#gov").add(new Option(g.en, g.en)));
+  D.categories.forEach(c => $("#cat").add(new Option(c, c)));
+  D.cuisines.forEach(c => $("#cui").add(new Option(c, c)));
+  const all = await api.liveRestaurants().catch(() => []);
+  function draw() {
+    const q = $("#q").value.trim().toLowerCase(), g = $("#gov").value, c = $("#cat").value, k = $("#cui").value;
+    const rows = all.filter(r => (!g || r.governorate === g) && (!c || r.category === c) && (!k || r.cuisine === k) &&
+      (!q || [r.name, r.name_ar, r.cuisine, r.area, r.city, r.category].join(" ").toLowerCase().includes(q)));
+    $("#count").textContent = `${rows.length} restaurant${rows.length === 1 ? "" : "s"}`;
+    $("#grid").innerHTML = rows.length ? rows.map(r => U.rcard(r)).join("")
+      : `<div class="card empty" style="grid-column:1/-1"><b>${all.length ? "No restaurants match" : "Restaurants are joining now"}</b><span>${all.length ? "Try a different area or cuisine." : "Own one? Be among the first listed."}</span>${all.length ? "" : '<a class="btn btn-dark" href="owner-signup.html">Register your restaurant</a>'}</div>`;
+  }
+  ["input", "change"].forEach(e => document.querySelector(".filters").addEventListener(e, draw));
+  draw();
+})();
+</script>
+</body>
+</html>

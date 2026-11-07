@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demo Inbox · Dine Oman</title>
+<meta name="theme-color" content="#0C3B3A">
+<meta name="robots" content="noindex">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>
+.mail{display:grid;gap:10px}
+.msg{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:6px}
+.msg.unread{border-left:4px solid var(--saffron)}
+.msg .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}
+.msg b{font-size:16.5px}
+.msg .btn{justify-self:start;margin-top:6px;padding:10px 18px;font-size:14px}
+</style>
+</head>
+<body>
+<header class="topbar"></header>
+<main class="container" style="padding-block:40px 80px;max-width:820px">
+  <p class="eyebrow" style="color:var(--teal-2)">Demo only</p>
+  <h1 style="font-size:36px;font-weight:750;margin:8px 0 6px">Demo inbox</h1>
+  <p class="muted" style="margin-bottom:24px">In live mode these emails are sent for real (by Supabase Auth and the notifications function). Here they're collected so you can click through every flow.</p>
+  <div class="mail" id="mail"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI;
+  if (api.mode !== "demo") { location.replace("login.html"); return; }
+  const list = api.inbox();
+  await U.chrome();
+  const box = U.$("#mail");
+  box.innerHTML = list.length ? list.map(m => `<article class="msg ${m.read ? "" : "unread"}">
+    <div class="top"><span>To: ${U.esc(m.to.join(", "))}</span><span>${U.dateTime(m.at)}</span></div>
+    <b>${U.esc(m.subject)}</b><p>${U.esc(m.body)}</p>
+    ${m.link ? `<a class="btn btn-primary" href="${U.esc(m.link)}">${U.esc(m.linkLabel || "Open")}</a>` : ""}</article>`).join("")
+    : `<div class="card empty"><b>No emails yet</b><span>Sign up as a customer or an owner and the confirmation email appears here.</span></div>`;
+  api.markRead();
+})();
+</script>
+</body>
+</html>

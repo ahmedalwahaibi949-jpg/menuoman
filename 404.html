@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dine Oman</title>
+<meta name="theme-color" content="#0C3B3A">
+<script>
+  // GitHub Pages serves this file for any unknown path. /restaurant/<slug> becomes a Dine Oman
+  // restaurant page; the <base> makes every relative link resolve inside /dine-oman/.
+  (function () {
+    var m = location.pathname.match(/^(.*?\/)restaurant\/[a-z0-9-]+\/?$/i);
+    window.__DINE_ROUTE = !!m;
+    var root = m ? m[1] : location.pathname.replace(/[^/]*$/, "");
+    document.write('<base href="' + root.replace(/"/g, "") + 'dine-oman/">');
+  })();
+</script>
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="topbar"></header>
+<main id="page"><p class="container muted" style="padding-block:60px">Loading…</p></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+  if (window.__DINE_ROUTE) {
+    var s = document.createElement("script"); s.src = "js/restaurant-page.js"; document.body.appendChild(s);
+  } else {
+    DineUI.chrome();
+    document.title = "Page not found";
+    document.getElementById("page").innerHTML = '<div class="container" style="padding-block:80px"><div class="card empty"><b>Page not found</b><span>That address doesn\'t exist.</span><a class="btn btn-dark" href="restaurants.html">Discover restaurants</a></div></div>';
+  }
+</script>
+</body>
+</html>

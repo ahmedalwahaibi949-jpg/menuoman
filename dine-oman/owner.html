@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Restaurant Dashboard · Dine Oman</title>
+<meta name="theme-color" content="#0C3B3A">
+<meta name="robots" content="noindex">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>
+.rest{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md)}
+.rest img{width:64px;height:64px;border-radius:14px;object-fit:contain;border:1px solid var(--line);background:#fff}
+.rest h3{font-size:19px;font-weight:700}
+.rest .acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.rest .acts .btn{padding:10px 16px;font-size:14px}
+.status-head{display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:18px;align-items:center}
+.status-head img{width:84px;height:84px;border-radius:18px;object-fit:contain;border:1px solid var(--line);background:#fff}
+.urlbox{display:flex;gap:10px;align-items:center;background:var(--ok-bg);border-radius:12px;padding:12px 14px;flex-wrap:wrap}
+.urlbox code{font-family:ui-monospace,Menlo,monospace;font-size:14px;overflow-wrap:anywhere;flex:1;min-width:0;color:#155C39}
+.urlbox .btn{padding:8px 14px;font-size:13.5px}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 20px;font-size:14.5px;margin:0}
+.kv dt{color:var(--muted)}.kv dd{margin:0;overflow-wrap:anywhere}
+.sec-title{display:flex;align-items:baseline;gap:10px;border-top:1px solid var(--line);padding-top:24px}
+.sec-title h3{font-size:20px;font-weight:700}
+@media (max-width:640px){.rest{grid-template-columns:52px minmax(0,1fr)}.rest img{width:52px;height:52px}.rest .acts{grid-column:1/-1;justify-content:flex-start}.status-head{grid-template-columns:64px minmax(0,1fr)}.status-head img{width:64px;height:64px}.status-head .badge{grid-column:1/-1;justify-self:start}}
+</style>
+</head>
+<body>
+<header class="topbar"></header>
+<main class="container dash">
+  <nav class="dash-nav" id="nav" aria-label="Restaurant dashboard">
+    <div class="who"><span class="avatar" id="av"></span><span style="min-width:0"><b id="whoName"></b><small>Restaurant owner</small></span></div>
+    <a href="#restaurants" data-tab="restaurants">My restaurants <i id="navCount" hidden></i></a>
+    <a href="#add" data-tab="add">Add a branch</a>
+    <a href="#settings" data-tab="settings">Account settings</a>
+  </nav>
+  <section class="dash-main" id="main"></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script><script src="js/restaurant-form.js"></script><script src="js/settings.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$, esc = U.esc;
+  let me = await U.requireRole(["owner"]);
+  await U.chrome({ me });
+  const qs = new URLSearchParams(location.search);
+  function who() { $("#whoName").textContent = me.full_name || me.email; $("#av").textContent = U.initials(me.full_name || me.email); }
+  who();
+  if (qs.has("welcome")) U.toast("Email confirmed. Your application is now pending approval.");
+  if (qs.has("emailchanged")) U.toast("Your email address is updated.");
+  if (qs.has("denied")) U.toast("That page is only for the Dine Oman team.", true);
+
+  function tracker(r) {
+    const st = r.status, live = st === "approved" && r.published;
+    const cls = [
+      "on",
+      st === "awaiting_verification" ? "now" : "on",
+      st === "pending" ? "now" : st === "awaiting_verification" ? "" : "on",
+      st === "approved" ? "on" : st === "rejected" ? "stop" : "",
+      live ? "on" : st === "approved" ? "now" : ""
+    ];
+    return `<ol class="track" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+      <li class="${cls[0]}"><b>Account created</b><span>${U.date(r.created_at)}</span></li>
+      <li class="${cls[1]}"><b>Email verified</b><span>${st === "awaiting_verification" ? "Check your inbox" : "Done"}</span></li>
+      <li class="${cls[2]}"><b>Pending approval</b><span>${r.submitted_at ? "Submitted " + U.date(r.submitted_at) : "Not yet submitted"}</span></li>
+      <li class="${cls[3]}"><b>${st === "rejected" ? "Not approved" : "Approved"}</b><span>${r.reviewed_at ? U.date(r.reviewed_at) : "Our team reviews it"}</span></li>
+      <li class="${cls[4]}"><b>Public profile</b><span>${live ? "Live" : st === "approved" ? "Unpublished" : "After approval"}</span></li></ol>`;
+  }
+
+  const views = {
+    async restaurants(el) {
+      const rows = await api.myRestaurants();
+      const pend = rows.filter(r => ["pending", "awaiting_verification"].includes(r.status)).length;
+      $("#navCount").hidden = !pend; $("#navCount").textContent = pend;
+      el.innerHTML = `<header><div><h1>My restaurants</h1><p class="muted">${rows.length} restaurant${rows.length === 1 ? "" : "s"} on your account</p></div><a class="btn btn-dark" href="#add">+ Add a branch</a></header>` +
+        (rows.length ? `<div class="stack">${rows.map(r => `
+          <article class="rest">
+            <img src="${esc(r.logo_url)}" alt="">
+            <div style="min-width:0"><h3>${esc(r.name)}</h3><p class="small muted">${esc(r.reference)} · ${esc(r.area)}, ${esc(r.city)} · ${esc(U.plan(r.plan).name)} plan</p><div style="margin-top:6px">${U.statusBadge(r)}</div></div>
+            <div class="acts">${r.published ? `<a class="btn btn-line" href="${esc(U.profileHref(r.slug))}" target="_blank" rel="noopener">View page ↗</a>` : ""}<a class="btn btn-dark" href="#r-${r.id}">${r.status === "approved" ? "Manage" : "View status"}</a></div>
+          </article>`).join("")}</div>`
+          : `<div class="card empty"><b>No restaurants yet</b><span>Add your first restaurant to send it for approval.</span><a class="btn btn-dark" href="#add">Add a restaurant</a></div>`);
+    },
+
+    async r(el, hash) {
+      const id = hash.slice(2);
+      const r = (await api.myRestaurants()).find(x => x.id === id);
+      if (!r) { el.innerHTML = `<div class="card empty"><b>Restaurant not found</b><span>It may have been removed, or it belongs to another account.</span><a class="btn btn-line" href="#restaurants">Back to my restaurants</a></div>`; return; }
+      const approved = r.status === "approved", live = approved && r.published, url = r.slug ? U.publicUrl(r.slug) : "";
+      const msg = {
+        awaiting_verification: `<div class="alert warn"><b>Confirm your email to submit this application.</b> We sent a link to ${esc(me.email)}. <button class="linkbtn" id="resend">Send it again</button></div>`,
+        pending: `<div class="alert warn"><b>Pending approval.</b> Our team is reviewing your application and will email you the decision. You can still edit the details below.</div>`,
+        approved: live ? `<div class="alert ok"><b>Your restaurant is live.</b> Keep your hours, menu and photos up to date below.</div>` : `<div class="alert warn"><b>Approved but currently unpublished</b> by the Dine Oman team. WhatsApp ${esc(DINE_CONFIG.SUPPORT_WHATSAPP)} for help.</div>`,
+        rejected: `<div class="alert bad"><b>Not approved.</b>${r.admin_note ? " Reason: " + esc(r.admin_note) : ""} Update the details below and resubmit.</div>`
+      }[r.status];
+      el.innerHTML = `
+        <a href="#restaurants" class="small">← My restaurants</a>
+        <div class="card stack">
+          <div class="status-head"><img src="${esc(r.logo_url)}" alt=""><div style="min-width:0"><p class="eyebrow" style="color:var(--teal-2)">Application status</p><h1 style="font-size:30px">${esc(r.name)}</h1><p class="small muted">${esc(r.reference)} · ${esc(r.category)} · ${esc(r.cuisine)}</p></div>${U.statusBadge(r)}</div>
+          ${tracker(r)}
+          ${msg}
+          ${approved && r.admin_note ? `<p class="small"><b>Note from our team:</b> ${esc(r.admin_note)}</p>` : ""}
+          ${url ? `<div class="urlbox"><span class="small" style="font-weight:600">Your page</span><code id="url">${esc(url)}</code><button class="btn btn-line" id="copy" type="button">Copy link</button>${live ? `<a class="btn btn-dark" href="${esc(U.profileHref(r.slug))}" target="_blank" rel="noopener">Open ↗</a>` : ""}</div>` : ""}
+          <dl class="kv"><dt>Plan</dt><dd>${esc(U.plan(r.plan).name)} · ${esc(U.plan(r.plan).price)} ${esc(U.plan(r.plan).period)}</dd><dt>Location</dt><dd>${esc(r.address)} · ${esc(r.area)}, ${esc(r.city)}, ${esc(r.governorate)}</dd><dt>Created</dt><dd>${U.dateTime(r.created_at)}</dd>${r.approved_at ? `<dt>Approved</dt><dd>${U.dateTime(r.approved_at)}</dd>` : ""}</dl>
+        </div>
+        <div class="card stack">
+          <div><h2>${approved ? "Edit restaurant profile" : "Edit application"}</h2><p class="small muted">${approved ? "Changes appear on your public page as soon as you save." : "Fix anything before our team reviews it."}</p></div>
+          <div class="sec-title"><h3>Restaurant information</h3></div><div id="f-info"></div>
+          <div class="sec-title"><h3>Branding &amp; photos</h3></div><div id="f-brand"></div>
+          ${approved ? `<div class="sec-title"><h3>Hours, menu &amp; details</h3></div><div id="f-profile"></div>` : ""}
+          <div class="sec-title"><h3>Subscription</h3></div><div id="f-plan"></div>
+          <div class="alert bad" id="ferr" hidden></div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px">
+            <button class="btn btn-dark" id="save">${r.status === "rejected" ? "Save and resubmit for approval" : "Save changes"}</button>
+            ${live ? `<a class="btn btn-line" href="${esc(U.profileHref(r.slug))}" target="_blank" rel="noopener">Preview public page ↗</a>` : ""}
+          </div>
+        </div>`;
+      const root = document.createElement("div");
+      const rf = DineRestaurantForm.mount(root, { sections: approved ? ["info", "branding", "profile", "plan"] : ["info", "branding", "plan"], initial: { ...r }, editing: true, planLocked: approved });
+      $("#f-info", el).appendChild(root.querySelector('[data-sec="info"]'));
+      $("#f-brand", el).appendChild(root.querySelector('[data-sec="branding"]'));
+      if (approved) $("#f-profile", el).appendChild(root.querySelector('[data-sec="profile"]'));
+      $("#f-plan", el).appendChild(root.querySelector('[data-sec="plan"]'));
+      if ($("#copy", el)) $("#copy", el).onclick = async () => { try { await navigator.clipboard.writeText(url); U.toast("Link copied."); } catch (e) { getSelection().selectAllChildren($("#url", el)); } };
+      if ($("#resend", el)) $("#resend", el).onclick = async () => { await api.resendVerification(me.email).catch(() => {}); U.toast("Confirmation email sent again."); };
+      $("#save", el).onclick = async () => {
+        $("#ferr", el).hidden = true;
+        if (!rf.validate()) return;
+        const btn = $("#save", el); U.busy(btn, true, "Saving…");
+        try {
+          await api.updateRestaurant(r.id, rf.values(), rf.files(), rf.keptPhotos());
+          if (r.status === "rejected") { await api.resubmit(r.id); U.toast("Resubmitted. Our team will review it again."); }
+          else U.toast(approved ? "Saved. Your public page is updated." : "Application updated.");
+          views.r(el, hash);
+        } catch (e) { U.busy(btn, false); $("#ferr", el).hidden = false; $("#ferr", el).textContent = "We couldn't save: " + e.message; }
+      };
+    },
+
+    async add(el) {
+      el.innerHTML = `
+        <header><div><h1>Add a branch</h1><p class="muted">Each branch gets its own public page and goes through approval separately.</p></div></header>
+        <div class="card stack">
+          <div class="sec-title" style="border:0;padding:0"><h3>Restaurant information</h3></div><div id="a-info"></div>
+          <div class="sec-title"><h3>Branding &amp; photos</h3></div><div id="a-brand"></div>
+          <div class="sec-title"><h3>Subscription</h3></div><div id="a-plan"></div>
+          <label class="check"><input type="checkbox" id="a-ok"> <span>I own or manage this branch and the details and photos are accurate.</span></label>
+          <div class="alert bad" id="aerr" hidden></div>
+          <button class="btn btn-dark" id="a-submit" style="justify-self:start">Submit branch for approval</button>
+        </div>`;
+      const mine = await api.myRestaurants();
+      const base = mine[0] ? { name: mine[0].name, category: mine[0].category, cuisine: mine[0].cuisine, instagram: mine[0].instagram, website: mine[0].website, description: mine[0].description, plan: "free" } : { plan: "free" };
+      const root = document.createElement("div");
+      const rf = DineRestaurantForm.mount(root, { sections: ["info", "branding", "plan"], initial: base });
+      $("#a-info", el).appendChild(root.querySelector('[data-sec="info"]'));
+      $("#a-brand", el).appendChild(root.querySelector('[data-sec="branding"]'));
+      $("#a-plan", el).appendChild(root.querySelector('[data-sec="plan"]'));
+      if (mine[0]) $("#a-info", el).insertAdjacentHTML("afterbegin", `<p class="alert info small">We've copied the brand details from ${esc(mine[0].name)}. Change the location and contact number for this branch.</p>`);
+      $("#a-submit", el).onclick = async () => {
+        $("#aerr", el).hidden = true;
+        if (!rf.validate()) return;
+        if (!$("#a-ok", el).checked) { $("#aerr", el).hidden = false; $("#aerr", el).textContent = "Please confirm the statement above."; return; }
+        const btn = $("#a-submit", el); U.busy(btn, true, "Uploading and submitting…");
+        try { const { id } = await api.addBranch(rf.values(), rf.files()); U.toast("Branch submitted for approval."); location.hash = "r-" + id; }
+        catch (e) { U.busy(btn, false); $("#aerr", el).hidden = false; $("#aerr", el).textContent = "We couldn't submit this branch: " + e.message; }
+      };
+    },
+
+    async settings(el) {
+      el.innerHTML = `<header><div><h1>Account settings</h1><p class="muted">Owner details, login and security.</p></div></header><div class="stack" id="st"></div>`;
+      DineSettings.render($("#st", el), me, { onSaved: async () => { me = await api.me(); who(); views.settings(el); } });
+    }
+  };
+  U.tabs($("#nav"), $("#main"), views, "restaurants");
+  api.myRestaurants().then(rows => { const p = rows.filter(r => ["pending", "awaiting_verification"].includes(r.status)).length; $("#navCount").hidden = !p; $("#navCount").textContent = p; });
+})();
+</script>
+</body>
+</html>
