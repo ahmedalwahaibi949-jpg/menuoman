@@ -67,6 +67,23 @@ section.s{padding:clamp(70px,10vw,140px) 0;border-top:1px solid var(--line)}
 .sum{margin-top:30px;background:var(--panel);border:1.5px solid var(--line);border-radius:20px;padding:20px}
 .sum p{font-size:15px;opacity:.8;margin-bottom:14px}
 @media(max-width:860px){.cfg{grid-template-columns:1fr}.stage{position:relative;top:0;max-height:none;aspect-ratio:1/1.05}.steps{grid-template-columns:1fr}.opts.two{grid-template-columns:1fr}}
+/* plans etc */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{background:var(--panel);border:1.5px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.plan.hot{border-color:var(--ac)}
+.plan h3{font-size:26px}.pp{font:700 20px 'Reem Kufi';color:var(--ac)}
+.plan ul{list-style:none;display:grid;gap:8px;margin:6px 0 14px;font-size:15.5px;flex:1}
+.plan li::before{content:"✓";color:var(--ac);margin-inline-end:8px;font-weight:700}
+.cmp{width:100%;border-collapse:collapse;font-size:16px}
+.cmp th,.cmp td{text-align:right;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp th{font-weight:600;opacity:.6;font-size:14px}.cmp td:last-child{color:var(--ac);font-weight:600}
+.occ{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:center}
+.occ .art{aspect-ratio:16/10;border-radius:22px;background:linear-gradient(135deg,#B3202A 0 34%,#fff 34% 66%,#1C8A4C 66%);position:relative;overflow:hidden}
+.occ .art::after{content:"18 نوفمبر";position:absolute;inset:0;display:grid;place-items:center;font:700 clamp(40px,7vw,84px) 'Reem Kufi';color:#15100D;mix-blend-mode:multiply}
+details{border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font:700 20px 'Reem Kufi';list-style:none}details p{opacity:.75;margin-top:8px;max-width:40em}
+#cta2{text-align:center}#cta2 h2{font-size:clamp(38px,6vw,84px)}
+.nav{display:flex;gap:22px;font-size:15px}.nav a{text-decoration:none;opacity:.8}.nav a:hover{opacity:1}
+@media(max-width:860px){.plans,.occ{grid-template-columns:1fr}.nav{display:none}}
 /* work */
 .work{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center}
 .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -75,12 +92,20 @@ section.s{padding:clamp(70px,10vw,140px) 0;border-top:1px solid var(--line)}
 footer{border-top:1px solid var(--line);text-align:center;padding:28px 20px;font-size:14px;opacity:.65}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style></head><body>
-<div class="top"><span class="logo">منيو عُمان</span><a class="pill" href="#" data-wa>تواصل معي</a></div>
+<div class="top"><span class="logo">منيو عُمان</span><nav class="nav"><a href="#why">ليش أنا</a><a href="#build">صمّم منيوك</a><a href="#plans">الباقات</a><a href="#work">أعمالي</a><a href="#faq">أسئلة</a></nav><a class="pill" href="#" data-wa>تواصل معي</a></div>
 <header class="hero"><div class="glow"></div>
 <img class="fl a" data-p=".05" src="assets/img/karam.webp" alt=""><img class="fl b" data-p=".1" src="assets/img/herbs.webp" alt=""><img class="fl c" data-p=".16" src="assets/img/talqeema.webp" alt=""><img class="fl d" data-p=".08" src="assets/img/lemoncake.webp" alt="">
 <div class="wrap"><h1>أصمم لمطعمك منيو يتحرك.</h1><p>الزبون يمسح كود QR فيشوف أطباقك كبيرة، وتتحرك تحت إصبعه، ويطلب بضغطة.</p><div class="cta"><a class="pill" href="#build">صمّم منيوك الحين</a><a class="pill ghost" href="#how">كيف يشتغل</a></div></div></header>
 <section class="s" id="how"><div class="wrap"><h2>كيف يشتغل</h2><p class="lead">بدل ورقة المنيو، كود صغير على الطاولة يفتح منيو حي على جوال الزبون.</p>
 <div class="steps"><div class="step"><small>الخطوة ١</small><h3>يمسح الكود</h3><p>بكاميرا الجوال، بدون تطبيق ولا تحميل.</p></div><div class="step"><small>الخطوة ٢</small><h3>يتصفح الأطباق</h3><p>صورة كبيرة لكل طبق، وتتحرك مع كل ضغطة.</p></div><div class="step"><small>الخطوة ٣</small><h3>يطلب</h3><p>يرسل طلبه لكم، أو ينادي النادل وهو عارف وش يبي.</p></div></div></div></section>
+<section class="s" id="why"><div class="wrap"><h2>ليش منيو مصمم لك؟</h2><p class="lead">المنصات الجاهزة تعطيك قالب وتغيّر لك اللون. أنا أصمم المنيو لمطعمك وحده.</p>
+<table class="cmp"><tr><th></th><th>منيو من قالب جاهز</th><th>منيو مصمم لمطعمك</th></tr>
+<tr><td>الشكل</td><td>ثيم ولون، يشبه مطاعم ثانية</td><td>هويتك وخطك وصور أطباقك</td></tr>
+<tr><td>الحركة</td><td>تصفح عادي</td><td>حركة توقيع تميّز مطعمك</td></tr>
+<tr><td>المناسبات</td><td>نفس الشكل طول السنة</td><td>ثيمة للعيد الوطني ورمضان</td></tr>
+<tr><td>شاشة المطعم</td><td>غير موحّدة مع المنيو</td><td>نفس الهوية على الشاشة وعلى الجوال</td></tr>
+<tr><td>الطلب والدفع</td><td>داخل نظامهم</td><td>يرتبط بنظامك أو بواتساب</td></tr></table></div></section>
+<section class="s" id="plans"><div class="wrap"><h2>الباقات</h2><p class="lead">اختر باقة، وبعدها صمّم منيوك وشوفه قدامك.</p><div class="plans"><div class="plan"><h3>منيو QR</h3><p class="pp">السعر عند الطلب</p><ul><li>تصميم خاص بهويتك</li><li>نمط حركة من 5 أنماط</li><li>رابط المنيو وكود QR</li><li>يشتغل بدون تطبيق</li></ul><button class="pill ghost" data-pick="0">اختر هذي الباقة</button></div><div class="plan hot"><h3>QR + شاشة</h3><p class="pp">السعر عند الطلب</p><ul><li>كل ما في منيو QR</li><li>عرض بنفس الهوية لشاشة المطعم</li><li>يتبدّل الطبق تلقائياً</li></ul><button class="pill" data-pick="1">اختر هذي الباقة</button></div><div class="plan"><h3>مع التحديث</h3><p class="pp">السعر عند الطلب</p><ul><li>كل ما في QR + شاشة</li><li>تعديل الأسعار والأطباق عند الطلب</li><li>ثيمة للمناسبات: العيد الوطني، رمضان</li></ul><button class="pill ghost" data-pick="2">اختر هذي الباقة</button></div></div></div></section>
 <section class="s" id="build"><div class="wrap"><h2>اختر منيوك</h2><p class="lead">غيّر أي خيار وشوف الشاشة تتبدّل قدامك. اضغط على الطبق لتجرب الحركة.</p>
 <div class="cfg"><div class="stage s1" id="stage" role="button" tabindex="0" aria-label="جرّب الحركة"><div class="bgword">طبق</div><div class="plate"></div>
 <svg class="ring" viewBox="0 0 400 400"><defs><path id="rp" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/></defs><text><textPath href="#rp">طبقك هنا · يتحرك مع لمستك · طبقك هنا · يتحرك مع لمستك ·</textPath></text></svg>
@@ -90,7 +115,14 @@ footer{border-top:1px solid var(--line);text-align:center;padding:28px 20px;font
 <h3>الباقة</h3><div class="opts"><button class="opt pk" data-k="pk" data-v="0"><b>منيو QR</b><span>منيو تفاعلي برابط وكود QR جاهز للطباعة على الطاولات.</span></button><button class="opt pk on" data-k="pk" data-v="1"><b>QR + شاشة</b><span>نفس المنيو، مع عرض يتحرك على شاشة داخل المطعم.</span></button><button class="opt pk" data-k="pk" data-v="2"><b>مع التحديث</b><span>كل ما فوق، وأعدّل لك الأسعار والأطباق متى ما طلبت.</span></button></div>
 <h3>إضافات <small>اختياري</small></h3><div class="opts two"><button class="opt ad" data-k="ad" data-v="0" aria-pressed="false"><b>لغتين</b><span>عربي وإنجليزي في نفس المنيو</span></button><button class="opt ad" data-k="ad" data-v="1" aria-pressed="false"><b>طلب واتساب</b><span>الزبون يرسل طلبه لرقمكم مباشرة</span></button><button class="opt ad" data-k="ad" data-v="2" aria-pressed="false"><b>رابط حساباتكم</b><span>إنستغرام وموقع المطعم على الخريطة</span></button><button class="opt ad" data-k="ad" data-v="3" aria-pressed="false"><b>كارت الطاولة</b><span>تصميم كارت QR جاهز للطباعة</span></button></div>
 <div class="sum"><p id="sum"></p><a class="pill" href="#" id="send">أرسل اختياري على واتساب</a></div></div></div></div></section>
-<section class="s"><div class="wrap work"><div><h2>من أعمالي</h2><p class="lead" style="margin-bottom:22px">منيو وشاشة عرض لكوفي «نعنع». شاي وحلويات وفطائر، بصور كبيرة وحركة خفيفة.</p><a class="pill ghost" href="nana/">افتح منيو نعنع</a></div><div class="gal"><img src="assets/img/waffle6.webp" alt="" loading="lazy"><img src="assets/img/trifle.webp" alt="" loading="lazy"><img src="assets/img/lemoncake.webp" alt="" loading="lazy"><img src="assets/img/nuts.webp" alt="" loading="lazy"><img src="assets/img/combo_waffle.webp" alt="" loading="lazy"><img src="assets/img/talqeema.webp" alt="" loading="lazy"><img src="assets/img/mint.webp" alt="" loading="lazy"><img src="assets/img/karkade.webp" alt="" loading="lazy"></div></div></section>
+<section class="s" id="work"><div class="wrap work"><div><h2>من أعمالي</h2><p class="lead" style="margin-bottom:22px">منيو وشاشة عرض لكوفي «نعنع». شاي وحلويات وفطائر، بصور كبيرة وحركة خفيفة.</p><a class="pill ghost" href="nana/">افتح منيو نعنع</a></div><div class="gal"><img src="assets/img/waffle6.webp" alt="" loading="lazy"><img src="assets/img/trifle.webp" alt="" loading="lazy"><img src="assets/img/lemoncake.webp" alt="" loading="lazy"><img src="assets/img/nuts.webp" alt="" loading="lazy"><img src="assets/img/combo_waffle.webp" alt="" loading="lazy"><img src="assets/img/talqeema.webp" alt="" loading="lazy"><img src="assets/img/mint.webp" alt="" loading="lazy"><img src="assets/img/karkade.webp" alt="" loading="lazy"></div></div></section>
+<section class="s"><div class="wrap occ"><div class="art" role="img" aria-label="ألوان العيد الوطني"></div><div><h2>ثيمات المناسبات</h2><p class="lead" style="margin-bottom:22px">العيد الوطني، رمضان، العيد. منيوك يلبس المناسبة ويرجع لهويتك بعدها.</p><a class="pill" href="#" data-wa>أبي ثيمة العيد الوطني</a></div></div></section>
+<section class="s" id="faq"><div class="wrap"><h2>أسئلة</h2>
+<details><summary>الزبون يحتاج تطبيق؟</summary><p>لا. يمسح الكود بالكاميرا ويفتح المنيو في المتصفح.</p></details>
+<details><summary>وش أرسل لك؟</summary><p>اللوقو وصور الأطباق والأسعار وألوان مطعمك. وأنا أرتب الباقي.</p></details>
+<details><summary>أقدر أغيّر الأسعار والأطباق؟</summary><p>أكيد. مع باقة التحديث أعدّلها لك متى ما طلبت.</p></details>
+<details><summary>الطلب والدفع؟</summary><p>المنيو يربط الزبون بنظام طلباتك أو بواتساب. أنا ما أدير الدفع.</p></details></div></section>
+<section class="s" id="cta2"><div class="wrap"><h2>خلنا نسوي منيو مطعمك.</h2><p class="lead" style="margin:0 auto 26px">ابعث لي اللوقو وصور الأطباق، وأجهّز لك نموذج.</p><a class="pill" href="#" data-wa>كلمني على واتساب</a></div></section>
 <footer>منيو عُمان · أحمد الوهيبي · 95989547</footer>
 <script>
 const PAL=[["#F2552C", "#1C0E0A", "#7A2410"], ["#9DB246", "#12170C", "#4A5A1E"], ["#2FC59A", "#0A1612", "#0F6B52"], ["#F2B632", "#17120A", "#7A5A10"], ["#EC5C97", "#1A0C13", "#7B1E49"], ["#4E8CF0", "#0A1020", "#1F3F85"]],STY=["إديتوريال", "بوستر", "الألوان المتحولة", "الأطباق الدائرية", "المدار"],PK=["منيو QR", "QR + شاشة", "مع التحديث"],AD=["لغتين", "طلب واتساب", "رابط حساباتكم", "كارت الطاولة"];
@@ -110,5 +142,6 @@ stage.onclick=tap;stage.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.prevent
 document.querySelectorAll('[data-wa]').forEach(a=>a.href='https://wa.me/96895989547?text='+encodeURIComponent('السلام عليكم، شفت موقعك وأبي منيو تفاعلي لمطعمي.'));
 /* hero parallax */
 const fl=$$('.fl');if(!matchMedia('(prefers-reduced-motion:reduce)').matches){addEventListener('scroll',()=>{const y=scrollY;if(y<innerHeight*1.2)fl.forEach(f=>f.style.transform='translateY('+(-y*f.dataset.p*6)+'px)')},{passive:true})}
+$$('[data-pick]').forEach(b=>b.onclick=()=>{st.pk=+b.dataset.pick;$$('[data-k="pk"]').forEach(x=>x.classList.toggle('on',+x.dataset.v===st.pk));sum();document.getElementById('build').scrollIntoView()});
 paint();sum();
 </script></body></html>
