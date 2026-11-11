@@ -1,0 +1,20 @@
+{
+ "id": "C-018",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الثلج · الإيطالي",
+  "en": "Ice Orbit · Italian"
+ },
+ "palette": "ice",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "italian",
+ "reveal": "doors"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-059",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج الشفق · البرغر",
+  "en": "Aurora Glass · Burger"
+ },
+ "palette": "glass-aurora",
+ "fonts": [
+  "alex",
+  "anton"
+ ],
+ "cuisine": "burger",
+ "reveal": "doors"
+}

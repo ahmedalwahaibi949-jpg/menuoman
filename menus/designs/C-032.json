@@ -1,0 +1,20 @@
+{
+ "id": "C-032",
+ "set": "interactive",
+ "family": "susan",
+ "familyName": {
+  "ar": "الطاولة الدوّارة",
+  "en": "Lazy Susan"
+ },
+ "name": {
+  "ar": "طاولة الخوخ · رمضان",
+  "en": "Peach Table · Ramadan"
+ },
+ "palette": "blush",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "page"
+}

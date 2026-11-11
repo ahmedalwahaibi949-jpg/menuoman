@@ -1,0 +1,20 @@
+{
+ "id": "C-060",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج الغروب · الإيطالي",
+  "en": "Sunset Glass · Italian"
+ },
+ "palette": "glass-sunset",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "italian",
+ "reveal": "circle"
+}

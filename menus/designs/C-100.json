@@ -1,0 +1,20 @@
+{
+ "id": "C-100",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الليلك · رمضان",
+  "en": "Lilac Bento · Ramadan"
+ },
+ "palette": "lilac",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "puzzle"
+}

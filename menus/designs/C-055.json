@@ -1,0 +1,20 @@
+{
+ "id": "C-055",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب البرقوق · الإيطالي",
+  "en": "Plum Doors · Italian"
+ },
+ "palette": "plum",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "italian",
+ "reveal": "dive"
+}

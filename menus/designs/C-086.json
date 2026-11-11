@@ -1,0 +1,20 @@
+{
+ "id": "C-086",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الزمرد · البرغر",
+  "en": "Emerald Reel · Burger"
+ },
+ "palette": "emerald-gold",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "burger",
+ "reveal": "blinds"
+}

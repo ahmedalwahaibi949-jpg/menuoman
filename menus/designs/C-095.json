@@ -1,0 +1,20 @@
+{
+ "id": "C-095",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الخردل · رمضان",
+  "en": "Mustard Bento · Ramadan"
+ },
+ "palette": "mustard",
+ "fonts": [
+  "alex",
+  "anton"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "curtain"
+}

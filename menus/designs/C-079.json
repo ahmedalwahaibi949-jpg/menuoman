@@ -1,0 +1,20 @@
+{
+ "id": "C-079",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الجمر · المقهى",
+  "en": "Ember Reel · Café"
+ },
+ "palette": "black-orange",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "cafe",
+ "reveal": "dive"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-078",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الغابة · الشواء",
+  "en": "Forest Reel · Grill"
+ },
+ "palette": "forest",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "grill",
+ "reveal": "curtain"
+}

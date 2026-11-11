@@ -1,0 +1,20 @@
+{
+ "id": "C-005",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود الزعفران · البرغر",
+  "en": "Saffron Spine · Burger"
+ },
+ "palette": "saffron",
+ "fonts": [
+  "ruqaa",
+  "bodoni"
+ ],
+ "cuisine": "burger",
+ "reveal": "dive"
+}

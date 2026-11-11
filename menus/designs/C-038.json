@@ -1,0 +1,20 @@
+{
+ "id": "C-038",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "كتاب الحجر · رمضان",
+  "en": "Stone Book · Ramadan"
+ },
+ "palette": "stone",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "dive"
+}

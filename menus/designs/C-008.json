@@ -1,0 +1,20 @@
+{
+ "id": "C-008",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود الحجر · المقهى",
+  "en": "Stone Spine · Café"
+ },
+ "palette": "stone",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "cafe",
+ "reveal": "mask"
+}

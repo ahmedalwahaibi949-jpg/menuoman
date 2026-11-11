@@ -1,0 +1,20 @@
+{
+ "id": "C-004",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود الثلج · رمضان",
+  "en": "Ice Spine · Ramadan"
+ },
+ "palette": "ice",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "curtain"
+}

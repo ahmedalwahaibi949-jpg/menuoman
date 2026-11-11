@@ -1,0 +1,20 @@
+{
+ "id": "C-037",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "كتاب الفيروز · المقهى",
+  "en": "Turquoise Book · Café"
+ },
+ "palette": "teal-coral",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "cafe",
+ "reveal": "curtain"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-016",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الفحم · رمضان",
+  "en": "Charcoal Orbit · Ramadan"
+ },
+ "palette": "charcoal-mustard",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "mask"
+}

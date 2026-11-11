@@ -1,0 +1,20 @@
+{
+ "id": "C-092",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الفيروز · الإيطالي",
+  "en": "Turquoise Bento · Italian"
+ },
+ "palette": "teal-coral",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "italian",
+ "reveal": "doors"
+}
