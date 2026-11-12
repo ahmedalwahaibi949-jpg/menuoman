@@ -23,6 +23,15 @@
   const cfg = await (await fetch('designs/' + id + '.json')).json();
   document.title = cfg.name.ar + ' · ' + cfg.id;
   const lang = q.get('lang') === 'en' ? 'en' : 'ar';
+  // Personalised demo: ?name=<restaurant> shows that name on the cover and header instead of the sample one.
+  const clean = s => (s || '').replace(/[<>&"'`\\]/g, '').trim().slice(0, 40);
+  const nameAr = clean(q.get('name')), nameEn = clean(q.get('name_en')) || nameAr;
+  if (nameAr) {
+    const cu = MENU_DATA.cuisines[cfg.cuisine];
+    MENU_DATA.cuisines[cfg.cuisine] = { ...cu, ar: nameAr, en: nameEn };
+    cfg.name = { ar: 'نسخة تجريبية', en: nameEn };
+    document.title = nameAr;
+  }
   await document.fonts.ready.catch(() => {});
   MenuEngine.mount(document.getElementById('app'), cfg, { lang, record: q.get('record') === '1', onDone: () => parent.postMessage({ done: id }, '*') });
 })();
