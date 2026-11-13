@@ -11,6 +11,13 @@ import { About, Contact, NotFound, Portfolio, Pricing, ProjectPage, ServiceDetai
 // The portal and admin dashboard load only when opened, keeping the public pages fast.
 const Portal = lazy(() => import("./pages/Portal"));
 const Admin = lazy(() => import("./pages/Admin"));
+// TV menu board studio (its own chunk, with the 30 designs).
+const BoardsGallery = lazy(() => import("./boards/Pages").then(m => ({ default: m.BoardsGallery })));
+const BoardPreview = lazy(() => import("./boards/Pages").then(m => ({ default: m.BoardPreview })));
+const Display = lazy(() => import("./boards/Pages").then(m => ({ default: m.Display })));
+const QrMenu = lazy(() => import("./boards/Pages").then(m => ({ default: m.QrMenu })));
+const Credits = lazy(() => import("./boards/Pages").then(m => ({ default: m.Credits })));
+const Studio = lazy(() => import("./boards/Studio"));
 
 function Loader() {
   const { ready } = useApp();
@@ -26,6 +33,9 @@ function App() {
       <Loader />
       <Suspense fallback={<div className="grid min-h-screen place-items-center bg-paper text-slate">…</div>}>
         <Routes>
+          {/* Full-screen pages with no site navigation: the TV display and the QR menu */}
+          <Route path="display/:id" element={<Display />} />
+          <Route path="m/:id" element={<QrMenu />} />
           <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="services" element={<Services />} />
@@ -35,6 +45,10 @@ function App() {
             <Route path="pricing" element={<Pricing />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="menu-boards" element={<BoardsGallery />} />
+            <Route path="menu-boards/:id" element={<BoardPreview />} />
+            <Route path="studio" element={<Studio />} />
+            <Route path="credits" element={<Credits />} />
             <Route path="portal" element={<Portal />} />
             <Route path="admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />

@@ -85,3 +85,45 @@ export const Arrow = ({ className = "" }: { className?: string }) => (
 export const Check = () => (
   <svg className="mt-1 h-4 w-4 flex-none text-teal-600" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" /></svg>
 );
+
+/** 3D tilt: the child leans toward the pointer and a soft light follows it. Still under reduced-motion and on touch. */
+export function Tilt({ children, className = "", max = 9 }: { children: ReactNode; className?: string; max?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches || matchMedia("(hover: none)").matches) return;
+    const move = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.style.setProperty("--ry", `${(x - .5) * max * 2}deg`); el.style.setProperty("--rx", `${(.5 - y) * max * 2}deg`);
+      el.style.setProperty("--gx", `${x * 100}%`); el.style.setProperty("--gy", `${y * 100}%`); el.style.setProperty("--go", "1");
+    };
+    const leave = () => { el.style.setProperty("--ry", "0deg"); el.style.setProperty("--rx", "0deg"); el.style.setProperty("--go", "0"); };
+    el.addEventListener("pointermove", move); el.addEventListener("pointerleave", leave);
+    return () => { el.removeEventListener("pointermove", move); el.removeEventListener("pointerleave", leave); };
+  }, [max]);
+  return (
+    <div ref={ref} className={`tilt ${className}`}>
+      <div className="tilt-inner">{children}<span className="tilt-glare" aria-hidden="true" /></div>
+    </div>
+  );
+}
+
+/** Layers inside move by different amounts as the pointer moves, giving depth. Mark layers with data-depth="0.5". */
+export function useParallax<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches || matchMedia("(hover: none)").matches) return;
+    const layers = [...el.querySelectorAll<HTMLElement>("[data-depth]")];
+    const move = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      layers.forEach(l => { const d = +(l.dataset.depth || 0); l.style.translate = `${-x * d * 60}px ${-y * d * 60}px`; });
+      el.style.setProperty("--prx", `${-y * 8}deg`); el.style.setProperty("--pry", `${x * 10}deg`);
+    };
+    const leave = () => { layers.forEach(l => { l.style.translate = "0 0"; }); el.style.setProperty("--prx", "0deg"); el.style.setProperty("--pry", "0deg"); };
+    const host = el.closest("section") || el;
+    host.addEventListener("pointermove", move as EventListener); host.addEventListener("pointerleave", leave);
+    return () => { host.removeEventListener("pointermove", move as EventListener); host.removeEventListener("pointerleave", leave); };
+  }, []);
+  return ref;
+}

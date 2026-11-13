@@ -18,7 +18,8 @@ export type Pricing = { currency: string; packs: Pack[]; included: Bi[]; extra: 
 export type Site = { whatsapp: string; email: string; instagram: string; linkedin: string; placeholder: boolean };
 export type Testimonial = { id: string; name: string; company: string; quote: Bi; published: boolean };
 export type About = { intro: Bi; mission: Bi; vision: Bi; values: { title: Bi; text: Bi }[]; approach: Bi };
-export type Content = { services: Service[]; projects: Project[]; pricing: Pricing; site: Site; testimonials: Testimonial[]; about: About };
+export type BoardsContent = { hidden: string[]; pricing: { setup: number | null; monthly: number | null } };
+export type Content = { services: Service[]; projects: Project[]; pricing: Pricing; site: Site; testimonials: Testimonial[]; about: About; boards: BoardsContent };
 
 const b = (en: string, ar: string): Bi => ({ en, ar });
 
@@ -135,6 +136,7 @@ export const DEFAULTS: Content = {
   },
   site: { whatsapp: "+968 0000 0000", email: "hello@fikradigital.example", instagram: "https://instagram.com/", linkedin: "https://linkedin.com/", placeholder: true },
   testimonials: [],
+  boards: { hidden: [], pricing: { setup: null, monthly: null } },
   about: {
     intro: b("FIKRA DIGITAL combines design, technology and practical business thinking to build modern digital solutions for businesses in Oman.",
       "تجمع فكرة الرقمية بين التصميم والتقنية والتفكير العملي في الأعمال لبناء حلول رقمية حديثة للأعمال في عُمان."),

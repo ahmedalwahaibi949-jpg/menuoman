@@ -2,6 +2,7 @@
 // DEMO: the same API backed by localStorage, so the whole site can be tried before Supabase is connected.
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { DEFAULTS, type Content } from "./content";
+import type { Menu, Settings } from "../boards/boards";
 
 export type Role = "customer" | "admin";
 export type User = { id: string; email: string; full_name: string; company: string; phone: string; role: Role; created_at: string };
@@ -10,7 +11,10 @@ export type ProjectRec = { id: string; customer_id: string; title: string; servi
 export type RequestRec = { id: string; customer_id: string; project_id: string | null; subject: string; body: string; status: "open" | "in_progress" | "done"; created_at: string };
 export type Invoice = { id: string; customer_id: string; project_id: string | null; number: string; amount: number; status: "due" | "paid"; due_date: string; created_at: string };
 export type Message = { id: string; customer_id: string; body: string; from_admin: boolean; created_at: string };
-export type Tables = { enquiries: Enquiry; projects: ProjectRec; requests: RequestRec; invoices: Invoice; messages: Message; profiles: User };
+export type BoardData = { menu: Menu; settings: Settings };
+/** A restaurant's menu: one record feeds the TV screens, the promo slides and the QR menu. */
+export type BoardRec = { id: string; owner_id: string; restaurant: string; draft: BoardData; published: BoardData | null; published_at: string | null; status: "trial" | "active" | "paused"; created_at: string };
+export type Tables = { enquiries: Enquiry; projects: ProjectRec; requests: RequestRec; invoices: Invoice; messages: Message; profiles: User; boards: BoardRec };
 export type TableName = keyof Tables;
 
 const URL_ = import.meta.env.VITE_SUPABASE_URL as string | undefined;
@@ -44,7 +48,7 @@ if (LIVE) {
 type DemoUser = User & { pw: string };
 type DemoDb = { users: DemoUser[]; session: string | null; content: Partial<Content>; views: { path: string; at: string }[] } & { [K in Exclude<TableName, "profiles">]: Tables[K][] };
 const DKEY = "fikra-demo-v1";
-const empty = (): DemoDb => ({ users: [], session: null, content: {}, views: [], enquiries: [], projects: [], requests: [], invoices: [], messages: [] });
+const empty = (): DemoDb => ({ users: [], session: null, content: {}, views: [], enquiries: [], projects: [], requests: [], invoices: [], messages: [], boards: [] });
 function load(): DemoDb { try { return { ...empty(), ...(JSON.parse(localStorage.getItem(DKEY) || "null") || {}) }; } catch { return empty(); } }
 function save(db: DemoDb) { try { localStorage.setItem(DKEY, JSON.stringify(db)); } catch { throw new Error("Demo storage is full."); } }
 async function hash(pw: string) {
@@ -66,12 +70,22 @@ const pub = ({ pw: _pw, ...u }: DemoUser): User => u;
 function demoMe(db = load()): User | null { const u = db.users.find(x => x.id === db.session); return u ? pub(u) : null; }
 
 // Who may do what in demo mode. Mirrors the database policies.
-function canRead(t: TableName, me: User | null, row: { customer_id?: string; id?: string }) {
+function canRead(t: TableName, me: User | null, row: { customer_id?: string; id?: string; owner_id?: string }) {
   if (me?.role === "admin") return true;
   if (!me) return false;
   if (t === "enquiries") return false;
   if (t === "profiles") return row.id === me.id;
+  if (t === "boards") return row.owner_id === me.id;
   return row.customer_id === me.id;
+}
+
+function shrinkImage(file: File, max: number): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image(), url = URL.createObjectURL(file);
+    img.onload = () => { const k = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement("canvas"); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k); c.getContext("2d")!.drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url); resolve(c.toDataURL("image/jpeg", 0.78)); };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("Could not read that image.")); };
+    img.src = url;
+  });
 }
 
 // ---------------------------------------------------------------- API
@@ -150,7 +164,7 @@ export const api = {
     if (error) throw error;
     return (data || []) as Tables[T][];
   },
-  async insert<T extends Exclude<TableName, "profiles" | "enquiries">>(t: T, row: Omit<Tables[T], "id" | "created_at">): Promise<void> {
+  async insert<T extends Exclude<TableName, "profiles" | "enquiries" | "boards">>(t: T, row: Omit<Tables[T], "id" | "created_at">): Promise<void> {
     if (!sb) {
       const db = load(), me = demoMe(db);
       if (!me) throw new Error("permission denied");
@@ -187,6 +201,44 @@ export const api = {
     }
     const { error } = await sb.from(t).delete().eq("id", id);
     if (error) throw error;
+  },
+
+  // ----- restaurant menu boards
+  async boardMine(): Promise<BoardRec | null> {
+    if (!sb) { const db = load(), me = demoMe(db); return me ? db.boards.find(x => x.owner_id === me.id) || null : null; }
+    const { data: s } = await sb.auth.getSession(); if (!s.session) return null;
+    const { data, error } = await sb.from("boards").select("*").eq("owner_id", s.session.user.id).order("created_at").limit(1).maybeSingle();
+    if (error) throw error; return (data as BoardRec) ?? null;
+  },
+  async boardSave(id: string | null, restaurant: string, draft: BoardData): Promise<BoardRec> {
+    if (!sb) {
+      const db = load(), me = demoMe(db); if (!me) throw new Error("permission denied");
+      let r = id ? db.boards.find(x => x.id === id && x.owner_id === me.id) : undefined;
+      if (r) Object.assign(r, { restaurant, draft });
+      else { r = { id: uid(), owner_id: me.id, restaurant, draft, published: null, published_at: null, status: "trial", created_at: now() }; db.boards.push(r); }
+      save(db); return r;
+    }
+    const { data: s } = await sb.auth.getSession(); if (!s.session) throw new Error("permission denied");
+    const q = id ? sb.from("boards").update({ restaurant, draft }).eq("id", id).select().single() : sb.from("boards").insert({ owner_id: s.session.user.id, restaurant, draft }).select().single();
+    const { data, error } = await q; if (error) throw error; return data as BoardRec;
+  },
+  async boardPublish(id: string): Promise<void> {
+    if (!sb) { const db = load(), me = demoMe(db); const r = db.boards.find(x => x.id === id && x.owner_id === me?.id); if (!r) throw new Error("permission denied"); r.published = JSON.parse(JSON.stringify(r.draft)); r.published_at = now(); save(db); return; }
+    const { error } = await sb.rpc("board_publish", { board: id }); if (error) throw error;
+  },
+  /** Public: the published menu only. Used by TV display mode and the QR menu. */
+  async boardPublic(id: string): Promise<{ restaurant: string; data: BoardData; published_at: string } | null> {
+    if (!sb) { const r = load().boards.find(x => x.id === id); return r?.published ? { restaurant: r.restaurant, data: r.published, published_at: r.published_at! } : null; }
+    const { data, error } = await sb.rpc("board_public", { board: id }); if (error) throw error;
+    const row = Array.isArray(data) ? data[0] : data; return row ? { restaurant: row.restaurant, data: row.published, published_at: row.published_at } : null;
+  },
+  /** Stores a menu photo and returns its address. */
+  async uploadPhoto(file: File): Promise<string> {
+    if (!sb) return shrinkImage(file, 900);
+    const { data: s } = await sb.auth.getSession(); if (!s.session) throw new Error("permission denied");
+    const path = `${s.session.user.id}/${uid()}.${(file.name.split(".").pop() || "jpg").toLowerCase()}`;
+    const { error } = await sb.storage.from("menu-photos").upload(path, file, { contentType: file.type, cacheControl: "31536000" }); if (error) throw error;
+    return sb.storage.from("menu-photos").getPublicUrl(path).data.publicUrl;
   },
 
   // ----- basic analytics

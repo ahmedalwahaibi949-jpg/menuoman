@@ -13,13 +13,13 @@ export default function Layout() {
   const loc = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const bare = loc.pathname.startsWith("/admin");
+  const bare = loc.pathname.startsWith("/admin") || loc.pathname.startsWith("/studio");
 
   useEffect(() => { setOpen(false); window.scrollTo({ top: 0 }); void api.track(loc.pathname); }, [loc.pathname]);
   useEffect(() => { const f = () => setScrolled(window.scrollY > 12); f(); addEventListener("scroll", f, { passive: true }); return () => removeEventListener("scroll", f); }, []);
 
   const links = [
-    ["/services", t("Services", "الخدمات")], ["/portfolio", t("Work", "أعمالنا")], ["/pricing", t("Pricing", "الأسعار")],
+    ["/services", t("Services", "الخدمات")], ["/menu-boards", t("Menu Boards", "شاشات المنيو")], ["/portfolio", t("Work", "أعمالنا")], ["/pricing", t("Pricing", "الأسعار")],
     ["/about", t("About", "من نحن")], ["/contact", t("Contact", "تواصل")]
   ] as const;
 

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useI18n, useSeo } from "../lib/i18n";
 import { useApp } from "../lib/app";
-import { Arrow, Counter, Reveal } from "../components/ui";
+import { Arrow, Counter, Reveal, Tilt } from "../components/ui";
 import { HeroVisual, ServiceVisual } from "../components/Visuals";
 import { DemoThumb } from "../demos/Demos";
 import { CATEGORIES } from "../lib/content";
@@ -77,8 +77,8 @@ export default function Home() {
         <Reveal><p className="eyebrow">{t("What we do", "ماذا نقدّم")}</p><h2 className="h-sec mt-3 max-w-[18ch]">{t("Four ways we turn ideas into something real.", "أربع طرق نحوّل بها الأفكار إلى واقع.")}</h2></Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {content.services.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 80}>
-              <Link to={`/services/${s.slug}`} className="card group block h-full p-5 transition duration-300 hover:-translate-y-1 hover:border-teal-600">
+            <Reveal key={s.slug} delay={i * 80}><Tilt className="h-full">
+              <Link to={`/services/${s.slug}`} className="card group block h-full p-5 transition-colors duration-300 hover:border-teal-600">
                 <ServiceVisual kind={s.visual} />
                 <div className="mt-5 flex items-start gap-4 px-1 pb-1">
                   <span className="font-display text-[15px] font-bold text-teal-700">{s.n}</span>
@@ -86,7 +86,7 @@ export default function Home() {
                     <span className="mt-3 inline-flex items-center gap-2 text-[14.5px] font-semibold text-navy transition group-hover:gap-3 group-hover:text-teal-700">{t("See details", "التفاصيل")} <Arrow /></span></div>
                 </div>
               </Link>
-            </Reveal>
+            </Tilt></Reveal>
           ))}
         </div>
       </section>
@@ -101,13 +101,13 @@ export default function Home() {
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((p, i) => (
-              <Reveal key={p.slug} delay={(i % 3) * 80}>
-                <Link to={`/portfolio/${p.slug}`} className="card group block overflow-hidden transition duration-300 hover:-translate-y-1">
+              <Reveal key={p.slug} delay={(i % 3) * 80}><Tilt max={6}>
+                <Link to={`/portfolio/${p.slug}`} className="card group block overflow-hidden">
                   <div className="relative"><DemoThumb kind={p.demo} /><div className="absolute start-3 top-3"><ConceptTag /></div>
                     <div className="absolute inset-0 grid place-items-center bg-navy/0 opacity-0 transition duration-300 group-hover:bg-navy/55 group-hover:opacity-100"><span className="btn-primary !min-h-[44px]">{t("Open demo", "افتح العرض")}</span></div></div>
                   <div className="p-5"><span className="text-[13px] font-semibold text-teal-700">{L(CATEGORIES.find(c => c.id === p.category)?.label)}</span><h3 className="mt-1 text-[19px] font-bold">{L(p.title)}</h3><p className="mt-1 text-[15px] text-slate">{L(p.summary)}</p></div>
                 </Link>
-              </Reveal>
+              </Tilt></Reveal>
             ))}
           </div>
         </div>

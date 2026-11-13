@@ -152,11 +152,14 @@ drop policy if exists "admin manages messages" on public.messages;
 create policy "admin manages messages" on public.messages for all to authenticated using (public.is_admin()) with check (public.is_admin());
 
 -- ---------------------------------------------------------------- website content (prices, services, portfolio, …)
+-- (If you ran an earlier version of this file, the allowed keys are refreshed just below the table.)
 create table if not exists public.content (
-  key        text primary key check (key in ('services', 'projects', 'pricing', 'site', 'testimonials', 'about')),
+  key        text primary key check (key in ('services', 'projects', 'pricing', 'site', 'testimonials', 'about', 'boards')),
   value      jsonb not null,
   updated_at timestamptz not null default now()
 );
+alter table public.content drop constraint if exists content_key_check;
+alter table public.content add constraint content_key_check check (key in ('services', 'projects', 'pricing', 'site', 'testimonials', 'about', 'boards'));
 alter table public.content enable row level security;
 drop policy if exists "public reads content" on public.content;
 create policy "public reads content" on public.content for select to anon, authenticated using (true);
@@ -187,3 +190,73 @@ create policy "customers read own files" on storage.objects for select to authen
 drop policy if exists "admin manages files" on storage.objects;
 create policy "admin manages files" on storage.objects for all to authenticated
   using (bucket_id = 'project-files' and public.is_admin()) with check (bucket_id = 'project-files' and public.is_admin());
+
+-- ---------------------------------------------------------------- restaurant menu boards
+-- One row per restaurant menu. `draft` is what the owner edits; `published` is what the TV screens and the QR menu show.
+create table if not exists public.boards (
+  id           uuid primary key default gen_random_uuid(),
+  owner_id     uuid not null references public.profiles (id) on delete cascade default auth.uid(),
+  restaurant   text not null check (char_length(restaurant) between 2 and 80),
+  draft        jsonb not null,
+  published    jsonb,
+  published_at timestamptz,
+  status       text not null default 'trial' check (status in ('trial', 'active', 'paused')),
+  created_at   timestamptz not null default now()
+);
+create index if not exists boards_owner_idx on public.boards (owner_id);
+
+-- Owners edit their draft and name only. Publishing goes through board_publish(); the subscription status is the administrator's.
+create or replace function public.boards_guard()
+returns trigger language plpgsql as $$
+begin
+  if auth.uid() is not null and not public.is_admin() and coalesce(current_setting('fikra.publishing', true), '') <> '1' then
+    if tg_op = 'INSERT' then
+      new.owner_id := auth.uid(); new.status := 'trial'; new.published := null; new.published_at := null; new.created_at := now();
+    else
+      new.owner_id := old.owner_id; new.status := old.status; new.published := old.published; new.published_at := old.published_at; new.created_at := old.created_at;
+    end if;
+  end if;
+  return new;
+end $$;
+drop trigger if exists boards_guard on public.boards;
+create trigger boards_guard before insert or update on public.boards for each row execute function public.boards_guard();
+
+alter table public.boards enable row level security;
+drop policy if exists "owner or admin reads boards" on public.boards;
+create policy "owner or admin reads boards" on public.boards for select to authenticated using (owner_id = auth.uid() or public.is_admin());
+drop policy if exists "owner creates boards" on public.boards;
+create policy "owner creates boards" on public.boards for insert to authenticated with check (owner_id = auth.uid());
+drop policy if exists "owner or admin updates boards" on public.boards;
+create policy "owner or admin updates boards" on public.boards for update to authenticated using (owner_id = auth.uid() or public.is_admin()) with check (owner_id = auth.uid() or public.is_admin());
+drop policy if exists "admin deletes boards" on public.boards;
+create policy "admin deletes boards" on public.boards for delete to authenticated using (public.is_admin());
+
+-- Copy the draft to the published version. Only the owner (or the administrator) can do this, and not while paused.
+create or replace function public.board_publish(board uuid)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  perform set_config('fikra.publishing', '1', true);
+  update public.boards set published = draft, published_at = now()
+  where id = board and (owner_id = auth.uid() or public.is_admin()) and (status <> 'paused' or public.is_admin());
+  if not found then raise exception 'not allowed'; end if;
+end $$;
+revoke all on function public.board_publish(uuid) from public;
+grant execute on function public.board_publish(uuid) to authenticated;
+
+-- Public read of the published menu only (never the draft), for the TV display and the QR menu.
+create or replace function public.board_public(board uuid)
+returns table (restaurant text, published jsonb, published_at timestamptz) language sql stable security definer set search_path = public as $$
+  select b.restaurant, b.published, b.published_at from public.boards b where b.id = board and b.published is not null and b.status <> 'paused';
+$$;
+grant execute on function public.board_public(uuid) to anon, authenticated;
+
+-- Menu photos: public to view, each owner uploads into their own folder.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('menu-photos', 'menu-photos', true, 6291456, array['image/png', 'image/jpeg', 'image/webp'])
+on conflict (id) do update set public = true, file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;
+drop policy if exists "owners upload menu photos" on storage.objects;
+create policy "owners upload menu photos" on storage.objects for insert to authenticated
+  with check (bucket_id = 'menu-photos' and (storage.foldername(name))[1] = auth.uid()::text);
+drop policy if exists "owners delete own menu photos" on storage.objects;
+create policy "owners delete own menu photos" on storage.objects for delete to authenticated
+  using (bucket_id = 'menu-photos' and ((storage.foldername(name))[1] = auth.uid()::text or public.is_admin()));

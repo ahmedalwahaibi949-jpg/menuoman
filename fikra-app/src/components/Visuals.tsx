@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useParallax } from "./ui";
 
 /** Hero visual: an idea (spark) connecting into interface pieces. Canvas network behind floating UI cards. */
 export function HeroVisual() {
@@ -27,24 +28,26 @@ export function HeroVisual() {
     return () => { on = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
   }, []);
 
+  const par = useParallax<HTMLDivElement>();
   return (
-    <div className="relative mx-auto aspect-[1/1.02] w-full max-w-[520px]" aria-hidden="true" dir="ltr">
-      <canvas ref={ref} className="absolute inset-0 h-full w-full" />
+    <div ref={par} className="relative mx-auto aspect-[1/1.02] w-full max-w-[520px]" style={{ perspective: "1200px" }} aria-hidden="true" dir="ltr">
+     <div className="parallax-3d absolute inset-0">
+      <canvas ref={ref} className="absolute inset-0 h-full w-full" data-depth="0.15" />
       <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/25 blur-3xl" />
       {/* browser card */}
-      <div className="absolute left-[6%] top-[10%] w-[64%] animate-float rounded-2xl border border-white/10 bg-navy-800/90 p-3 shadow-glow backdrop-blur">
+      <div data-depth="0.5" className="absolute left-[6%] top-[10%] w-[64%] animate-float rounded-2xl border border-white/10 bg-navy-800/90 p-3 shadow-glow backdrop-blur">
         <div className="mb-3 flex gap-1.5"><i className="h-2 w-2 rounded-full bg-white/25" /><i className="h-2 w-2 rounded-full bg-white/25" /><i className="h-2 w-2 rounded-full bg-teal" /></div>
         <div className="h-3 w-2/3 rounded bg-paper/90" /><div className="mt-2 h-2 w-1/2 rounded bg-white/25" />
         <div className="mt-4 grid grid-cols-3 gap-2">{[0, 1, 2].map(i => <div key={i} className="h-14 rounded-lg bg-gradient-to-br from-navy-600 to-navy-700" />)}</div>
         <div className="mt-3 h-7 w-24 rounded-full bg-teal" />
       </div>
       {/* chart card */}
-      <div className="absolute bottom-[12%] left-[0%] w-[44%] animate-float rounded-2xl border border-white/10 bg-navy-800/90 p-3 backdrop-blur" style={{ animationDelay: "-2.5s" }}>
+      <div data-depth="0.9" className="absolute bottom-[12%] left-[0%] w-[44%] animate-float rounded-2xl border border-white/10 bg-navy-800/90 p-3 backdrop-blur" style={{ animationDelay: "-2.5s" }}>
         <div className="mb-2 h-2 w-16 rounded bg-white/30" />
         <div className="flex h-20 items-end gap-1.5">{[38, 62, 45, 80, 58, 96].map((v, i) => <span key={i} className="flex-1 origin-bottom rounded-t bg-gradient-to-t from-teal-700 to-teal" style={{ height: `${v}%`, animation: `grow 1.1s cubic-bezier(.2,.7,.2,1) ${i * 90}ms both` }} />)}</div>
       </div>
       {/* phone card */}
-      <div className="absolute right-[2%] top-[26%] w-[30%] animate-float rounded-[22px] border border-white/15 bg-navy-800/95 p-2 backdrop-blur" style={{ animationDelay: "-4s" }}>
+      <div data-depth="1.3" className="absolute right-[2%] top-[26%] w-[30%] animate-float rounded-[22px] border border-white/15 bg-navy-800/95 p-2 backdrop-blur" style={{ animationDelay: "-4s" }}>
         <div className="rounded-2xl bg-paper p-2">
           <div className="aspect-square rounded-xl bg-gradient-to-br from-teal to-teal-700" />
           <div className="mt-2 h-2 w-3/4 rounded bg-navy/80" /><div className="mt-1.5 h-2 w-1/2 rounded bg-navy/25" />
@@ -52,8 +55,9 @@ export function HeroVisual() {
         </div>
       </div>
       {/* spark */}
-      <svg className="absolute right-[18%] top-[4%] h-12 w-12 animate-pulseDot text-teal" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 6.5 5 11 12 12-7 1-11.4 5.500-12 12-.6-6.500-5-11-12-12 7-1 11.400-5.500 12-12z" /></svg>
+      <svg data-depth="1.8" className="absolute right-[18%] top-[4%] h-12 w-12 animate-pulseDot text-teal" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 6.5 5 11 12 12-7 1-11.4 5.500-12 12-.6-6.500-5-11-12-12 7-1 11.400-5.500 12-12z" /></svg>
       <div className="absolute bottom-[6%] right-[10%] grid grid-cols-3 gap-1.5">{[1, 0, 1, 0, 1, 1, 1, 0, 0].map((v, i) => <i key={i} className={`h-3 w-3 ${v ? "bg-teal" : "bg-white/15"} animate-pulseDot`} style={{ animationDelay: `${i * 160}ms` }} />)}</div>
+     </div>
     </div>
   );
 }

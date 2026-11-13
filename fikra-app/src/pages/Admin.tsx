@@ -2,7 +2,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useI18n, useSeo, type Bi } from "../lib/i18n";
 import { useApp } from "../lib/app";
-import { api, type Enquiry, type Invoice, type Message, type ProjectRec, type RequestRec, type User } from "../lib/store";
+import { Link } from "react-router-dom";
+import { api, type BoardRec, type Enquiry, type Invoice, type Message, type ProjectRec, type RequestRec, type User } from "../lib/store";
+import { DESIGNS, GROUPS, designById } from "../boards/boards";
 import type { Content, Testimonial } from "../lib/content";
 import { Field, useToast } from "../components/ui";
 import { Empty, fmtDate, STATUS_LABEL } from "./Portal";
@@ -24,7 +26,7 @@ export default function Admin() {
   const S = STATUS_LABEL(t);
   const [tab, setTab] = useState("overview");
   const [enq, setEnq] = useState<Enquiry[]>([]); const [users, setUsers] = useState<User[]>([]); const [projects, setProjects] = useState<ProjectRec[]>([]);
-  const [requests, setRequests] = useState<RequestRec[]>([]); const [invoices, setInvoices] = useState<Invoice[]>([]); const [messages, setMessages] = useState<Message[]>([]); const [views, setViews] = useState<{ path: string; at: string }[]>([]);
+  const [requests, setRequests] = useState<RequestRec[]>([]); const [invoices, setInvoices] = useState<Invoice[]>([]); const [messages, setMessages] = useState<Message[]>([]); const [views, setViews] = useState<{ path: string; at: string }[]>([]); const [boards, setBoards] = useState<BoardRec[]>([]);
   const [draft, setDraft] = useState<Content>(content);
   const [sel, setSel] = useState<string | null>(null);
   const [np, setNp] = useState({ customer_id: "", title: "", service: "", summary: "" });
@@ -35,6 +37,7 @@ export default function Admin() {
     if (!isAdmin) return;
     try {
       const [a, b, c, d, e, f, g] = await Promise.all([api.list("enquiries"), api.list("profiles"), api.list("projects"), api.list("requests"), api.list("invoices"), api.list("messages"), api.views()]);
+      setBoards(await api.list("boards"));
       setEnq(a); setUsers(b); setProjects(c); setRequests(d); setInvoices(e); setMessages(f); setViews(g);
     } catch { toast(t("Could not load data.", "تعذّر تحميل البيانات."), true); }
   }, [isAdmin]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -52,7 +55,7 @@ export default function Admin() {
 
   const act = async (fn: () => Promise<void>, ok: string) => { try { await fn(); toast(ok); await load(); } catch { toast(t("That didn't work. Try again.", "لم ينجح ذلك. حاول مجددًا."), true); } };
   const saveContent = async <K extends keyof Content>(k: K) => { try { await api.setContent(k, draft[k]); await reloadContent(); toast(t("Saved. The website is updated.", "تم الحفظ وتحديث الموقع.")); } catch { toast(t("Could not save.", "تعذّر الحفظ."), true); } };
-  const tabs = [["overview", t("Overview", "نظرة عامة"), 0], ["enquiries", t("Enquiries", "الطلبات الواردة"), enq.filter(e => e.status === "new").length], ["customers", t("Customers", "العملاء"), 0], ["projects", t("Projects", "المشاريع"), 0],
+  const tabs = [["overview", t("Overview", "نظرة عامة"), 0], ["enquiries", t("Enquiries", "الطلبات الواردة"), enq.filter(e => e.status === "new").length], ["customers", t("Customers", "العملاء"), 0], ["projects", t("Projects", "المشاريع"), 0], ["boards", t("Menu boards", "شاشات المنيو"), 0],
     ["portfolio", t("Portfolio", "الأعمال"), 0], ["services", t("Services", "الخدمات"), 0], ["pricing", t("Pricing", "الأسعار"), 0], ["testimonials", t("Testimonials", "آراء العملاء"), 0], ["content", t("Website content", "محتوى الموقع"), 0]] as const;
   const Sel = ({ value, opts, onChange }: { value: string; opts: string[]; onChange: (v: string) => void }) => <select className="input !min-h-[40px] !w-auto !py-1 !text-[14px]" value={value} onChange={e => onChange(e.target.value)}>{opts.map(o => <option key={o} value={o}>{S[o] || o}</option>)}</select>;
   const cust = customers.find(c => c.id === sel);
@@ -116,6 +119,21 @@ export default function Admin() {
                 <input className="input" value={upd[p.id] || ""} onChange={e => setUpd({ ...upd, [p.id]: e.target.value })} placeholder={t("Post an update for the client", "انشر تحديثًا للعميل")} aria-label={t("Update", "تحديث")} /><button className="btn-line !px-5">{t("Post", "نشر")}</button></form>
               {p.updates.length > 0 && <p className="mt-2 text-[13.5px] text-slate">{p.updates.length} {t("updates posted", "تحديثات منشورة")}</p>}</article>)) : <Empty title={t("No projects yet", "لا توجد مشاريع بعد")} text={t("Create one for a registered customer.", "أنشئ مشروعًا لعميل مسجّل.")} />}</div>
         </div>}
+
+        {tab === "boards" && <div className="grid gap-6">
+          <section className="card p-6"><h2 className="text-[19px] font-bold">{t("Restaurants", "المطاعم")}</h2>
+            {boards.length ? <div className="mt-4 overflow-x-auto"><table className="tbl"><thead><tr><th>{t("Restaurant", "المطعم")}</th><th>{t("Owner", "المالك")}</th><th>{t("Design", "التصميم")}</th><th>{t("Screens", "الشاشات")}</th><th>{t("Published", "النشر")}</th><th>{t("Subscription", "الاشتراك")}</th><th></th></tr></thead>
+              <tbody>{boards.map(b => <tr key={b.id}><td className="font-semibold">{b.restaurant}</td><td>{name(b.owner_id)}</td><td>{L(designById(b.draft.settings.designId)?.name)}</td><td className="tabular-nums">{b.draft.settings.screens}</td><td>{b.published_at ? fmtDate(b.published_at, lang) : "—"}</td>
+                <td><select className="input !min-h-[40px] !w-auto !py-1 !text-[14px]" value={b.status} onChange={e => act(() => api.update("boards", b.id, { status: e.target.value as BoardRec["status"] }), t("Subscription updated.", "تم تحديث الاشتراك."))}><option value="trial">{t("Trial", "تجريبي")}</option><option value="active">{t("Active", "نشط")}</option><option value="paused">{t("Paused", "موقوف")}</option></select></td>
+                <td>{b.published_at && <Link className="underline" to={`/display/${b.id}`} target="_blank">{t("Open display", "فتح العرض")}</Link>}</td></tr>)}</tbody></table></div>
+              : <p className="mt-2 text-slate">{t("No restaurants yet. They appear when a customer saves a menu in the restaurant dashboard.", "لا توجد مطاعم بعد. تظهر عندما يحفظ عميل منيو في لوحة المطعم.")}</p>}</section>
+          <section className="card grid gap-4 p-6"><h2 className="text-[19px] font-bold">{t("Pricing shown on design pages", "السعر المعروض في صفحات التصاميم")}</h2>
+            <div className="grid gap-4 sm:grid-cols-2"><Field label={t("Design and setup from (OMR)", "التصميم والإعداد من (ر.ع)")} hint={t("Empty shows “quoted per restaurant”", "الفارغ يعرض «يُسعَّر لكل مطعم»")}><input className="input ltr" type="number" min="0" value={draft.boards.pricing.setup ?? ""} onChange={e => setDraft(d => ({ ...d, boards: { ...d.boards, pricing: { ...d.boards.pricing, setup: e.target.value === "" ? null : +e.target.value } } }))} /></Field>
+              <Field label={t("Per screen monthly (OMR)", "لكل شاشة شهريًا (ر.ع)")}><input className="input ltr" type="number" min="0" value={draft.boards.pricing.monthly ?? ""} onChange={e => setDraft(d => ({ ...d, boards: { ...d.boards, pricing: { ...d.boards.pricing, monthly: e.target.value === "" ? null : +e.target.value } } }))} /></Field></div></section>
+          <section className="card p-6"><h2 className="text-[19px] font-bold">{t("Designs shown in the gallery", "التصاميم المعروضة")}</h2><p className="mt-1 text-[14.5px] text-slate">{t("Untick a design to hide it. New layouts are added in code (src/boards/boards.ts).", "أزل العلامة لإخفاء التصميم. تُضاف التصاميم الجديدة في الكود.")}</p>
+            {GROUPS.map(g => <div key={g.id} className="mt-4"><b className="text-[13px] uppercase tracking-wide text-slate">{L(g.label)}</b><div className="mt-2 flex flex-wrap gap-2">{DESIGNS.filter(z => z.group === g.id).map(z => { const on = !draft.boards.hidden.includes(z.id); return (
+              <button key={z.id} aria-pressed={on} onClick={() => setDraft(d => ({ ...d, boards: { ...d.boards, hidden: on ? [...d.boards.hidden, z.id] : d.boards.hidden.filter(x => x !== z.id) } }))} className={`rounded-full px-4 py-2 text-[14px] font-semibold ${on ? "bg-navy text-paper" : "bg-mist text-slate line-through"}`}>{L(z.name)}</button>); })}</div></div>)}</section>
+          <button className="btn-dark justify-self-start" onClick={() => saveContent("boards")}>{t("Save menu board settings", "حفظ إعدادات الشاشات")}</button></div>}
 
         {tab === "portfolio" && <div className="grid gap-4">{draft.projects.map((p, i) => (
           <div key={p.slug} className="card grid gap-4 p-6"><div className="flex items-center justify-between gap-3"><b className="ltr">{p.slug}</b><label className="flex items-center gap-2 text-[15px]"><input type="checkbox" className="h-4 w-4 accent-[#00B3A5]" checked={p.published} onChange={e => setDraft(d => ({ ...d, projects: d.projects.map((x, j) => j === i ? { ...x, published: e.target.checked } : x) }))} />{t("Published", "منشور")}</label></div>
