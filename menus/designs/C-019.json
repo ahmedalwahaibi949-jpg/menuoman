@@ -1,0 +1,20 @@
+{
+ "id": "C-019",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الفيروز · الشواء",
+  "en": "Turquoise Orbit · Grill"
+ },
+ "palette": "teal-coral",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "grill",
+ "reveal": "circle"
+}

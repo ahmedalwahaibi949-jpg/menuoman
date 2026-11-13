@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="Demo inbox · Dine Oman">صندوق العرض · داين عُمان</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>.msg{padding-block:22px;border-bottom:1px solid var(--line);display:grid;gap:6px}.msg.unread b::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#D9932B;margin-inline-start:8px;vertical-align:middle}</style>
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page" style="max-width:760px">
+  <h1 class="title" data-en="Demo inbox">صندوق العرض</h1>
+  <p class="lead" data-en="Emails the live site would send. Use them to try each step.">الرسائل التي سيرسلها الموقع عند الإطلاق. استخدمها لتجربة كل خطوة.</p>
+  <div id="mail" style="margin-top:28px;border-top:1px solid var(--line)"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI;
+  if (api.mode !== "demo") { location.replace("login.html"); return; }
+  const list = api.inbox();
+  await U.chrome();
+  U.$("#mail").innerHTML = list.length ? list.map(m => `<article class="msg ${m.read ? "" : "unread"}">
+    <span class="hint ltr" style="display:block">${U.esc(m.to.join(", "))} · ${U.dateTime(m.at)}</span>
+    <b>${U.esc(m.subject)}</b><p class="muted">${U.esc(m.body)}</p>
+    ${m.link ? `<p><a class="link" href="${U.esc(m.link)}">${U.esc(m.linkLabel || t("فتح", "Open"))}</a></p>` : ""}</article>`).join("")
+    : `<div class="empty"><b>${t("لا توجد رسائل", "No emails yet")}</b><span>${t("أنشئ حسابًا وستظهر رسالة التأكيد هنا.", "Sign up and the confirmation email appears here.")}</span></div>`;
+  api.markRead();
+  const reset = document.createElement("p"); reset.style.marginTop = "28px";
+  reset.innerHTML = `<button class="link plain" type="button">${t("مسح بيانات العرض التجريبي", "Reset demo data")}</button>`;
+  reset.querySelector("button").onclick = () => { api.reset(); location.href = "login.html"; };
+  U.$("main").appendChild(reset);
+})();
+</script>
+</body>
+</html>

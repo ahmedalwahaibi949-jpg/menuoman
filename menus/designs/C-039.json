@@ -1,0 +1,20 @@
+{
+ "id": "C-039",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "كتاب الزمرد · البرغر",
+  "en": "Emerald Book · Burger"
+ },
+ "palette": "emerald-gold",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "burger",
+ "reveal": "iris"
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="My account · Dine Oman">حسابي · داين عُمان</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page-sm">
+  <nav class="tabs" id="nav" aria-label="Account">
+    <a href="#profile" data-tab="profile" data-en="My profile">الملف الشخصي</a>
+    <a href="#favourites" data-tab="favourites" data-en="Favourites">المفضلة</a>
+    <a href="#recent" data-tab="recent" data-en="Recently viewed">شوهدت مؤخرًا</a>
+    <a href="#reviews" data-tab="reviews" data-en="My reviews">تقييماتي</a>
+    <a href="#settings" data-tab="settings" data-en="Settings">الإعدادات</a>
+  </nav>
+  <section id="main"></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script><script src="js/settings.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$, esc = U.esc;
+  let me = await U.requireRole(["customer"]);
+  await U.chrome({ me });
+  const qs = new URLSearchParams(location.search);
+  const first = () => (me.full_name || "").split(" ")[0];
+  if (qs.has("welcome")) U.toast(t("أهلًا بك في داين عُمان", "Welcome to Dine Oman") + (first() ? U.SEP + first() : ""));
+  if (qs.has("emailchanged")) U.toast(t("تم تحديث بريدك الإلكتروني.", "Your email address is updated."));
+  if (qs.has("denied")) U.toast(t("هذه الصفحة مخصصة لأصحاب المطاعم أو فريق داين عُمان.", "That page is only for restaurant owners or the Dine Oman team."), true);
+  const empty = (title, text) => `<div class="empty"><b>${title}</b><span>${text}</span><a class="link" href="restaurants.html">${t("استكشف المطاعم", "Discover restaurants")}</a></div>`;
+
+  const views = {
+    async profile(el) {
+      const [favs, recent, reviews] = await Promise.all([api.favourites(), api.recentlyViewed(), api.myReviews()]);
+      el.innerHTML = `
+        <div class="head"><h1>${t("مرحبًا", "Hello")} ${esc(first() || "")}</h1><a class="btn" href="restaurants.html">${t("استكشف المطاعم", "Discover restaurants")}</a></div>
+        ${!me.mobile ? `<div class="notice warn" style="margin-bottom:24px">${t("أضف رقم هاتفك لإكمال ملفك.", "Add your mobile number to complete your profile.")} <a href="#settings">${t("إضافة", "Add it")}</a></div>` : ""}
+        <dl class="kv">
+          <dt>${t("الاسم", "Name")}</dt><dd>${esc(me.full_name || "—")}</dd>
+          <dt>${t("البريد", "Email")}</dt><dd class="ltr">${esc(me.email)}</dd>
+          <dt>${t("الهاتف", "Mobile")}</dt><dd class="ltr">${esc(U.fmtPhone(me.mobile) || "—")}</dd>
+          <dt>${t("عضو منذ", "Member since")}</dt><dd>${U.date(me.created_at)}</dd>
+          <dt>${t("النشاط", "Activity")}</dt><dd><a href="#favourites">${favs.length} ${t("مفضلة", "favourites")}</a> · <a href="#recent">${recent.length} ${t("شوهدت", "viewed")}</a> · <a href="#reviews">${reviews.length} ${t("تقييمات", "reviews")}</a></dd>
+        </dl>
+        <p style="margin-top:24px"><a class="link" href="#settings">${t("تعديل الملف الشخصي", "Edit profile")}</a></p>`;
+    },
+    async favourites(el) {
+      const favs = await api.favourites();
+      el.innerHTML = `<div class="head"><h1>${t("المفضلة", "Favourites")}</h1></div>` + (favs.length
+        ? `<div class="grid">${favs.map(f => `<div style="position:relative">${U.rcard(f.restaurant)}<button class="heart" aria-pressed="true" data-id="${f.restaurant.id}" aria-label="${t("إزالة من المفضلة", "Remove from favourites")}">${U.HEART}</button></div>`).join("")}</div>`
+        : empty(t("لا توجد مطاعم مفضّلة", "No favourites yet"), t("اضغط على القلب في صفحة أي مطعم لحفظه هنا.", "Tap the heart on any restaurant to save it here.")));
+      el.querySelectorAll(".heart").forEach(b => b.onclick = async () => { await api.setFavourite(b.dataset.id, false); U.toast(t("أُزيل من المفضلة.", "Removed from favourites.")); views.favourites(el); });
+    },
+    async recent(el) {
+      const rows = await api.recentlyViewed();
+      el.innerHTML = `<div class="head"><h1>${t("شوهدت مؤخرًا", "Recently viewed")}</h1>${rows.length ? `<button class="link plain" id="clear">${t("مسح السجل", "Clear history")}</button>` : ""}</div>` + (rows.length
+        ? `<div class="grid">${rows.map(v => U.rcard(v.restaurant)).join("")}</div>`
+        : empty(t("لا شيء بعد", "Nothing here yet"), t("المطاعم التي تفتحها ستظهر هنا.", "Restaurants you open will appear here.")));
+      if ($("#clear", el)) $("#clear", el).onclick = async () => { await api.clearHistory(); views.recent(el); };
+    },
+    async reviews(el) {
+      const rows = await api.myReviews();
+      el.innerHTML = `<div class="head"><h1>${t("تقييماتي", "My reviews")}</h1></div>` + (rows.length
+        ? `<div style="border-bottom:1px solid var(--line)">${rows.map(r => `<div class="review">
+            <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><b>${r.restaurant ? `<a href="${esc(U.profileHref(r.restaurant.slug))}" style="color:inherit">${esc(U.rname(r.restaurant))}</a>` : t("مطعم غير متاح", "Restaurant no longer listed")}</b>
+            <span class="small">${r.restaurant ? `<a class="link" href="${esc(U.profileHref(r.restaurant.slug))}#review">${t("تعديل", "Edit")}</a> · ` : ""}<button class="link danger" data-del="${r.id}">${t("حذف", "Delete")}</button></span></div>
+            <div class="small muted"><span class="stars">${U.stars(r.rating)}</span> · ${U.date(r.created_at)}</div><p>${esc(r.body)}</p></div>`).join("")}</div>`
+        : empty(t("لم تكتب أي تقييم بعد", "You haven't written a review yet"), t("شارك تجربتك بعد زيارتك القادمة.", "Share your experience after your next visit.")));
+      el.querySelectorAll("[data-del]").forEach(b => U.confirmTap(b, t("اضغط مرة أخرى للحذف", "Tap again to delete"), async () => { await api.deleteReview(b.dataset.del); views.reviews(el); }));
+    },
+    async settings(el) {
+      el.innerHTML = `<div class="head"><h1>${t("الإعدادات", "Settings")}</h1></div><div id="st"></div>`;
+      DineSettings.render($("#st", el), me, { onSaved: async () => { me = await api.me(); views.settings(el); } });
+    }
+  };
+  U.tabs($("#nav"), $("#main"), views, "profile");
+})();
+</script>
+</body>
+</html>

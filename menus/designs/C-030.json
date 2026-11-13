@@ -1,0 +1,20 @@
+{
+ "id": "C-030",
+ "set": "interactive",
+ "family": "susan",
+ "familyName": {
+  "ar": "الطاولة الدوّارة",
+  "en": "Lazy Susan"
+ },
+ "name": {
+  "ar": "طاولة الكرز · الشواء",
+  "en": "Cherry Table · Grill"
+ },
+ "palette": "cream-red",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "grill",
+ "reveal": "dive"
+}

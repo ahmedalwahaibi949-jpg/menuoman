@@ -1,0 +1,20 @@
+{
+ "id": "C-011",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود الكرافت · الإيطالي",
+  "en": "Kraft Spine · Italian"
+ },
+ "palette": "kraft",
+ "fonts": [
+  "alex",
+  "anton"
+ ],
+ "cuisine": "italian",
+ "reveal": "circle"
+}

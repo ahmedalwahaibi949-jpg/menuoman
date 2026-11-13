@@ -1,0 +1,20 @@
+{
+ "id": "C-080",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الليلك · رمضان",
+  "en": "Lilac Reel · Ramadan"
+ },
+ "palette": "lilac",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "iris"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-014",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الرمل · الشواء",
+  "en": "Sand Orbit · Grill"
+ },
+ "palette": "sand-ink",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "grill",
+ "reveal": "iris"
+}

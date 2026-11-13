@@ -1,0 +1,20 @@
+{
+ "id": "C-022",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار السماء · البرغر",
+  "en": "Sky Orbit · Burger"
+ },
+ "palette": "sky",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "burger",
+ "reveal": "dive"
+}

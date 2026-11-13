@@ -1,0 +1,20 @@
+{
+ "id": "C-017",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الكرافت · البرغر",
+  "en": "Kraft Orbit · Burger"
+ },
+ "palette": "kraft",
+ "fonts": [
+  "ruqaa",
+  "bodoni"
+ ],
+ "cuisine": "burger",
+ "reveal": "puzzle"
+}

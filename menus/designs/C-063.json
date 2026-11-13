@@ -1,0 +1,20 @@
+{
+ "id": "C-063",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج البحيرة · البرغر",
+  "en": "Lagoon Glass · Burger"
+ },
+ "palette": "glass-lagoon",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "burger",
+ "reveal": "dive"
+}

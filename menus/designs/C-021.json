@@ -1,0 +1,20 @@
+{
+ "id": "C-021",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الطين · رمضان",
+  "en": "Clay Orbit · Ramadan"
+ },
+ "palette": "terracotta",
+ "fonts": [
+  "markazi",
+  "bodoni"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "curtain"
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="Signing you in · Dine Oman">تسجيل الدخول · داين عُمان</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page"><div class="narrow form" style="text-align:center">
+  <h1 class="title" id="title" data-en="One moment…">لحظة…</h1>
+  <p class="lead" id="msg" style="margin-inline:auto"></p>
+  <p id="cta" hidden><a class="btn" href="login.html" id="ctaLink" data-en="Go to log in">تسجيل الدخول</a></p>
+</div></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$;
+  const qs = new URLSearchParams(location.search), hs = new URLSearchParams(location.hash.slice(1));
+  function stop(title, msg, href) { $("#title").textContent = title; $("#msg").textContent = msg; $("#cta").hidden = false; if (href) $("#ctaLink").href = href; }
+  const linkError = hs.get("error_description") || qs.get("error_description");
+  if (linkError) { await U.chrome({ me: null }); return stop(t("الرابط لا يعمل", "That link didn't work"), t("قد يكون الرابط منتهي الصلاحية. اطلب رابطًا جديدًا.", "The link may have expired. Request a new one.")); }
+  let type = hs.get("type") || qs.get("type");
+  try {
+    if (api.mode === "demo" && qs.get("t")) type = await api.demoConsumeToken(qs.get("t"));
+    else if (api.mode === "live") for (let i = 0; i < 20 && !(await api.session()); i++) await new Promise(r => setTimeout(r, 150));
+  } catch (e) { await U.chrome({ me: null }); return stop(t("الرابط لا يعمل", "That link didn't work"), e.message); }
+  if (type === "recovery") { location.replace("reset-password.html"); return; }
+  const me = await api.me().catch(() => null);
+  await U.chrome({ me });
+  if (!me) return stop(t("تم تأكيد بريدك", "Email confirmed"), t("سجّل الدخول للمتابعة.", "Log in to continue."), "login.html?verified=1");
+  if (type === "email_change") { location.replace(U.HOME[me.role] + "?emailchanged=1#settings"); return; }
+  location.replace(U.HOME[me.role] + "?welcome=1");
+})();
+</script>
+</body>
+</html>

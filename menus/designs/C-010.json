@@ -1,0 +1,20 @@
+{
+ "id": "C-010",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود الجوز · البرغر",
+  "en": "Walnut Spine · Burger"
+ },
+ "palette": "walnut",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "burger",
+ "reveal": "doors"
+}

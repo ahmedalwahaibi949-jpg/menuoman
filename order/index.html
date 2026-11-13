@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>منيو عُمان · اطلب منيو QR متحرك</title>
+<meta name="description" content="منيو QR تفاعلي لمطعمك: الزبون يمسح الكود، يلمس الطبق ويشوفه يتحرك. اختر من 162 تصميمًا واطلبه مباشرة.">
+<meta name="theme-color" content="#ffffff">
+<script>
+/* Language: Arabic (RTL) by default, English via the header switch. */
+(function(){var L=null;try{L=localStorage.getItem("mo-lang")}catch(e){}L=new URLSearchParams(location.search).get("lang")||L||"ar";if(L!=="en")L="ar";
+var h=document.documentElement;h.lang=L;h.dir=L==="ar"?"rtl":"ltr";window.LANG=L;window.t=function(a,e){return L==="en"&&e!=null?e:a};
+document.addEventListener("DOMContentLoaded",function(){if(L!=="en")return;document.querySelectorAll("[data-en]").forEach(function(el){el.innerHTML=el.getAttribute("data-en")});document.querySelectorAll("[data-en-ph]").forEach(function(el){el.placeholder=el.getAttribute("data-en-ph")})})})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<!-- Fonts used inside the menu designs themselves -->
+<link rel="stylesheet" href="../assets/site-fonts.css">
+<link rel="stylesheet" href="../assets/poster-fonts2.css">
+<link rel="stylesheet" href="../assets/menuza-fonts.css">
+<link rel="stylesheet" href="../assets/poster-fonts.css">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../menus/engine/engine.css">
+<style>
+/* One page: pitch → pick a moving menu and see it as the diner does → log in → request. White, Tajawal, one main button per step. */
+:root{--bg:#FFFFFF;--bg-2:#F6F6F4;--fg:#111312;--muted:#6B706E;--line:#E7E8E6;--accent:#0C3B3A;--accent-h:#145650;--soft:#EEF3F2;--ok:#1F7A4D;--ok-bg:#EAF6EF;--bad:#B42318;--bad-bg:#FDECEA;--warn-bg:#FFF5DC;--f:"Tajawal","Segoe UI","Geeza Pro",system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-weight:800;line-height:1.25;text-wrap:balance}
+html[lang=en] h1,html[lang=en] h2{line-height:1.12;letter-spacing:-.015em}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.muted{color:var(--muted)}.small{font-size:14.5px}.ltr{direction:ltr;unicode-bidi:isolate}
+
+.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-weight:800;font-size:20px;color:var(--fg);text-decoration:none}
+.top nav{display:flex;gap:22px;font-size:15.5px;align-items:center}
+.top nav a,.top nav button{color:var(--fg);text-decoration:none;background:none;border:0;font:inherit;cursor:pointer;padding:6px 0}
+.top nav .lang{color:var(--muted)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 28px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:700 17px var(--f);cursor:pointer;text-decoration:none;transition:background .15s}
+.btn:hover{background:var(--accent-h)}
+.btn.block{width:100%}
+.btn.wa{background:#128C4B}.btn.wa:hover{background:#0F7A41}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.link{background:none;border:0;padding:0;font:inherit;color:var(--accent);text-decoration:underline;cursor:pointer}
+.link.plain{color:var(--muted);text-decoration:none}.link.plain:hover{color:var(--fg)}
+.link.danger{color:var(--bad)}
+
+/* Hero */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center;padding-block:64px 72px}
+.hero h1{font-size:clamp(38px,6vw,68px)}
+.hero .lead{font-size:clamp(18px,2vw,21px);color:var(--muted);margin-top:16px;max-width:36ch}
+.hero .go{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-top:32px}
+.phone{width:min(100%,300px);aspect-ratio:9/18.5;border-radius:38px;background:#111;padding:9px;box-shadow:0 30px 60px -24px rgba(0,0,0,.35);justify-self:center}
+.phone .scr{width:100%;height:100%;border-radius:30px;overflow:hidden;background:#000;position:relative}
+
+/* Reasons */
+.reasons{border-block:1px solid var(--line)}
+.reasons .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.reasons div{padding:32px 0;padding-inline-end:28px}
+.reasons b{display:block;font-size:20px;font-weight:800;margin-bottom:4px}
+.reasons p{color:var(--muted);font-size:16px}
+
+section.blk{padding-block:72px}
+.sec-h{max-width:640px;margin-bottom:32px}
+.sec-h h2{font-size:clamp(28px,4vw,40px)}
+.sec-h p{color:var(--muted);font-size:18px;margin-top:8px}
+
+/* Designs + live preview */
+.pick{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:48px;align-items:start}
+.filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:22px;max-width:460px}
+.input{width:100%;min-height:52px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;font:400 16.5px var(--f);color:var(--fg);min-width:0}
+.input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--soft)}
+select.input{appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236B706E' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat left 14px center;padding-inline-end:38px}
+html[dir=ltr] select.input{background-position:right 14px center}
+textarea.input{min-height:100px;resize:vertical;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:22px 14px}
+.tile{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:start;cursor:pointer;display:grid;gap:8px;min-width:0}
+.tile .fr{aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--bg-2);position:relative;outline:1px solid var(--line);pointer-events:none}
+.tile[aria-pressed=true] .fr{outline:3px solid var(--accent);outline-offset:2px}
+.tile b{font-size:14.5px;font-weight:700;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile small{color:var(--muted);font-size:13px;direction:ltr;display:block;text-align:start}
+html[dir=rtl] .tile small{text-align:right}
+.more{margin-top:28px;text-align:center}
+.live{position:sticky;top:80px;display:grid;gap:12px;justify-items:center;text-align:center}
+.live .phone{width:min(100%,232px);border-radius:32px;padding:7px}
+.live .phone .scr{border-radius:26px}
+.live .nm{font-weight:800;font-size:19px}
+.live ol{list-style:none;margin:0;padding:0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--muted);counter-reset:s}
+.live ol li{counter-increment:s}
+.live ol li::before{content:counter(s);display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--soft);color:var(--accent);font-weight:700;font-size:12px;margin-inline-end:6px}
+.qr{display:grid;gap:6px;justify-items:center;font-size:13.5px;color:var(--muted)}
+.qr canvas,.qr img{width:104px;height:104px;image-rendering:pixelated}
+.sheet-x{display:none}
+
+/* Request */
+.req{max-width:560px}
+.form{display:grid;gap:20px}
+.field{display:grid;gap:6px;min-width:0;align-content:start}
+.field>label,.field>.label{font-weight:500;font-size:15.5px}
+.err{font-size:14px;color:var(--bad);display:none}
+.field.invalid .err{display:block}
+.field.invalid .input,.field.invalid .affix{border-color:var(--bad)}
+.affix{display:flex;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;direction:ltr}
+.affix span{display:flex;align-items:center;padding:0 14px;color:var(--muted);background:var(--bg-2);border-right:1px solid var(--line);font-size:15.5px}
+.affix .input{border:0;box-shadow:none!important;border-radius:0}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.opts{display:grid;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.opt{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:15px 18px;cursor:pointer;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.opt:has(input:checked){background:var(--soft)}
+.opt input{width:18px;height:18px;accent-color:var(--accent);margin:0}
+.opt b{font-weight:700}.opt span span{display:block;color:var(--muted);font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer;position:relative}
+.chips input{position:absolute;opacity:0}
+.chips input+span{display:inline-block;font-size:15px;padding:7px 14px;border-radius:99px;border:1px solid var(--line)}
+.chips input:checked+span{background:var(--fg);color:#fff;border-color:var(--fg)}
+.chips input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.chosen{display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 0;border-block:1px solid var(--line)}
+.chosen .fr{width:54px;aspect-ratio:9/16;border-radius:8px;overflow:hidden;background:var(--bg-2);position:relative;pointer-events:none}
+.notice{border-radius:10px;padding:14px 16px;font-size:15.5px}
+.notice.bad{background:var(--bad-bg);color:var(--bad)}.notice.ok{background:var(--ok-bg);color:#155C39}.notice.info{background:var(--bg-2)}
+.alt{color:var(--muted);font-size:15.5px}
+.rows{border-top:1px solid var(--line);margin-top:8px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.row b{font-weight:700}
+.status{font-size:14px;font-weight:500;white-space:nowrap}
+.status::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:currentColor;margin-inline-end:6px}
+.status.draft{color:#B07400}.status.sent{color:var(--ok)}
+.foot{border-top:1px solid var(--line);padding-block:28px calc(28px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14.5px}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:#fff;padding:12px 20px;border-radius:10px;font-size:15.5px;z-index:60;max-width:calc(100% - 32px)}
+
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px;padding-block:44px 52px}
+  .reasons .wrap{grid-template-columns:minmax(0,1fr)}
+  .reasons div{padding:22px 0;border-top:1px solid var(--line)}.reasons div:first-child{border-top:0}
+  section.blk{padding-block:52px}
+  .pick{grid-template-columns:minmax(0,1fr)}
+  /* On phones the live preview opens as a full-screen sheet when a design is tapped */
+  .live{position:fixed;inset:0;z-index:50;background:#fff;padding:16px 20px calc(20px + env(safe-area-inset-bottom,0px));overflow:auto;align-content:start;display:none}
+  .live.on{display:grid}
+  .live .phone{width:min(64vw,270px)}
+  .sheet-x{display:block;justify-self:end}
+  .qr{display:none}
+}
+@media (max-width:560px){.two{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#top" data-en="Menu Oman">منيو عُمان</a>
+  <nav><button type="button" class="lang" id="langBtn"></button><a href="#request" id="navAcc"></a></nav>
+</div></header>
+
+<main id="top">
+  <!-- 1. Pitch -->
+  <section class="hero"><div class="wrap">
+    <div>
+      <h1 data-en="Make your dishes move in front of your customer.">خلّ أطباقك تتحرك قدّام زبونك.</h1>
+      <p class="lead" data-en="I design interactive QR menus for restaurants and cafés in Oman. Your customer scans the code, taps a dish and watches it move before ordering.">أصمم منيو QR تفاعلي للمطاعم والمقاهي في عُمان. زبونك يمسح الكود، يلمس الطبق، ويشوفه يتحرك قبل ما يطلب.</p>
+      <div class="go"><a class="btn" href="#designs" data-en="Choose your design">اختر تصميمك</a><a class="link plain" href="../nana/" data-en="See a real menu: Nana Tea">شوف منيو حقيقي: نعنع</a></div>
+    </div>
+    <div class="phone" aria-hidden="true"><div class="scr" id="heroPhone"></div></div>
+  </div></section>
+
+  <section class="reasons"><div class="wrap">
+    <div><b data-en="The food sells itself">الأكل يبيع نفسه</b><p data-en="Large dish photos that spin, slide and open when touched. Not a PDF.">صور كبيرة للأطباق تدور وتنزلق وتنفتح عند اللمس. مو ملف PDF.</p></div>
+    <div><b data-en="No app to install">بدون تطبيق</b><p data-en="Opens from the phone camera in seconds, in Arabic and English.">ينفتح من كاميرا الهاتف في ثوانٍ، بالعربي والإنجليزي.</p></div>
+    <div><b data-en="Change it with a message">تعديل برسالة</b><p data-en="New price or new dish? Send a WhatsApp message and it's updated.">سعر جديد أو طبق جديد؟ أرسل رسالة واتساب ويتحدّث المنيو.</p></div>
+  </div></section>
+
+  <!-- 2. Pick a design and see it the way the diner does -->
+  <section class="blk" id="designs"><div class="wrap">
+    <div class="sec-h"><h2 id="designsTitle"></h2><p data-en="Tap any design to try it exactly as your customer will see it.">اضغط على أي تصميم وجرّبه مثل ما يشوفه زبونك بالضبط.</p></div>
+    <div class="pick">
+      <div>
+        <div class="filters"><select class="input" id="fFam" aria-label="Style"></select><select class="input" id="fCui" aria-label="Cuisine"></select></div>
+        <div class="grid" id="grid"></div>
+        <p class="more"><button class="link" id="more" type="button" data-en="Show more designs">عرض تصاميم أكثر</button></p>
+      </div>
+      <aside class="live" id="live" aria-live="polite">
+        <button class="link plain sheet-x" type="button" id="liveX" data-en="Close">إغلاق</button>
+        <div class="phone"><div class="scr" id="livePhone"></div></div>
+        <div><div class="nm" id="liveName"></div><div class="small muted ltr" id="liveId"></div></div>
+        <ol><li data-en="Scans the code">يمسح الكود</li><li data-en="Taps the cover">يلمس الغلاف</li><li data-en="Taps a dish">يلمس الطبق</li></ol>
+        <button class="btn block" type="button" id="orderThis" data-en="Request this design">اطلب هذا التصميم</button>
+        <div class="qr" id="qrBox" hidden><div id="qr"></div><span data-en="Scan to try it on your phone">امسح لتجربته على هاتفك</span></div>
+      </aside>
+    </div>
+  </div></section>
+
+  <!-- 3. Log in and request -->
+  <section class="blk" id="request" style="background:var(--bg-2)"><div class="wrap"><div class="req">
+    <!-- a) account -->
+    <div id="authBox" class="form">
+      <div class="sec-h" style="margin-bottom:0"><h2 id="authTitle"></h2><p id="authLead"></p></div>
+      <form id="authForm" class="form" novalidate>
+        <div id="signupOnly" class="form">
+          <div class="field" data-f="name"><label for="aName" data-en="Your name">اسمك</label><input class="input" id="aName" autocomplete="name" maxlength="80"><span class="err" data-en="Enter your name.">أدخل اسمك.</span></div>
+          <div class="field" data-f="rest"><label for="aRest" data-en="Restaurant or café name">اسم المطعم أو المقهى</label><input class="input" id="aRest" maxlength="80"><span class="err" data-en="Enter the restaurant name.">أدخل اسم المطعم.</span></div>
+          <div class="field" data-f="wa"><label for="aWa" data-en="WhatsApp number">رقم الواتساب</label><div class="affix"><span>+968</span><input class="input" id="aWa" type="tel" inputmode="numeric" maxlength="9"></div><span class="err" data-en="8-digit Omani mobile starting with 7 or 9.">رقم عُماني من 8 أرقام يبدأ بـ 7 أو 9.</span></div>
+        </div>
+        <div class="field" data-f="email"><label for="aEmail" data-en="Email">البريد الإلكتروني</label><input class="input ltr" id="aEmail" type="email" autocomplete="email" inputmode="email"><span class="err" data-en="Enter a valid email address.">أدخل بريدًا إلكترونيًا صحيحًا.</span></div>
+        <div class="field" data-f="pw"><label for="aPw" data-en="Password">كلمة المرور</label><input class="input" id="aPw" type="password"><span class="err" data-en="At least 8 characters with letters and numbers.">8 أحرف على الأقل، تحتوي على حروف وأرقام.</span></div>
+        <div class="notice bad" id="authErr" role="alert" hidden></div>
+        <button class="btn block" type="submit" id="authBtn"></button>
+      </form>
+      <p class="alt"><span id="authAltText"></span> <button class="link" type="button" id="authSwitch"></button></p>
+      <p class="small muted" data-en="Your account is saved on this device for now.">حسابك محفوظ على هذا الجهاز حاليًا.</p>
+    </div>
+
+    <!-- b) request form -->
+    <div id="reqBox" class="form" hidden>
+      <div class="sec-h" style="margin-bottom:0"><h2 data-en="Request your menu">اطلب منيوك</h2><p id="hello"></p></div>
+      <form id="reqForm" class="form" novalidate>
+        <div class="chosen"><div class="fr" id="chosenThumb"></div><div style="min-width:0"><b id="chosenName"></b><div class="small muted ltr" id="chosenId" style="text-align:start"></div></div><a class="link" href="#designs" data-en="Change">تغيير</a></div>
+        <div class="field"><span class="label" data-en="Package">الباقة</span><div class="opts" id="pkgs"></div></div>
+        <div class="field"><span class="label" data-en="Add-ons">إضافات</span><div class="chips" id="addons"></div></div>
+        <div class="two">
+          <div class="field"><label for="rItems" data-en="Number of items">عدد الأصناف</label><select class="input" id="rItems"></select></div>
+          <div class="field"><label for="rCui" data-en="Type of food">نوع الأكل</label><input class="input" id="rCui" maxlength="60" data-en-ph="e.g. Grills, coffee" placeholder="مثال: مشويات، قهوة"></div>
+        </div>
+        <div class="field"><label for="rNotes" data-en="Notes (optional)">ملاحظات (اختياري)</label><textarea class="input" id="rNotes" maxlength="600" data-en-ph="Colours, logo, anything you'd like changed" placeholder="الألوان، الشعار، أي شيء تحب تغيّره"></textarea></div>
+        <p class="small muted" data-en="The price depends on the package. I'll send it to you on WhatsApp.">السعر حسب الباقة، وأرسله لك على واتساب.</p>
+        <button class="btn block" type="submit" data-en="Send request">إرسال الطلب</button>
+      </form>
+    </div>
+
+    <!-- c) confirmation -->
+    <div id="sentBox" class="form" hidden tabindex="-1">
+      <div class="sec-h" style="margin-bottom:0"><h2 data-en="One last step">خطوة أخيرة</h2><p data-en="Your request is saved. Send it on WhatsApp so I can start on it.">طلبك محفوظ. أرسله على واتساب عشان أبدأ فيه.</p></div>
+      <a class="btn wa block" id="waBtn" target="_blank" rel="noopener" data-en="Send on WhatsApp">أرسل الطلب على واتساب</a>
+      <p class="alt"><button class="link plain" type="button" id="another" data-en="Request another design">طلب تصميم آخر</button></p>
+    </div>
+
+    <!-- d) my requests -->
+    <div id="mine" hidden style="margin-top:48px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h2 style="font-size:24px" data-en="My requests">طلباتي</h2><button class="link plain" type="button" id="logout" data-en="Log out">تسجيل الخروج</button></div>
+      <div class="rows" id="rows"></div>
+    </div>
+  </div></div></section>
+</main>
+
+<footer class="foot"><div class="wrap"><span>© 2026 <span data-en="Menu Oman · Ahmed Al-Wahaibi">منيو عُمان · أحمد الوهيبي</span></span><a class="ltr" href="https://wa.me/96895989547" target="_blank" rel="noopener">WhatsApp +968 9598 9547</a></div></footer>
+
+<script src="../menus/engine/data.js"></script>
+<script src="../menus/engine/engine.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" onerror="window.qrcode=null"></script>
+<script>
+(async function () {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const WA = "96895989547";
+  function toast(m) { const e = document.createElement("div"); e.className = "toast"; e.textContent = m; e.setAttribute("role", "status"); document.body.appendChild(e); setTimeout(() => e.remove(), 3800); }
+  $("#langBtn").textContent = t("English", "العربية");
+  $("#langBtn").onclick = () => { try { localStorage.setItem("mo-lang", LANG === "en" ? "ar" : "en"); } catch (e) {} location.href = location.pathname; };
+
+  // ================= store: accounts and requests (this browser) =================
+  const KEY = "menuoman-v1";
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || { users: [], requests: [], session: null }; } catch (e) { return { users: [], requests: [], session: null }; } };
+  const save = db => { try { localStorage.setItem(KEY, JSON.stringify(db)); return true; } catch (e) { return false; } };
+  const uid = () => (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+  async function hash(pw) {
+    if (!crypto.subtle) return "plain:" + pw; // insecure origins only (local files)
+    const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("menuoman:" + pw));
+    return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
+  }
+  const me = () => { const db = load(); return db.users.find(u => u.id === db.session) || null; };
+
+  // ================= designs =================
+  const ALL = await (await fetch("../menus/designs/index.json")).json();
+  const D = [...ALL.filter(d => d.id.startsWith("C-")), ...ALL.filter(d => !d.id.startsWith("C-"))]; // new ones first
+  const CUI = { burger: t("برغر", "Burger"), italian: t("إيطالي", "Italian"), grill: t("مشويات", "Grill"), cafe: t("مقهى", "Café"), ramadan: t("رمضان", "Ramadan") };
+  const nm = d => d.name[LANG] || d.name.ar;
+  $("#designsTitle").textContent = t(`${D.length} تصميمًا، وكلها تتحرك`, `${D.length} designs, and every one moves`);
+
+  // hero: a display design that animates on its own
+  const heroCfg = ALL.find(d => d.id === "B-006") || ALL.find(d => d.set === "display");
+  if (heroCfg) MenuEngine.mount($("#heroPhone"), heroCfg, { lang: LANG });
+
+  const fams = [...new Map(D.map(d => [d.family, d.familyName[LANG] || d.familyName.ar])).entries()];
+  $("#fFam").innerHTML = `<option value="">${t("كل الأنماط", "All styles")}</option>` + fams.map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join("");
+  $("#fCui").innerHTML = `<option value="">${t("كل المطابخ", "All cuisines")}</option>` + Object.entries(CUI).map(([k, v]) => `<option value="${k}">${v}</option>`).join("");
+
+  let shown = 24, current = null, liveHandle = null;
+  const thumbs = new Map();
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const el = e.target, id = el.dataset.id;
+    if (e.isIntersecting && !thumbs.has(id)) { const cfg = D.find(d => d.id === id); thumbs.set(id, MenuEngine.mount(el.querySelector(".fr"), { ...cfg, autoplay: false }, { mode: "thumb", lang: LANG })); io.unobserve(el); }
+  }), { rootMargin: "300px" });
+  function draw() {
+    const f = $("#fFam").value, c = $("#fCui").value;
+    const rows = D.filter(d => (!f || d.family === f) && (!c || d.cuisine === c));
+    thumbs.clear();
+    $("#grid").innerHTML = rows.slice(0, shown).map(d => `<button class="tile" type="button" data-id="${d.id}" aria-pressed="${current && current.id === d.id}"><div class="fr"></div><div style="min-width:0"><b>${esc(nm(d))}</b><small>${d.id}</small></div></button>`).join("")
+      || `<p class="muted" style="grid-column:1/-1">${t("لا توجد تصاميم بهذا الاختيار.", "No designs match.")}</p>`;
+    $$("#grid .tile").forEach(el => io.observe(el));
+    $("#more").hidden = rows.length <= shown;
+  }
+  ["#fFam", "#fCui"].forEach(s => $(s).onchange = () => { shown = 24; draw(); });
+  $("#more").onclick = () => { shown += 24; draw(); };
+
+  function select(d, openSheet) {
+    current = d;
+    $$("#grid .tile").forEach(el => el.setAttribute("aria-pressed", el.dataset.id === d.id));
+    if (liveHandle && liveHandle.destroy) liveHandle.destroy();
+    liveHandle = MenuEngine.mount($("#livePhone"), d, { lang: LANG });
+    $("#liveName").textContent = nm(d); $("#liveId").textContent = d.id;
+    // QR to the standalone menu, for trying on a real phone (not available inside private previews)
+    const url = new URL("../menus/view.html?id=" + d.id, location.href).href;
+    if (window.qrcode && !/claude/.test(location.hostname)) {
+      try { const q = qrcode(0, "M"); q.addData(url); q.make(); $("#qr").innerHTML = q.createImgTag(4, 0); $("#qrBox").hidden = false; } catch (e) { $("#qrBox").hidden = true; }
+    }
+    if (openSheet) $("#live").classList.add("on");
+    drawChosen();
+  }
+  $("#grid").addEventListener("click", e => { const b = e.target.closest(".tile"); if (b) select(D.find(d => d.id === b.dataset.id), true); });
+  $("#liveX").onclick = () => $("#live").classList.remove("on");
+  $("#orderThis").onclick = () => { $("#live").classList.remove("on"); showRequest(); $("#request").scrollIntoView({ behavior: "smooth" }); };
+
+  // ================= account =================
+  let mode = "signup";
+  function drawAuth() {
+    const s = mode === "signup";
+    $("#authTitle").textContent = s ? t("أنشئ حسابك واطلب", "Create your account to request") : t("تسجيل الدخول", "Log in");
+    $("#authLead").textContent = s ? t("دقيقة واحدة، وبعدها تتابع طلباتك من هنا.", "One minute, then you can track your requests here.") : t("أهلًا بعودتك.", "Welcome back.");
+    $("#signupOnly").hidden = !s;
+    $("#authBtn").textContent = s ? t("إنشاء الحساب", "Create account") : t("دخول", "Log in");
+    $("#authAltText").textContent = s ? t("عندك حساب؟", "Have an account?") : t("ما عندك حساب؟", "No account?");
+    $("#authSwitch").textContent = s ? t("سجّل الدخول", "Log in") : t("أنشئ حسابًا", "Sign up");
+    $("#aPw").autocomplete = s ? "new-password" : "current-password";
+    $("#authErr").hidden = true; $$("#authForm .field").forEach(f => f.classList.remove("invalid"));
+  }
+  $("#authSwitch").onclick = () => { mode = mode === "signup" ? "login" : "signup"; drawAuth(); };
+  const mark = (name, ok) => { $(`#authForm [data-f="${name}"]`).classList.toggle("invalid", !ok); return ok; };
+  const digits = s => (s || "").replace(/\D/g, "").replace(/^00968|^968/, "");
+  $("#authForm").addEventListener("submit", async e => {
+    e.preventDefault(); $("#authErr").hidden = true;
+    const email = $("#aEmail").value.trim().toLowerCase(), pw = $("#aPw").value;
+    const fail = m => { $("#authErr").hidden = false; $("#authErr").textContent = m; };
+    const db = load();
+    if (mode === "signup") {
+      const ok = [mark("name", $("#aName").value.trim().length >= 2), mark("rest", $("#aRest").value.trim().length >= 2), mark("wa", /^[79]\d{7}$/.test(digits($("#aWa").value))),
+        mark("email", /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)), mark("pw", pw.length >= 8 && /[a-z]/i.test(pw) && /\d/.test(pw))].every(Boolean);
+      if (!ok) { $("#authForm .field.invalid input").focus(); return; }
+      if (db.users.some(u => u.email === email)) return fail(t("يوجد حساب بهذا البريد. سجّل الدخول.", "An account with this email exists. Log in instead."));
+      const u = { id: uid(), email, pw: await hash(pw), name: $("#aName").value.trim(), restaurant: $("#aRest").value.trim(), whatsapp: "+968" + digits($("#aWa").value), created_at: new Date().toISOString() };
+      db.users.push(u); db.session = u.id;
+    } else {
+      const ok = [mark("email", /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)), mark("pw", pw.length > 0)].every(Boolean);
+      if (!ok) return;
+      const u = db.users.find(x => x.email === email);
+      if (!u || u.pw !== await hash(pw)) return fail(t("البريد الإلكتروني أو كلمة المرور غير صحيحة.", "That email and password don't match."));
+      db.session = u.id;
+    }
+    if (!save(db)) return fail(t("تعذّر الحفظ على هذا الجهاز.", "Couldn't save on this device."));
+    $("#authForm").reset(); showRequest();
+  });
+  $("#logout").onclick = () => { const db = load(); db.session = null; save(db); mode = "login"; showRequest(); };
+
+  // ================= request =================
+  const PKG = [
+    ["qr", t("منيو QR", "QR menu"), t("منيو تفاعلي يفتح من كود الطاولة", "Interactive menu that opens from the table code")],
+    ["screen", t("منيو QR + شاشة المطعم", "QR menu + in-store screen"), t("نفس المنيو يعمل عرضًا متحركًا على شاشتك", "The same menu loops on your screen")],
+    ["updates", t("مع تحديثات مستمرة", "With ongoing updates"), t("أعدّل الأسعار والأصناف لك كل ما احتجت", "I update prices and dishes whenever you need")]
+  ];
+  const ADD = [["bilingual", t("عربي وإنجليزي", "Arabic and English")], ["waorder", t("الطلب عبر واتساب", "Ordering by WhatsApp")], ["links", t("روابط التواصل والخريطة", "Social and map links")], ["card", t("بطاقة طاولة للطباعة", "Printable table card")]];
+  const ITEMS = [t("حتى 20 صنفًا", "Up to 20 items"), t("21 إلى 50 صنفًا", "21 to 50 items"), t("أكثر من 50 صنفًا", "More than 50 items")];
+  $("#pkgs").innerHTML = PKG.map(([k, a, b], i) => `<label class="opt"><input type="radio" name="pkg" value="${k}" ${i === 0 ? "checked" : ""}><span><b>${a}</b><span>${b}</span></span></label>`).join("");
+  $("#addons").innerHTML = ADD.map(([k, a]) => `<label><input type="checkbox" value="${k}"><span>${a}</span></label>`).join("");
+  $("#rItems").innerHTML = ITEMS.map((x, i) => `<option value="${i}">${x}</option>`).join("");
+
+  let chosenHandle = null;
+  function drawChosen() {
+    if (!current) return;
+    $("#chosenName").textContent = nm(current); $("#chosenId").textContent = current.id;
+    if (chosenHandle && chosenHandle.destroy) chosenHandle.destroy();
+    chosenHandle = MenuEngine.mount($("#chosenThumb"), { ...current, autoplay: false }, { mode: "thumb", lang: LANG });
+  }
+  function showRequest(state) {
+    const u = me();
+    $("#navAcc").textContent = u ? t("طلباتي", "My requests") : t("تسجيل الدخول", "Log in");
+    $("#authBox").hidden = !!u; $("#reqBox").hidden = !u || state === "sent"; $("#sentBox").hidden = state !== "sent"; $("#mine").hidden = !u;
+    if (!u) { drawAuth(); return; }
+    $("#hello").textContent = t(`أهلًا ${u.name.split(" ")[0]}، هذا طلب ${u.restaurant}.`, `Hello ${u.name.split(" ")[0]}, this request is for ${u.restaurant}.`);
+    drawChosen(); drawMine();
+  }
+  const waText = r => [t("السلام عليكم، أبي منيو تفاعلي.", "Hello, I'd like an interactive menu."), `${t("المطعم", "Restaurant")}: ${r.restaurant}`, `${t("التصميم", "Design")}: ${r.design} · ${r.design_name}`,
+    `${t("الباقة", "Package")}: ${PKG.find(p => p[0] === r.pkg)[1]}`, r.addons.length ? `${t("إضافات", "Add-ons")}: ${r.addons.map(a => ADD.find(x => x[0] === a)[1]).join(t("، ", ", "))}` : "",
+    `${t("عدد الأصناف", "Items")}: ${ITEMS[r.items]}`, r.cuisine ? `${t("نوع الأكل", "Food")}: ${r.cuisine}` : "", r.notes ? `${t("ملاحظات", "Notes")}: ${r.notes}` : "", `${t("الاسم", "Name")}: ${r.name}`].filter(Boolean).join("\n");
+  const waLink = r => `https://wa.me/${WA}?text=${encodeURIComponent(waText(r))}`;
+  function markSent(id) { const db = load(); const r = db.requests.find(x => x.id === id); if (r) { r.status = "sent"; save(db); } drawMine(); }
+
+  $("#reqForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const u = me(); if (!u) return showRequest();
+    if (!current) { toast(t("اختر تصميمًا أولًا.", "Choose a design first.")); $("#designs").scrollIntoView({ behavior: "smooth" }); return; }
+    const r = { id: uid(), user_id: u.id, name: u.name, restaurant: u.restaurant, design: current.id, design_name: nm(current), pkg: $("input[name=pkg]:checked").value,
+      addons: $$("#addons input:checked").map(i => i.value), items: +$("#rItems").value, cuisine: $("#rCui").value.trim(), notes: $("#rNotes").value.trim(), status: "draft", created_at: new Date().toISOString() };
+    const db = load(); db.requests.unshift(r); save(db);
+    $("#waBtn").href = waLink(r); $("#waBtn").onclick = () => setTimeout(() => markSent(r.id), 400);
+    $("#reqForm").reset(); showRequest("sent"); $("#sentBox").focus({ preventScroll: true }); $("#request").scrollIntoView({ behavior: "smooth" });
+  });
+  $("#another").onclick = () => { showRequest(); $("#designs").scrollIntoView({ behavior: "smooth" }); };
+
+  function drawMine() {
+    const u = me(); if (!u) return;
+    const rows = load().requests.filter(r => r.user_id === u.id);
+    const date = d => new Date(d).toLocaleDateString(LANG === "en" ? "en-GB" : "ar-OM", { day: "numeric", month: "short", numberingSystem: "latn" });
+    $("#rows").innerHTML = rows.length ? rows.map(r => `<div class="row"><div style="min-width:0"><b>${esc(r.design_name)}</b> <span class="small muted ltr">${r.design}</span><div class="small muted">${PKG.find(p => p[0] === r.pkg)[1]} · ${date(r.created_at)}</div></div>
+      <span class="status ${r.status}">${r.status === "sent" ? t("أُرسل على واتساب", "Sent on WhatsApp") : t("لم يُرسل بعد", "Not sent yet")}</span>
+      <div class="small" style="grid-column:1/-1">${r.status === "draft" ? `<a class="link" href="${esc(waLink(r))}" target="_blank" rel="noopener" data-send="${r.id}">${t("أرسله على واتساب", "Send on WhatsApp")}</a> · ` : ""}<button class="link danger" type="button" data-del="${r.id}">${t("حذف", "Delete")}</button></div></div>`).join("")
+      : `<p class="muted" style="padding:20px 0">${t("لا توجد طلبات بعد.", "No requests yet.")}</p>`;
+    $$("#rows [data-send]").forEach(a => a.onclick = () => setTimeout(() => markSent(a.dataset.send), 400));
+    $$("#rows [data-del]").forEach(b => b.onclick = () => {
+      if (b.dataset.sure !== "1") { b.dataset.sure = "1"; b.textContent = t("اضغط مرة أخرى للحذف", "Tap again to delete"); return; }
+      const db = load(); db.requests = db.requests.filter(x => x.id !== b.dataset.del); save(db); drawMine();
+    });
+  }
+
+  draw();
+  select(D[0], false);
+  showRequest();
+})();
+</script>
+</body>
+</html>

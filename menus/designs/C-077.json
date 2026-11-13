@@ -1,0 +1,20 @@
+{
+ "id": "C-077",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الزيتون · الإيطالي",
+  "en": "Olive Word · Italian"
+ },
+ "palette": "olive-sand",
+ "fonts": [
+  "ruqaa",
+  "bodoni"
+ ],
+ "cuisine": "italian",
+ "reveal": "circle"
+}

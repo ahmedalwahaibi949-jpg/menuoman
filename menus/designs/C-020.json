@@ -1,0 +1,20 @@
+{
+ "id": "C-020",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الجمر · المقهى",
+  "en": "Ember Orbit · Café"
+ },
+ "palette": "black-orange",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "cafe",
+ "reveal": "blinds"
+}

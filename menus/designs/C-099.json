@@ -1,0 +1,20 @@
+{
+ "id": "C-099",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الرمل · المقهى",
+  "en": "Sand Bento · Café"
+ },
+ "palette": "sand-ink",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "cafe",
+ "reveal": "mask"
+}

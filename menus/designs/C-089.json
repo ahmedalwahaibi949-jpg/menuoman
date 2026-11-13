@@ -1,0 +1,20 @@
+{
+ "id": "C-089",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الخردل · المقهى",
+  "en": "Mustard Bento · Café"
+ },
+ "palette": "mustard",
+ "fonts": [
+  "ruqaa",
+  "bodoni"
+ ],
+ "cuisine": "cafe",
+ "reveal": "page"
+}

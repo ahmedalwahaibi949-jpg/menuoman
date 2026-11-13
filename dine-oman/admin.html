@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="Admin · Dine Oman">الإدارة · داين عُمان</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>
+body{visibility:hidden} body.ok{visibility:visible}
+.filters{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+.filters button{background:none;border:0;padding:0;font:inherit;color:var(--muted);cursor:pointer}
+.filters button[aria-pressed=true]{color:var(--fg);font-weight:700}
+.det .cv{aspect-ratio:16/7;border-radius:var(--r);overflow:hidden;background:var(--bg-2)}
+.det .cv img{width:100%;height:100%;object-fit:cover}
+.det h2{font-size:26px;margin-top:18px}
+.det .desc{margin-block:14px 18px;white-space:pre-wrap}
+.decide{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page-sm">
+  <nav class="tabs" id="nav" aria-label="Admin">
+    <a href="#overview" data-tab="overview" data-en="Overview">نظرة عامة</a>
+    <a href="#applications" data-tab="applications"><span data-en="Applications">الطلبات</span><i id="nApps" hidden></i></a>
+    <a href="#restaurants" data-tab="restaurants" data-en="Restaurants">المطاعم</a>
+    <a href="#users" data-tab="users"><span data-en="Users">المستخدمون</span><i id="nDel" hidden></i></a>
+    <a href="#reviews" data-tab="reviews" data-en="Reviews">التقييمات</a>
+    <a href="#settings" data-tab="settings" data-en="Settings">الإعدادات</a>
+  </nav>
+  <section id="main"></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script><script src="js/settings.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$, esc = U.esc, A = api.admin, L = U.L;
+  // Non-admins are redirected before anything renders. The database refuses their queries regardless.
+  let me = await U.requireRole(["admin"]);
+  document.body.classList.add("ok");
+  await U.chrome({ me });
+
+  async function badges() {
+    const [rs, us] = await Promise.all([A.restaurants(), A.users()]);
+    const p = rs.filter(r => r.status === "pending").length, d = us.filter(u => u.deletion_requested_at).length;
+    $("#nApps").hidden = !p; $("#nApps").textContent = p; $("#nDel").hidden = !d; $("#nDel").textContent = d;
+    return { rs, us };
+  }
+  const ROLE = { customer: t("زبون", "Customer"), owner: t("مالك مطعم", "Owner"), admin: t("مدير", "Admin") };
+  function filters(el, opts, current, onPick) {
+    const box = $(".filters", el);
+    box.innerHTML = opts.map(([k, label, n]) => `<button data-k="${k}" aria-pressed="${k === current}">${label} <span class="muted">${n}</span></button>`).join("");
+    box.onclick = e => { const b = e.target.closest("button"); if (!b) return; box.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); onPick(b.dataset.k); };
+  }
+
+  const views = {
+    async overview(el) {
+      const { rs, us } = await badges();
+      const reviews = await A.reviews();
+      const c = s => rs.filter(r => r.status === s).length;
+      el.innerHTML = `<div class="head"><h1>${t("نظرة عامة", "Overview")}</h1></div>
+        <div class="stats">
+          <a href="#applications"><span>${t("بانتظار المراجعة", "Pending approval")}</span><b>${c("pending")}</b></a>
+          <a href="#restaurants"><span>${t("مطاعم منشورة", "Live restaurants")}</span><b>${rs.filter(r => r.published).length}</b></a>
+          <a href="#users"><span>${t("الزبائن", "Customers")}</span><b>${us.filter(u => u.role === "customer").length}</b></a>
+          <a href="#users"><span>${t("أصحاب المطاعم", "Owners")}</span><b>${us.filter(u => u.role === "owner").length}</b></a>
+        </div>
+        <dl class="kv">
+          <dt>${t("بانتظار تأكيد البريد", "Awaiting email verification")}</dt><dd>${c("awaiting_verification")}</dd>
+          <dt>${t("طلبات مرفوضة", "Rejected")}</dt><dd>${c("rejected")}</dd>
+          <dt>${t("التقييمات", "Reviews")}</dt><dd>${reviews.length}</dd>
+          <dt>${t("طلبات حذف حسابات", "Deletion requests")}</dt><dd>${us.filter(u => u.deletion_requested_at).length}</dd>
+        </dl>
+        ${c("pending") ? `<p style="margin-top:28px"><a class="btn" href="#applications">${t("مراجعة الطلبات", "Review applications")}</a></p>` : ""}`;
+    },
+
+    async applications(el, hash) {
+      const { rs } = await badges();
+      let filter = "pending", current = hash.split("-").slice(1).join("-") || null;
+      el.innerHTML = `<div class="head"><h1>${t("طلبات التسجيل", "Applications")}</h1></div><div class="filters"></div>
+        <div class="split"><div class="list" id="q" style="border-top:1px solid var(--line)"></div><div class="det" id="det"><p class="muted">${t("اختر طلبًا لمراجعته.", "Select an application to review it.")}</p></div></div>`;
+      const count = s => s === "all" ? rs.length : rs.filter(r => r.status === s).length;
+      filters(el, [["pending", t("قيد المراجعة", "Pending"), count("pending")], ["approved", t("مقبولة", "Approved"), count("approved")], ["rejected", t("مرفوضة", "Rejected"), count("rejected")], ["awaiting_verification", t("غير مؤكدة", "Unverified"), count("awaiting_verification")], ["all", t("الكل", "All"), count("all")]], filter, k => { filter = k; list(); });
+      function list() {
+        const rows = rs.filter(r => filter === "all" || r.status === filter);
+        $("#q", el).innerHTML = rows.length ? rows.map(r => `<button class="item" data-id="${r.id}" aria-current="${r.id === current}"><img src="${esc(r.logo_url)}" alt=""><span style="min-width:0"><b>${esc(r.name)}</b><small>${esc(L(r.city))} · ${U.dateTime(r.submitted_at || r.created_at)}</small></span>${U.statusBadge(r)}</button>`).join("")
+          : `<div class="empty"><b>${t("لا توجد طلبات", "Nothing here")}</b></div>`;
+        $("#q", el).querySelectorAll(".item").forEach(b => b.onclick = () => { current = b.dataset.id; list(); detail(rs.find(r => r.id === current)); if (innerWidth < 900) $("#det", el).scrollIntoView({ behavior: "smooth" }); });
+      }
+      function detail(r) {
+        const o = r.owner || {};
+        $("#det", el).innerHTML = `<div class="cv"><img src="${esc(r.cover_url)}" alt=""></div>
+          <h2>${esc(r.name)}</h2><div class="muted small"><span class="ltr">${esc(r.reference)}</span> · ${esc(L(r.category))} · ${esc(L(r.cuisine))} · ${U.statusBadge(r)}</div>
+          <p class="desc">${esc(r.description)}</p>
+          ${r.photos && r.photos.length ? `<div class="thumbs" style="margin-bottom:20px">${r.photos.map(p => `<div class="thumb"><img src="${esc(p)}" alt=""></div>`).join("")}</div>` : ""}
+          <dl class="kv">
+            <dt>${t("الباقة", "Plan")}</dt><dd>${esc(U.plan(r.plan).label)} · ${esc(U.plan(r.plan).priceLabel)}</dd>
+            <dt>${t("العنوان", "Address")}</dt><dd>${[r.address, r.area, L(r.city), L(r.governorate)].map(esc).join(U.SEP)} · <a href="${esc(/^https?:/.test(r.maps_url) ? r.maps_url : "https://www.google.com/maps?q=" + encodeURIComponent(r.maps_url))}" target="_blank" rel="noopener">${t("الخريطة", "Map")}</a></dd>
+            <dt>${t("التواصل", "Contact")}</dt><dd class="ltr">${esc(U.fmtPhone(r.contact_phone))}</dd>
+            <dt>${t("الحسابات", "Online")}</dt><dd><a href="https://instagram.com/${esc(r.instagram)}" target="_blank" rel="noopener">@${esc(r.instagram)}</a> · <a href="${esc(r.website)}" target="_blank" rel="noopener">${t("الموقع", "Website")}</a></dd>
+            <dt>${t("المالك", "Owner")}</dt><dd>${esc(o.full_name || "")} · <span class="ltr">${esc(o.email || "")}</span>${o.whatsapp ? ` · <a href="https://wa.me/${esc(o.whatsapp.replace(/\D/g, ""))}" target="_blank" rel="noopener">${t("واتساب", "WhatsApp")}</a>` : ""}</dd>
+            ${r.slug ? `<dt>${t("الرابط", "URL")}</dt><dd><a class="ltr" href="${esc(U.profileHref(r.slug))}" target="_blank" rel="noopener">/restaurant/${esc(r.slug)}</a></dd>` : ""}
+          </dl>
+          ${r.status === "awaiting_verification" ? `<p class="notice info" style="margin-top:20px">${t("لم يؤكد المالك بريده بعد، لذلك لا يمكن مراجعة الطلب.", "The owner hasn't confirmed their email yet, so this can't be reviewed.")}</p>` : `
+          <div class="field" style="margin-block:24px 16px"><label for="note">${t("ملاحظة للمالك", "Note to the owner")}</label><textarea class="input" id="note" style="min-height:80px" data-en-ph="Optional for approval, required for rejection." placeholder="${t("اختيارية عند القبول، مطلوبة عند الرفض.", "Optional for approval, required for rejection.")}">${esc(r.admin_note || "")}</textarea><span class="err">${t("اكتب سبب الرفض ليعرف المالك ما يجب تعديله.", "Tell the owner what to fix.")}</span></div>
+          <div class="decide">${r.status !== "approved" ? `<button class="btn" id="ap">${t("قبول ونشر", "Approve and publish")}</button>` : ""}${r.status !== "rejected" ? `<button class="link danger" id="rj">${t("رفض", "Reject")}</button>` : ""}</div>`}`;
+        const act = async status => {
+          const note = $("#note", el).value.trim();
+          if (status === "rejected" && !note) return U.mark($("#note", el).closest(".field"), false);
+          el.querySelectorAll(".decide button").forEach(b => b.disabled = true);
+          try { await A.decide(r.id, status, note); U.toast(status === "approved" ? t("تم القبول والنشر.", "Approved and published.") : t("تم الرفض وإبلاغ المالك.", "Rejected. The owner has been told why.")); views.applications(el, "applications-" + r.id); }
+          catch (e) { U.toast(e.message, true); el.querySelectorAll(".decide button").forEach(b => b.disabled = false); }
+        };
+        if ($("#ap", el)) $("#ap", el).onclick = () => act("approved");
+        if ($("#rj", el)) $("#rj", el).onclick = () => act("rejected");
+      }
+      if (current) { const r = rs.find(x => x.id === current); if (r) detail(r); }
+      list();
+    },
+
+    async restaurants(el) {
+      const rs = (await A.restaurants()).filter(r => r.status === "approved");
+      el.innerHTML = `<div class="head"><h1>${t("المطاعم", "Restaurants")}</h1><span class="muted">${rs.filter(r => r.published).length} ${t("منشور", "live")}</span></div>` + (rs.length
+        ? `<div class="table"><table><thead><tr><th>${t("المطعم", "Restaurant")}</th><th>${t("المالك", "Owner")}</th><th>${t("الباقة", "Plan")}</th><th>${t("الولاية", "City")}</th><th>${t("الحالة", "Status")}</th><th></th></tr></thead><tbody>${rs.map(r => `<tr>
+          <td><a href="${esc(U.profileHref(r.slug))}" target="_blank" rel="noopener" style="color:inherit"><b>${esc(r.name)}</b></a></td>
+          <td>${esc((r.owner || {}).full_name || "")}</td><td>${esc(U.plan(r.plan).label)}</td><td>${esc(L(r.city))}</td><td>${U.statusBadge(r)}</td>
+          <td><button class="link" data-pub="${r.id}" data-to="${!r.published}">${r.published ? t("إلغاء النشر", "Unpublish") : t("نشر", "Publish")}</button></td></tr>`).join("")}</tbody></table></div>`
+        : `<div class="empty"><b>${t("لا توجد مطاعم مقبولة بعد", "No approved restaurants yet")}</b></div>`);
+      el.querySelectorAll("[data-pub]").forEach(b => b.onclick = async () => { await A.setPublished(b.dataset.pub, b.dataset.to === "true"); views.restaurants(el); });
+    },
+
+    async users(el) {
+      const { us } = await badges();
+      let filter = us.some(u => u.deletion_requested_at) ? "deletion" : "all";
+      el.innerHTML = `<div class="head"><h1>${t("المستخدمون", "Users")}</h1></div><div class="filters"></div><div id="ut"></div>`;
+      const n = k => k === "all" ? us.length : k === "deletion" ? us.filter(u => u.deletion_requested_at).length : us.filter(u => u.role === k).length;
+      filters(el, [["all", t("الكل", "All"), n("all")], ["customer", t("الزبائن", "Customers"), n("customer")], ["owner", t("أصحاب المطاعم", "Owners"), n("owner")], ["admin", t("المدراء", "Admins"), n("admin")], ["deletion", t("طلبات الحذف", "Deletion requests"), n("deletion")]], filter, k => { filter = k; table(); });
+      function table() {
+        const rows = us.filter(u => filter === "all" || (filter === "deletion" ? u.deletion_requested_at : u.role === filter));
+        $("#ut", el).innerHTML = rows.length ? `<div class="table"><table><thead><tr><th>${t("الاسم", "Name")}</th><th>${t("البريد", "Email")}</th><th>${t("الدور", "Role")}</th><th>${t("الانضمام", "Joined")}</th><th></th></tr></thead><tbody>${rows.map(u => `<tr>
+          <td><b>${esc(u.full_name || "—")}</b>${u.deletion_requested_at ? `<div class="small" style="color:var(--bad)">${t("طلب حذف", "Deletion requested")} ${U.date(u.deletion_requested_at)}${u.deletion_reason ? ` · ${esc(u.deletion_reason)}` : ""}</div>` : ""}</td>
+          <td class="ltr">${esc(u.email)}</td><td>${ROLE[u.role]}</td><td>${U.date(u.created_at)}</td>
+          <td style="white-space:nowrap">${u.role === "admin" ? "" : `<button class="link danger" data-del="${u.id}">${t("حذف", "Delete")}</button>`}${u.deletion_requested_at ? ` · <button class="link plain" data-keep="${u.id}">${t("تجاهل", "Dismiss")}</button>` : ""}</td></tr>`).join("")}</tbody></table></div>`
+          : `<div class="empty"><b>${t("لا يوجد مستخدمون هنا", "No users here")}</b></div>`;
+        el.querySelectorAll("[data-del]").forEach(b => U.confirmTap(b, t("اضغط مرة أخرى للحذف نهائيًا", "Tap again to delete forever"), async () => { await A.deleteUser(b.dataset.del); U.toast(t("تم حذف الحساب.", "Account deleted.")); views.users(el); }));
+        el.querySelectorAll("[data-keep]").forEach(b => b.onclick = async () => { await A.clearDeletion(b.dataset.keep); views.users(el); });
+      }
+      table();
+    },
+
+    async reviews(el) {
+      const rows = await A.reviews();
+      el.innerHTML = `<div class="head"><h1>${t("التقييمات", "Reviews")}</h1></div>` + (rows.length
+        ? `<div style="border-bottom:1px solid var(--line)">${rows.map(r => `<div class="review"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><b>${r.restaurant ? esc(r.restaurant.name) : "—"}</b><button class="link danger small" data-rm="${r.id}">${t("حذف", "Remove")}</button></div>
+          <div class="small muted"><span class="stars">${U.stars(r.rating)}</span> · ${esc(r.author_name || "")} · ${U.date(r.created_at)}</div><p>${esc(r.body)}</p></div>`).join("")}</div>`
+        : `<div class="empty"><b>${t("لا توجد تقييمات", "No reviews yet")}</b></div>`);
+      el.querySelectorAll("[data-rm]").forEach(b => U.confirmTap(b, t("اضغط مرة أخرى", "Tap again"), async () => { await A.deleteReview(b.dataset.rm); views.reviews(el); }));
+    },
+
+    async settings(el) {
+      el.innerHTML = `<div class="head"><h1>${t("الإعدادات", "Settings")}</h1></div><div id="st"></div>`;
+      DineSettings.render($("#st", el), me, { onSaved: async () => { me = await api.me(); views.settings(el); } });
+    }
+  };
+  U.tabs($("#nav"), $("#main"), views, "overview");
+})();
+</script>
+</body>
+</html>

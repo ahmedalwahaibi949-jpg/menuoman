@@ -1,0 +1,20 @@
+{
+ "id": "C-081",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الكحلي · البرغر",
+  "en": "Navy Reel · Burger"
+ },
+ "palette": "navy-cream",
+ "fonts": [
+  "markazi",
+  "bodoni"
+ ],
+ "cuisine": "burger",
+ "reveal": "page"
+}

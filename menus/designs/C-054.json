@@ -1,0 +1,20 @@
+{
+ "id": "C-054",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب الفحم · البرغر",
+  "en": "Charcoal Doors · Burger"
+ },
+ "palette": "charcoal-mustard",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "burger",
+ "reveal": "curtain"
+}

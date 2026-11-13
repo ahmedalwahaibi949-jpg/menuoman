@@ -1,0 +1,1142 @@
+[
+ {
+  "id": "urban-burger",
+  "group": "burger",
+  "en": "Urban Burger",
+  "ar": "أوربان برغر",
+  "dishes": [
+   {
+    "en": "Classic Cheeseburger",
+    "ar": "تشيز برغر كلاسيك",
+    "price": 2.2,
+    "photo": "urban-burger-0.webp"
+   },
+   {
+    "en": "Double Stack",
+    "ar": "دبل ستاك",
+    "price": 3.1,
+    "photo": "urban-burger-1.webp"
+   },
+   {
+    "en": "Crispy Fries",
+    "ar": "بطاطس مقرمشة",
+    "price": 0.9,
+    "photo": "urban-burger-2.webp"
+   },
+   {
+    "en": "Onion Rings",
+    "ar": "حلقات البصل",
+    "price": 1.1,
+    "photo": "urban-burger-3.webp"
+   },
+   {
+    "en": "Vanilla Shake",
+    "ar": "ميلك شيك فانيلا",
+    "price": 1.5,
+    "photo": "urban-burger-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "american-diner",
+  "group": "burger",
+  "en": "American Diner",
+  "ar": "أمريكان داينر",
+  "dishes": [
+   {
+    "en": "Burger & Fries Plate",
+    "ar": "طبق برغر وبطاطس",
+    "price": 2.9,
+    "photo": "american-diner-0.webp"
+   },
+   {
+    "en": "Classic Hot Dog",
+    "ar": "هوت دوغ كلاسيك",
+    "price": 1.6,
+    "photo": "american-diner-1.webp"
+   },
+   {
+    "en": "Pancake Stack",
+    "ar": "بان كيك",
+    "price": 1.8,
+    "photo": "american-diner-2.webp"
+   },
+   {
+    "en": "Fried Chicken",
+    "ar": "دجاج مقلي",
+    "price": 2.6,
+    "photo": "american-diner-3.webp"
+   },
+   {
+    "en": "Apple Pie",
+    "ar": "فطيرة التفاح",
+    "price": 1.4,
+    "photo": "american-diner-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "red-hot",
+  "group": "burger",
+  "en": "Red Hot",
+  "ar": "ريد هوت",
+  "dishes": [
+   {
+    "en": "Spicy Chicken Burger",
+    "ar": "برغر دجاج حار",
+    "price": 2.4,
+    "photo": "red-hot-0.webp"
+   },
+   {
+    "en": "Buffalo Wings",
+    "ar": "أجنحة بافلو",
+    "price": 2.2,
+    "photo": "red-hot-1.webp"
+   },
+   {
+    "en": "Loaded Nachos",
+    "ar": "ناتشوز",
+    "price": 1.9,
+    "photo": "red-hot-2.webp"
+   },
+   {
+    "en": "Chili Cheese Fries",
+    "ar": "بطاطس بالتشيلي والجبن",
+    "price": 1.7,
+    "photo": "red-hot-3.webp"
+   },
+   {
+    "en": "Jalapeño Poppers",
+    "ar": "هالبينو محشي",
+    "price": 1.5,
+    "photo": "red-hot-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "street-food",
+  "group": "burger",
+  "en": "Street Food",
+  "ar": "ستريت فود",
+  "dishes": [
+   {
+    "en": "Chicken Shawarma",
+    "ar": "شاورما دجاج",
+    "price": 1.2,
+    "photo": "street-food-0.webp"
+   },
+   {
+    "en": "Falafel Wrap",
+    "ar": "ساندويتش فلافل",
+    "price": 0.8,
+    "photo": "street-food-1.webp"
+   },
+   {
+    "en": "Fries Cone",
+    "ar": "قمع بطاطس",
+    "price": 0.7,
+    "photo": "street-food-2.webp"
+   },
+   {
+    "en": "Grilled Chicken Wrap",
+    "ar": "راب دجاج مشوي",
+    "price": 1.5,
+    "photo": "street-food-3.webp"
+   },
+   {
+    "en": "Samosa (3 pcs)",
+    "ar": "سمبوسة (3 حبات)",
+    "price": 0.6,
+    "photo": "street-food-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "premium-burger",
+  "group": "burger",
+  "en": "Premium Burger",
+  "ar": "بريميوم برغر",
+  "dishes": [
+   {
+    "en": "Signature Burger",
+    "ar": "برغر سيغنتشر",
+    "price": 3.9,
+    "photo": "premium-burger-0.webp"
+   },
+   {
+    "en": "Brioche Beef Burger",
+    "ar": "برغر بريوش باللحم",
+    "price": 3.6,
+    "photo": "premium-burger-1.webp"
+   },
+   {
+    "en": "Sweet Potato Fries",
+    "ar": "بطاطا حلوة مقلية",
+    "price": 1.4,
+    "photo": "premium-burger-2.webp"
+   },
+   {
+    "en": "House Coleslaw",
+    "ar": "كول سلو",
+    "price": 0.9,
+    "photo": "premium-burger-3.webp"
+   },
+   {
+    "en": "Fresh Lemonade",
+    "ar": "ليموناضة طازجة",
+    "price": 1.2,
+    "photo": "premium-burger-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "minimal-coffee",
+  "group": "coffee",
+  "en": "Minimal Coffee",
+  "ar": "مينيمال كوفي",
+  "dishes": [
+   {
+    "en": "Espresso",
+    "ar": "إسبريسو",
+    "price": 1.0,
+    "photo": "minimal-coffee-0.webp"
+   },
+   {
+    "en": "Flat White",
+    "ar": "فلات وايت",
+    "price": 1.6,
+    "photo": "minimal-coffee-1.webp"
+   },
+   {
+    "en": "Cappuccino",
+    "ar": "كابتشينو",
+    "price": 1.5,
+    "photo": "minimal-coffee-2.webp"
+   },
+   {
+    "en": "Cold Brew",
+    "ar": "كولد برو",
+    "price": 1.8,
+    "photo": "minimal-coffee-3.webp"
+   },
+   {
+    "en": "Butter Croissant",
+    "ar": "كرواسون بالزبدة",
+    "price": 0.9,
+    "photo": "minimal-coffee-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "luxury-cafe",
+  "group": "coffee",
+  "en": "Luxury Café",
+  "ar": "لاكشري كافيه",
+  "dishes": [
+   {
+    "en": "Signature Latte",
+    "ar": "لاتيه سيغنتشر",
+    "price": 1.9,
+    "photo": "luxury-cafe-0.webp"
+   },
+   {
+    "en": "New York Cheesecake",
+    "ar": "تشيز كيك نيويورك",
+    "price": 2.2,
+    "photo": "luxury-cafe-1.webp"
+   },
+   {
+    "en": "French Macarons",
+    "ar": "ماكرون فرنسي",
+    "price": 2.0,
+    "photo": "luxury-cafe-2.webp"
+   },
+   {
+    "en": "Tiramisu",
+    "ar": "تيراميسو",
+    "price": 2.3,
+    "photo": "luxury-cafe-3.webp"
+   },
+   {
+    "en": "Hot Chocolate",
+    "ar": "شوكولاتة ساخنة",
+    "price": 1.7,
+    "photo": "luxury-cafe-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "matcha-bar",
+  "group": "coffee",
+  "en": "Matcha Bar",
+  "ar": "ماتشا بار",
+  "dishes": [
+   {
+    "en": "Matcha Latte",
+    "ar": "ماتشا لاتيه",
+    "price": 1.9,
+    "photo": "matcha-bar-0.webp"
+   },
+   {
+    "en": "Ceremonial Matcha",
+    "ar": "ماتشا تقليدي",
+    "price": 2.2,
+    "photo": "matcha-bar-1.webp"
+   },
+   {
+    "en": "Iced Matcha",
+    "ar": "ماتشا مثلج",
+    "price": 2.0,
+    "photo": "matcha-bar-2.webp"
+   },
+   {
+    "en": "Mochi",
+    "ar": "موتشي",
+    "price": 1.4,
+    "photo": "matcha-bar-3.webp"
+   },
+   {
+    "en": "Matcha Cake",
+    "ar": "كيك الماتشا",
+    "price": 2.1,
+    "photo": "matcha-bar-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "brown-aesthetic",
+  "group": "coffee",
+  "en": "Brown Aesthetic",
+  "ar": "براون",
+  "dishes": [
+   {
+    "en": "Iced Coffee",
+    "ar": "قهوة مثلجة",
+    "price": 1.6,
+    "photo": "brown-aesthetic-0.webp"
+   },
+   {
+    "en": "Caramel Macchiato",
+    "ar": "كراميل ماكياتو",
+    "price": 1.9,
+    "photo": "brown-aesthetic-1.webp"
+   },
+   {
+    "en": "Cinnamon Roll",
+    "ar": "سينابون",
+    "price": 1.3,
+    "photo": "brown-aesthetic-2.webp"
+   },
+   {
+    "en": "Fudge Brownie",
+    "ar": "براوني",
+    "price": 1.2,
+    "photo": "brown-aesthetic-3.webp"
+   },
+   {
+    "en": "Affogato",
+    "ar": "أفوغاتو",
+    "price": 1.8,
+    "photo": "brown-aesthetic-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "modern-cafe",
+  "group": "coffee",
+  "en": "Modern Café",
+  "ar": "مودرن كافيه",
+  "dishes": [
+   {
+    "en": "Americano",
+    "ar": "أمريكانو",
+    "price": 1.2,
+    "photo": "modern-cafe-0.webp"
+   },
+   {
+    "en": "Avocado Toast",
+    "ar": "توست الأفوكادو",
+    "price": 2.4,
+    "photo": "modern-cafe-1.webp"
+   },
+   {
+    "en": "Iced Latte",
+    "ar": "لاتيه مثلج",
+    "price": 1.8,
+    "photo": "modern-cafe-2.webp"
+   },
+   {
+    "en": "Blueberry Muffin",
+    "ar": "مافن التوت",
+    "price": 1.1,
+    "photo": "modern-cafe-3.webp"
+   },
+   {
+    "en": "Club Sandwich",
+    "ar": "كلوب ساندويتش",
+    "price": 2.6,
+    "photo": "modern-cafe-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "omani-heritage",
+  "group": "arabic",
+  "en": "Omani Heritage",
+  "ar": "التراث العُماني",
+  "dishes": [
+   {
+    "en": "Omani Shuwa",
+    "ar": "شواء عُماني",
+    "price": 4.5,
+    "photo": "omani-heritage-0.webp"
+   },
+   {
+    "en": "Omani Halwa",
+    "ar": "حلوى عُمانية",
+    "price": 1.5,
+    "photo": "omani-heritage-1.webp"
+   },
+   {
+    "en": "Kahwa & Dates",
+    "ar": "قهوة وتمر",
+    "price": 1.0,
+    "photo": "omani-heritage-2.webp"
+   },
+   {
+    "en": "Harees",
+    "ar": "هريس",
+    "price": 2.2,
+    "photo": "omani-heritage-3.webp"
+   },
+   {
+    "en": "Mishkak",
+    "ar": "مشاكيك",
+    "price": 1.8,
+    "photo": "omani-heritage-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "arabian-luxury",
+  "group": "arabic",
+  "en": "Arabian Luxury",
+  "ar": "الفخامة العربية",
+  "dishes": [
+   {
+    "en": "Lamb Mandi",
+    "ar": "مندي لحم",
+    "price": 4.8,
+    "photo": "arabian-luxury-0.webp"
+   },
+   {
+    "en": "Chicken Kabsa",
+    "ar": "كبسة دجاج",
+    "price": 3.6,
+    "photo": "arabian-luxury-1.webp"
+   },
+   {
+    "en": "Kunafa",
+    "ar": "كنافة",
+    "price": 1.9,
+    "photo": "arabian-luxury-2.webp"
+   },
+   {
+    "en": "Baklava",
+    "ar": "بقلاوة",
+    "price": 1.7,
+    "photo": "arabian-luxury-3.webp"
+   },
+   {
+    "en": "Saffron Rice",
+    "ar": "أرز بالزعفران",
+    "price": 1.4,
+    "photo": "arabian-luxury-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "modern-khaleeji",
+  "group": "arabic",
+  "en": "Modern Khaleeji",
+  "ar": "خليجي عصري",
+  "dishes": [
+   {
+    "en": "Chicken Machboos",
+    "ar": "مجبوس دجاج",
+    "price": 3.2,
+    "photo": "modern-khaleeji-0.webp"
+   },
+   {
+    "en": "Chicken Biryani",
+    "ar": "برياني دجاج",
+    "price": 2.9,
+    "photo": "modern-khaleeji-1.webp"
+   },
+   {
+    "en": "Luqaimat",
+    "ar": "لقيمات",
+    "price": 1.2,
+    "photo": "modern-khaleeji-2.webp"
+   },
+   {
+    "en": "Karak Tea",
+    "ar": "شاي كرك",
+    "price": 0.4,
+    "photo": "modern-khaleeji-3.webp"
+   },
+   {
+    "en": "Samboosa",
+    "ar": "سمبوسة",
+    "price": 0.8,
+    "photo": "modern-khaleeji-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "levantine",
+  "group": "arabic",
+  "en": "Levantine",
+  "ar": "شامي",
+  "dishes": [
+   {
+    "en": "Hummus",
+    "ar": "حمص",
+    "price": 1.2,
+    "photo": "levantine-0.webp"
+   },
+   {
+    "en": "Tabbouleh",
+    "ar": "تبولة",
+    "price": 1.3,
+    "photo": "levantine-1.webp"
+   },
+   {
+    "en": "Fattoush",
+    "ar": "فتوش",
+    "price": 1.3,
+    "photo": "levantine-2.webp"
+   },
+   {
+    "en": "Shish Taouk",
+    "ar": "شيش طاووق",
+    "price": 2.8,
+    "photo": "levantine-3.webp"
+   },
+   {
+    "en": "Zaatar Manakish",
+    "ar": "مناقيش زعتر",
+    "price": 0.9,
+    "photo": "levantine-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "traditional-majlis",
+  "group": "arabic",
+  "en": "Traditional Majlis",
+  "ar": "المجلس",
+  "dishes": [
+   {
+    "en": "Arabic Coffee",
+    "ar": "قهوة عربية",
+    "price": 0.8,
+    "photo": "traditional-majlis-0.webp"
+   },
+   {
+    "en": "Khalas Dates",
+    "ar": "تمر خلاص",
+    "price": 1.0,
+    "photo": "traditional-majlis-1.webp"
+   },
+   {
+    "en": "Lamb Kebab",
+    "ar": "كباب لحم",
+    "price": 3.2,
+    "photo": "traditional-majlis-2.webp"
+   },
+   {
+    "en": "Fresh Bread",
+    "ar": "خبز طازج",
+    "price": 0.3,
+    "photo": "traditional-majlis-3.webp"
+   },
+   {
+    "en": "Mint Tea",
+    "ar": "شاي بالنعناع",
+    "price": 0.5,
+    "photo": "traditional-majlis-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "tropical-juice",
+  "group": "juice",
+  "en": "Tropical Juice",
+  "ar": "تروبيكال جوس",
+  "dishes": [
+   {
+    "en": "Orange Juice",
+    "ar": "عصير برتقال",
+    "price": 1.0,
+    "photo": "tropical-juice-0.webp"
+   },
+   {
+    "en": "Mango Juice",
+    "ar": "عصير مانجو",
+    "price": 1.2,
+    "photo": "tropical-juice-1.webp"
+   },
+   {
+    "en": "Watermelon Juice",
+    "ar": "عصير بطيخ",
+    "price": 1.0,
+    "photo": "tropical-juice-2.webp"
+   },
+   {
+    "en": "Pineapple Juice",
+    "ar": "عصير أناناس",
+    "price": 1.1,
+    "photo": "tropical-juice-3.webp"
+   },
+   {
+    "en": "Fruit Salad",
+    "ar": "سلطة فواكه",
+    "price": 1.4,
+    "photo": "tropical-juice-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "smoothie-bar",
+  "group": "juice",
+  "en": "Smoothie Bar",
+  "ar": "سموذي بار",
+  "dishes": [
+   {
+    "en": "Strawberry Smoothie",
+    "ar": "سموذي فراولة",
+    "price": 1.5,
+    "photo": "smoothie-bar-0.webp"
+   },
+   {
+    "en": "Green Detox",
+    "ar": "سموذي أخضر",
+    "price": 1.6,
+    "photo": "smoothie-bar-1.webp"
+   },
+   {
+    "en": "Smoothie Bowl",
+    "ar": "وعاء سموذي",
+    "price": 2.2,
+    "photo": "smoothie-bar-2.webp"
+   },
+   {
+    "en": "Banana Shake",
+    "ar": "ميلك شيك موز",
+    "price": 1.4,
+    "photo": null
+   },
+   {
+    "en": "Açaí Bowl",
+    "ar": "وعاء الأساي",
+    "price": 2.6,
+    "photo": "smoothie-bar-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "chocolate-luxury",
+  "group": "juice",
+  "en": "Chocolate Luxury",
+  "ar": "شوكولا لاكشري",
+  "dishes": [
+   {
+    "en": "Chocolate Cake",
+    "ar": "كيك الشوكولاتة",
+    "price": 2.0,
+    "photo": "chocolate-luxury-0.webp"
+   },
+   {
+    "en": "Truffles Box",
+    "ar": "ترافل",
+    "price": 2.8,
+    "photo": "chocolate-luxury-1.webp"
+   },
+   {
+    "en": "Molten Lava Cake",
+    "ar": "لافا كيك",
+    "price": 2.4,
+    "photo": "chocolate-luxury-2.webp"
+   },
+   {
+    "en": "Chocolate Mousse",
+    "ar": "موس الشوكولاتة",
+    "price": 1.9,
+    "photo": "chocolate-luxury-3.webp"
+   },
+   {
+    "en": "Chocolate Strawberries",
+    "ar": "فراولة بالشوكولاتة",
+    "price": 2.2,
+    "photo": "chocolate-luxury-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "ice-cream-studio",
+  "group": "juice",
+  "en": "Ice Cream Studio",
+  "ar": "آيس كريم ستوديو",
+  "dishes": [
+   {
+    "en": "Ice Cream Cone",
+    "ar": "آيس كريم كون",
+    "price": 0.8,
+    "photo": "ice-cream-studio-0.webp"
+   },
+   {
+    "en": "Sundae",
+    "ar": "صنداي",
+    "price": 1.6,
+    "photo": "ice-cream-studio-1.webp"
+   },
+   {
+    "en": "Italian Gelato",
+    "ar": "جيلاتو إيطالي",
+    "price": 1.3,
+    "photo": "ice-cream-studio-2.webp"
+   },
+   {
+    "en": "Waffle & Ice Cream",
+    "ar": "وافل مع آيس كريم",
+    "price": 2.1,
+    "photo": "ice-cream-studio-3.webp"
+   },
+   {
+    "en": "Banana Split",
+    "ar": "بنانا سبليت",
+    "price": 1.9,
+    "photo": "ice-cream-studio-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "french-bakery",
+  "group": "juice",
+  "en": "French Bakery",
+  "ar": "المخبز الفرنسي",
+  "dishes": [
+   {
+    "en": "Croissant",
+    "ar": "كرواسون",
+    "price": 0.8,
+    "photo": "french-bakery-0.webp"
+   },
+   {
+    "en": "Pain au Chocolat",
+    "ar": "خبز الشوكولاتة",
+    "price": 0.9,
+    "photo": "french-bakery-1.webp"
+   },
+   {
+    "en": "Baguette",
+    "ar": "باغيت",
+    "price": 0.6,
+    "photo": "french-bakery-2.webp"
+   },
+   {
+    "en": "Chocolate Éclair",
+    "ar": "إكلير",
+    "price": 1.2,
+    "photo": "french-bakery-3.webp"
+   },
+   {
+    "en": "Fruit Tart",
+    "ar": "تارت الفواكه",
+    "price": 1.6,
+    "photo": "french-bakery-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "black-gold",
+  "group": "fine",
+  "en": "Black & Gold",
+  "ar": "بلاك آند غولد",
+  "dishes": [
+   {
+    "en": "Beef Tenderloin",
+    "ar": "تندرلوين بقري",
+    "price": 12.5,
+    "photo": "black-gold-0.webp"
+   },
+   {
+    "en": "Lobster Thermidor",
+    "ar": "لوبستر",
+    "price": 16.0,
+    "photo": "black-gold-1.webp"
+   },
+   {
+    "en": "Truffle Risotto",
+    "ar": "ريزوتو بالكمأة",
+    "price": 7.5,
+    "photo": "black-gold-2.webp"
+   },
+   {
+    "en": "Crème Brûlée",
+    "ar": "كريم بروليه",
+    "price": 3.5,
+    "photo": "black-gold-3.webp"
+   },
+   {
+    "en": "Beef Carpaccio",
+    "ar": "كارباتشيو",
+    "price": 6.0,
+    "photo": "black-gold-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "ivory-luxury",
+  "group": "fine",
+  "en": "Ivory Luxury",
+  "ar": "آيفوري",
+  "dishes": [
+   {
+    "en": "Seared Scallops",
+    "ar": "سكالوب",
+    "price": 9.5,
+    "photo": "ivory-luxury-0.webp"
+   },
+   {
+    "en": "Duck Breast",
+    "ar": "صدر البط",
+    "price": 11.0,
+    "photo": "ivory-luxury-1.webp"
+   },
+   {
+    "en": "Velouté Soup",
+    "ar": "شوربة كريمية",
+    "price": 3.8,
+    "photo": "ivory-luxury-2.webp"
+   },
+   {
+    "en": "Panna Cotta",
+    "ar": "بانا كوتا",
+    "price": 3.2,
+    "photo": "ivory-luxury-3.webp"
+   },
+   {
+    "en": "Salmon Fillet",
+    "ar": "فيليه سلمون",
+    "price": 9.0,
+    "photo": "ivory-luxury-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "italian-classic",
+  "group": "fine",
+  "en": "Italian Classic",
+  "ar": "إيطالي كلاسيك",
+  "dishes": [
+   {
+    "en": "Spaghetti Carbonara",
+    "ar": "سباغيتي كاربونارا",
+    "price": 4.8,
+    "photo": "italian-classic-0.webp"
+   },
+   {
+    "en": "Lasagna",
+    "ar": "لازانيا",
+    "price": 4.5,
+    "photo": "italian-classic-1.webp"
+   },
+   {
+    "en": "Bruschetta",
+    "ar": "بروسكيتا",
+    "price": 2.4,
+    "photo": "italian-classic-2.webp"
+   },
+   {
+    "en": "Tiramisù",
+    "ar": "تيراميسو",
+    "price": 2.6,
+    "photo": "italian-classic-3.webp"
+   },
+   {
+    "en": "Caprese Salad",
+    "ar": "سلطة كابريزي",
+    "price": 3.0,
+    "photo": "italian-classic-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "seafood-luxury",
+  "group": "fine",
+  "en": "Seafood Luxury",
+  "ar": "سي فود لاكشري",
+  "dishes": [
+   {
+    "en": "Grilled Hammour",
+    "ar": "هامور مشوي",
+    "price": 8.5,
+    "photo": "seafood-luxury-0.webp"
+   },
+   {
+    "en": "Fresh Oysters",
+    "ar": "محار طازج",
+    "price": 9.0,
+    "photo": "seafood-luxury-1.webp"
+   },
+   {
+    "en": "Grilled Prawns",
+    "ar": "روبيان مشوي",
+    "price": 7.5,
+    "photo": "seafood-luxury-2.webp"
+   },
+   {
+    "en": "Omani Lobster",
+    "ar": "شارخة عُمانية",
+    "price": 15.0,
+    "photo": "seafood-luxury-3.webp"
+   },
+   {
+    "en": "Seafood Platter",
+    "ar": "طبق مأكولات بحرية",
+    "price": 18.0,
+    "photo": "seafood-luxury-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "japanese-minimal",
+  "group": "fine",
+  "en": "Japanese Minimal",
+  "ar": "ياباني",
+  "dishes": [
+   {
+    "en": "Sushi Selection",
+    "ar": "تشكيلة سوشي",
+    "price": 6.5,
+    "photo": "japanese-minimal-0.webp"
+   },
+   {
+    "en": "Sashimi",
+    "ar": "ساشيمي",
+    "price": 7.0,
+    "photo": "japanese-minimal-1.webp"
+   },
+   {
+    "en": "Ramen",
+    "ar": "رامن",
+    "price": 4.2,
+    "photo": "japanese-minimal-2.webp"
+   },
+   {
+    "en": "Prawn Tempura",
+    "ar": "تمبورا روبيان",
+    "price": 4.6,
+    "photo": "japanese-minimal-3.webp"
+   },
+   {
+    "en": "Miso Soup",
+    "ar": "شوربة ميسو",
+    "price": 1.5,
+    "photo": "japanese-minimal-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "italian-pizza",
+  "group": "pizza",
+  "en": "Italian Pizza",
+  "ar": "بيتزا إيطالية",
+  "dishes": [
+   {
+    "en": "Margherita",
+    "ar": "مارغريتا",
+    "price": 2.8,
+    "photo": "italian-pizza-0.webp"
+   },
+   {
+    "en": "Pepperoni",
+    "ar": "بيبروني",
+    "price": 3.4,
+    "photo": "italian-pizza-1.webp"
+   },
+   {
+    "en": "Calzone",
+    "ar": "كالزوني",
+    "price": 3.0,
+    "photo": "italian-pizza-2.webp"
+   },
+   {
+    "en": "Garlic Bread",
+    "ar": "خبز بالثوم",
+    "price": 1.0,
+    "photo": "italian-pizza-3.webp"
+   },
+   {
+    "en": "Four Cheese",
+    "ar": "أربعة أجبان",
+    "price": 3.6,
+    "photo": "italian-pizza-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "modern-pasta",
+  "group": "pizza",
+  "en": "Modern Pasta",
+  "ar": "مودرن باستا",
+  "dishes": [
+   {
+    "en": "Penne Arrabbiata",
+    "ar": "بيني أرابياتا",
+    "price": 2.9,
+    "photo": "modern-pasta-0.webp"
+   },
+   {
+    "en": "Fettuccine Alfredo",
+    "ar": "فيتوتشيني ألفريدو",
+    "price": 3.3,
+    "photo": "modern-pasta-1.webp"
+   },
+   {
+    "en": "Spaghetti Bolognese",
+    "ar": "سباغيتي بولونيز",
+    "price": 3.2,
+    "photo": "modern-pasta-2.webp"
+   },
+   {
+    "en": "Ravioli",
+    "ar": "رافيولي",
+    "price": 3.5,
+    "photo": "modern-pasta-3.webp"
+   },
+   {
+    "en": "Pesto Pasta",
+    "ar": "باستا بيستو",
+    "price": 3.0,
+    "photo": "modern-pasta-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "family-combos",
+  "group": "pizza",
+  "en": "Family Combos",
+  "ar": "وجبات عائلية",
+  "dishes": [
+   {
+    "en": "Chicken Bucket",
+    "ar": "سطل دجاج",
+    "price": 5.9,
+    "photo": "family-combos-0.webp"
+   },
+   {
+    "en": "Family Pizza",
+    "ar": "بيتزا عائلية",
+    "price": 4.9,
+    "photo": "family-combos-1.webp"
+   },
+   {
+    "en": "Nuggets (12 pcs)",
+    "ar": "ناغتس (12 قطعة)",
+    "price": 1.9,
+    "photo": "family-combos-2.webp"
+   },
+   {
+    "en": "Potato Wedges",
+    "ar": "ودجز",
+    "price": 1.0,
+    "photo": "family-combos-3.webp"
+   },
+   {
+    "en": "Soft Drinks",
+    "ar": "مشروبات غازية",
+    "price": 0.4,
+    "photo": "family-combos-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "mediterranean",
+  "group": "pizza",
+  "en": "Mediterranean",
+  "ar": "متوسطي",
+  "dishes": [
+   {
+    "en": "Greek Salad",
+    "ar": "سلطة يونانية",
+    "price": 2.2,
+    "photo": "mediterranean-0.webp"
+   },
+   {
+    "en": "Grilled Chicken",
+    "ar": "دجاج مشوي",
+    "price": 3.4,
+    "photo": "mediterranean-1.webp"
+   },
+   {
+    "en": "Falafel Plate",
+    "ar": "طبق فلافل",
+    "price": 1.6,
+    "photo": "mediterranean-2.webp"
+   },
+   {
+    "en": "Moussaka",
+    "ar": "مسقعة",
+    "price": 2.9,
+    "photo": "mediterranean-3.webp"
+   },
+   {
+    "en": "Vine Leaves",
+    "ar": "ورق عنب",
+    "price": 1.5,
+    "photo": "mediterranean-4.webp"
+   }
+  ]
+ },
+ {
+  "id": "fast-casual",
+  "group": "pizza",
+  "en": "Fast Casual",
+  "ar": "فاست كاجوال",
+  "dishes": [
+   {
+    "en": "Chicken Burrito",
+    "ar": "بوريتو دجاج",
+    "price": 2.4,
+    "photo": "fast-casual-0.webp"
+   },
+   {
+    "en": "Veggie Wrap",
+    "ar": "راب خضار",
+    "price": 1.9,
+    "photo": "fast-casual-1.webp"
+   },
+   {
+    "en": "Caesar Salad",
+    "ar": "سلطة سيزر",
+    "price": 2.3,
+    "photo": "fast-casual-2.webp"
+   },
+   {
+    "en": "Quesadilla",
+    "ar": "كاساديا",
+    "price": 2.2,
+    "photo": "fast-casual-3.webp"
+   },
+   {
+    "en": "Beef Tacos",
+    "ar": "تاكو لحم",
+    "price": 2.5,
+    "photo": "fast-casual-4.webp"
+   }
+  ]
+ }
+]

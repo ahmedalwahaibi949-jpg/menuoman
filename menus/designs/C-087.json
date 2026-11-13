@@ -1,0 +1,20 @@
+{
+ "id": "C-087",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط السماء · الإيطالي",
+  "en": "Sky Reel · Italian"
+ },
+ "palette": "sky",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "italian",
+ "reveal": "curtain"
+}

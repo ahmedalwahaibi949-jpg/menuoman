@@ -1,0 +1,20 @@
+{
+ "id": "C-015",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار البرقوق · المقهى",
+  "en": "Plum Orbit · Café"
+ },
+ "palette": "plum",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "cafe",
+ "reveal": "page"
+}

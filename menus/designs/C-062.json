@@ -1,0 +1,20 @@
+{
+ "id": "C-062",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج الغروب · رمضان",
+  "en": "Sunset Glass · Ramadan"
+ },
+ "palette": "glass-sunset",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "curtain"
+}
