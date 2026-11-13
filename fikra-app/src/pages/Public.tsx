@@ -135,6 +135,9 @@ export function ProjectPage() {
           <p className="max-w-[60ch] rounded-xl bg-[#FFF5DC] px-4 py-3 text-[14.5px] text-[#6E4A00]">{t("This is a demonstration concept, not a completed client project. The names and data in it are invented for the demo.", "هذا نموذج تجريبي وليس مشروعًا منجزًا لعميل. الأسماء والبيانات فيه مختلقة لغرض العرض.")}</p>
           <a href="#demo" className="btn-dark">{t("Live demonstration", "العرض الحي")}</a>
         </div>
+        {p.demo === "construction" && <Link to="/demo/construction" className="dark-sec mb-6 flex flex-wrap items-center justify-between gap-4 rounded-3xl p-6 sm:p-8">
+          <span className="relative"><b className="block font-display text-[22px] font-extrabold">{t("Full-screen 3D entrance", "المدخل ثلاثي الأبعاد بملء الشاشة")}</b><span className="mt-1 block text-paper/70">{t("Scroll and the tower builds itself: site, structure, glass, handover.", "مرّر فيُبنى البرج أمامك: الموقع ثم الهيكل ثم الزجاج ثم التسليم.")}</span></span>
+          <span className="btn-primary relative">{t("Open the live demo", "افتح العرض الحي")}</span></Link>}
         <div id="demo" className="scroll-mt-28"><BrowserFrame url={`fikra.demo/${p.slug}`}><Demo kind={p.demo} /></BrowserFrame></div>
         <div className="mt-14 grid gap-12 lg:grid-cols-3">
           <Reveal className="lg:col-span-2"><h2 className="font-display text-[26px] font-extrabold">{t("Design concept", "فكرة التصميم")}</h2><p className="mt-4 text-[19px] leading-relaxed">{L(p.concept)}</p>

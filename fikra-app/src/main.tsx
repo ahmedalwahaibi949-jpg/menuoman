@@ -19,6 +19,7 @@ const QrMenu = lazy(() => import("./boards/Pages").then(m => ({ default: m.QrMen
 const Credits = lazy(() => import("./boards/Pages").then(m => ({ default: m.Credits })));
 const Studio = lazy(() => import("./boards/Studio"));
 
+const ConstructionSite = lazy(() => import("./demos/ConstructionSite"));
 function Loader() {
   const { ready } = useApp();
   const [gone, setGone] = useState(false);
@@ -36,6 +37,7 @@ function App() {
           {/* Full-screen pages with no site navigation: the TV display and the QR menu */}
           <Route path="display/:id" element={<Display />} />
           <Route path="m/:id" element={<QrMenu />} />
+          <Route path="demo/construction" element={<ConstructionSite />} />
           <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="services" element={<Services />} />
