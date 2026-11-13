@@ -203,6 +203,7 @@ create table if not exists public.boards (
   status       text not null default 'trial' check (status in ('trial', 'active', 'paused')),
   created_at   timestamptz not null default now()
 );
+alter table public.boards add column if not exists paid_until timestamptz;
 create index if not exists boards_owner_idx on public.boards (owner_id);
 
 -- Owners edit their draft and name only. Publishing goes through board_publish(); the subscription status is the administrator's.
@@ -211,9 +212,9 @@ returns trigger language plpgsql as $$
 begin
   if auth.uid() is not null and not public.is_admin() and coalesce(current_setting('fikra.publishing', true), '') <> '1' then
     if tg_op = 'INSERT' then
-      new.owner_id := auth.uid(); new.status := 'trial'; new.published := null; new.published_at := null; new.created_at := now();
+      new.owner_id := auth.uid(); new.status := 'trial'; new.published := null; new.published_at := null; new.created_at := now(); new.paid_until := null;
     else
-      new.owner_id := old.owner_id; new.status := old.status; new.published := old.published; new.published_at := old.published_at; new.created_at := old.created_at;
+      new.owner_id := old.owner_id; new.status := old.status; new.published := old.published; new.published_at := old.published_at; new.created_at := old.created_at; new.paid_until := old.paid_until;
     end if;
   end if;
   return new;
@@ -244,11 +245,64 @@ revoke all on function public.board_publish(uuid) from public;
 grant execute on function public.board_publish(uuid) to authenticated;
 
 -- Public read of the published menu only (never the draft), for the TV display and the QR menu.
-create or replace function public.board_public(board uuid)
-returns table (restaurant text, published jsonb, published_at timestamptz) language sql stable security definer set search_path = public as $$
-  select b.restaurant, b.published, b.published_at from public.boards b where b.id = board and b.published is not null and b.status <> 'paused';
+-- A menu is shown while it is not paused and is either paid for, marked active by the administrator, or inside the 14-day free trial.
+create or replace function public.board_live(b public.boards)
+returns boolean language sql stable as $$
+  select b.status <> 'paused' and (coalesce(b.paid_until, 'epoch'::timestamptz) > now() or (b.status = 'active' and b.paid_until is null) or b.created_at + interval '14 days' > now());
+$$;
+drop function if exists public.board_public(uuid);
+create function public.board_public(board uuid)
+returns table (restaurant text, published jsonb, published_at timestamptz, live boolean) language sql stable security definer set search_path = public as $$
+  select b.restaurant, case when public.board_live(b) then b.published end, b.published_at, public.board_live(b)
+  from public.boards b where b.id = board and b.published is not null;
 $$;
 grant execute on function public.board_public(uuid) to anon, authenticated;
+
+-- Subscription payments by bank transfer. The owner sends a receipt; only the administrator can confirm it.
+create table if not exists public.board_payments (
+  id         uuid primary key default gen_random_uuid(),
+  board_id   uuid not null references public.boards (id) on delete cascade,
+  owner_id   uuid not null references public.profiles (id) on delete cascade default auth.uid(),
+  months     int not null check (months in (1, 3, 12)),
+  amount     numeric(10,3) not null check (amount >= 0),
+  receipt    text not null check (char_length(receipt) between 3 and 300),
+  status     text not null default 'pending' check (status in ('pending', 'approved', 'rejected')),
+  created_at timestamptz not null default now()
+);
+create index if not exists board_payments_owner_idx on public.board_payments (owner_id);
+alter table public.board_payments enable row level security;
+drop policy if exists "owner or admin reads payments" on public.board_payments;
+create policy "owner or admin reads payments" on public.board_payments for select to authenticated using (owner_id = auth.uid() or public.is_admin());
+drop policy if exists "owner sends payment" on public.board_payments;
+create policy "owner sends payment" on public.board_payments for insert to authenticated
+  with check (owner_id = auth.uid() and status = 'pending' and exists (select 1 from public.boards b where b.id = board_id and b.owner_id = auth.uid()));
+-- No update or delete policy: a payment changes only through payment_decide().
+
+create or replace function public.payment_decide(pid uuid, approve boolean)
+returns void language plpgsql security definer set search_path = public as $$
+declare p public.board_payments;
+begin
+  if not public.is_admin() then raise exception 'not allowed'; end if;
+  select * into p from public.board_payments where id = pid and status = 'pending' for update;
+  if not found then raise exception 'not pending'; end if;
+  update public.board_payments set status = case when approve then 'approved' else 'rejected' end where id = pid;
+  if approve then
+    update public.boards set paid_until = greatest(coalesce(paid_until, now()), now()) + make_interval(months => p.months), status = 'active' where id = p.board_id;
+  end if;
+end $$;
+revoke all on function public.payment_decide(uuid, boolean) from public;
+grant execute on function public.payment_decide(uuid, boolean) to authenticated;
+
+-- Transfer receipts: private. Each owner uploads into their own folder; only that owner and the administrator can open them.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('receipts', 'receipts', false, 6291456, array['image/png', 'image/jpeg', 'image/webp'])
+on conflict (id) do update set public = false, file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;
+drop policy if exists "owners upload receipts" on storage.objects;
+create policy "owners upload receipts" on storage.objects for insert to authenticated
+  with check (bucket_id = 'receipts' and (storage.foldername(name))[1] = auth.uid()::text);
+drop policy if exists "owner or admin reads receipts" on storage.objects;
+create policy "owner or admin reads receipts" on storage.objects for select to authenticated
+  using (bucket_id = 'receipts' and ((storage.foldername(name))[1] = auth.uid()::text or public.is_admin()));
 
 -- Menu photos: public to view, each owner uploads into their own folder.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)

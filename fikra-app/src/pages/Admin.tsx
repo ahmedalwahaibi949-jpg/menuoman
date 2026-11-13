@@ -5,6 +5,8 @@ import { useApp } from "../lib/app";
 import { Link } from "react-router-dom";
 import { api, type BoardRec, type Enquiry, type Invoice, type Message, type ProjectRec, type RequestRec, type User } from "../lib/store";
 import { DESIGNS, GROUPS, designById } from "../boards/boards";
+import { AdminPayments } from "../boards/Billing";
+import { planOf } from "../lib/content";
 import type { Content, Testimonial } from "../lib/content";
 import { Field, useToast } from "../components/ui";
 import { Empty, fmtDate, STATUS_LABEL } from "./Portal";
@@ -121,12 +123,22 @@ export default function Admin() {
         </div>}
 
         {tab === "boards" && <div className="grid gap-6">
+          <AdminPayments boards={boards} users={users} toast={toast} reload={load} />
           <section className="card p-6"><h2 className="text-[19px] font-bold">{t("Restaurants", "المطاعم")}</h2>
-            {boards.length ? <div className="mt-4 overflow-x-auto"><table className="tbl"><thead><tr><th>{t("Restaurant", "المطعم")}</th><th>{t("Owner", "المالك")}</th><th>{t("Design", "التصميم")}</th><th>{t("Screens", "الشاشات")}</th><th>{t("Published", "النشر")}</th><th>{t("Subscription", "الاشتراك")}</th><th></th></tr></thead>
+            {boards.length ? <div className="mt-4 overflow-x-auto"><table className="tbl"><thead><tr><th>{t("Restaurant", "المطعم")}</th><th>{t("Owner", "المالك")}</th><th>{t("Design", "التصميم")}</th><th>{t("Screens", "الشاشات")}</th><th>{t("Published", "النشر")}</th><th>{t("Subscription", "الاشتراك")}</th><th>{t("Paid until", "مدفوع حتى")}</th><th></th></tr></thead>
               <tbody>{boards.map(b => <tr key={b.id}><td className="font-semibold">{b.restaurant}</td><td>{name(b.owner_id)}</td><td>{L(designById(b.draft.settings.designId)?.name)}</td><td className="tabular-nums">{b.draft.settings.screens}</td><td>{b.published_at ? fmtDate(b.published_at, lang) : "—"}</td>
                 <td><select className="input !min-h-[40px] !w-auto !py-1 !text-[14px]" value={b.status} onChange={e => act(() => api.update("boards", b.id, { status: e.target.value as BoardRec["status"] }), t("Subscription updated.", "تم تحديث الاشتراك."))}><option value="trial">{t("Trial", "تجريبي")}</option><option value="active">{t("Active", "نشط")}</option><option value="paused">{t("Paused", "موقوف")}</option></select></td>
+                <td>{b.paid_until ? fmtDate(b.paid_until, lang) : "—"}</td>
                 <td>{b.published_at && <Link className="underline" to={`/display/${b.id}`} target="_blank">{t("Open display", "فتح العرض")}</Link>}</td></tr>)}</tbody></table></div>
               : <p className="mt-2 text-slate">{t("No restaurants yet. They appear when a customer saves a menu in the restaurant dashboard.", "لا توجد مطاعم بعد. تظهر عندما يحفظ عميل منيو في لوحة المطعم.")}</p>}</section>
+          {(() => { const pl = planOf(draft); const setPlan = (p: typeof pl) => setDraft(d => ({ ...d, boards: { ...d.boards, plan: p } })); return (
+          <section className="card grid gap-4 p-6"><h2 className="text-[19px] font-bold">{t("Self-service plan and bank details", "الباقة الذاتية وبيانات البنك")}</h2>
+            <p className="-mt-2 text-[14.5px] text-slate">{t("Restaurants see these when they subscribe. Leave the account number empty to hide transfer payment.", "تظهر للمطاعم عند الاشتراك. اترك رقم الحساب فارغًا لإخفاء الدفع بالتحويل.")}</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label={t("Monthly price (OMR)", "السعر الشهري (ر.ع)")} hint={t("12 months are charged as 10", "تُحتسب 12 شهرًا بسعر 10")}><input className="input ltr" type="number" min="1" step="0.5" value={pl.monthly} onChange={e => setPlan({ ...pl, monthly: +e.target.value })} /></Field>
+              <Field label={t("Bank name", "اسم البنك")}><input className="input" value={pl.bank.bank} onChange={e => setPlan({ ...pl, bank: { ...pl.bank, bank: e.target.value } })} /></Field>
+              <Field label={t("Account holder name", "اسم صاحب الحساب")}><input className="input" value={pl.bank.holder} onChange={e => setPlan({ ...pl, bank: { ...pl.bank, holder: e.target.value } })} /></Field>
+              <Field label={t("Account number or IBAN", "رقم الحساب أو الآيبان")}><input className="input ltr" value={pl.bank.account} onChange={e => setPlan({ ...pl, bank: { ...pl.bank, account: e.target.value } })} /></Field></div></section>); })()}
           <section className="card grid gap-4 p-6"><h2 className="text-[19px] font-bold">{t("Pricing shown on design pages", "السعر المعروض في صفحات التصاميم")}</h2>
             <div className="grid gap-4 sm:grid-cols-2"><Field label={t("Design and setup from (OMR)", "التصميم والإعداد من (ر.ع)")} hint={t("Empty shows “quoted per restaurant”", "الفارغ يعرض «يُسعَّر لكل مطعم»")}><input className="input ltr" type="number" min="0" value={draft.boards.pricing.setup ?? ""} onChange={e => setDraft(d => ({ ...d, boards: { ...d.boards, pricing: { ...d.boards.pricing, setup: e.target.value === "" ? null : +e.target.value } } }))} /></Field>
               <Field label={t("Per screen monthly (OMR)", "لكل شاشة شهريًا (ر.ع)")}><input className="input ltr" type="number" min="0" value={draft.boards.pricing.monthly ?? ""} onChange={e => setDraft(d => ({ ...d, boards: { ...d.boards, pricing: { ...d.boards.pricing, monthly: e.target.value === "" ? null : +e.target.value } } }))} /></Field></div></section>

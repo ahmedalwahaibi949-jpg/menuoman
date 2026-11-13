@@ -7,6 +7,7 @@ import { api, type BoardData, type BoardRec } from "../lib/store";
 import { Field, useToast } from "../components/ui";
 import { photoUrl } from "./Board";
 import { TvWall, useBoardFonts } from "./Pages";
+import { AccessBadge, Billing } from "./Billing";
 import { DESIGNS, GROUPS, defaultAssign, defaultSettings, designById, type Item, type Offer } from "./boards";
 
 const uid = () => Math.random().toString(36).slice(2, 10);
@@ -30,7 +31,7 @@ function PhotoPick({ value, onChange, toast }: { value?: string; onChange: (v: s
 }
 
 export default function Studio() {
-  const { t, L, lang } = useI18n(); const { user, ready } = useApp(); const { toast, node } = useToast(); const [qs] = useSearchParams(); useBoardFonts();
+  const { t, L, lang } = useI18n(); const { user, ready, content } = useApp(); const { toast, node } = useToast(); const [qs] = useSearchParams(); useBoardFonts();
   useSeo(t("Restaurant Dashboard · FIKRA Menu Studio", "لوحة المطعم · استوديو المنيو"));
   const [rec, setRec] = useState<BoardRec | null>(null); const [d, setD] = useState<BoardData | null>(null); const [name, setName] = useState("");
   const [tab, setTab] = useState("menu"); const [dirty, setDirty] = useState(false); const [busy, setBusy] = useState(false); const [playing, setPlaying] = useState(true);
@@ -66,7 +67,7 @@ export default function Studio() {
   }
   const base = location.origin + location.pathname;
   const changed = dirty || (rec && JSON.stringify(rec.draft) !== JSON.stringify(rec.published));
-  const tabs = [["menu", t("Menu", "المنيو")], ["offers", t("Offers & hours", "العروض والأوقات")], ["screens", t("Screens", "الشاشات")], ["publish", t("Preview & publish", "المعاينة والنشر")]] as const;
+  const tabs = [["menu", t("Menu", "المنيو")], ["offers", t("Offers & hours", "العروض والأوقات")], ["screens", t("Screens", "الشاشات")], ["publish", t("Preview & publish", "المعاينة والنشر")], ["billing", t("Subscription", "الاشتراك")]] as const;
   const days = lang === "ar" ? ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"] : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
@@ -75,7 +76,7 @@ export default function Studio() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="min-w-0 flex-1"><p className="eyebrow">{t("Restaurant dashboard", "لوحة المطعم")}</p>
           <input className="mt-1 w-full max-w-[520px] border-0 border-b-2 border-navy/15 bg-transparent font-display text-[clamp(26px,3.6vw,38px)] font-extrabold outline-none focus:border-teal" value={name} onChange={e => { const v = e.target.value; setD(prev => { if (!prev) return prev; const cur = prev.menu.name, df = designById(prev.settings.designId)?.menu.name; if ((cur.en === name && cur.ar === name) || (df && cur.en === df.en && cur.ar === df.ar)) { const n = clone(prev); n.menu.name = { en: v, ar: v }; return n; } return prev; }); setName(v); setDirty(true); }} placeholder={t("Restaurant name", "اسم المطعم")} aria-label={t("Restaurant name", "اسم المطعم")} /></div>
-        <div className="flex items-center gap-4"><span className="text-[14px] text-slate">{rec?.published_at ? (changed ? t("Unpublished changes", "تغييرات غير منشورة") : t("Published", "منشور")) : t("Not published yet", "غير منشور بعد")}</span>
+        <div className="flex flex-wrap items-center gap-4">{rec && <button onClick={() => setTab("billing")}><AccessBadge rec={rec} /></button>}<span className="text-[14px] text-slate">{rec?.published_at ? (changed ? t("Unpublished changes", "تغييرات غير منشورة") : t("Published", "منشور")) : t("Not published yet", "غير منشور بعد")}</span>
           <button className="btn-line !min-h-[44px]" disabled={busy} onClick={() => save(false)}>{t("Save draft", "حفظ المسودة")}</button><button className="btn-dark !min-h-[44px]" disabled={busy} onClick={() => save(true)}>{t("Publish", "نشر")}</button></div>
       </div>
       <div className="mt-7 flex gap-6 overflow-x-auto border-b border-navy/10" role="tablist">{tabs.map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)} className={`-mb-px whitespace-nowrap border-b-2 pb-3 text-[15.5px] font-semibold ${tab === k ? "border-navy text-ink" : "border-transparent text-slate hover:text-ink"}`}>{l}</button>)}</div>
@@ -98,6 +99,8 @@ export default function Studio() {
             </section>))}
           <button className="btn-line justify-self-start" onClick={() => up(x => { x.menu.cats.push({ id: uid(), name: { en: "New category", ar: "تصنيف جديد" }, items: [] }); x.settings.assign = defaultAssign(x.menu, x.settings.screens); })}>{t("Add category", "إضافة تصنيف")}</button>
         </div>}
+
+        {tab === "billing" && <Billing rec={rec} content={content} toast={toast} />}
 
         {tab === "offers" && <div className="grid gap-6">
           <section className="card grid gap-4 p-6"><h2 className="text-[19px] font-bold">{t("Announcements", "الإعلانات")}</h2>

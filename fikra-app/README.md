@@ -62,3 +62,32 @@ npm install
 npm run dev      # local preview
 npm run build    # type-check and build into ../fikra
 ```
+
+## Menu Board Studio (self-service subscription)
+
+Restaurants sign up, build their menu and pay without contacting anyone.
+
+| Page | Address |
+|---|---|
+| Designs, price and "Start free" | `#/menu-boards` |
+| Restaurant dashboard | `#/studio` |
+| TV screen | `#/display/<menu id>?screen=1&of=2` |
+| QR phone menu | `#/m/<menu id>` |
+| Photo credits | `#/credits` |
+
+How the subscription works:
+
+1. Saving a menu starts a 14-day free trial. The TV screens and the QR menu work during the trial.
+2. In the dashboard, **Subscription** shows the price, your bank details and a receipt upload. The restaurant transfers the money and uploads a photo of the receipt.
+3. In **Admin → Menu boards → Transfers to confirm** you open the receipt, check the money arrived in your bank, and press **Confirm**. That extends the restaurant by the months paid for.
+4. When the trial or the paid period ends, the TV screens and QR menu show "This menu is paused" until the next payment is confirmed.
+
+Before selling, in **Admin → Menu boards** set the monthly price (default 9 OMR; 12 months are charged as 10) and your bank name, account name and account number. Until the account number is filled in, restaurants see "contact us" instead of the transfer form.
+
+Limits to know about:
+
+- Payment is by bank transfer with manual confirmation. Card payment needs a payment gateway account, which needs a commercial registration.
+- No emails are sent. You see new transfers when you open the admin page.
+- The trial length (14 days) is set in two places that must match: `TRIAL_DAYS` in `src/lib/store.ts` and `board_live()` in `supabase/schema.sql`.
+- In demo mode (no Supabase keys) everything is stored in one browser only. Connect Supabase before giving the link to real customers.
+- Food photos in the sample designs come from Wikimedia Commons (public domain, CC0 and CC BY). `public/boards/credits.json` lists each photographer and licence; keep the credits page online.

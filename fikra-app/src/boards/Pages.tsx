@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { PlanSection } from "./Billing";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useI18n, useSeo, type Lang } from "../lib/i18n";
 import { useApp } from "../lib/app";
@@ -72,11 +73,13 @@ export function BoardsGallery() {
             <p className="eyebrow !text-teal animate-rise">{t("FIKRA Menu Studio · TV menu boards", "استوديو المنيو · شاشات المنيو")}</p>
             <h1 className="mt-4 font-display text-[clamp(36px,5.6vw,68px)] font-extrabold leading-[1.04] animate-rise" style={{ animationDelay: "80ms" }}>{t("Turn your restaurant TVs into ", "حوّل شاشات مطعمك إلى ")}<span className="bg-gradient-to-r from-teal to-[#7CF3E8] bg-clip-text text-transparent">{t("menu boards that sell.", "منيو يبيع.")}</span></h1>
             <p className="mt-5 max-w-[52ch] text-[19px] text-paper/75 animate-rise" style={{ animationDelay: "160ms" }}>{t("Digital menus designed for large landscape screens behind the counter. Customers read your food, prices and offers while they wait. Change a price once and it updates on the TV and the QR menu.", "قوائم رقمية مصممة للشاشات الأفقية الكبيرة خلف الكاونتر. يقرأ الزبون أطباقك وأسعارك وعروضك وهو ينتظر. غيّر السعر مرة واحدة فيتحدّث في الشاشة ومنيو QR.")}</p>
-            <div className="mt-8 flex flex-wrap gap-3 animate-rise" style={{ animationDelay: "240ms" }}><a href="#designs" className="btn-primary">{t("See the 30 designs", "شاهد 30 تصميمًا")} <Arrow /></a><Link to="/studio" className="btn-ghost">{t("Restaurant dashboard", "لوحة المطعم")}</Link></div>
+            <div className="mt-8 flex flex-wrap gap-3 animate-rise" style={{ animationDelay: "240ms" }}><a href="#designs" className="btn-primary">{t("See the 30 designs", "شاهد 30 تصميمًا")} <Arrow /></a><Link to="/studio" className="btn-ghost">{t("Start free for 14 days", "ابدأ مجانًا 14 يومًا")}</Link></div>
           </div>
           <Wall3D lang={lang} />
         </div>
       </section>
+
+      <PlanSection content={content} />
 
       <section className="container-x py-16" id="designs">
         <div className="flex flex-wrap gap-2" role="tablist" aria-label={t("Categories", "التصنيفات")}>
@@ -200,15 +203,15 @@ function QuoteForm({ designId, screens }: { designId: string; screens: number })
 /* ------------------------------------------------------------------ loading a board for display / QR */
 type Loaded = { design: Design; menu: Menu; settings: Settings; restaurant: string };
 function fromData(data: BoardData, restaurant: string): Loaded | null { const design = designById(data.settings.designId); return design ? { design, menu: data.menu, settings: data.settings, restaurant } : null; }
-async function loadBoard(id: string): Promise<Loaded | null> {
+async function loadBoard(id: string): Promise<Loaded | "expired" | null> {
   if (id.startsWith("concept-")) { const d = designById(id.slice(8)); return d ? { design: d, menu: d.menu, settings: { designId: d.id, screens: 1, slideSeconds: 10, assign: defaultAssign(d.menu, 1) }, restaurant: d.name.en } : null; }
-  const r = await api.boardPublic(id); return r ? fromData(r.data, r.restaurant) : null;
+  const r = await api.boardPublic(id); return r === "expired" ? r : r ? fromData(r.data, r.restaurant) : null;
 }
 
 /* ------------------------------------------------------------------ display mode (for the TV itself) */
 export function Display() {
   const { id = "" } = useParams(); const [qs] = useSearchParams(); useBoardFonts();
-  const [b, setB] = useState<Loaded | null>(null); const [state, setState] = useState<"loading" | "ok" | "offline" | "missing">("loading");
+  const [b, setB] = useState<Loaded | null>(null); const [state, setState] = useState<"loading" | "ok" | "offline" | "missing" | "expired">("loading");
   const lang: Lang = qs.get("lang") === "en" ? "en" : qs.get("lang") === "ar" ? "ar" : "ar";
   const cacheKey = "fikra-display-" + id;
   useEffect(() => {
@@ -218,6 +221,7 @@ export function Display() {
     const pull = async () => {
       try {
         const l = await loadBoard(id); if (!alive) return;
+        if (l === "expired") { setB(null); setState("expired"); try { localStorage.removeItem(cacheKey); } catch { /* ignore */ } return; }
         if (!l) { setState(s => (s === "ok" || s === "offline" ? "offline" : "missing")); return; }
         setB(l); setState("ok");
         if (!id.startsWith("concept-")) try { localStorage.setItem(cacheKey, JSON.stringify({ data: { menu: l.menu, settings: l.settings }, restaurant: l.restaurant })); } catch { /* storage full */ }
@@ -232,7 +236,7 @@ export function Display() {
     return () => { alive = false; clearInterval(timer); removeEventListener("online", online); removeEventListener("storage", online); document.removeEventListener("visibilitychange", vis); void lock?.release?.(); };
   }, [id, cacheKey]);
 
-  if (!b) return <div className="grid h-screen place-items-center bg-black text-center text-white/70"><div><p className="text-2xl">{state === "missing" ? "This menu is not published yet." : state === "offline" ? "Waiting for connection…" : "Loading menu…"}</p><p className="mt-2 text-sm text-white/40">FIKRA DIGITAL</p></div></div>;
+  if (!b) return <div className="grid h-screen place-items-center bg-black text-center text-white/70"><div><p className="text-2xl">{state === "expired" ? "هذا المنيو متوقف مؤقتًا · This menu is paused. Renew the subscription from the restaurant dashboard." : state === "missing" ? "This menu is not published yet." : state === "offline" ? "Waiting for connection…" : "Loading menu…"}</p><p className="mt-2 text-sm text-white/40">FIKRA DIGITAL</p></div></div>;
   const of = Math.min(4, Math.max(1, +(qs.get("of") || b.settings.screens))); const one = +(qs.get("screen") || 0);
   const assign = b.settings.assign.length === of ? b.settings.assign : defaultAssign(b.menu, of);
   return (
@@ -249,11 +253,11 @@ export function Display() {
 /* ------------------------------------------------------------------ QR menu (same data as the TV) */
 export function QrMenu() {
   const { id = "" } = useParams(); const { t, L, lang, setLang } = useI18n(); useBoardFonts();
-  const [b, setB] = useState<Loaded | null | undefined>(undefined);
-  useEffect(() => { let alive = true; const pull = () => loadBoard(id).then(x => alive && setB(x)).catch(() => alive && setB(v => v ?? null)); void pull(); const tm = setInterval(pull, 60000); return () => { alive = false; clearInterval(tm); }; }, [id]);
+  const [b, setB] = useState<Loaded | null | undefined>(undefined); const [expired, setExpired] = useState(false);
+  useEffect(() => { let alive = true; const pull = () => loadBoard(id).then(x => { if (!alive) return; if (x === "expired") { setExpired(true); setB(null); } else { setExpired(false); setB(x); } }).catch(() => alive && setB(v => v ?? null)); void pull(); const tm = setInterval(pull, 60000); return () => { alive = false; clearInterval(tm); }; }, [id]);
   useSeo(b ? `${L(b.menu.name)} · ${t("Menu", "المنيو")}` : t("Menu", "المنيو"));
   if (b === undefined) return <div className="grid min-h-screen place-items-center text-slate">{t("Loading…", "جارٍ التحميل…")}</div>;
-  if (!b) return <div className="grid min-h-screen place-items-center p-8 text-center"><div><h1 className="font-display text-2xl font-bold">{t("This menu is not published yet.", "هذا المنيو غير منشور بعد.")}</h1></div></div>;
+  if (!b) return <div className="grid min-h-screen place-items-center p-8 text-center"><div><h1 className="font-display text-2xl font-bold">{expired ? t("This menu is paused for now.", "هذا المنيو متوقف مؤقتًا.") : t("This menu is not published yet.", "هذا المنيو غير منشور بعد.")}</h1></div></div>;
   const th = b.design.theme, offers = activeOffers(b.menu);
   return (
     <div className="mx-auto min-h-screen max-w-[520px] pb-16" style={{ background: th.bg, color: th.fg, fontFamily: lang === "ar" ? "'Tajawal',sans-serif" : th.body }}>

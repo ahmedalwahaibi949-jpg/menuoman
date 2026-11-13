@@ -13,7 +13,18 @@ export type Invoice = { id: string; customer_id: string; project_id: string | nu
 export type Message = { id: string; customer_id: string; body: string; from_admin: boolean; created_at: string };
 export type BoardData = { menu: Menu; settings: Settings };
 /** A restaurant's menu: one record feeds the TV screens, the promo slides and the QR menu. */
-export type BoardRec = { id: string; owner_id: string; restaurant: string; draft: BoardData; published: BoardData | null; published_at: string | null; status: "trial" | "active" | "paused"; created_at: string };
+export type BoardRec = { id: string; owner_id: string; restaurant: string; draft: BoardData; published: BoardData | null; published_at: string | null; status: "trial" | "active" | "paused"; paid_until: string | null; created_at: string };
+export type Payment = { id: string; board_id: string; owner_id: string; months: number; amount: number; receipt: string; status: "pending" | "approved" | "rejected"; created_at: string };
+export const TRIAL_DAYS = 14;
+/** Whether a restaurant's screens and QR menu are shown. The database applies the same rule in board_live(). */
+export function boardAccess(b: Pick<BoardRec, "status" | "paid_until" | "created_at">, at = Date.now()): { live: boolean; kind: "paid" | "trial" | "expired" | "paused"; until: string | null } {
+  if (b.status === "paused") return { live: false, kind: "paused", until: null };
+  if (b.paid_until && Date.parse(b.paid_until) > at) return { live: true, kind: "paid", until: b.paid_until };
+  if (b.status === "active" && !b.paid_until) return { live: true, kind: "paid", until: null };
+  const trialEnd = Date.parse(b.created_at) + TRIAL_DAYS * 86400000;
+  if (trialEnd > at) return { live: true, kind: "trial", until: new Date(trialEnd).toISOString() };
+  return { live: false, kind: "expired", until: null };
+}
 export type Tables = { enquiries: Enquiry; projects: ProjectRec; requests: RequestRec; invoices: Invoice; messages: Message; profiles: User; boards: BoardRec };
 export type TableName = keyof Tables;
 
@@ -46,9 +57,9 @@ if (LIVE) {
 
 // ---------------------------------------------------------------- DEMO
 type DemoUser = User & { pw: string };
-type DemoDb = { users: DemoUser[]; session: string | null; content: Partial<Content>; views: { path: string; at: string }[] } & { [K in Exclude<TableName, "profiles">]: Tables[K][] };
+type DemoDb = { users: DemoUser[]; session: string | null; content: Partial<Content>; views: { path: string; at: string }[] } & { [K in Exclude<TableName, "profiles">]: Tables[K][] } & { payments: Payment[] };
 const DKEY = "fikra-demo-v1";
-const empty = (): DemoDb => ({ users: [], session: null, content: {}, views: [], enquiries: [], projects: [], requests: [], invoices: [], messages: [], boards: [] });
+const empty = (): DemoDb => ({ users: [], session: null, content: {}, views: [], enquiries: [], projects: [], requests: [], invoices: [], messages: [], boards: [], payments: [] });
 function load(): DemoDb { try { return { ...empty(), ...(JSON.parse(localStorage.getItem(DKEY) || "null") || {}) }; } catch { return empty(); } }
 function save(db: DemoDb) { try { localStorage.setItem(DKEY, JSON.stringify(db)); } catch { throw new Error("Demo storage is full."); } }
 async function hash(pw: string) {
@@ -215,7 +226,7 @@ export const api = {
       const db = load(), me = demoMe(db); if (!me) throw new Error("permission denied");
       let r = id ? db.boards.find(x => x.id === id && x.owner_id === me.id) : undefined;
       if (r) Object.assign(r, { restaurant, draft });
-      else { r = { id: uid(), owner_id: me.id, restaurant, draft, published: null, published_at: null, status: "trial", created_at: now() }; db.boards.push(r); }
+      else { r = { id: uid(), owner_id: me.id, restaurant, draft, published: null, published_at: null, status: "trial", paid_until: null, created_at: now() }; db.boards.push(r); }
       save(db); return r;
     }
     const { data: s } = await sb.auth.getSession(); if (!s.session) throw new Error("permission denied");
@@ -227,10 +238,51 @@ export const api = {
     const { error } = await sb.rpc("board_publish", { board: id }); if (error) throw error;
   },
   /** Public: the published menu only. Used by TV display mode and the QR menu. */
-  async boardPublic(id: string): Promise<{ restaurant: string; data: BoardData; published_at: string } | null> {
-    if (!sb) { const r = load().boards.find(x => x.id === id); return r?.published ? { restaurant: r.restaurant, data: r.published, published_at: r.published_at! } : null; }
+  async boardPublic(id: string): Promise<{ restaurant: string; data: BoardData; published_at: string } | "expired" | null> {
+    if (!sb) { const r = load().boards.find(x => x.id === id); if (!r?.published) return null; return boardAccess(r).live ? { restaurant: r.restaurant, data: r.published, published_at: r.published_at! } : "expired"; }
     const { data, error } = await sb.rpc("board_public", { board: id }); if (error) throw error;
-    const row = Array.isArray(data) ? data[0] : data; return row ? { restaurant: row.restaurant, data: row.published, published_at: row.published_at } : null;
+    const row = Array.isArray(data) ? data[0] : data; if (!row) return null;
+    return row.live && row.published ? { restaurant: row.restaurant, data: row.published, published_at: row.published_at } : "expired";
+  },
+
+  // ----- subscription payments by bank transfer
+  /** The restaurant sends a transfer receipt. It stays pending until the administrator confirms it. */
+  async paymentSubmit(boardId: string, months: number, amount: number, file: File): Promise<void> {
+    if (!sb) {
+      const db = load(), me = demoMe(db); if (!me || !db.boards.some(x => x.id === boardId && x.owner_id === me.id)) throw new Error("permission denied");
+      db.payments.push({ id: uid(), board_id: boardId, owner_id: me.id, months, amount, receipt: await shrinkImage(file, 1100), status: "pending", created_at: now() }); save(db); return;
+    }
+    const { data: s } = await sb.auth.getSession(); if (!s.session) throw new Error("permission denied");
+    const path = `${s.session.user.id}/${uid()}.${(file.name.split(".").pop() || "jpg").toLowerCase()}`;
+    const up = await sb.storage.from("receipts").upload(path, file, { contentType: file.type }); if (up.error) throw up.error;
+    const { error } = await sb.from("board_payments").insert({ board_id: boardId, months, amount, receipt: path }); if (error) throw error;
+  },
+  async paymentsMine(): Promise<Payment[]> {
+    if (!sb) { const db = load(), me = demoMe(db); return me ? db.payments.filter(p => p.owner_id === me.id).reverse() : []; }
+    const { data: s } = await sb.auth.getSession(); if (!s.session) return [];
+    const { data, error } = await sb.from("board_payments").select("*").eq("owner_id", s.session.user.id).order("created_at", { ascending: false }); if (error) throw error; return (data as Payment[]) || [];
+  },
+  /** Administrator only: every payment. */
+  async paymentsAll(): Promise<Payment[]> {
+    if (!sb) { const db = load(); return demoMe(db)?.role === "admin" ? [...db.payments].reverse() : []; }
+    const { data, error } = await sb.from("board_payments").select("*").order("created_at", { ascending: false }); if (error) throw error; return (data as Payment[]) || [];
+  },
+  /** Administrator only: confirming extends the restaurant's paid period by the months paid for. */
+  async paymentDecide(id: string, approve: boolean): Promise<void> {
+    if (!sb) {
+      const db = load(); if (demoMe(db)?.role !== "admin") throw new Error("permission denied");
+      const p = db.payments.find(x => x.id === id); if (!p || p.status !== "pending") throw new Error("not pending");
+      p.status = approve ? "approved" : "rejected";
+      const b = db.boards.find(x => x.id === p.board_id);
+      if (approve && b) { const from = new Date(Math.max(Date.now(), b.paid_until ? Date.parse(b.paid_until) : 0)); from.setMonth(from.getMonth() + p.months); b.paid_until = from.toISOString(); b.status = "active"; }
+      save(db); return;
+    }
+    const { error } = await sb.rpc("payment_decide", { pid: id, approve }); if (error) throw error;
+  },
+  /** A viewable address for a receipt (private in the live database, so a short-lived link is made). */
+  async receiptUrl(receipt: string): Promise<string> {
+    if (!sb || receipt.startsWith("data:")) return receipt;
+    const { data, error } = await sb.storage.from("receipts").createSignedUrl(receipt, 600); if (error) throw error; return data.signedUrl;
   },
   /** Stores a menu photo and returns its address. */
   async uploadPhoto(file: File): Promise<string> {
