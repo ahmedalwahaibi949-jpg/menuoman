@@ -1,0 +1,161 @@
+STY=[(1,'إديتوريال','البطاقة تميل وتعدّل نفسها عند الضغط'),(2,'بوستر','الطبق يتكبّر وخلفه كلمة ضخمة'),(3,'الألوان المتحولة','خلفية المنيو تتبدّل ألوانها مع كل ضغطة'),(4,'الأطباق الدائرية','الأطباق تدور وتتبدّل بنعومة'),(5,'المدار','نص يدور حول الطبق وموجة لون عند اللمس')]
+PAL=[('الجمر','#F2552C','#1C0E0A','#7A2410'),('الزيتون','#9DB246','#12170C','#4A5A1E'),('النعنع','#2FC59A','#0A1612','#0F6B52'),('الذهب','#F2B632','#17120A','#7A5A10'),('الوردي','#EC5C97','#1A0C13','#7B1E49'),('الأزرق','#4E8CF0','#0A1020','#1F3F85')]
+PK=[('QR','منيو QR','منيو تفاعلي برابط وكود QR جاهز للطباعة على الطاولات.'),('TV','QR + شاشة','نفس المنيو، مع عرض يتحرك على شاشة داخل المطعم.'),('PLUS','مع التحديث','كل ما فوق، وأعدّل لك الأسعار والأطباق متى ما طلبت.')]
+AD=[('لغتين','عربي وإنجليزي في نفس المنيو'),('طلب واتساب','الزبون يرسل طلبه لرقمكم مباشرة'),('رابط حساباتكم','إنستغرام وموقع المطعم على الخريطة'),('كارت الطاولة','تصميم كارت QR جاهز للطباعة')]
+PR=[None,None,None]  # set OMR price per plan; None = 'السعر عند الطلب'
+PF=[['تصميم خاص بهويتك','نمط حركة من 5 أنماط','رابط المنيو وكود QR','يشتغل بدون تطبيق'],['كل ما في منيو QR','عرض بنفس الهوية لشاشة المطعم','يتبدّل الطبق تلقائياً'],['كل ما في QR + شاشة','تعديل الأسعار والأطباق عند الطلب','ثيمة للمناسبات: العيد الوطني، رمضان']]
+plans=''.join(f'<div class="plan{" hot" if i==1 else ""}"><h3>{a}</h3><p class="pp">{(str(PR[i])+" ر.ع") if PR[i] else "السعر عند الطلب"}</p><ul>{"".join("<li>"+x+"</li>" for x in PF[i])}</ul><button class="pill{" ghost" if i!=1 else ""}" data-pick="{i}">اختر هذي الباقة</button></div>' for i,(c,a,d) in enumerate(PK))
+sty=''.join(f'<button class="opt{" on" if n==1 else ""}" data-k="sty" data-v="{n}"><b>{a}</b><span>{d}</span></button>' for n,a,d in STY)
+pal=''.join(f'<button class="sw{" on" if i==0 else ""}" data-k="pal" data-v="{i}" title="{n}" aria-label="{n}" style="--c:{a};--d:{b}"></button>' for i,(n,a,b,c) in enumerate(PAL))
+pk=''.join(f'<button class="opt pk{" on" if i==1 else ""}" data-k="pk" data-v="{i}"><b>{a}</b><span>{d}</span></button>' for i,(c,a,d) in enumerate(PK))
+ad=''.join(f'<button class="opt ad" data-k="ad" data-v="{i}" aria-pressed="false"><b>{a}</b><span>{d}</span></button>' for i,(a,d) in enumerate(AD))
+gal=''.join(f'<img src="assets/img/{n}.webp" alt="" loading="lazy">' for n in ['waffle6','trifle','lemoncake','nuts','combo_waffle','talqeema','mint','karkade'])
+import json
+html=f'''<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>منيو عُمان · منيو QR تفاعلي</title><meta name="description" content="أصمم منيو QR تفاعلي لمطعمك أو كوفيك. الزبون يمسح الكود فيشوف أطباقك كبيرة وتتحرك."><meta name="theme-color" content="#100B09">
+<link rel="stylesheet" href="assets/fonts.css"><style>
+*{{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}}
+:root{{--bg:#100B09;--panel:#1A1311;--ivory:#F4ECE0;--line:rgba(244,236,224,.14);--ac:#F2B632}}
+html{{background:var(--bg);scroll-behavior:smooth}}
+body{{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--ivory);line-height:1.75}}
+a{{color:inherit}}:focus-visible{{outline:2px solid var(--ac);outline-offset:3px}}
+h1,h2,h3{{font-family:'Reem Kufi',sans-serif;font-weight:700;line-height:1.15}}
+.wrap{{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}}
+.top{{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(18px,4vw,40px);background:linear-gradient(#100B09ee,transparent)}}
+.logo{{font:700 22px 'Reem Kufi'}}
+.pill{{display:inline-block;background:var(--ac);color:#17120A;font-weight:700;font-size:15px;padding:10px 22px;border-radius:40px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}}
+.pill.ghost{{background:none;color:var(--ivory);border:1.5px solid var(--line)}}
+/* hero */
+.hero{{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:90px 0 60px}}
+.hero .wrap{{position:relative;z-index:2}}
+.hero h1{{font-size:clamp(46px,7.6vw,118px);max-width:8.5em}}
+.hero p{{font-size:clamp(17px,1.8vw,22px);max-width:24em;opacity:.8;margin:22px 0 30px}}
+.cta{{display:flex;gap:12px;flex-wrap:wrap}}
+.fl{{position:absolute;z-index:1;will-change:transform;filter:drop-shadow(0 36px 40px rgba(0,0,0,.65))}}
+.fl.a{{left:-2vw;top:14%;width:min(46vw,600px)}}
+.fl.b{{left:20vw;bottom:-3%;width:min(30vw,400px)}}
+.fl.c{{left:3vw;bottom:2%;width:min(11vw,150px)}}
+.fl.d{{left:35vw;top:9%;width:min(13vw,190px)}}
+.glow{{position:absolute;left:8vw;top:20%;width:46vw;height:46vw;border-radius:50%;background:#B8561E;opacity:.35;filter:blur(110px)}}
+@media(max-width:820px){{.hero{{align-items:end;padding-bottom:40px}}.fl.a{{left:50%;top:70px;width:92vw;margin-left:-46vw}}.fl.b,.fl.d{{display:none}}.fl.c{{left:6vw;top:30%;bottom:auto;width:22vw}}.glow{{left:10vw;top:8%;width:80vw;height:80vw}}.hero h1{{margin-top:36vh}}}}
+/* sections */
+section.s{{padding:clamp(70px,10vw,140px) 0;border-top:1px solid var(--line)}}
+.s h2{{font-size:clamp(34px,5vw,64px);margin-bottom:14px}}
+.s .lead{{font-size:clamp(16px,1.6vw,20px);opacity:.75;max-width:34em;margin-bottom:44px}}
+.steps{{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px)}}
+.step{{border-top:2px solid var(--ac);padding-top:16px}}
+.step small{{color:var(--ac);font-weight:600;font-size:14px}}
+.step h3{{font-size:26px;margin:4px 0 6px}}.step p{{opacity:.75;font-size:15.5px}}
+/* configurator */
+.cfg{{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:start}}
+.stage{{position:sticky;top:76px;aspect-ratio:4/5;max-height:80vh;width:100%;border-radius:26px;overflow:hidden;cursor:pointer;background:linear-gradient(160deg,var(--c2,#7A5A10),var(--d,#17120A) 70%);transition:background .7s;box-shadow:0 30px 70px rgba(0,0,0,.5);--c:#F2B632}}
+.bgword{{position:absolute;inset:auto 0 22% 0;text-align:center;font:700 clamp(90px,15vw,200px)/1 'Reem Kufi';color:var(--c);opacity:.0;transition:transform .6s,opacity .6s;pointer-events:none}}
+.s2 .bgword{{opacity:.28}}.s2.on .bgword{{opacity:.5;transform:scale(1.12)}}
+.ring{{position:absolute;left:50%;top:44%;width:84%;aspect-ratio:1;margin:calc(-42%) 0 0 -42%;display:none;pointer-events:none}}
+.s5 .ring{{display:block;animation:spin 26s linear infinite}}
+@keyframes spin{{to{{transform:rotate(-360deg)}}}}
+.ring text{{fill:var(--c);font:600 21px 'Reem Kufi';letter-spacing:.12em}}
+.wave{{position:absolute;left:50%;top:44%;width:30%;aspect-ratio:1;margin:-15% 0 0 -15%;border-radius:50%;border:3px solid var(--c);opacity:0;pointer-events:none}}
+.wave.go{{animation:wv .9s ease-out}}@keyframes wv{{from{{opacity:.9;transform:scale(.3)}}to{{opacity:0;transform:scale(5)}}}}
+.plate{{position:absolute;left:50%;top:44%;width:70%;aspect-ratio:1;margin:-35% 0 0 -35%;border-radius:50%;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);display:none}}
+.s4 .plate{{display:block}}
+.dish{{position:absolute;left:50%;top:44%;width:62%;transform:translate(-50%,-50%);transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .35s;filter:drop-shadow(0 28px 30px rgba(0,0,0,.55));pointer-events:none}}
+.s1 .dish{{transform:translate(-50%,-50%) rotate(-9deg)}}.s1.on .dish{{transform:translate(-50%,-50%) rotate(0) scale(1.1)}}
+.s2 .dish{{width:56%}}.s2.on .dish{{transform:translate(-50%,-50%) scale(1.28)}}
+.s4 .dish{{width:52%}}.s4.on .dish{{transform:translate(-50%,-50%) rotate(14deg) scale(1.08)}}
+.s5 .dish{{width:46%}}
+.dish.out{{opacity:0}}
+.cap{{position:absolute;inset:auto 0 0 0;padding:18px 20px;background:linear-gradient(transparent,rgba(0,0,0,.65));display:flex;justify-content:space-between;align-items:end}}
+.cap b{{font:700 24px 'Reem Kufi'}}.cap span{{color:var(--c);font-weight:600}}
+.tap{{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.45);padding:4px 14px;border-radius:20px;font-size:13px}}
+.panel h3{{font-size:21px;margin:30px 0 12px}}.panel h3:first-child{{margin-top:0}}
+.panel h3 small{{font:400 14px 'IBM Plex Sans Arabic';opacity:.6;margin-inline-start:8px}}
+.opts{{display:grid;gap:10px}}
+.opt{{font:inherit;color:inherit;text-align:right;background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:12px 16px;cursor:pointer;transition:border-color .2s,background .2s}}
+.opt b{{display:block;font-size:17px}}.opt span{{font-size:14px;opacity:.65}}
+.opt.on{{border-color:var(--ac);background:rgba(255,255,255,.05)}}
+.opts.two{{grid-template-columns:1fr 1fr}}
+.sws{{display:flex;gap:12px;flex-wrap:wrap}}
+.sw{{width:44px;height:44px;border-radius:50%;border:3px solid transparent;background:linear-gradient(135deg,var(--c) 50%,var(--d) 50%);cursor:pointer;outline:1px solid var(--line);outline-offset:2px}}
+.sw.on{{border-color:var(--ivory)}}
+.sum{{margin-top:30px;background:var(--panel);border:1.5px solid var(--line);border-radius:20px;padding:20px}}
+.sum p{{font-size:15px;opacity:.8;margin-bottom:14px}}
+@media(max-width:860px){{.cfg{{grid-template-columns:1fr}}.stage{{position:relative;top:0;max-height:none;aspect-ratio:1/1.05}}.steps{{grid-template-columns:1fr}}.opts.two{{grid-template-columns:1fr}}}}
+/* plans etc */
+.plans{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}}
+.plan{{background:var(--panel);border:1.5px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:10px}}
+.plan.hot{{border-color:var(--ac)}}
+.plan h3{{font-size:26px}}.pp{{font:700 20px 'Reem Kufi';color:var(--ac)}}
+.plan ul{{list-style:none;display:grid;gap:8px;margin:6px 0 14px;font-size:15.5px;flex:1}}
+.plan li::before{{content:"✓";color:var(--ac);margin-inline-end:8px;font-weight:700}}
+.cmp{{width:100%;border-collapse:collapse;font-size:16px}}
+.cmp th,.cmp td{{text-align:right;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}}
+.cmp th{{font-weight:600;opacity:.6;font-size:14px}}.cmp td:last-child{{color:var(--ac);font-weight:600}}
+.occ{{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:center}}
+.occ .art{{aspect-ratio:16/10;border-radius:22px;background:linear-gradient(135deg,#B3202A 0 34%,#fff 34% 66%,#1C8A4C 66%);position:relative;overflow:hidden}}
+.occ .art::after{{content:"18 نوفمبر";position:absolute;inset:0;display:grid;place-items:center;font:700 clamp(40px,7vw,84px) 'Reem Kufi';color:#15100D;mix-blend-mode:multiply}}
+details{{border-bottom:1px solid var(--line);padding:16px 0}}summary{{cursor:pointer;font:700 20px 'Reem Kufi';list-style:none}}details p{{opacity:.75;margin-top:8px;max-width:40em}}
+#cta2{{text-align:center}}#cta2 h2{{font-size:clamp(38px,6vw,84px)}}
+.nav{{display:flex;gap:22px;font-size:15px}}.nav a{{text-decoration:none;opacity:.8}}.nav a:hover{{opacity:1}}
+@media(max-width:860px){{.plans,.occ{{grid-template-columns:1fr}}.nav{{display:none}}}}
+/* work */
+.work{{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center}}
+.gal{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}}
+.gal img{{width:100%;aspect-ratio:1;object-fit:contain;background:var(--panel);border-radius:14px;padding:8px}}
+@media(max-width:860px){{.work{{grid-template-columns:1fr}}}}
+footer{{border-top:1px solid var(--line);text-align:center;padding:28px 20px;font-size:14px;opacity:.65}}
+@media(prefers-reduced-motion:reduce){{*{{transition:none!important;animation:none!important}}html{{scroll-behavior:auto}}}}
+</style></head><body>
+<div class="top"><span class="logo">منيو عُمان</span><nav class="nav"><a href="#why">ليش أنا</a><a href="#build">صمّم منيوك</a><a href="#plans">الباقات</a><a href="#work">أعمالي</a><a href="#faq">أسئلة</a></nav><a class="pill" href="#" data-wa>تواصل معي</a></div>
+<header class="hero"><div class="glow"></div>
+<img class="fl a" data-p=".05" src="assets/img/karam.webp" alt=""><img class="fl b" data-p=".1" src="assets/img/herbs.webp" alt=""><img class="fl c" data-p=".16" src="assets/img/talqeema.webp" alt=""><img class="fl d" data-p=".08" src="assets/img/lemoncake.webp" alt="">
+<div class="wrap"><h1>أصمم لمطعمك منيو يتحرك.</h1><p>الزبون يمسح كود QR فيشوف أطباقك كبيرة، وتتحرك تحت إصبعه، ويطلب بضغطة.</p><div class="cta"><a class="pill" href="#build">صمّم منيوك الحين</a><a class="pill ghost" href="#how">كيف يشتغل</a></div></div></header>
+<section class="s" id="how"><div class="wrap"><h2>كيف يشتغل</h2><p class="lead">بدل ورقة المنيو، كود صغير على الطاولة يفتح منيو حي على جوال الزبون.</p>
+<div class="steps"><div class="step"><small>الخطوة ١</small><h3>يمسح الكود</h3><p>بكاميرا الجوال، بدون تطبيق ولا تحميل.</p></div><div class="step"><small>الخطوة ٢</small><h3>يتصفح الأطباق</h3><p>صورة كبيرة لكل طبق، وتتحرك مع كل ضغطة.</p></div><div class="step"><small>الخطوة ٣</small><h3>يطلب</h3><p>يرسل طلبه لكم، أو ينادي النادل وهو عارف وش يبي.</p></div></div></div></section>
+<section class="s" id="why"><div class="wrap"><h2>ليش منيو مصمم لك؟</h2><p class="lead">المنصات الجاهزة تعطيك قالب وتغيّر لك اللون. أنا أصمم المنيو لمطعمك وحده.</p>
+<table class="cmp"><tr><th></th><th>منيو من قالب جاهز</th><th>منيو مصمم لمطعمك</th></tr>
+<tr><td>الشكل</td><td>ثيم ولون، يشبه مطاعم ثانية</td><td>هويتك وخطك وصور أطباقك</td></tr>
+<tr><td>الحركة</td><td>تصفح عادي</td><td>حركة توقيع تميّز مطعمك</td></tr>
+<tr><td>المناسبات</td><td>نفس الشكل طول السنة</td><td>ثيمة للعيد الوطني ورمضان</td></tr>
+<tr><td>شاشة المطعم</td><td>غير موحّدة مع المنيو</td><td>نفس الهوية على الشاشة وعلى الجوال</td></tr>
+<tr><td>الطلب والدفع</td><td>داخل نظامهم</td><td>يرتبط بنظامك أو بواتساب</td></tr></table></div></section>
+<section class="s" id="plans"><div class="wrap"><h2>الباقات</h2><p class="lead">اختر باقة، وبعدها صمّم منيوك وشوفه قدامك.</p><div class="plans">{plans}</div></div></section>
+<section class="s" id="build"><div class="wrap"><h2>اختر منيوك</h2><p class="lead">غيّر أي خيار وشوف الشاشة تتبدّل قدامك. اضغط على الطبق لتجرب الحركة.</p>
+<div class="cfg"><div class="stage s1" id="stage" role="button" tabindex="0" aria-label="جرّب الحركة"><div class="bgword">طبق</div><div class="plate"></div>
+<svg class="ring" viewBox="0 0 400 400"><defs><path id="rp" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/></defs><text><textPath href="#rp">طبقك هنا · يتحرك مع لمستك · طبقك هنا · يتحرك مع لمستك ·</textPath></text></svg>
+<span class="wave" id="wave"></span><img class="dish" id="dish" src="assets/img/karam.webp" alt=""><span class="tap">اضغط على الطبق</span><div class="cap"><b id="cn">اسم الطبق</b><span>0.000 ر.ع</span></div></div>
+<div class="panel"><h3>نمط الحركة</h3><div class="opts">{sty}</div>
+<h3>ألوان مطعمك</h3><div class="sws">{pal}</div>
+<h3>الباقة</h3><div class="opts">{pk}</div>
+<h3>إضافات <small>اختياري</small></h3><div class="opts two">{ad}</div>
+<div class="sum"><p id="sum"></p><a class="pill" href="#" id="send">أرسل اختياري على واتساب</a></div></div></div></div></section>
+<section class="s" id="work"><div class="wrap work"><div><h2>من أعمالي</h2><p class="lead" style="margin-bottom:22px">منيو وشاشة عرض لكوفي «نعنع». شاي وحلويات وفطائر، بصور كبيرة وحركة خفيفة.</p><a class="pill ghost" href="nana/">افتح منيو نعنع</a></div><div class="gal">{gal}</div></div></section>
+<section class="s"><div class="wrap occ"><div class="art" role="img" aria-label="ألوان العيد الوطني"></div><div><h2>ثيمات المناسبات</h2><p class="lead" style="margin-bottom:22px">العيد الوطني، رمضان، العيد. منيوك يلبس المناسبة ويرجع لهويتك بعدها.</p><a class="pill" href="#" data-wa>أبي ثيمة العيد الوطني</a></div></div></section>
+<section class="s" id="faq"><div class="wrap"><h2>أسئلة</h2>
+<details><summary>الزبون يحتاج تطبيق؟</summary><p>لا. يمسح الكود بالكاميرا ويفتح المنيو في المتصفح.</p></details>
+<details><summary>وش أرسل لك؟</summary><p>اللوقو وصور الأطباق والأسعار وألوان مطعمك. وأنا أرتب الباقي.</p></details>
+<details><summary>أقدر أغيّر الأسعار والأطباق؟</summary><p>أكيد. مع باقة التحديث أعدّلها لك متى ما طلبت.</p></details>
+<details><summary>الطلب والدفع؟</summary><p>المنيو يربط الزبون بنظام طلباتك أو بواتساب. أنا ما أدير الدفع.</p></details></div></section>
+<section class="s" id="cta2"><div class="wrap"><h2>خلنا نسوي منيو مطعمك.</h2><p class="lead" style="margin:0 auto 26px">ابعث لي اللوقو وصور الأطباق، وأجهّز لك نموذج.</p><a class="pill" href="#" data-wa>كلمني على واتساب</a></div></section>
+<footer>منيو عُمان · أحمد الوهيبي · 95989547</footer>
+<script>
+const PAL={json.dumps([[a,b,c] for _,a,b,c in PAL])},STY={json.dumps([a for _,a,_ in STY],ensure_ascii=False)},PK={json.dumps([a for _,a,_ in PK],ensure_ascii=False)},AD={json.dumps([a for a,_ in AD],ensure_ascii=False)};
+const DISH=['karam','herbs','trifle','waffle6','lemoncake'],NAMES=['صينية الضيافة','فطيرة الأعشاب','تريفل','وافل','كيك الليمون'];
+const st={{sty:1,pal:0,pk:1,ad:new Set()}};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const stage=$('#stage'),dish=$('#dish');let di=0,cc=0;
+function paint(){{const p=PAL[st.pal];stage.style.setProperty('--c',p[0]);stage.style.setProperty('--d',p[1]);stage.style.setProperty('--c2',p[2]);document.documentElement.style.setProperty('--ac',p[0]);stage.className='stage s'+st.sty+(stage.classList.contains('on')?' on':'')}}
+function wa(){{const t='السلام عليكم، أبي منيو تفاعلي.\\nالنمط: '+STY[st.sty-1]+'\\nالألوان: '+['الجمر','الزيتون','النعنع','الذهب','الوردي','الأزرق'][st.pal]+'\\nالباقة: '+PK[st.pk]+(st.ad.size?'\\nإضافات: '+[...st.ad].map(i=>AD[i]).join('، '):'');return 'https://wa.me/96895989547?text='+encodeURIComponent(t)}}
+function sum(){{$('#sum').textContent='نمط '+STY[st.sty-1]+' · '+PK[st.pk]+(st.ad.size?' · '+[...st.ad].map(i=>AD[i]).join('، '):'');$('#send').href=wa()}}
+$$('.opt,.sw').forEach(b=>b.onclick=()=>{{const k=b.dataset.k,v=+b.dataset.v;if(k==='ad'){{st.ad.has(v)?st.ad.delete(v):st.ad.add(v);b.classList.toggle('on');b.setAttribute('aria-pressed',st.ad.has(v))}}else{{st[k]=v;$$('[data-k="'+k+'"]').forEach(x=>x.classList.toggle('on',x===b))}}paint();sum();if(k==='sty')tap()}});
+function tap(){{stage.classList.add('on');setTimeout(()=>stage.classList.remove('on'),900);
+if(st.sty===5){{const w=$('#wave');w.classList.remove('go');void w.offsetWidth;w.classList.add('go')}}
+if(st.sty===3){{cc=(cc+1)%3;stage.style.setProperty('--c2',PAL[st.pal][(cc+0)%3]);}}
+dish.classList.add('out');setTimeout(()=>{{di=(di+1)%DISH.length;dish.src='assets/img/'+DISH[di]+'.webp';$('#cn').textContent=NAMES[di];dish.classList.remove('out')}},260)}}
+stage.onclick=tap;stage.onkeydown=e=>{{if(e.key==='Enter'||e.key===' '){{e.preventDefault();tap()}}}};
+document.querySelectorAll('[data-wa]').forEach(a=>a.href='https://wa.me/96895989547?text='+encodeURIComponent('السلام عليكم، شفت موقعك وأبي منيو تفاعلي لمطعمي.'));
+/* hero parallax */
+const fl=$$('.fl');if(!matchMedia('(prefers-reduced-motion:reduce)').matches){{addEventListener('scroll',()=>{{const y=scrollY;if(y<innerHeight*1.2)fl.forEach(f=>f.style.transform='translateY('+(-y*f.dataset.p*6)+'px)')}},{{passive:true}})}}
+$$('[data-pick]').forEach(b=>b.onclick=()=>{{st.pk=+b.dataset.pick;$$('[data-k="pk"]').forEach(x=>x.classList.toggle('on',+x.dataset.v===st.pk));sum();document.getElementById('build').scrollIntoView()}});
+paint();sum();
+</script></body></html>'''
+open('index.html','w').write(html)
