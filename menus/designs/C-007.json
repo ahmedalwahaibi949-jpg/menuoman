@@ -1,0 +1,20 @@
+{
+ "id": "C-007",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود الليلك · الشواء",
+  "en": "Lilac Spine · Grill"
+ },
+ "palette": "lilac",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "grill",
+ "reveal": "page"
+}

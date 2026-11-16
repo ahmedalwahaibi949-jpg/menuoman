@@ -1,0 +1,20 @@
+{
+ "id": "C-068",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الكرز · الشواء",
+  "en": "Cherry Word · Grill"
+ },
+ "palette": "cream-red",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "grill",
+ "reveal": "circle"
+}

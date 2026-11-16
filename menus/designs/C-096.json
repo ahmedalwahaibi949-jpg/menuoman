@@ -1,0 +1,20 @@
+{
+ "id": "C-096",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الإسبريسو · البرغر",
+  "en": "Espresso Bento · Burger"
+ },
+ "palette": "espresso",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "burger",
+ "reveal": "dive"
+}

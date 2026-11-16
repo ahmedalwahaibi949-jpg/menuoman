@@ -1,0 +1,20 @@
+{
+ "id": "C-051",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب الفيروز · الشواء",
+  "en": "Turquoise Doors · Grill"
+ },
+ "palette": "teal-coral",
+ "fonts": [
+  "messiri",
+  "play"
+ ],
+ "cuisine": "grill",
+ "reveal": "doors"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-065",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج الغروب · الشواء",
+  "en": "Sunset Glass · Grill"
+ },
+ "palette": "glass-sunset",
+ "fonts": [
+  "ruqaa",
+  "bodoni"
+ ],
+ "cuisine": "grill",
+ "reveal": "page"
+}

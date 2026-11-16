@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  body { @apply bg-paper text-ink font-body antialiased; font-size: 16.5px; line-height: 1.65; }
+  html[lang="ar"] body { font-family: "Tajawal", system-ui, sans-serif; font-size: 17.5px; line-height: 1.8; }
+  html[lang="ar"] .font-display { font-family: "Tajawal", system-ui, sans-serif; letter-spacing: 0; }
+  h1, h2, h3, h4 { @apply font-display; text-wrap: balance; }
+  html[lang="en"] h1, html[lang="en"] h2 { letter-spacing: -0.03em; }
+  :focus-visible { outline: 2px solid #00D6C5; outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: #00D6C5; color: #071426; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8; }
+  .btn { @apply inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full px-7 font-display text-[15px] font-semibold transition duration-200; }
+  .btn-primary { @apply btn bg-teal text-navy shadow-glow hover:bg-white hover:shadow-none; }
+  .btn-dark { @apply btn bg-navy text-paper hover:bg-navy-700; }
+  .btn-ghost { @apply btn border border-white/25 text-paper hover:border-teal hover:text-teal; }
+  .btn-line { @apply btn border border-navy/15 bg-white text-navy hover:border-navy; }
+  .eyebrow { @apply font-display text-[12.5px] font-semibold uppercase tracking-[.18em] text-teal-700; }
+  html[lang="ar"] .eyebrow { letter-spacing: 0; font-size: 15px; }
+  .h-sec { @apply font-display text-[clamp(30px,4.4vw,52px)] font-extrabold leading-[1.08]; }
+  .lead { @apply text-[18px] leading-relaxed text-slate; }
+  .card { @apply rounded-3xl border border-navy/10 bg-white shadow-card; }
+  .input { @apply min-h-[50px] w-full rounded-xl border border-navy/15 bg-white px-4 text-[16px] text-ink outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal/20; }
+  .label { @apply mb-1.5 block text-[14.5px] font-semibold text-ink; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12.5px] font-semibold; }
+  .grid-glow { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 0); background-size: 28px 28px; }
+  .dark-sec { @apply relative overflow-hidden bg-navy text-paper; }
+  .dark-sec::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 50% at 85% 0%, rgba(0,214,197,.18), transparent 70%), radial-gradient(45% 45% at 0% 100%, rgba(26,58,99,.9), transparent 70%); }
+  .tbl { @apply w-full min-w-[640px] border-collapse text-[14.5px]; }
+  .tbl th { @apply border-b border-navy/10 px-3 py-3 text-start text-[12.5px] font-semibold uppercase tracking-wide text-slate; }
+  .tbl td { @apply border-b border-navy/10 px-3 py-3 align-middle; }
+}
+
+.ltr { direction: ltr; unicode-bidi: isolate; }
+.loader { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: #071426; transition: opacity .5s ease, visibility .5s; }
+.loader.done { opacity: 0; visibility: hidden; }
+.loader i { width: 46px; height: 46px; border-radius: 50%; border: 3px solid rgba(0,214,197,.2); border-top-color: #00D6C5; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* TV menu boards: signage animations run only while a screen is playing. */
+.tv-playing .tv-zoom { animation: tvZoom 18s ease-in-out infinite alternate; transform-origin: 50% 45%; }
+.tv-playing .tv-pulse { animation: tvPulse 2.8s ease-in-out infinite; }
+.tv-playing .tv-slide-in { animation: tvIn .9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes tvZoom { from { transform: scale(1); } to { transform: scale(1.09); } }
+@keyframes tvPulse { 0%, 100% { transform: scale(1) rotate(var(--r, 0deg)); } 50% { transform: scale(1.06) rotate(var(--r, 0deg)); } }
+@keyframes tvIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+
+/* 3D depth */
+.tilt { perspective: 1100px; }
+.tilt-inner { position: relative; height: 100%; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; transition: transform .25s ease-out; will-change: transform; }
+.tilt-inner > :first-child { height: 100%; }
+.tilt-glare { position: absolute; inset: 0; border-radius: 24px; pointer-events: none; opacity: var(--go, 0); transition: opacity .3s; background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(0,214,197,.16), transparent 60%); }
+.parallax-3d { transform: rotateX(var(--prx, 0deg)) rotateY(var(--pry, 0deg)); transform-style: preserve-3d; transition: transform .3s ease-out; }
+[data-depth] { transition: translate .3s ease-out; will-change: translate; }

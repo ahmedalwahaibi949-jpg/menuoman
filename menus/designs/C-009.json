@@ -1,0 +1,20 @@
+{
+ "id": "C-009",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود النعناع · رمضان",
+  "en": "Mint Spine · Ramadan"
+ },
+ "palette": "mint-cream",
+ "fonts": [
+  "markazi",
+  "bodoni"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "puzzle"
+}

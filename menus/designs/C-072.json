@@ -1,0 +1,20 @@
+{
+ "id": "C-072",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الزمرد · الإيطالي",
+  "en": "Emerald Word · Italian"
+ },
+ "palette": "emerald-gold",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "italian",
+ "reveal": "iris"
+}

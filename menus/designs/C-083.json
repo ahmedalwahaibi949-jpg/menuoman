@@ -1,0 +1,20 @@
+{
+ "id": "C-083",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط النبيذي · الشواء",
+  "en": "Oxblood Reel · Grill"
+ },
+ "palette": "oxblood",
+ "fonts": [
+  "alex",
+  "anton"
+ ],
+ "cuisine": "grill",
+ "reveal": "puzzle"
+}

@@ -1,0 +1,1194 @@
+[
+ {
+  "file": "urban-burger-0.webp",
+  "dish": "Classic Cheeseburger",
+  "title": "Cheeseburger.jpg",
+  "artist": "Renee Comet (photographer)",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Cheeseburger.jpg"
+ },
+ {
+  "file": "urban-burger-1.webp",
+  "dish": "Double Stack",
+  "title": "Double Cheeseburger.jpg",
+  "artist": "Horacio Cambeiro",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Double_Cheeseburger.jpg"
+ },
+ {
+  "file": "urban-burger-2.webp",
+  "dish": "Crispy Fries",
+  "title": "French fries made in Argentina.jpg",
+  "artist": "Horacio Cambeiro",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:French_fries_made_in_Argentina.jpg"
+ },
+ {
+  "file": "urban-burger-3.webp",
+  "dish": "Onion Rings",
+  "title": "Flickr pancakejess 677476794--Onion rings.jpg",
+  "artist": "Jess Sawrey from Los Angeles, California, USA",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Flickr_pancakejess_677476794--Onion_rings.jpg"
+ },
+ {
+  "file": "urban-burger-4.webp",
+  "dish": "Vanilla Shake",
+  "title": "San Vicente, Milkshake, Palawan, Philippines.jpg",
+  "artist": "Vyacheslav Argenberg",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:San_Vicente,_Milkshake,_Palawan,_Philippines.jpg"
+ },
+ {
+  "file": "american-diner-0.webp",
+  "dish": "Burger & Fries Plate",
+  "title": "Hamburger with blue cheese, guacamole, and other toppings, plus French fries - Massachusetts.jpg",
+  "artist": "Daderot",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Hamburger_with_blue_cheese,_guacamole,_and_other_toppings,_plus_French_fries_-_Massachusetts.jpg"
+ },
+ {
+  "file": "american-diner-1.webp",
+  "dish": "Classic Hot Dog",
+  "title": "My hot dog at Hot Doug's.jpg",
+  "artist": "Benimoto",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:My_hot_dog_at_Hot_Doug%27s.jpg"
+ },
+ {
+  "file": "american-diner-2.webp",
+  "dish": "Pancake Stack",
+  "title": "Buttermilk pancakes, crème fraiche, berry compote, fresh berries & maple syrup - Malt Cafe 2026-04-22.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Buttermilk_pancakes,_cr%C3%A8me_fraiche,_berry_compote,_fresh_berries_%26_maple_syrup_-_Malt_Cafe_2026-04-22.jpg"
+ },
+ {
+  "file": "american-diner-3.webp",
+  "dish": "Fried Chicken",
+  "title": "Fried-Chicken-Set.jpg",
+  "artist": "Evan-Amos",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Fried-Chicken-Set.jpg"
+ },
+ {
+  "file": "american-diner-4.webp",
+  "dish": "Apple Pie",
+  "title": "Apple cake with vanilla ice cream 2.jpg",
+  "artist": "W.carter",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Apple_cake_with_vanilla_ice_cream_2.jpg"
+ },
+ {
+  "file": "red-hot-0.webp",
+  "dish": "Spicy Chicken Burger",
+  "title": "Fried chicken burger .jpg",
+  "artist": "Kurt Kaiser",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Fried_chicken_burger_.jpg"
+ },
+ {
+  "file": "red-hot-1.webp",
+  "dish": "Buffalo Wings",
+  "title": "Buffalo Wings (8779045398).jpg",
+  "artist": "Eugene Kim from San Francisco, USA",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Buffalo_Wings_(8779045398).jpg"
+ },
+ {
+  "file": "red-hot-2.webp",
+  "dish": "Loaded Nachos",
+  "title": "Nachos (6695616337).jpg",
+  "artist": "Luca Nebuloni",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Nachos_(6695616337).jpg"
+ },
+ {
+  "file": "red-hot-3.webp",
+  "dish": "Chili Cheese Fries",
+  "title": "Chili cheese fries (25145052653).jpg",
+  "artist": "T.Tseng",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Chili_cheese_fries_(25145052653).jpg"
+ },
+ {
+  "file": "red-hot-4.webp",
+  "dish": "Jalapeño Poppers",
+  "title": "Jalapeño-gochu-twigim.jpg",
+  "artist": "insatiablemunch",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Jalape%C3%B1o-gochu-twigim.jpg"
+ },
+ {
+  "file": "street-food-0.webp",
+  "dish": "Chicken Shawarma",
+  "title": "Shawarma, Rostov-on-Don, Russia.jpg",
+  "artist": "Vyacheslav Argenberg",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Shawarma,_Rostov-on-Don,_Russia.jpg"
+ },
+ {
+  "file": "street-food-1.webp",
+  "dish": "Falafel Wrap",
+  "title": "Falafel & Hummus Wrap - Lavash 2024-08-19.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Falafel_%26_Hummus_Wrap_-_Lavash_2024-08-19.jpg"
+ },
+ {
+  "file": "street-food-2.webp",
+  "dish": "Fries Cone",
+  "title": "Pommes Frites (4714121355).jpg",
+  "artist": "Neil Conway from Oakland, USA",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pommes_Frites_(4714121355).jpg"
+ },
+ {
+  "file": "street-food-3.webp",
+  "dish": "Grilled Chicken Wrap",
+  "title": "Handmade Chicken Shawarma Wrap - Lavash.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Handmade_Chicken_Shawarma_Wrap_-_Lavash.jpg"
+ },
+ {
+  "file": "street-food-4.webp",
+  "dish": "Samosa (3 pcs)",
+  "title": "Samosa fried.JPG",
+  "artist": "Miansari66",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Samosa_fried.JPG"
+ },
+ {
+  "file": "premium-burger-0.webp",
+  "dish": "Signature Burger",
+  "title": "Argentine chicken burger (gourmet).jpg",
+  "artist": "Horacio Cambeiro",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Argentine_chicken_burger_(gourmet).jpg"
+ },
+ {
+  "file": "premium-burger-1.webp",
+  "dish": "Brioche Beef Burger",
+  "title": "Hamburger Montagnard, Bistro Burger, Montparnasse, Paris 003.jpg",
+  "artist": "Guilhem Vellut from Paris, France",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Hamburger_Montagnard,_Bistro_Burger,_Montparnasse,_Paris_003.jpg"
+ },
+ {
+  "file": "premium-burger-2.webp",
+  "dish": "Sweet Potato Fries",
+  "title": "Baked Sweet Potato Fries With Rosemary and Parmesan - 8420845814.jpg",
+  "artist": "Thriving Vegetarian",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Baked_Sweet_Potato_Fries_With_Rosemary_and_Parmesan_-_8420845814.jpg"
+ },
+ {
+  "file": "premium-burger-3.webp",
+  "dish": "House Coleslaw",
+  "title": "Fish and Chips at Picazo Kitchen + Bar - 2019 - Sarah Stierch.jpg",
+  "artist": "Missvain",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Fish_and_Chips_at_Picazo_Kitchen_%2B_Bar_-_2019_-_Sarah_Stierch.jpg"
+ },
+ {
+  "file": "premium-burger-4.webp",
+  "dish": "Fresh Lemonade",
+  "title": "Pink lemonade in personalized mason jar glass mugs and raspberries on a table with heart napkin (16380437321).jpg",
+  "artist": "Personal Creations",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pink_lemonade_in_personalized_mason_jar_glass_mugs_and_raspberries_on_a_table_with_heart_napkin_(16380437321).jpg"
+ },
+ {
+  "file": "minimal-coffee-0.webp",
+  "dish": "Espresso",
+  "title": "Espresso Coffee 01.jpg",
+  "artist": "Jubair1985",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Espresso_Coffee_01.jpg"
+ },
+ {
+  "file": "minimal-coffee-1.webp",
+  "dish": "Flat White",
+  "title": "Flat white - Si Signore 2024-01-15.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Flat_white_-_Si_Signore_2024-01-15.jpg"
+ },
+ {
+  "file": "minimal-coffee-2.webp",
+  "dish": "Cappuccino",
+  "title": "A cup of cappuccino.jpg",
+  "artist": "Vee Satayamas",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:A_cup_of_cappuccino.jpg"
+ },
+ {
+  "file": "minimal-coffee-3.webp",
+  "dish": "Cold Brew",
+  "title": "Iced cold brew coffee.jpg",
+  "artist": "Roland Tanglao",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Iced_cold_brew_coffee.jpg"
+ },
+ {
+  "file": "minimal-coffee-4.webp",
+  "dish": "Butter Croissant",
+  "title": "Croissant with jam and butter - Little Miss Piggies.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Croissant_with_jam_and_butter_-_Little_Miss_Piggies.jpg"
+ },
+ {
+  "file": "luxury-cafe-0.webp",
+  "dish": "Signature Latte",
+  "title": "Latte art at Balzac's.jpg",
+  "artist": "Linda N. from Chicago, USA",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Latte_art_at_Balzac%27s.jpg"
+ },
+ {
+  "file": "luxury-cafe-1.webp",
+  "dish": "New York Cheesecake",
+  "title": "Cheesecake with slice cut out.jpg",
+  "artist": "Martin van Dam",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Cheesecake_with_slice_cut_out.jpg"
+ },
+ {
+  "file": "luxury-cafe-2.webp",
+  "dish": "French Macarons",
+  "title": "Des macarons de chez Bouillet (mars 2023).jpg",
+  "artist": "Benoît Prieur",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Des_macarons_de_chez_Bouillet_(mars_2023).jpg"
+ },
+ {
+  "file": "luxury-cafe-3.webp",
+  "dish": "Tiramisu",
+  "title": "Dolce Tiramisù monoporzione.jpg",
+  "artist": "Anna.Massini",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Dolce_Tiramis%C3%B9_monoporzione.jpg"
+ },
+ {
+  "file": "luxury-cafe-4.webp",
+  "dish": "Hot Chocolate",
+  "title": "Hot-chocolate-1058197.jpg",
+  "artist": "Steve Buissinne",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Hot-chocolate-1058197.jpg"
+ },
+ {
+  "file": "matcha-bar-0.webp",
+  "dish": "Matcha Latte",
+  "title": "Matcha Green Tea Latte (35487991553).jpg",
+  "artist": "NuCastiel from Bangkok, Thailand",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Matcha_Green_Tea_Latte_(35487991553).jpg"
+ },
+ {
+  "file": "matcha-bar-1.webp",
+  "dish": "Ceremonial Matcha",
+  "title": "Matcha (5026245674).jpg",
+  "artist": "rumpleteaser from Nagoya, Japan",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Matcha_(5026245674).jpg"
+ },
+ {
+  "file": "matcha-bar-2.webp",
+  "dish": "Iced Matcha",
+  "title": "Superberry Smoothie & Bill's Ceremonial Matcha Latte - Bill's, Lewes 2026-07-03.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Superberry_Smoothie_%26_Bill%27s_Ceremonial_Matcha_Latte_-_Bill%27s,_Lewes_2026-07-03.jpg"
+ },
+ {
+  "file": "matcha-bar-3.webp",
+  "dish": "Mochi",
+  "title": "Sakura-mochi 001.jpg",
+  "artist": "Ocdp",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Sakura-mochi_001.jpg"
+ },
+ {
+  "file": "matcha-bar-4.webp",
+  "dish": "Matcha Cake",
+  "title": "Matcha cheese cake - Coffee at 33 2024-02-23.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Matcha_cheese_cake_-_Coffee_at_33_2024-02-23.jpg"
+ },
+ {
+  "file": "brown-aesthetic-0.webp",
+  "dish": "Iced Coffee",
+  "title": "Iced Coffee in Glass - Sunshine Coffee - Laramie Cafe (53838344552).jpg",
+  "artist": "Tony Webster",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Iced_Coffee_in_Glass_-_Sunshine_Coffee_-_Laramie_Cafe_(53838344552).jpg"
+ },
+ {
+  "file": "brown-aesthetic-1.webp",
+  "dish": "Caramel Macchiato",
+  "title": "Pastel de Nata and Latte macchiato - Bussing 2024-12-03.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pastel_de_Nata_and_Latte_macchiato_-_Bussing_2024-12-03.jpg"
+ },
+ {
+  "file": "brown-aesthetic-2.webp",
+  "dish": "Cinnamon Roll",
+  "title": "Cinnamon Roll - Olea 2025-07-03.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Cinnamon_Roll_-_Olea_2025-07-03.jpg"
+ },
+ {
+  "file": "brown-aesthetic-3.webp",
+  "dish": "Fudge Brownie",
+  "title": "Chocolate Brownie Decorated.jpg",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Chocolate_Brownie_Decorated.jpg"
+ },
+ {
+  "file": "brown-aesthetic-4.webp",
+  "dish": "Affogato",
+  "title": "Affogato.JPG",
+  "artist": "VR38DETT",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Affogato.JPG"
+ },
+ {
+  "file": "modern-cafe-0.webp",
+  "dish": "Americano",
+  "title": "Espresso Americano.jpeg",
+  "artist": "User:Sameer.siddhanti",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Espresso_Americano.jpeg"
+ },
+ {
+  "file": "modern-cafe-1.webp",
+  "dish": "Avocado Toast",
+  "title": "Avocado toast at the girl & the fig - Sarah Stierch.jpg",
+  "artist": "Sarah Stierch",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Avocado_toast_at_the_girl_%26_the_fig_-_Sarah_Stierch.jpg"
+ },
+ {
+  "file": "modern-cafe-2.webp",
+  "dish": "Iced Latte",
+  "title": "Victoria sponge and iced latte - M&S Café, Worthing 2026-04-18.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Victoria_sponge_and_iced_latte_-_M%26S_Caf%C3%A9,_Worthing_2026-04-18.jpg"
+ },
+ {
+  "file": "modern-cafe-3.webp",
+  "dish": "Blueberry Muffin",
+  "title": "Muffin NIH.jpg",
+  "artist": "National Cancer Institute, Renee Comet (photographer)",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Muffin_NIH.jpg"
+ },
+ {
+  "file": "modern-cafe-4.webp",
+  "dish": "Club Sandwich",
+  "title": "Snais's Sandwich (toasted) - Snais's Cafe 2025-12-19 (2).jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Snais%27s_Sandwich_(toasted)_-_Snais%27s_Cafe_2025-12-19_(2).jpg"
+ },
+ {
+  "file": "omani-heritage-0.webp",
+  "dish": "Omani Shuwa",
+  "title": "Kabsa (6486384335).jpg",
+  "artist": "Sammy Six",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Kabsa_(6486384335).jpg"
+ },
+ {
+  "file": "omani-heritage-1.webp",
+  "dish": "Omani Halwa",
+  "title": "Semolina Dry Halwa.JPG",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Semolina_Dry_Halwa.JPG"
+ },
+ {
+  "file": "omani-heritage-2.webp",
+  "dish": "Kahwa & Dates",
+  "title": "Arabic coffee 1.jpg",
+  "artist": "أدوّن وأوثق أيامي بالصور",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Arabic_coffee_1.jpg"
+ },
+ {
+  "file": "omani-heritage-3.webp",
+  "dish": "Harees",
+  "title": "Harees.JPG",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Harees.JPG"
+ },
+ {
+  "file": "omani-heritage-4.webp",
+  "dish": "Mishkak",
+  "title": "Shish-kebab-MCB.jpg",
+  "artist": "MCB at English Wikipedia",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Shish-kebab-MCB.jpg"
+ },
+ {
+  "file": "arabian-luxury-0.webp",
+  "dish": "Lamb Mandi",
+  "title": "Chicken Mandi Rice مندي دجاج.JPG",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Chicken_Mandi_Rice_%D9%85%D9%86%D8%AF%D9%8A_%D8%AF%D8%AC%D8%A7%D8%AC.JPG"
+ },
+ {
+  "file": "arabian-luxury-1.webp",
+  "dish": "Chicken Kabsa",
+  "title": "Kabsa 1.JPG",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Kabsa_1.JPG"
+ },
+ {
+  "file": "arabian-luxury-2.webp",
+  "dish": "Kunafa",
+  "title": "2019 Marin Greek Festival - Sarah Stierch 05.jpg",
+  "artist": "Missvain",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:2019_Marin_Greek_Festival_-_Sarah_Stierch_05.jpg"
+ },
+ {
+  "file": "arabian-luxury-3.webp",
+  "dish": "Baklava",
+  "title": "Baklava - Turkish special, 80-ply.JPEG",
+  "artist": "Kultigin",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Baklava_-_Turkish_special,_80-ply.JPEG"
+ },
+ {
+  "file": "arabian-luxury-4.webp",
+  "dish": "Saffron Rice",
+  "title": "Grain saffron rice.jpg",
+  "artist": "Leon Brooks",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Grain_saffron_rice.jpg"
+ },
+ {
+  "file": "modern-khaleeji-0.webp",
+  "dish": "Chicken Machboos",
+  "title": "Machboos.JPG",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Machboos.JPG"
+ },
+ {
+  "file": "modern-khaleeji-1.webp",
+  "dish": "Chicken Biryani",
+  "title": "Hyderabadi Chicken Biryani.jpg",
+  "artist": "Garrett Ziegler from New York, United States",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Hyderabadi_Chicken_Biryani.jpg"
+ },
+ {
+  "file": "modern-khaleeji-2.webp",
+  "dish": "Luqaimat",
+  "title": "Lokma Galata Bridge.JPG",
+  "artist": "Benreis",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Lokma_Galata_Bridge.JPG"
+ },
+ {
+  "file": "modern-khaleeji-3.webp",
+  "dish": "Karak Tea",
+  "title": "Masala Chai.JPG",
+  "artist": "Miansari66",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Masala_Chai.JPG"
+ },
+ {
+  "file": "modern-khaleeji-4.webp",
+  "dish": "Samboosa",
+  "title": "Butter chicken curry, chana masala, garlic naan, samosa (24536534723).jpg",
+  "artist": "T.Tseng",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Butter_chicken_curry,_chana_masala,_garlic_naan,_samosa_(24536534723).jpg"
+ },
+ {
+  "file": "levantine-0.webp",
+  "dish": "Hummus",
+  "title": "Lebanese style hummus.jpg",
+  "artist": "Beyrouthhh at English Wikipedia",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Lebanese_style_hummus.jpg"
+ },
+ {
+  "file": "levantine-1.webp",
+  "dish": "Tabbouleh",
+  "title": "Lebanon, Baalbek, Lebanese Hummus.jpg",
+  "artist": "Vyacheslav Argenberg",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Lebanon,_Baalbek,_Lebanese_Hummus.jpg"
+ },
+ {
+  "file": "levantine-2.webp",
+  "dish": "Fattoush",
+  "title": "Fattoush.JPG",
+  "artist": "Unknown",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Fattoush.JPG"
+ },
+ {
+  "file": "levantine-3.webp",
+  "dish": "Shish Taouk",
+  "title": "Shish Taouk.JPG",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Shish_Taouk.JPG"
+ },
+ {
+  "file": "levantine-4.webp",
+  "dish": "Zaatar Manakish",
+  "title": "Savoury pies, Chez le Libanais, 75006 Paris, March 2009 001.jpg",
+  "artist": "Serge Melki from Indianapolis, USA",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Savoury_pies,_Chez_le_Libanais,_75006_Paris,_March_2009_001.jpg"
+ },
+ {
+  "file": "traditional-majlis-0.webp",
+  "dish": "Arabic Coffee",
+  "title": "Syria, Damascus, Dallah, Arabic teapots.jpg",
+  "artist": "Vyacheslav Argenberg",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Syria,_Damascus,_Dallah,_Arabic_teapots.jpg"
+ },
+ {
+  "file": "traditional-majlis-1.webp",
+  "dish": "Khalas Dates",
+  "title": "2019 Dates (48608157288).jpg",
+  "artist": "Michael Gaylard from Horsham, UK",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:2019_Dates_(48608157288).jpg"
+ },
+ {
+  "file": "traditional-majlis-2.webp",
+  "dish": "Lamb Kebab",
+  "title": "Afghani lamb kebab.jpg",
+  "artist": "rochelle hartman from somewhere in the midwest",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Afghani_lamb_kebab.jpg"
+ },
+ {
+  "file": "traditional-majlis-3.webp",
+  "dish": "Fresh Bread",
+  "title": "Hummus, falafel, pita bread, and mafrouka at Agasi, Lajpat Nagar (July 2025).jpg",
+  "artist": "Contrapunctus-1",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Hummus,_falafel,_pita_bread,_and_mafrouka_at_Agasi,_Lajpat_Nagar_(July_2025).jpg"
+ },
+ {
+  "file": "traditional-majlis-4.webp",
+  "dish": "Mint Tea",
+  "title": "Moroccan mint tea and Lablabi.jpg",
+  "artist": "Foodista",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Moroccan_mint_tea_and_Lablabi.jpg"
+ },
+ {
+  "file": "tropical-juice-0.webp",
+  "dish": "Orange Juice",
+  "title": "Orange Juice (13638538444).jpg",
+  "artist": "Yuri Samoilov",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Orange_Juice_(13638538444).jpg"
+ },
+ {
+  "file": "tropical-juice-1.webp",
+  "dish": "Mango Juice",
+  "title": "Mango Smoothie.JPG",
+  "artist": "Miansari66",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Mango_Smoothie.JPG"
+ },
+ {
+  "file": "tropical-juice-2.webp",
+  "dish": "Watermelon Juice",
+  "title": "1643Sugar Baby Watermelon 10.jpg",
+  "artist": "JFVelasquez Floro",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:1643Sugar_Baby_Watermelon_10.jpg"
+ },
+ {
+  "file": "tropical-juice-3.webp",
+  "dish": "Pineapple Juice",
+  "title": "Pineapple Juice fruits-465832.jpg",
+  "artist": "public domain",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pineapple_Juice_fruits-465832.jpg"
+ },
+ {
+  "file": "tropical-juice-4.webp",
+  "dish": "Fruit Salad",
+  "title": "Fruit salad at Cinco de Mayo - May 2024 - Sarah Stierch.jpg",
+  "artist": "Missvain",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Fruit_salad_at_Cinco_de_Mayo_-_May_2024_-_Sarah_Stierch.jpg"
+ },
+ {
+  "file": "smoothie-bar-0.webp",
+  "dish": "Strawberry Smoothie",
+  "title": "Cookies and a strawberry smoothie (7342791200).jpg",
+  "artist": "Sonia Belviso from Bratislava, Slovakia",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Cookies_and_a_strawberry_smoothie_(7342791200).jpg"
+ },
+ {
+  "file": "smoothie-bar-1.webp",
+  "dish": "Green Detox",
+  "title": "Kiwi Smoothie.jpg",
+  "artist": "rawpixel.com",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Kiwi_Smoothie.jpg"
+ },
+ {
+  "file": "smoothie-bar-2.webp",
+  "dish": "Smoothie Bowl",
+  "title": "Smoothie bowlin (Unsplash).jpg",
+  "artist": "Ben Neale ben_neale",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Smoothie_bowlin_(Unsplash).jpg"
+ },
+ {
+  "file": "smoothie-bar-4.webp",
+  "dish": "Açaí Bowl",
+  "title": "Acai bowl - Açaí na tigela.jpg",
+  "artist": "chahayes",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Acai_bowl_-_A%C3%A7a%C3%AD_na_tigela.jpg"
+ },
+ {
+  "file": "chocolate-luxury-0.webp",
+  "dish": "Chocolate Cake",
+  "title": "Piece of chocolate cake on a white plate decorated with chocolate sauce.jpg",
+  "artist": "Daria YakovlevaMinor edits made by Subsidiary account",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Piece_of_chocolate_cake_on_a_white_plate_decorated_with_chocolate_sauce.jpg"
+ },
+ {
+  "file": "chocolate-luxury-1.webp",
+  "dish": "Truffles Box",
+  "title": "Rocky Mountain chocolates.jpg",
+  "artist": "Wilfredor",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Rocky_Mountain_chocolates.jpg"
+ },
+ {
+  "file": "chocolate-luxury-2.webp",
+  "dish": "Molten Lava Cake",
+  "title": "Vegan Flourless Swiss Chocolate Molten Lava Cake (4865230786).jpg",
+  "artist": "Vegan Feast Catering",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Vegan_Flourless_Swiss_Chocolate_Molten_Lava_Cake_(4865230786).jpg"
+ },
+ {
+  "file": "chocolate-luxury-3.webp",
+  "dish": "Chocolate Mousse",
+  "title": "Apple Chocolate Mousse Pavlos way--) IMG 0444 (5468866047).jpg",
+  "artist": "N i c o l a from Fiumicino (Rome), Italy",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Apple_Chocolate_Mousse_Pavlos_way--)_IMG_0444_(5468866047).jpg"
+ },
+ {
+  "file": "chocolate-luxury-4.webp",
+  "dish": "Chocolate Strawberries",
+  "title": "Andrea's Chocolate covered Strawberry!.jpg",
+  "artist": "dianneb59@sbcglobal.net",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Andrea%27s_Chocolate_covered_Strawberry!.jpg"
+ },
+ {
+  "file": "ice-cream-studio-0.webp",
+  "dish": "Ice Cream Cone",
+  "title": "2 ice cream cones 2025-05-02.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:2_ice_cream_cones_2025-05-02.jpg"
+ },
+ {
+  "file": "ice-cream-studio-1.webp",
+  "dish": "Sundae",
+  "title": "Strawberry Ice Cream Sundae (26853326174).jpg",
+  "artist": "Sam Howzit",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Strawberry_Ice_Cream_Sundae_(26853326174).jpg"
+ },
+ {
+  "file": "ice-cream-studio-2.webp",
+  "dish": "Italian Gelato",
+  "title": "Gelato in Hamilton.jpg",
+  "artist": "Hannah Clover",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Gelato_in_Hamilton.jpg"
+ },
+ {
+  "file": "ice-cream-studio-3.webp",
+  "dish": "Waffle & Ice Cream",
+  "title": "Ice cream waffle cone.jpg",
+  "artist": "MarkBuckawicki",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Ice_cream_waffle_cone.jpg"
+ },
+ {
+  "file": "ice-cream-studio-4.webp",
+  "dish": "Banana Split",
+  "title": "Culver's Banana Split.jpg",
+  "artist": "JackFromWisconsin",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Culver%27s_Banana_Split.jpg"
+ },
+ {
+  "file": "french-bakery-0.webp",
+  "dish": "Croissant",
+  "title": "Croissant (238010371).jpeg",
+  "artist": "Ondřej Šmejkal",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Croissant_(238010371).jpeg"
+ },
+ {
+  "file": "french-bakery-1.webp",
+  "dish": "Pain au Chocolat",
+  "title": "Pain au chocolat - Milfey Patisserie 2026-09-30.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pain_au_chocolat_-_Milfey_Patisserie_2026-09-30.jpg"
+ },
+ {
+  "file": "french-bakery-2.webp",
+  "dish": "Baguette",
+  "title": "Baguette-246424.jpg",
+  "artist": "cocoparisienne",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Baguette-246424.jpg"
+ },
+ {
+  "file": "french-bakery-3.webp",
+  "dish": "Chocolate Éclair",
+  "title": "Pistachio eclair - Milfey Patisserie 2026-05-02.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pistachio_eclair_-_Milfey_Patisserie_2026-05-02.jpg"
+ },
+ {
+  "file": "french-bakery-4.webp",
+  "dish": "Fruit Tart",
+  "title": "Fruit Tart (14863357020).jpg",
+  "artist": "Prayitno / Thank you for (12 millions +) view from Los Angeles, USA",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Fruit_Tart_(14863357020).jpg"
+ },
+ {
+  "file": "black-gold-0.webp",
+  "dish": "Beef Tenderloin",
+  "title": "US Angus Beef Burger Steak from Sizzling Plate at SM Mall of Asia (2026-01-18).jpg",
+  "artist": "Wide Awake!",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:US_Angus_Beef_Burger_Steak_from_Sizzling_Plate_at_SM_Mall_of_Asia_(2026-01-18).jpg"
+ },
+ {
+  "file": "black-gold-1.webp",
+  "dish": "Lobster Thermidor",
+  "title": "Lobster Thermidor.jpg",
+  "artist": "thefoodplace.co.uk",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Lobster_Thermidor.jpg"
+ },
+ {
+  "file": "black-gold-2.webp",
+  "dish": "Truffle Risotto",
+  "title": "Risotto de gambas, restaurant Danieli (Vienne, Autriche).jpg",
+  "artist": "Benoît Prieur",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Risotto_de_gambas,_restaurant_Danieli_(Vienne,_Autriche).jpg"
+ },
+ {
+  "file": "black-gold-3.webp",
+  "dish": "Crème Brûlée",
+  "title": "Crème brûlée at restaurant in Zushi.jpg",
+  "artist": "Syced",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Cr%C3%A8me_br%C3%BBl%C3%A9e_at_restaurant_in_Zushi.jpg"
+ },
+ {
+  "file": "black-gold-4.webp",
+  "dish": "Beef Carpaccio",
+  "title": "Carpaccio de bœuf, restaurant Danieli (Vienne, Autriche).jpg",
+  "artist": "Benoît Prieur",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Carpaccio_de_b%C5%93uf,_restaurant_Danieli_(Vienne,_Autriche).jpg"
+ },
+ {
+  "file": "ivory-luxury-0.webp",
+  "dish": "Seared Scallops",
+  "title": "Scallops dish, Hannover.jpg",
+  "artist": "Gerda Arendt",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Scallops_dish,_Hannover.jpg"
+ },
+ {
+  "file": "ivory-luxury-1.webp",
+  "dish": "Duck Breast",
+  "title": "Breast of duck, Mainz.jpg",
+  "artist": "Gerda Arendt",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Breast_of_duck,_Mainz.jpg"
+ },
+ {
+  "file": "ivory-luxury-2.webp",
+  "dish": "Velouté Soup",
+  "title": "Saizeriya cream of mushroom soup.jpg",
+  "artist": "Fumikas Sagisavas",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Saizeriya_cream_of_mushroom_soup.jpg"
+ },
+ {
+  "file": "ivory-luxury-3.webp",
+  "dish": "Panna Cotta",
+  "title": "ELDERFLOWER PANNA COTTA - The Meeting Place 2025-06-28.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:ELDERFLOWER_PANNA_COTTA_-_The_Meeting_Place_2025-06-28.jpg"
+ },
+ {
+  "file": "ivory-luxury-4.webp",
+  "dish": "Salmon Fillet",
+  "title": "Lox on Bagel, Atlanta GA.jpg",
+  "artist": "Pug50",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Lox_on_Bagel,_Atlanta_GA.jpg"
+ },
+ {
+  "file": "italian-classic-0.webp",
+  "dish": "Spaghetti Carbonara",
+  "title": "Spaghetti alla Carbonara.jpg",
+  "artist": "Mattes Boch (Mboch on English Wikipedia)",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Spaghetti_alla_Carbonara.jpg"
+ },
+ {
+  "file": "italian-classic-1.webp",
+  "dish": "Lasagna",
+  "title": "Eggplant Lasagna (Vegitarian) (6 of 6).jpg",
+  "artist": "Wheeler Cowperthwaite",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Eggplant_Lasagna_(Vegitarian)_(6_of_6).jpg"
+ },
+ {
+  "file": "italian-classic-2.webp",
+  "dish": "Bruschetta",
+  "title": "Bruschetta at The Bar at MacArthur Place - Sarah Stierch.jpg",
+  "artist": "Missvain",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Bruschetta_at_The_Bar_at_MacArthur_Place_-_Sarah_Stierch.jpg"
+ },
+ {
+  "file": "italian-classic-3.webp",
+  "dish": "Tiramisù",
+  "title": "Dolce Tiramisù monoporzione.jpg",
+  "artist": "Anna.Massini",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Dolce_Tiramis%C3%B9_monoporzione.jpg"
+ },
+ {
+  "file": "italian-classic-4.webp",
+  "dish": "Caprese Salad",
+  "title": "Caprese salad (3124173496).jpg",
+  "artist": "Geoff Peters from Vancouver, BC, Canada",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Caprese_salad_(3124173496).jpg"
+ },
+ {
+  "file": "seafood-luxury-0.webp",
+  "dish": "Grilled Hammour",
+  "title": "01 Food in Gran Canaria - fish and seafood mixed grill plate.jpg",
+  "artist": "Marek Ślusarczyk (Tupungato) Photo portfolio",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:01_Food_in_Gran_Canaria_-_fish_and_seafood_mixed_grill_plate.jpg"
+ },
+ {
+  "file": "seafood-luxury-1.webp",
+  "dish": "Fresh Oysters",
+  "title": "Oysters of the day 01.jpg",
+  "artist": "T.Tseng",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Oysters_of_the_day_01.jpg"
+ },
+ {
+  "file": "seafood-luxury-2.webp",
+  "dish": "Grilled Prawns",
+  "title": "2026-05-24 01 Grilled Spot prawns (Pandalus platyceros) - Victoria BC CAN.jpg",
+  "artist": "Gordon Leggett",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:2026-05-24_01_Grilled_Spot_prawns_(Pandalus_platyceros)_-_Victoria_BC_CAN.jpg"
+ },
+ {
+  "file": "seafood-luxury-3.webp",
+  "dish": "Omani Lobster",
+  "title": "Lobster from Maine Trenton Lobster Pound.jpg",
+  "artist": "Michele Dorsey Walfred",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Lobster_from_Maine_Trenton_Lobster_Pound.jpg"
+ },
+ {
+  "file": "seafood-luxury-4.webp",
+  "dish": "Seafood Platter",
+  "title": "Seafood platter - London, UK.jpg",
+  "artist": "Daderot",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Seafood_platter_-_London,_UK.jpg"
+ },
+ {
+  "file": "japanese-minimal-0.webp",
+  "dish": "Sushi Selection",
+  "title": "Sushi Plate in Organic Sushi Prague 4.jpg",
+  "artist": "Mojmir Churavy",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Sushi_Plate_in_Organic_Sushi_Prague_4.jpg"
+ },
+ {
+  "file": "japanese-minimal-1.webp",
+  "dish": "Sashimi",
+  "title": "SASHIMI or raw sliced fishes 2024-05-06.jpg",
+  "artist": "ウィキ太郎",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:SASHIMI_or_raw_sliced_fishes_2024-05-06.jpg"
+ },
+ {
+  "file": "japanese-minimal-2.webp",
+  "dish": "Ramen",
+  "title": "Ramen Bowl 2.jpg",
+  "artist": "Shisma",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Ramen_Bowl_2.jpg"
+ },
+ {
+  "file": "japanese-minimal-3.webp",
+  "dish": "Prawn Tempura",
+  "title": "KISU no TEMPURA or Sillaginidae Sand Borer Tempura 2021.jpg",
+  "artist": "ウィキ太郎(WikiTaro)",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:KISU_no_TEMPURA_or_Sillaginidae_Sand_Borer_Tempura_2021.jpg"
+ },
+ {
+  "file": "japanese-minimal-4.webp",
+  "dish": "Miso Soup",
+  "title": "Pholiota microspora miso soup 001.jpg",
+  "artist": "Ocdp",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pholiota_microspora_miso_soup_001.jpg"
+ },
+ {
+  "file": "italian-pizza-0.webp",
+  "dish": "Margherita",
+  "title": "Margherita pizza on plate.jpg",
+  "artist": "Shisma",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Margherita_pizza_on_plate.jpg"
+ },
+ {
+  "file": "italian-pizza-1.webp",
+  "dish": "Pepperoni",
+  "title": "Nice pepperoni pizza.jpg",
+  "artist": "YoutubeJarred33 Widower",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Nice_pepperoni_pizza.jpg"
+ },
+ {
+  "file": "italian-pizza-2.webp",
+  "dish": "Calzone",
+  "title": "Mega calzone - ND0 3594 (8041010760).jpg",
+  "artist": "N i c o l a from Fiumicino (Rome), Italy",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Mega_calzone_-_ND0_3594_(8041010760).jpg"
+ },
+ {
+  "file": "italian-pizza-3.webp",
+  "dish": "Garlic Bread",
+  "title": "Garlic Bread Mozzarella - Oregano Pizzeria 2025-05-17.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Garlic_Bread_Mozzarella_-_Oregano_Pizzeria_2025-05-17.jpg"
+ },
+ {
+  "file": "italian-pizza-4.webp",
+  "dish": "Four Cheese",
+  "title": "Four Cheese - Pizza 500 2023-11-10.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Four_Cheese_-_Pizza_500_2023-11-10.jpg"
+ },
+ {
+  "file": "modern-pasta-0.webp",
+  "dish": "Penne Arrabbiata",
+  "title": "Penne norma - Enzo's 2026-04-21.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Penne_norma_-_Enzo%27s_2026-04-21.jpg"
+ },
+ {
+  "file": "modern-pasta-1.webp",
+  "dish": "Fettuccine Alfredo",
+  "title": "Fiamma - Fettuccine with Alfredo Sauce.jpg",
+  "artist": "Calgary Reviews",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Fiamma_-_Fettuccine_with_Alfredo_Sauce.jpg"
+ },
+ {
+  "file": "modern-pasta-2.webp",
+  "dish": "Spaghetti Bolognese",
+  "title": "Spaghetti Bolognese - Figaros, Brighton 2023-10-06.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Spaghetti_Bolognese_-_Figaros,_Brighton_2023-10-06.jpg"
+ },
+ {
+  "file": "modern-pasta-3.webp",
+  "dish": "Ravioli",
+  "title": "Handmade Ravioli (Unsplash).jpg",
+  "artist": "davide ragusa davideragusa",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Handmade_Ravioli_(Unsplash).jpg"
+ },
+ {
+  "file": "modern-pasta-4.webp",
+  "dish": "Pesto Pasta",
+  "title": "Pesto alla Trapanese - Wiki Loves Sicilia.jpg",
+  "artist": "8w9d",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pesto_alla_Trapanese_-_Wiki_Loves_Sicilia.jpg"
+ },
+ {
+  "file": "family-combos-0.webp",
+  "dish": "Chicken Bucket",
+  "title": "Fried Chicken (Unsplash).jpg",
+  "artist": "Brian Chan tigerrulezzz",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Fried_Chicken_(Unsplash).jpg"
+ },
+ {
+  "file": "family-combos-1.webp",
+  "dish": "Family Pizza",
+  "title": "White slice and supreme slice.jpg",
+  "artist": "Afshin Darian",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:White_slice_and_supreme_slice.jpg"
+ },
+ {
+  "file": "family-combos-2.webp",
+  "dish": "Nuggets (12 pcs)",
+  "title": "Impossible chicken nuggets 2.jpg",
+  "artist": "Mx. Granger",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Impossible_chicken_nuggets_2.jpg"
+ },
+ {
+  "file": "family-combos-3.webp",
+  "dish": "Potato Wedges",
+  "title": "Potato wedges at Mensa Paderborn (11956794164).jpg",
+  "artist": "Luca Hammer from Paderborn, Germany",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Potato_wedges_at_Mensa_Paderborn_(11956794164).jpg"
+ },
+ {
+  "file": "family-combos-4.webp",
+  "dish": "Soft Drinks",
+  "title": "Drink-341489.jpg",
+  "artist": "Mitaukano",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Drink-341489.jpg"
+ },
+ {
+  "file": "mediterranean-0.webp",
+  "dish": "Greek Salad",
+  "title": "Greek salad (5178297958).jpg",
+  "artist": "Geoff Peters from Vancouver, BC, Canada",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Greek_salad_(5178297958).jpg"
+ },
+ {
+  "file": "mediterranean-1.webp",
+  "dish": "Grilled Chicken",
+  "title": "Grilled chicken served with creamy mashed potatoes and fresh vegetables undefined.jpg",
+  "artist": "Shixart1985",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Grilled_chicken_served_with_creamy_mashed_potatoes_and_fresh_vegetables_undefined.jpg"
+ },
+ {
+  "file": "mediterranean-2.webp",
+  "dish": "Falafel Plate",
+  "title": "Food in Israel.jpg",
+  "artist": "young shanahan",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Food_in_Israel.jpg"
+ },
+ {
+  "file": "mediterranean-3.webp",
+  "dish": "Moussaka",
+  "title": "Meat Moussaka - Kouzina, Brighton 2023-11-24.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Meat_Moussaka_-_Kouzina,_Brighton_2023-11-24.jpg"
+ },
+ {
+  "file": "mediterranean-4.webp",
+  "dish": "Vine Leaves",
+  "title": "Dolma food jordan 2025 (2).jpg",
+  "artist": "Justwiki",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Dolma_food_jordan_2025_(2).jpg"
+ },
+ {
+  "file": "fast-casual-0.webp",
+  "dish": "Chicken Burrito",
+  "title": "Oaxacalifornia Burrito cross section.jpg",
+  "artist": "RightCowLeftCoast",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Oaxacalifornia_Burrito_cross_section.jpg"
+ },
+ {
+  "file": "fast-casual-1.webp",
+  "dish": "Veggie Wrap",
+  "title": "Falafel &Tzatziki Wrap - Lavash.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Falafel_%26Tzatziki_Wrap_-_Lavash.jpg"
+ },
+ {
+  "file": "fast-casual-2.webp",
+  "dish": "Caesar Salad",
+  "title": "Caesar Salad - Purezza 2023-11-22.jpg",
+  "artist": "Andy Li",
+  "license": "CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Caesar_Salad_-_Purezza_2023-11-22.jpg"
+ },
+ {
+  "file": "fast-casual-3.webp",
+  "dish": "Quesadilla",
+  "title": "Duck Quesadilla 3.jpg",
+  "artist": "Key West Wedding Photography",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Duck_Quesadilla_3.jpg"
+ },
+ {
+  "file": "fast-casual-4.webp",
+  "dish": "Beef Tacos",
+  "title": "Birria tacos at Teddy's Red Tacos in Venice, California.jpg",
+  "artist": "T.Tseng",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Birria_tacos_at_Teddy%27s_Red_Tacos_in_Venice,_California.jpg"
+ }
+]

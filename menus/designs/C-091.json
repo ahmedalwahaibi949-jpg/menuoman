@@ -1,0 +1,20 @@
+{
+ "id": "C-091",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الفانوس · البرغر",
+  "en": "Lantern Bento · Burger"
+ },
+ "palette": "lantern-indigo",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "burger",
+ "reveal": "puzzle"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-076",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الكاكاو · البرغر",
+  "en": "Cocoa Word · Burger"
+ },
+ "palette": "paper-cocoa",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "burger",
+ "reveal": "doors"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-002",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود الرمل · الشواء",
+  "en": "Sand Spine · Grill"
+ },
+ "palette": "sand-ink",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "grill",
+ "reveal": "circle"
+}

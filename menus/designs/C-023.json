@@ -1,0 +1,20 @@
+{
+ "id": "C-023",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار البحر · الإيطالي",
+  "en": "Sea Orbit · Italian"
+ },
+ "palette": "deep-teal",
+ "fonts": [
+  "alex",
+  "anton"
+ ],
+ "cuisine": "italian",
+ "reveal": "iris"
+}

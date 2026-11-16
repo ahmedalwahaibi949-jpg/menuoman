@@ -1,0 +1,20 @@
+{
+ "id": "C-024",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار الفانوس · الشواء",
+  "en": "Lantern Orbit · Grill"
+ },
+ "palette": "lantern-indigo",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "grill",
+ "reveal": "page"
+}

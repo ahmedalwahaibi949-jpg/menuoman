@@ -1,0 +1,20 @@
+{
+ "id": "C-056",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب الرمل · الشواء",
+  "en": "Sand Doors · Grill"
+ },
+ "palette": "sand-ink",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "grill",
+ "reveal": "iris"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-013",
+ "set": "interactive",
+ "family": "orbit",
+ "familyName": {
+  "ar": "مدار الطبق",
+  "en": "Orbit Plate"
+ },
+ "name": {
+  "ar": "مدار النعناع · الإيطالي",
+  "en": "Mint Orbit · Italian"
+ },
+ "palette": "mint-cream",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "italian",
+ "reveal": "dive"
+}

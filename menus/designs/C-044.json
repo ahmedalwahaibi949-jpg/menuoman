@@ -1,0 +1,20 @@
+{
+ "id": "C-044",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "كتاب الزيتون · البرغر",
+  "en": "Olive Book · Burger"
+ },
+ "palette": "olive-sand",
+ "fonts": [
+  "kufi",
+  "brico"
+ ],
+ "cuisine": "burger",
+ "reveal": "circle"
+}

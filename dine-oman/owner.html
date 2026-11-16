@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="My restaurants · Dine Oman">مطاعمي · داين عُمان</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>
+.rest{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 4px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.rest:hover{background:var(--bg-2)}
+.rest img{width:56px;height:56px;border-radius:12px;object-fit:contain;border:1px solid var(--line);background:#fff}
+.rest b{font-size:18px}
+.sec-t{font-size:20px;margin:44px 0 18px;padding-top:28px;border-top:1px solid var(--line)}
+.status-top{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center;margin-bottom:28px}
+.status-top img{width:72px;height:72px;border-radius:14px;object-fit:contain;border:1px solid var(--line);background:#fff}
+.urlline{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+.urlline code{font-family:ui-monospace,Menlo,monospace;font-size:15px;direction:ltr;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page-sm" style="max-width:820px">
+  <nav class="tabs" id="nav" aria-label="Restaurant dashboard">
+    <a href="#restaurants" data-tab="restaurants"><span data-en="My restaurants">مطاعمي</span><i id="navCount" hidden></i></a>
+    <a href="#add" data-tab="add" data-en="Add a branch">إضافة فرع</a>
+    <a href="#settings" data-tab="settings" data-en="Settings">الإعدادات</a>
+  </nav>
+  <section id="main"></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script><script src="js/restaurant-form.js"></script><script src="js/settings.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$, esc = U.esc, L = U.L;
+  let me = await U.requireRole(["owner"]);
+  await U.chrome({ me });
+  const qs = new URLSearchParams(location.search);
+  if (qs.has("welcome")) U.toast(t("تم تأكيد بريدك. طلبك الآن قيد المراجعة.", "Email confirmed. Your application is now pending approval."));
+  if (qs.has("emailchanged")) U.toast(t("تم تحديث بريدك الإلكتروني.", "Your email address is updated."));
+  if (qs.has("denied")) U.toast(t("هذه الصفحة مخصصة لفريق داين عُمان.", "That page is only for the Dine Oman team."), true);
+  const badge = rows => { const p = rows.filter(r => ["pending", "awaiting_verification"].includes(r.status)).length; $("#navCount").hidden = !p; $("#navCount").textContent = p; };
+
+  function tracker(r) {
+    const st = r.status, live = st === "approved" && r.published;
+    const c = ["on", st === "awaiting_verification" ? "now" : "on", st === "pending" ? "now" : st === "awaiting_verification" ? "" : "on", st === "approved" ? "on" : st === "rejected" ? "stop" : "", live ? "on" : ""];
+    const steps = [
+      [t("تم إنشاء الحساب", "Account created"), U.date(r.created_at)],
+      [t("تأكيد البريد الإلكتروني", "Email confirmed"), st === "awaiting_verification" ? t("تحقق من بريدك", "Check your inbox") : ""],
+      [t("قيد المراجعة", "Pending approval"), r.submitted_at ? t("أُرسل ", "Submitted ") + U.date(r.submitted_at) : ""],
+      [st === "rejected" ? t("مرفوض", "Not approved") : t("الموافقة", "Approved"), r.reviewed_at ? U.date(r.reviewed_at) : ""],
+      [t("نشر الصفحة", "Page live"), live ? t("منشورة", "Live") : ""]
+    ];
+    return `<ol class="track">${steps.map(([b, s], i) => `<li class="${c[i]}"><div><b>${b}</b>${s ? `<span>${s}</span>` : ""}</div></li>`).join("")}</ol>`;
+  }
+
+  const views = {
+    async restaurants(el) {
+      const rows = await api.myRestaurants(); badge(rows);
+      el.innerHTML = `<div class="head"><h1>${t("مطاعمي", "My restaurants")}</h1><a class="link" href="#add">${t("إضافة فرع", "Add a branch")}</a></div>` + (rows.length
+        ? `<div style="border-top:1px solid var(--line)">${rows.map(r => `<a class="rest" href="#r-${r.id}"><img src="${esc(r.logo_url)}" alt=""><div style="min-width:0"><b>${esc(U.rname(r))}</b><div class="muted small">${esc(r.area)}${U.SEP}${esc(L(r.city))} · ${esc(U.plan(r.plan).label)}</div></div>${U.statusBadge(r)}</a>`).join("")}</div>`
+        : `<div class="empty"><b>${t("لا توجد مطاعم بعد", "No restaurants yet")}</b><a class="link" href="#add">${t("أضف مطعمك الأول", "Add your first restaurant")}</a></div>`);
+    },
+
+    async r(el, hash) {
+      const id = hash.slice(2);
+      const rows = await api.myRestaurants(); badge(rows);
+      const r = rows.find(x => x.id === id);
+      if (!r) { el.innerHTML = `<div class="empty"><b>${t("المطعم غير موجود", "Restaurant not found")}</b><a class="link" href="#restaurants">${t("العودة إلى مطاعمي", "Back to my restaurants")}</a></div>`; return; }
+      const approved = r.status === "approved", live = approved && r.published, url = r.slug ? U.publicUrl(r.slug) : "";
+      const notice = {
+        awaiting_verification: ["warn", t(`أكّد بريدك لإرسال الطلب. <button class="link" id="resend">أرسل الرابط مرة أخرى</button>`, `Confirm your email to submit this application. <button class="link" id="resend">Send the link again</button>`)],
+        pending: ["warn", t("طلبك قيد المراجعة وسنرسل لك النتيجة على بريدك. يمكنك تعديل التفاصيل أدناه.", "Your application is being reviewed. We'll email you the decision. You can still edit the details below.")],
+        approved: live ? ["ok", t("مطعمك منشور الآن على داين عُمان.", "Your restaurant is live on Dine Oman.")] : ["warn", t("تمت الموافقة، لكن الصفحة غير منشورة حاليًا.", "Approved, but the page is currently unpublished.")],
+        rejected: ["bad", t("لم تتم الموافقة.", "Not approved.") + (r.admin_note ? " " + esc(r.admin_note) : "") + " " + t("عدّل التفاصيل وأعد الإرسال.", "Update the details and resubmit.")]
+      }[r.status];
+      el.innerHTML = `
+        <p style="margin-bottom:20px"><a class="link plain" href="#restaurants">${t("مطاعمي", "My restaurants")}</a></p>
+        <div class="status-top"><img src="${esc(r.logo_url)}" alt=""><div style="min-width:0"><h1 style="font-size:30px">${esc(U.rname(r))}</h1><div class="muted small"><span class="ltr">${esc(r.reference)}</span> · ${U.statusBadge(r)}</div></div></div>
+        ${tracker(r)}
+        <div class="notice ${notice[0]}" style="margin-top:8px">${notice[1]}</div>
+        ${approved && r.admin_note ? `<p class="muted small" style="margin-top:12px">${t("ملاحظة من فريقنا:", "Note from our team:")} ${esc(r.admin_note)}</p>` : ""}
+        ${url ? `<div class="urlline"><code id="url">${esc(url)}</code><button class="link" id="copy">${t("نسخ الرابط", "Copy link")}</button>${live ? `<a class="link" href="${esc(U.profileHref(r.slug))}" target="_blank" rel="noopener">${t("فتح الصفحة", "Open page")}</a>` : ""}</div>` : ""}
+        <h2 class="sec-t">${t("معلومات المطعم", "Restaurant information")}</h2><div id="f-info"></div>
+        <h2 class="sec-t">${t("الشعار والصور", "Logo and photos")}</h2><div id="f-brand"></div>
+        ${approved ? `<h2 class="sec-t">${t("أوقات العمل والتفاصيل", "Hours and details")}</h2><div id="f-profile"></div>` : ""}
+        <h2 class="sec-t">${t("الباقة", "Plan")}</h2><div id="f-plan"></div>
+        <div class="notice bad" id="ferr" hidden style="margin-top:20px"></div>
+        <p style="margin-top:32px"><button class="btn" id="save">${r.status === "rejected" ? t("حفظ وإعادة الإرسال", "Save and resubmit") : t("حفظ التغييرات", "Save changes")}</button></p>`;
+      const root = document.createElement("div");
+      const rf = DineRestaurantForm.mount(root, { sections: approved ? ["info", "branding", "profile", "plan"] : ["info", "branding", "plan"], initial: { ...r }, editing: true, planLocked: approved });
+      $("#f-info", el).appendChild(root.querySelector('[data-sec="info"]'));
+      $("#f-brand", el).appendChild(root.querySelector('[data-sec="branding"]'));
+      if (approved) $("#f-profile", el).appendChild(root.querySelector('[data-sec="profile"]'));
+      $("#f-plan", el).appendChild(root.querySelector('[data-sec="plan"]'));
+      if ($("#copy", el)) $("#copy", el).onclick = async () => { try { await navigator.clipboard.writeText(url); U.toast(t("تم نسخ الرابط.", "Link copied.")); } catch (e) { getSelection().selectAllChildren($("#url", el)); } };
+      if ($("#resend", el)) $("#resend", el).onclick = async () => { await api.resendVerification(me.email).catch(() => {}); U.toast(t("أرسلنا الرابط مرة أخرى.", "Sent again.")); };
+      $("#save", el).onclick = async () => {
+        $("#ferr", el).hidden = true;
+        if (!rf.validate()) return;
+        const btn = $("#save", el); U.busy(btn, true);
+        try {
+          await api.updateRestaurant(r.id, rf.values(), rf.files(), rf.keptPhotos());
+          if (r.status === "rejected") { await api.resubmit(r.id); U.toast(t("أُعيد إرسال الطلب للمراجعة.", "Resubmitted for review.")); }
+          else U.toast(t("تم الحفظ.", "Saved."));
+          views.r(el, hash);
+        } catch (e) { U.busy(btn, false); $("#ferr", el).hidden = false; $("#ferr", el).textContent = e.message; }
+      };
+    },
+
+    async add(el) {
+      const mine = await api.myRestaurants(); badge(mine);
+      el.innerHTML = `
+        <div class="head"><h1>${t("إضافة فرع", "Add a branch")}</h1></div>
+        <p class="lead" style="margin:-12px 0 28px">${t("لكل فرع صفحته الخاصة ويُراجع بشكل منفصل.", "Each branch gets its own page and is reviewed separately.")}</p>
+        <div id="a-info"></div>
+        <h2 class="sec-t">${t("الشعار والصور", "Logo and photos")}</h2><div id="a-brand"></div>
+        <h2 class="sec-t">${t("الباقة", "Plan")}</h2><div id="a-plan"></div>
+        <label class="check" style="margin-top:24px"><input type="checkbox" id="a-ok"> ${t("أؤكد أنني مالك أو مدير هذا الفرع وأن المعلومات صحيحة.", "I own or manage this branch and the details are accurate.")}</label>
+        <div class="notice bad" id="aerr" hidden style="margin-top:20px"></div>
+        <p style="margin-top:28px"><button class="btn" id="a-submit">${t("إرسال الفرع للمراجعة", "Submit branch for approval")}</button></p>`;
+      const base = mine[0] ? { name: mine[0].name, category: mine[0].category, cuisine: mine[0].cuisine, instagram: mine[0].instagram, website: mine[0].website, description: mine[0].description, plan: "free" } : { plan: "free" };
+      const root = document.createElement("div");
+      const rf = DineRestaurantForm.mount(root, { sections: ["info", "branding", "plan"], initial: base });
+      $("#a-info", el).appendChild(root.querySelector('[data-sec="info"]'));
+      $("#a-brand", el).appendChild(root.querySelector('[data-sec="branding"]'));
+      $("#a-plan", el).appendChild(root.querySelector('[data-sec="plan"]'));
+      $("#a-submit", el).onclick = async () => {
+        $("#aerr", el).hidden = true;
+        if (!rf.validate()) return;
+        if (!$("#a-ok", el).checked) { $("#aerr", el).hidden = false; $("#aerr", el).textContent = t("ضع علامة التأكيد للمتابعة.", "Please confirm to continue."); return; }
+        const btn = $("#a-submit", el); U.busy(btn, true);
+        try { const { id } = await api.addBranch(rf.values(), rf.files()); U.toast(t("أُرسل الفرع للمراجعة.", "Branch submitted for approval.")); location.hash = "r-" + id; }
+        catch (e) { U.busy(btn, false); $("#aerr", el).hidden = false; $("#aerr", el).textContent = e.message; }
+      };
+    },
+
+    async settings(el) {
+      el.innerHTML = `<div class="head"><h1>${t("الإعدادات", "Settings")}</h1></div><div id="st"></div>`;
+      DineSettings.render($("#st", el), me, { onSaved: async () => { me = await api.me(); views.settings(el); } });
+    }
+  };
+  U.tabs($("#nav"), $("#main"), views, "restaurants");
+})();
+</script>
+</body>
+</html>

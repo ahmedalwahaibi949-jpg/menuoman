@@ -1,0 +1,20 @@
+{
+ "id": "C-006",
+ "set": "interactive",
+ "family": "puzzle-spine",
+ "familyName": {
+  "ar": "العمود المتعرّج",
+  "en": "Puzzle Spine"
+ },
+ "name": {
+  "ar": "عمود السماء · الإيطالي",
+  "en": "Sky Spine · Italian"
+ },
+ "palette": "sky",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "italian",
+ "reveal": "iris"
+}

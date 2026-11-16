@@ -1,0 +1,20 @@
+{
+ "id": "C-084",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الكاكاو · المقهى",
+  "en": "Cocoa Reel · Café"
+ },
+ "palette": "paper-cocoa",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "cafe",
+ "reveal": "doors"
+}

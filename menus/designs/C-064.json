@@ -1,0 +1,20 @@
+{
+ "id": "C-064",
+ "set": "interactive",
+ "family": "glass",
+ "familyName": {
+  "ar": "الزجاج السائل",
+  "en": "Liquid Glass"
+ },
+ "name": {
+  "ar": "زجاج الشفق · الإيطالي",
+  "en": "Aurora Glass · Italian"
+ },
+ "palette": "glass-aurora",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "italian",
+ "reveal": "iris"
+}

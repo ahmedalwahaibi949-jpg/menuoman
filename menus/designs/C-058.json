@@ -1,0 +1,20 @@
+{
+ "id": "C-058",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب النحاس · رمضان",
+  "en": "Copper Doors · Ramadan"
+ },
+ "palette": "rose-copper",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "mask"
+}

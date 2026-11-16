@@ -1,0 +1,20 @@
+{
+ "id": "C-082",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الكرافت · الإيطالي",
+  "en": "Kraft Reel · Italian"
+ },
+ "palette": "kraft",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "italian",
+ "reveal": "mask"
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="Register your restaurant · Dine Oman">سجّل مطعمك · داين عُمان</title>
+<meta name="description" content="انضم إلى داين عُمان وتواصل مع آلاف الزبائن المحتملين.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+<style>.ow{max-width:640px;margin-inline:auto}.ow .intro{margin-bottom:44px}</style>
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page">
+  <div class="ow" id="wiz">
+    <div class="intro">
+      <h1 class="title" data-en="Your Restaurant Deserves to Be Discovered.">مطعمك يستحق أن يُكتشف.</h1>
+      <p class="lead" data-en="Join Dine Oman and connect your restaurant with thousands of potential customers.">انضم إلى داين عُمان وتواصل مع آلاف الزبائن المحتملين.</p>
+    </div>
+
+    <div class="steps"><div class="bar"><i id="bar" style="width:25%"></i></div><p id="stepLabel"></p></div>
+
+    <div data-step="1" class="form">
+      <div class="field" data-o="full_name"><label for="o-name" data-en="Full name">الاسم الكامل</label><input class="input" id="o-name" autocomplete="name" maxlength="80"><span class="err" data-en="Enter your full name.">أدخل اسمك الكامل.</span></div>
+      <div class="field" data-o="email"><label for="o-email" data-en="Email">البريد الإلكتروني</label><input class="input ltr" id="o-email" type="email" autocomplete="email" inputmode="email"><span class="err" data-en="Enter a valid email address.">أدخل بريدًا إلكترونيًا صحيحًا.</span></div>
+      <div class="two">
+        <div class="field" data-o="mobile"><label for="o-mobile" data-en="Mobile number">رقم الهاتف</label><div class="affix"><span>+968</span><input class="input" id="o-mobile" type="tel" inputmode="numeric" maxlength="9"></div><span class="err" data-en="8-digit Omani mobile starting with 7 or 9.">رقم عُماني من 8 أرقام يبدأ بـ 7 أو 9.</span></div>
+        <div class="field" data-o="whatsapp"><label for="o-wa" data-en="WhatsApp number">رقم الواتساب</label><div class="affix"><span>+968</span><input class="input" id="o-wa" type="tel" inputmode="numeric" maxlength="9"></div><label class="check small"><input type="checkbox" id="o-same"> <span data-en="Same as mobile">نفس رقم الهاتف</span></label><span class="err" data-en="8-digit Omani mobile starting with 7 or 9.">رقم عُماني من 8 أرقام يبدأ بـ 7 أو 9.</span></div>
+      </div>
+      <div class="field" data-o="password"><label for="o-pw" data-en="Password">كلمة المرور</label><div class="pw"><input class="input" id="o-pw" type="password" autocomplete="new-password"></div><div class="meter" id="meter" data-s="0"><i></i><i></i><i></i><i></i></div><span class="err" data-en="At least 8 characters with letters and numbers.">8 أحرف على الأقل، تحتوي على حروف وأرقام.</span></div>
+      <div class="field" data-o="confirm"><label for="o-pw2" data-en="Confirm password">تأكيد كلمة المرور</label><div class="pw"><input class="input" id="o-pw2" type="password" autocomplete="new-password"></div><span class="err" data-en="The passwords don't match.">كلمتا المرور غير متطابقتين.</span></div>
+    </div>
+    <div data-step="2" hidden id="slot-info"></div>
+    <div data-step="3" hidden id="slot-brand"></div>
+    <div data-step="4" hidden class="form"><div id="slot-plan"></div>
+      <label class="check"><input type="checkbox" id="consent"> <span data-en="I own or manage this business, and the details and photos are accurate.">أؤكد أنني مالك أو مدير هذا المطعم، وأن المعلومات والصور صحيحة.</span></label>
+    </div>
+    <div id="rf-root" hidden></div>
+
+    <div class="notice bad" id="err" role="alert" hidden style="margin-top:20px"></div>
+    <div class="wiz-nav" style="margin-top:28px">
+      <button class="link plain" type="button" id="back" hidden data-en="Back">رجوع</button><span></span>
+      <button class="btn" type="button" id="next" data-en="Continue">متابعة</button>
+    </div>
+    <p class="alt" id="haveAcc" style="margin-top:28px"><span data-en="Already registered?">مسجّل سابقًا؟</span> <a href="login.html" data-en="Log in">سجّل الدخول</a></p>
+  </div>
+
+  <div class="narrow form" id="done" hidden tabindex="-1">
+    <h1 class="title" data-en="Check your email">تحقق من بريدك</h1>
+    <p class="lead" id="dMsg"></p>
+    <ol class="track">
+      <li class="on"><div><b data-en="Account created">تم إنشاء الحساب</b></div></li>
+      <li class="now"><div><b data-en="Confirm your email">تأكيد البريد الإلكتروني</b></div></li>
+      <li><div><b data-en="Pending approval">قيد المراجعة</b></div></li>
+      <li><div><b data-en="Your page goes live">نشر صفحة مطعمك</b></div></li>
+    </ol>
+    <p class="muted"><span data-en="Didn't get it?">لم تصلك الرسالة؟</span> <button class="link" type="button" id="dResend" data-en="Send it again">أرسلها مرة أخرى</button></p>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script><script src="js/restaurant-form.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$;
+  const me = await U.chrome();
+  if (me) { location.replace(me.role === "owner" ? "owner.html#add" : U.homeFor(me)); return; }
+
+  const rf = DineRestaurantForm.mount($("#rf-root"), { sections: ["info", "branding", "plan"], initial: { plan: new URLSearchParams(location.search).get("plan") || "free" } });
+  $("#slot-info").appendChild($('#rf-root [data-sec="info"]'));
+  $("#slot-brand").appendChild($('#rf-root [data-sec="branding"]'));
+  $("#slot-plan").appendChild($('#rf-root [data-sec="plan"]'));
+
+  U.bindPassword($("#o-pw"), $("#meter")); U.bindPassword($("#o-pw2"));
+  $("#o-same").onchange = e => { $("#o-wa").value = e.target.checked ? $("#o-mobile").value : ""; $("#o-wa").readOnly = e.target.checked; };
+  $("#o-mobile").addEventListener("input", () => { if ($("#o-same").checked) $("#o-wa").value = $("#o-mobile").value; });
+
+  const of = n => $(`[data-o="${n}"]`);
+  const ownerRules = {
+    full_name: () => U.V.name($("#o-name").value), email: () => U.V.email($("#o-email").value),
+    mobile: () => U.V.mobile($("#o-mobile").value), whatsapp: () => U.V.mobile($("#o-wa").value),
+    password: () => U.V.password($("#o-pw").value), confirm: () => !!$("#o-pw2").value && $("#o-pw2").value === $("#o-pw").value
+  };
+  $('[data-step="1"]').addEventListener("input", e => { const f = e.target.closest("[data-o]"); if (f && f.classList.contains("invalid")) U.mark(f, ownerRules[f.dataset.o]()); });
+  const validOwner = () => { const ok = Object.keys(ownerRules).map(k => U.mark(of(k), ownerRules[k]())).every(Boolean); if (!ok) U.firstInvalid($('[data-step="1"]')); return ok; };
+
+  const NAMES = [t("بيانات المالك", "Owner details"), t("معلومات المطعم", "Restaurant information"), t("الشعار والصور", "Logo and photos"), t("اختر الباقة", "Choose a plan")];
+  let step = 1;
+  function go(n) {
+    step = n;
+    document.querySelectorAll("[data-step]").forEach(s => s.hidden = +s.dataset.step !== n);
+    $("#bar").style.width = n * 25 + "%";
+    $("#stepLabel").innerHTML = `${t("الخطوة", "Step")} ${n} ${t("من", "of")} 4 · <b>${NAMES[n - 1]}</b>`;
+    $("#back").hidden = n === 1; $("#haveAcc").hidden = n > 1;
+    $("#next").textContent = n === 4 ? t("إنشاء الحساب وإرسال الطلب", "Create account and submit") : t("متابعة", "Continue");
+    $("#err").hidden = true;
+    if (n > 1) $(".steps").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  go(1);
+  $("#back").onclick = () => go(step - 1);
+  $("#next").onclick = () => {
+    if (step === 1 && !validOwner()) return;
+    if (step === 2 && !rf.validate("info")) return;
+    if (step === 3 && !rf.validate("branding")) return;
+    if (step < 4) return go(step + 1);
+    if (!$("#consent").checked) { $("#err").hidden = false; $("#err").textContent = t("ضع علامة التأكيد للمتابعة.", "Please confirm the statement to continue."); return; }
+    submit();
+  };
+
+  let email = "";
+  async function submit() {
+    const btn = $("#next"); U.busy(btn, true, t("جارٍ رفع الصور وإنشاء الحساب…", "Uploading photos and creating your account…"));
+    email = $("#o-email").value.trim().toLowerCase();
+    try {
+      const r = rf.values();
+      const res = await api.signUpOwner({ full_name: $("#o-name").value.trim(), email, mobile: U.omani($("#o-mobile").value), whatsapp: U.omani($("#o-wa").value), password: $("#o-pw").value }, r, rf.files());
+      if (!res.needsVerification) { location.replace("owner.html?welcome=1"); return; }
+      $("#wiz").hidden = true; $("#done").hidden = false; $("#done").focus(); scrollTo({ top: 0 });
+      $("#dMsg").innerHTML = t(`أرسلنا رابط التأكيد إلى <b class="ltr">${U.esc(email)}</b>. بعد التأكيد يُرسل طلب <b>${U.esc(r.name)}</b> لفريقنا للمراجعة.`, `We sent a confirmation link to <b>${U.esc(email)}</b>. Once you confirm, <b>${U.esc(r.name)}</b> goes to our team for approval.`)
+        + (api.mode === "demo" ? ` <a href="demo-inbox.html">${t("افتح صندوق العرض", "Open the demo inbox")}</a>` : "");
+    } catch (e) { U.busy(btn, false); $("#err").hidden = false; $("#err").textContent = e.message; }
+  }
+  $("#dResend").onclick = async () => { await api.resendVerification(email).catch(() => {}); U.toast(t("أرسلنا الرابط مرة أخرى.", "Sent again.")); };
+})();
+</script>
+</body>
+</html>

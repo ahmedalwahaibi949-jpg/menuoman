@@ -1,0 +1,20 @@
+{
+ "id": "C-098",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الفيروز · الشواء",
+  "en": "Turquoise Bento · Grill"
+ },
+ "palette": "teal-coral",
+ "fonts": [
+  "marhey",
+  "shrik"
+ ],
+ "cuisine": "grill",
+ "reveal": "page"
+}

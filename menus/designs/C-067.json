@@ -1,0 +1,20 @@
+{
+ "id": "C-067",
+ "set": "interactive",
+ "family": "kinetic",
+ "familyName": {
+  "ar": "الكلمة المتحركة",
+  "en": "Kinetic Type"
+ },
+ "name": {
+  "ar": "كلمة الكحلي · الإيطالي",
+  "en": "Navy Word · Italian"
+ },
+ "palette": "navy-cream",
+ "fonts": [
+  "messiri",
+  "iserif"
+ ],
+ "cuisine": "italian",
+ "reveal": "doors"
+}

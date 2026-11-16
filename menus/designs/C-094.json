@@ -1,0 +1,20 @@
+{
+ "id": "C-094",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الليلك · المقهى",
+  "en": "Lilac Bento · Café"
+ },
+ "palette": "lilac",
+ "fonts": [
+  "marhey",
+  "iserif"
+ ],
+ "cuisine": "cafe",
+ "reveal": "blinds"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-049",
+ "set": "interactive",
+ "family": "doors",
+ "familyName": {
+  "ar": "الأبواب المنزلقة",
+  "en": "Sliding Doors"
+ },
+ "name": {
+  "ar": "أبواب الطين · البرغر",
+  "en": "Clay Doors · Burger"
+ },
+ "palette": "terracotta",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "burger",
+ "reveal": "mask"
+}

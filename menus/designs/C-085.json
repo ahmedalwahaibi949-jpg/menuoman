@@ -1,0 +1,20 @@
+{
+ "id": "C-085",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الرمل · رمضان",
+  "en": "Sand Reel · Ramadan"
+ },
+ "palette": "sand-ink",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "circle"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-088",
+ "set": "interactive",
+ "family": "reel",
+ "familyName": {
+  "ar": "الشريط المنحني",
+  "en": "Curved Carousel"
+ },
+ "name": {
+  "ar": "شريط الكرز · الشواء",
+  "en": "Cherry Reel · Grill"
+ },
+ "palette": "cream-red",
+ "fonts": [
+  "alex",
+  "brico"
+ ],
+ "cuisine": "grill",
+ "reveal": "dive"
+}

@@ -1,0 +1,20 @@
+{
+ "id": "C-025",
+ "set": "interactive",
+ "family": "susan",
+ "familyName": {
+  "ar": "الطاولة الدوّارة",
+  "en": "Lazy Susan"
+ },
+ "name": {
+  "ar": "طاولة الفحم · الشواء",
+  "en": "Charcoal Table · Grill"
+ },
+ "palette": "charcoal-mustard",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "grill",
+ "reveal": "puzzle"
+}

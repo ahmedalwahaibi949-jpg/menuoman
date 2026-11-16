@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="Create your account · Dine Oman">إنشاء حساب · داين عُمان</title>
+<meta name="description" content="اكتشف مطعمك المفضّل القادم في عُمان.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page">
+  <div class="narrow form" id="formCard">
+    <div><h1 class="title" data-en="Discover Your Next Favourite Restaurant.">اكتشف مطعمك المفضّل القادم.</h1><p class="lead" data-en="Save favourites, keep track of places you've visited and share your reviews.">احفظ مطاعمك المفضّلة، وتابع ما زرته، وشارك تقييماتك.</p></div>
+    <button class="google" type="button" id="google"></button>
+    <div class="or" data-en="or with email">أو بالبريد الإلكتروني</div>
+    <form id="form" class="form" novalidate>
+      <div class="field"><label for="full_name" data-en="Full name">الاسم الكامل</label><input class="input" id="full_name" autocomplete="name" maxlength="80"><span class="err" data-en="Enter your full name.">أدخل اسمك الكامل.</span></div>
+      <div class="field"><label for="email" data-en="Email">البريد الإلكتروني</label><input class="input ltr" id="email" type="email" autocomplete="email" inputmode="email"><span class="err" data-en="Enter a valid email address.">أدخل بريدًا إلكترونيًا صحيحًا.</span></div>
+      <div class="field"><label for="mobile" data-en="Mobile number">رقم الهاتف</label><div class="affix"><span>+968</span><input class="input" id="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="9"></div><span class="err" data-en="8-digit Omani mobile starting with 7 or 9.">رقم عُماني من 8 أرقام يبدأ بـ 7 أو 9.</span></div>
+      <div class="field"><label for="password" data-en="Password">كلمة المرور</label><div class="pw"><input class="input" id="password" type="password" autocomplete="new-password"></div><div class="meter" id="meter" data-s="0"><i></i><i></i><i></i><i></i></div><span class="hint" data-en="At least 8 characters with letters and numbers.">8 أحرف على الأقل، تحتوي على حروف وأرقام.</span><span class="err" data-en="At least 8 characters with letters and numbers.">8 أحرف على الأقل، تحتوي على حروف وأرقام.</span></div>
+      <div class="field"><label for="confirm" data-en="Confirm password">تأكيد كلمة المرور</label><div class="pw"><input class="input" id="confirm" type="password" autocomplete="new-password"></div><span class="err" data-en="The passwords don't match.">كلمتا المرور غير متطابقتين.</span></div>
+      <label class="check"><input type="checkbox" id="terms"> <span data-en="I agree to the terms of use and privacy policy.">أوافق على شروط الاستخدام وسياسة الخصوصية.</span></label>
+      <div class="notice bad" id="err" role="alert" hidden></div>
+      <button class="btn block" type="submit" id="submit" data-en="Create account">إنشاء الحساب</button>
+    </form>
+    <p class="alt"><span data-en="Already have an account?">لديك حساب؟</span> <a href="login.html" data-en="Log in">سجّل الدخول</a></p>
+  </div>
+
+  <div class="narrow form" id="doneCard" hidden tabindex="-1">
+    <h1 class="title" data-en="Check your email">تحقق من بريدك</h1>
+    <p class="lead" id="doneMsg"></p>
+    <p class="muted"><span data-en="Didn't get it?">لم تصلك الرسالة؟</span> <button class="link" type="button" id="resend" data-en="Send it again">أرسلها مرة أخرى</button></p>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$;
+  const me = await U.chrome();
+  if (me) { location.replace(U.homeFor(me)); return; }
+  $("#google").innerHTML = U.GOOGLE + t("التسجيل باستخدام Google", "Sign up with Google");
+  U.bindPassword($("#password"), $("#meter")); U.bindPassword($("#confirm"));
+  $("#google").onclick = async () => { try { await api.signInGoogle(); } catch (e) { $("#err").hidden = false; $("#err").textContent = e.message; } };
+
+  const f = id => $("#" + id).closest(".field");
+  const checks = {
+    full_name: () => U.mark(f("full_name"), U.V.name($("#full_name").value)),
+    email: () => U.mark(f("email"), U.V.email($("#email").value)),
+    mobile: () => U.mark(f("mobile"), U.V.mobile($("#mobile").value)),
+    password: () => U.mark(f("password"), U.V.password($("#password").value)),
+    confirm: () => U.mark(f("confirm"), !!$("#confirm").value && $("#confirm").value === $("#password").value)
+  };
+  Object.keys(checks).forEach(k => {
+    $("#" + k).addEventListener("blur", () => { if ($("#" + k).value) checks[k](); });
+    $("#" + k).addEventListener("input", () => { if (f(k).classList.contains("invalid")) checks[k](); });
+  });
+
+  let email = "";
+  $("#form").addEventListener("submit", async e => {
+    e.preventDefault(); $("#err").hidden = true;
+    if (!Object.values(checks).map(c => c()).every(Boolean)) return U.firstInvalid($("#form"));
+    if (!$("#terms").checked) { $("#err").hidden = false; $("#err").textContent = t("وافق على الشروط للمتابعة.", "Please agree to the terms to continue."); return; }
+    const btn = $("#submit"); U.busy(btn, true);
+    email = $("#email").value.trim().toLowerCase();
+    try {
+      const r = await api.signUpCustomer({ full_name: $("#full_name").value.trim(), email, mobile: U.omani($("#mobile").value), password: $("#password").value });
+      if (!r.needsVerification) { location.replace("customer.html?welcome=1"); return; }
+      $("#formCard").hidden = true; $("#doneCard").hidden = false; $("#doneCard").focus();
+      $("#doneMsg").innerHTML = t(`أرسلنا رابط التأكيد إلى <b class="ltr">${U.esc(email)}</b>. افتحه لتفعيل حسابك.`, `We sent a confirmation link to <b>${U.esc(email)}</b>. Open it to activate your account.`)
+        + (api.mode === "demo" ? ` <a href="demo-inbox.html">${t("افتح صندوق العرض", "Open the demo inbox")}</a>` : "");
+    } catch (err) { U.busy(btn, false); $("#err").hidden = false; $("#err").textContent = err.message; }
+  });
+  $("#resend").onclick = async () => { await api.resendVerification(email).catch(() => {}); U.toast(t("أرسلنا الرابط مرة أخرى.", "Sent again.")); };
+})();
+</script>
+</body>
+</html>

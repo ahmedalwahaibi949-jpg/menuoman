@@ -1,0 +1,20 @@
+{
+ "id": "C-090",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الإسبريسو · رمضان",
+  "en": "Espresso Bento · Ramadan"
+ },
+ "palette": "espresso",
+ "fonts": [
+  "lalezar",
+  "anton"
+ ],
+ "cuisine": "ramadan",
+ "reveal": "mask"
+}

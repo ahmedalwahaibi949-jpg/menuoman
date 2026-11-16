@@ -1,0 +1,20 @@
+{
+ "id": "C-045",
+ "set": "interactive",
+ "family": "book",
+ "familyName": {
+  "ar": "كتاب الأطباق",
+  "en": "Book of Plates"
+ },
+ "name": {
+  "ar": "كتاب البرقوق · الإيطالي",
+  "en": "Plum Book · Italian"
+ },
+ "palette": "plum",
+ "fonts": [
+  "markazi",
+  "bodoni"
+ ],
+ "cuisine": "italian",
+ "reveal": "blinds"
+}

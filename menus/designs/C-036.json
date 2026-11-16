@@ -1,0 +1,20 @@
+{
+ "id": "C-036",
+ "set": "interactive",
+ "family": "susan",
+ "familyName": {
+  "ar": "الطاولة الدوّارة",
+  "en": "Lazy Susan"
+ },
+ "name": {
+  "ar": "طاولة الإسبريسو · المقهى",
+  "en": "Espresso Table · Café"
+ },
+ "palette": "espresso",
+ "fonts": [
+  "messiri",
+  "bodoni"
+ ],
+ "cuisine": "cafe",
+ "reveal": "circle"
+}

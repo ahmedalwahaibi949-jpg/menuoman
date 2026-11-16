@@ -1,0 +1,20 @@
+{
+ "id": "C-097",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الفانوس · الإيطالي",
+  "en": "Lantern Bento · Italian"
+ },
+ "palette": "lantern-indigo",
+ "fonts": [
+  "lalezar",
+  "archivo"
+ ],
+ "cuisine": "italian",
+ "reveal": "iris"
+}

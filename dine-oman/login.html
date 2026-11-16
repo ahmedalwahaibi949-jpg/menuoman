@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="Log in · Dine Oman">تسجيل الدخول · داين عُمان</title>
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<script src="js/lang.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/do.css">
+</head>
+<body>
+<header class="top"></header>
+<main class="wrap page">
+  <div class="narrow form" id="loginCard">
+    <div><h1 class="title" data-en="Log in">تسجيل الدخول</h1><p class="lead" data-en="Welcome back.">أهلًا بعودتك.</p></div>
+    <div class="notice ok" id="notice" hidden></div>
+    <button class="google" type="button" id="google"></button>
+    <div class="or" data-en="or">أو</div>
+    <form id="loginForm" class="form" novalidate>
+      <div class="field"><label for="email" data-en="Email">البريد الإلكتروني</label><input class="input ltr" id="email" type="email" autocomplete="email" inputmode="email"><span class="err" data-en="Enter a valid email address.">أدخل بريدًا إلكترونيًا صحيحًا.</span></div>
+      <div class="field">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><label for="password" style="font-weight:500" data-en="Password">كلمة المرور</label><button type="button" class="link plain small" id="toForgot" data-en="Forgot password?">نسيت كلمة المرور؟</button></div>
+        <div class="pw"><input class="input" id="password" type="password" autocomplete="current-password"></div>
+        <span class="err" data-en="Enter your password.">أدخل كلمة المرور.</span>
+      </div>
+      <div class="notice bad" id="err" role="alert" hidden></div>
+      <button class="btn block" type="submit" id="submit" data-en="Log in">دخول</button>
+    </form>
+    <p class="alt"><span data-en="No account?">ليس لديك حساب؟</span> <a href="signup.html" data-en="Sign up">أنشئ حسابًا</a><br><span data-en="Own a restaurant?">صاحب مطعم؟</span> <a href="owner-signup.html" data-en="Register it">سجّل مطعمك</a></p>
+    <p class="hint" id="demoHint" hidden style="text-align:center"></p>
+  </div>
+
+  <div class="narrow form" id="forgotCard" hidden>
+    <div><h1 class="title" data-en="Reset password">استعادة كلمة المرور</h1><p class="lead" data-en="We'll email you a link to choose a new password.">سنرسل لك رابطًا لاختيار كلمة مرور جديدة.</p></div>
+    <form id="forgotForm" class="form" novalidate>
+      <div class="field"><label for="fEmail" data-en="Email">البريد الإلكتروني</label><input class="input ltr" id="fEmail" type="email" autocomplete="email" inputmode="email"><span class="err" data-en="Enter a valid email address.">أدخل بريدًا إلكترونيًا صحيحًا.</span></div>
+      <div class="notice ok" id="fSent" hidden></div>
+      <button class="btn block" type="submit" id="fSubmit" data-en="Send link">إرسال الرابط</button>
+    </form>
+    <p class="alt"><button class="link plain" type="button" id="toLogin" data-en="Back to log in">العودة لتسجيل الدخول</button></p>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+(async function () {
+  const api = DineAPI, U = DineUI, $ = U.$;
+  const qs = new URLSearchParams(location.search), next = qs.get("next");
+  const me = await U.chrome();
+  if (me) { location.replace(U.homeFor(me, next)); return; }
+  $("#google").innerHTML = U.GOOGLE + t("المتابعة باستخدام Google", "Continue with Google");
+  const notes = { verified: t("تم تأكيد بريدك. سجّل الدخول الآن.", "Email confirmed. You can log in now."), reset: t("تم تحديث كلمة المرور. سجّل الدخول بها.", "Password updated. Log in with your new password."), signedout: t("تم تسجيل خروجك من كل الأجهزة.", "You've been logged out of all devices.") };
+  for (const k in notes) if (qs.has(k)) { $("#notice").hidden = false; $("#notice").textContent = notes[k]; }
+  if (qs.get("email")) $("#email").value = qs.get("email");
+  if (api.mode === "demo") { $("#demoHint").hidden = false; $("#demoHint").innerHTML = `${t("حساب المدير التجريبي", "Demo admin")}: <span class="ltr">${api.demoAdmin.email} / ${api.demoAdmin.password}</span>`; }
+  U.bindPassword($("#password"));
+
+  const show = forgot => { $("#loginCard").hidden = forgot; $("#forgotCard").hidden = !forgot; if (forgot) { $("#fEmail").value = $("#email").value; $("#fEmail").focus(); } };
+  $("#toForgot").onclick = () => show(true);
+  $("#toLogin").onclick = () => show(false);
+  if (location.hash === "#forgot") show(true);
+  $("#google").onclick = async () => { try { await api.signInGoogle(); } catch (e) { err(e.message); } };
+
+  function err(msg, html) { const e = $("#err"); e.hidden = false; if (html) e.innerHTML = msg; else e.textContent = msg; }
+  $("#loginForm").addEventListener("submit", async ev => {
+    ev.preventDefault(); $("#err").hidden = true;
+    const email = $("#email").value.trim(), pw = $("#password").value;
+    const ok = U.mark($("#email").closest(".field"), U.V.email(email)) & U.mark($("#password").closest(".field"), pw.length > 0);
+    if (!ok) return;
+    const btn = $("#submit"); U.busy(btn, true);
+    try { await api.signIn(email, pw); location.replace(U.homeFor(await api.me(), next)); }
+    catch (e) {
+      U.busy(btn, false);
+      if (e.message === "EMAIL_NOT_CONFIRMED") {
+        err(t(`أكّد بريدك أولًا من الرابط الذي أرسلناه إلى <b class="ltr">${U.esc(email)}</b>. <button class="link" type="button" id="resend">أرسله مرة أخرى</button>`,
+          `Please confirm your email first using the link we sent to <b>${U.esc(email)}</b>. <button class="link" type="button" id="resend">Send it again</button>`), true);
+        $("#resend").onclick = async () => { await api.resendVerification(email).catch(() => {}); U.toast(t("أرسلنا رابط التأكيد مرة أخرى.", "Confirmation email sent again.")); };
+      } else err(e.message);
+    }
+  });
+  $("#forgotForm").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const email = $("#fEmail").value.trim();
+    if (!U.mark($("#fEmail").closest(".field"), U.V.email(email))) return;
+    const btn = $("#fSubmit"); U.busy(btn, true);
+    try { await api.sendPasswordReset(email); } catch (e) { /* same message either way, so emails can't be probed */ }
+    U.busy(btn, false);
+    $("#fSent").hidden = false;
+    $("#fSent").textContent = t(`إذا كان هناك حساب للبريد ${email} فسيصله رابط خلال دقائق.`, `If an account exists for ${email}, a reset link is on its way.`);
+  });
+})();
+</script>
+</body>
+</html>

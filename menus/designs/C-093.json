@@ -1,0 +1,20 @@
+{
+ "id": "C-093",
+ "set": "interactive",
+ "family": "bento",
+ "familyName": {
+  "ar": "شبكة البينتو",
+  "en": "Bento Grid"
+ },
+ "name": {
+  "ar": "بينتو الرمل · الشواء",
+  "en": "Sand Bento · Grill"
+ },
+ "palette": "sand-ink",
+ "fonts": [
+  "markazi",
+  "bodoni"
+ ],
+ "cuisine": "grill",
+ "reveal": "circle"
+}
